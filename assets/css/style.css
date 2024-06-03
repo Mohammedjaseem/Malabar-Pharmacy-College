@@ -715,9 +715,16 @@ label {
 .navbar-brand {
   margin-right: 0;
 }
-.navbar-brand img {
-  width: 190px;
+/* .navbar-brand img {
+  width: 120px;
+} */
+
+.navbar-brand span {
+  font-size: larger;
+  font-weight: bolder;
+  color: #125875;
 }
+
 .navbar .dropdown-toggle::after {
   display: inline-block;
   margin-left: 5px;
@@ -892,8 +899,14 @@ label {
   .navbar-brand {
     padding-left: 10px;
   }
-  .navbar-brand img {
-    width: 130px;
+  /* .navbar-brand img {
+    width: 120px;
+  } */
+
+  .navbar-brand span {
+    font-weight: bolder;
+    font-size: small;
+    color: #125875;
   }
   .navbar-collapse {
     max-height: 220px;
@@ -1995,7 +2008,7 @@ label {
   position: relative;
 }
 .ts-bg {
-  background-image: url(../img/testimonial/bg.jpg);
+  background-image: url(https://mdcrc.edu.in/upload/slider-image-2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -2092,7 +2105,7 @@ label {
 }
 .counter-area {
   position: relative;
-  background-image: url(../img/counter/01.jpg);
+  background-image: url(https://mdcrc.edu.in/upload/about-title-bg.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -2490,6 +2503,9 @@ label {
 }
 .department-btn a i {
   margin-left: 5px;
+}
+.extra-content {
+  display: none;
 }
 .department-slider .department-item {
   box-shadow: none;
@@ -3151,6 +3167,9 @@ label {
 }
 .team-img img {
   border-radius: 8px;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 .team-content {
   margin-top: 15px;
