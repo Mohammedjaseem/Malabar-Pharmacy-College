@@ -28,7 +28,7 @@
   box-sizing: inherit;
 }
 * {
-  scroll-behavior: inherit !important;
+  scroll-behavior: smooth !important;
 }
 html,
 body {
@@ -4481,6 +4481,12 @@ label {
   color: var(--theme-color);
   margin-right: 8px;
 }
+
+.careers-area{
+  position: relative;
+  background: var(--theme-bg-light);
+}
+
 .footer-area {
   background: var(--footer-bg);
   position: relative;
