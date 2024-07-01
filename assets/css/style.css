@@ -3335,6 +3335,7 @@ label {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 @media all and (max-width: 767px) {
   .video-wrapper {
     height: 250px;
