@@ -4839,7 +4839,7 @@ label {
 
 
 .marquee {
-  overflow: hidden;
+  /* overflow: hidden; */
   white-space: nowrap;
   color: var(--theme-color);
   font-size: 24px; /* Increased font size for better readability */
