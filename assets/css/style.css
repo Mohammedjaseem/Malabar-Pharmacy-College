@@ -743,7 +743,8 @@ label {
     margin-right: 15px;
   }
   .navbar .nav-right-btn {
-    display: none;
+    display: block; /* Ensure the button is visible on the right side */
+    float: right; /* Align the button to the right side */
   }
 }
 @media all and (min-width: 992px) {
@@ -955,9 +956,9 @@ label {
   .navbar .dropdown-menu {
     border-radius: 0;
   }
-  .nav-right {
+  /* .nav-right {
     display: none;
-  }
+  } */
 }
 @media (min-width: 992px) {
   .nav-item.mega-menu {
@@ -4399,6 +4400,58 @@ label {
     margin-top: 70px;
   }
 }
+
+.admission {
+  position: relative;
+}
+.admission .content-img {
+  margin-right: 30px;
+  position: relative;
+  z-index: 1;
+}
+.admission .content-img::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: -30px;
+  bottom: -30px;
+  width: 80%;
+  background: var(--theme-color2);
+  border-radius: 15px;
+  transform: rotate(5deg);
+  z-index: -1;
+}
+.admission .content-img img {
+  border-radius: 15px;
+  width: 100%;
+}
+.admission .content-btn {
+  margin-top: 40px;
+}
+.admission-details .details-wrapper {
+  border-top: 1px solid var(--border-info-color);
+  padding-top: 60px;
+}
+.admission-details .content-list li {
+  margin-top: 8px;
+}
+.admission-details .content-list i {
+  color: var(--theme-color);
+  margin-right: 8px;
+}
+.admission-details .details-item {
+  margin-bottom: 40px;
+}
+.admission-details .details-item img {
+  border-radius: 10px;
+}
+@media all and (max-width: 991px) {
+  .admission .content-info {
+    margin-top: 5px;
+  }
+}
+
+
 .scholarship {
   position: relative;
 }
@@ -4782,4 +4835,28 @@ label {
   width: 100%;
   height: 100%;
   opacity: 0.95;
+}
+
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--theme-color);
+  font-size: 24px; /* Increased font size for better readability */
+  font-weight: bold; /* Made text bold for emphasis */
+  padding: 10px; /* Added padding for better spacing */
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translate(100%, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+
+.content-text {
+  font-size: 18px; /* Increased font size for better readability */
+  line-height: 1.6; /* Improved line spacing for better text flow */
+  color: #333; /* Darker text color for better contrast and readability */
+  margin-bottom: 20px; /* Added bottom margin for better separation between paragraphs */
 }
