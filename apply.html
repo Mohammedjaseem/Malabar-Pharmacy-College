@@ -374,21 +374,27 @@
         </div>
       </div>
 
-      <div class="application py-120">
+      <div class="application py-10">
         <div class="container">
           <div class="application-form">
-            <h3>Application Form</h3>
-            <form action="#">
+
+          <div style="text-align: center; margin-bottom: 20px;">
+            <h4 style="font-weight: bold; color: #125875; font-size: 24px;">Malabar College of Pharmacy</h4>
+            <p>Manoor - Chekanoor Road, Manoor, Edappal, Malappuram, Kerala 679578</p>
+          </div>
+            <h3 style="text-align: center; margin-top: 20px;">Application Form</h3>
+            <form id="applicationForm" action="#">
               <div class="row">
-                <h5 class="mb-3">Basic Information</h5>
+                <h5 class="mb-3">Personal Details</h5>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>First Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="firstname"
+                      name="firstName"
                       placeholder="Your First Name"
+                      required
                     />
                   </div>
                 </div>
@@ -398,71 +404,21 @@
                     <input
                       type="text"
                       class="form-control"
-                      name="lastname"
+                      name="lastName"
                       placeholder="Your Last Name"
+                      required
                     />
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label>Program Type</label>
-                    <select class="form-select" name="program">
-                      <option value>Choose Program Type</option>
-                      <option value="1">Program Type 01</option>
-                      <option value="2">Program Type 02</option>
-                      <option value="3">Program Type 03</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label>Degree Level</label>
-                    <select class="form-select" name="degree">
-                      <option value>Choose Degree Level</option>
-                      <option value="1">Degree Level 01</option>
-                      <option value="2">Degree Level 02</option>
-                      <option value="3">Degree Level 03</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label>Student Photo</label>
-                    <input
-                      type="file"
-                      class="form-control"
-                      name="photo"
-                      aria-describedby="photohelp"
-                    />
-                    <div id="photohelp" class="form-text">
-                      Your Photo Must be in Passport (PP) Size. Max Upload Size
-                      1MB.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label>Upload Passport or Birth Document</label>
-                    <input
-                      type="file"
-                      class="form-control"
-                      name="document"
-                      aria-describedby="dochelp"
-                    />
-                    <div id="dochelp" class="form-text">
-                      Upload File Must Be Zip File. Max Upload Size 1MB.
-                    </div>
-                  </div>
-                </div>
-                <h5 class="mt-4 mb-3">Personal Information</h5>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>Father's Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="fathername"
+                      name="fathersName"
                       placeholder="Your Father's Name"
+                      required
                     />
                   </div>
                 </div>
@@ -472,9 +428,66 @@
                     <input
                       type="text"
                       class="form-control"
-                      name="mothername"
+                      name="mothersName"
                       placeholder="Your Mother's Name"
+                      required
                     />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Date Of Birth</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="dateOfBirth"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Gender</label>
+                    <select class="form-select" name="gender" required>
+                      <option value="">Choose Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Religion</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="religion"
+                      placeholder="Your Religion"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Caste</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="caste"
+                      placeholder="Your Caste"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Quota</label>
+                    <select class="form-select" name="quota" required>
+                      <option value="">Choose Quota</option>
+                      <option value="Merit">Merit</option>
+                      <option value="Management">Management</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -483,8 +496,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      name="number"
+                      name="contactNumber"
                       placeholder="Your Contact Number"
+                      required
                     />
                   </div>
                 </div>
@@ -494,145 +508,253 @@
                     <input
                       type="email"
                       class="form-control"
-                      name="email"
+                      name="emailAddress"
                       placeholder="Your Email Address"
+                      required
                     />
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label>Present Address</label>
-                    <input
-                      type="text"
+                    <textarea
                       class="form-control"
-                      name="address"
+                      name="presentAddress"
                       placeholder="Your Present Address"
+                      rows="4"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Student Photo</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="studentPhoto"
+                      required
+                      accept="image/*"
+                      onchange="previewFile(event, 'studentPhotoPreview')"
                     />
+                    <small>Your Photo Must be in Passport (PP) Size. Max Upload Size 1MB.</small>
+                    <div id="studentPhotoPreview" class="preview-container"></div>
                   </div>
                 </div>
+
+                <h5 class="mt-4 mb-3">Identification</h5>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Date Of Birth</label>
-                    <input type="date" class="form-control" name="dob" />
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label>National ID Or Passport ID</label>
+                    <label>Aadhar Number</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="nid"
-                      placeholder="Your ID Number"
+                      name="aadharNumber"
+                      placeholder="Your Aadhar Number"
+                      required
                     />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Gender</label>
-                    <select class="form-select" name="gender">
-                      <option value>Choose Gender</option>
-                      <option value="1">Male</option>
-                      <option value="2">Female</option>
-                      <option value="3">Others</option>
-                    </select>
+                    <label>Aadhar Photo</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="aadharPhoto"
+                      required
+                      multiple
+                      onchange="previewFiles(event, 'aadharPhotoPreview')"
+                    />
+                    <small>Max Upload Size 1MB.</small>
+                    <div id="aadharPhotoPreview" class="preview-container"></div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Student Type</label>
-                    <select class="form-select" name="studenttype">
-                      <option value>Choose Student Type</option>
-                      <option value="1">Student Type 01</option>
-                      <option value="2">Student Type 02</option>
-                      <option value="3">Student Type 03</option>
+                    <label>Signature</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="signature"
+                      required
+                      onchange="previewFile(event, 'signaturePreview')"
+                    />
+                    <small>Max Upload Size 1MB.</small>
+                    <div id="signaturePreview" class="preview-container"></div>
+                  </div>
+                </div>
+
+                <h5 class="mt-4 mb-3">Program Details</h5>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Program Type</label>
+                    <select
+                      class="form-control"
+                      name="programType"
+                      required
+                    >
+                      <option value="" disabled selected>Select Program Type</option>
+                      <option value="B.Pharm">B.Pharm</option>
                     </select>
                   </div>
                 </div>
-                <h5 class="mt-4 mb-3">Academic Information</h5>
+
+                <h5 class="mt-4 mb-3">Academic Details</h5>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>School</label>
+                    <label>High School Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="school"
-                      placeholder="Your School"
+                      name="highSchoolName"
+                      placeholder="Your High School Name"
+                      required
                     />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Year Of Completion</label>
+                    <label>High School Year of Passing</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="highSchoolYearOfPassing"
+                      placeholder="Year of Passing"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>High School Percentage</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="highSchoolPercentage"
+                      placeholder="Percentage"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>High School Certificate</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="highSchoolCertificate"
+                      required
+                      onchange="previewFile(event, 'highSchoolCertificatePreview')"
+                    />
+                    <small>Max Upload Size 1MB.</small>
+                    <div id="highSchoolCertificatePreview" class="preview-container"></div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Higher Secondary School Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="yoc"
-                      placeholder="Completion Year"
+                      name="higherSecondarySchoolName"
+                      placeholder="Your Higher Secondary School Name"
+                      required
                     />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Highest Qualification</label>
+                    <label>Higher Secondary Year of Passing</label>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
-                      name="qualification"
-                      placeholder="Your Qualification"
+                      name="higherSecondaryYearOfPassing"
+                      placeholder="Year of Passing"
+                      required
                     />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Current Status</label>
-                    <select class="form-select" name="status">
-                      <option value>Choose Current Status</option>
-                      <option value="1">Current Status 01</option>
-                      <option value="2">Current Status 02</option>
-                      <option value="3">Current Status 03</option>
-                    </select>
+                    <label>Higher Secondary Percentage</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="higherSecondaryPercentage"
+                      placeholder="Percentage"
+                      required
+                    />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Study Area</label>
-                    <select class="form-select" name="studyarea">
-                      <option value>Choose Study Area</option>
-                      <option value="1">Study Area 01</option>
-                      <option value="2">Study Area 02</option>
-                      <option value="3">Study Area 03</option>
-                    </select>
+                    <label>Higher Secondary Certificate</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="higherSecondaryCertificate"
+                      required
+                      onchange="previewFile(event, 'higherSecondaryCertificatePreview')"
+                    />
+                    <small>Max Upload Size 1MB.</small>
+                    <div id="higherSecondaryCertificatePreview" class="preview-container"></div>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                   <div class="form-group">
-                    <label>Academic Degree Level</label>
-                    <select class="form-select" name="academicdegree">
-                      <option value>Choose Degree Level</option>
-                      <option value="1">Academic Degree Level 01</option>
-                      <option value="2">Academic Degree Level 02</option>
-                      <option value="3">Academic Degree Level 03</option>
-                    </select>
+                    <label>Physics Percentage</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="physicsPercentage"
+                      placeholder="Physics Percentage"
+                      required
+                    />
                   </div>
                 </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label>Chemistry Percentage</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="chemistryPercentage"
+                      placeholder="Chemistry Percentage"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label>Biology Percentage</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="biologyPercentage"
+                      placeholder="Biology Percentage"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <h5 class="mt-4 mb-3">Agreement</h5>
                 <div class="col-lg-12">
                   <div class="form-check">
                     <input
                       class="form-check-input"
                       type="checkbox"
                       id="agree"
-                      name="agree"
+                      name="termsAndConditions"
                       value="1"
+                      required
                     />
                     <label class="form-check-label" for="agree">
-                      By Submitting This Form You Agree To The
-                      <a href="#">Terms & Conditions</a> And
-                      <a href="#">Privacy Policy</a>.
+                      I hereby declare that the information provided in this application is true to the best of my knowledge.
                     </label>
                   </div>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-12 text-right">
                   <button type="submit" class="theme-btn">
                     Submit Application<i class="fas fa-arrow-right-long"></i>
                   </button>
@@ -643,146 +765,86 @@
         </div>
       </div>
     </main>
-
-    <footer class="footer-area">
-      <div class="footer-shape">
-        <img src="assets/img/shape/03.png" alt />
-      </div>
-      <div class="footer-widget">
-        <div class="container">
-          <div class="row footer-widget-wrapper pt-100 pb-70">
-            <div class="col-md-6 col-lg-4">
-              <div class="footer-widget-box about-us">
-                <!-- <a href="/" class="footer-logo">
-                <span style="font-size: larger; color: #125875; font-weight: bolder;">Malabar College of Pharmacy</span>
-              </a> -->
-                <!-- <p class="mb-3">
-                We are many variations of passages available but the majority
-                have suffered alteration in some form by injected humour words
-                believable.
-              </p> -->
-                <h4 class="footer-widget-title">Contact Us</h4>
-                <ul class="footer-contact">
-                  <li>
-                    <a href="tel:+917034555559"
-                      ><i class="far fa-phone"></i>+91 7034555559</a
-                    >
-                  </li>
-                  <li>
-                    <i class="far fa-map-marker-alt"></i>Manoor - Chekanoor
-                    Road, Manoor, Edappal,<br />
-                    Malappuram, Kerala 679578
-                  </li>
-                  <li>
-                    <a href="mailto:mcp@macity.edu.in">
-                      <i class="far fa-envelope"></i>mcp@macity.edu.in
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-2">
-              <div class="footer-widget-box list">
-                <h4 class="footer-widget-title">Quick Links</h4>
-                <ul class="footer-list">
-                  <li>
-                    <a href="/#about-us"
-                      ><i class="fas fa-caret-right"></i> About Us</a
-                    >
-                  </li>
-                  <!-- <li>
-                  <a href="#"><i class="fas fa-caret-right"></i> FAQ's</a>
-                </li> -->
-                  <li>
-                    <a href="/#testimonial"
-                      ><i class="fas fa-caret-right"></i> Testimonials</a
-                    >
-                  </li>
-                  <!-- <li>
-                  <a href="#"
-                    ><i class="fas fa-caret-right"></i> Terms Of Service</a
-                  >
-                </li>
-                <li>
-                  <a href="#"
-                    ><i class="fas fa-caret-right"></i> Privacy policy</a
-                  >
-                </li> -->
-                  <!-- <li>
-                  <a href="#"
-                    ><i class="fas fa-caret-right"></i> Update News</a
-                  >
-                </li> -->
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="footer-widget-box list">
-                <h4 class="footer-widget-title">Newsletter</h4>
-                <div class="footer-newsletter">
-                  <p>Subscribe Our Newsletter To Get Latest Update And News</p>
-                  <div class="subscribe-form">
-                    <form action="#">
-                      <input
-                        type="email"
-                        class="form-control"
-                        placeholder="Your Email"
-                      />
-                      <button class="theme-btn" type="submit">
-                        Subscribe Now <i class="far fa-paper-plane"></i>
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="copyright">
-        <div class="container">
-          <div class="copyright-wrapper">
-            <div class="row">
-              <div class="col-md-6 align-self-center">
-                <span>Last updated on 08-11-2024</span>
-                <p copyright-text">
-                  &copy; Copyright <span id="date"></span>
-                  <a href="https://connect.edentu.com/">Edentu Pvt Ltd</a> All
-                  Rights Reserved.
-                </p>
-              </div>
-              <div class="col-md-6 align-self-center">
-                <ul class="footer-social">
-                  <li>
-                    <a href="https://www.facebook.com/MalabarCollegeofPharmacy"
-                      ><i class="fab fa-facebook-f"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a
-                      href="http://www.instagram.com/malabar_college_of_pharmacy"
-                      ><i class="fab fa-instagram"></i
-                    ></a>
-                  </li>
-                  <!-- <li>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fab fa-youtube"></i></a>
-                </li> -->
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
     <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
+    <script>
+      function previewFile(event, previewId) {
+        const file = event.target.files[0];
+        const previewContainer = document.getElementById(previewId);
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.maxWidth = '100px';
+          img.style.height = '100px';
+          img.style.marginRight = '10px';
+          img.style.objectFit = 'cover';
+          previewContainer.appendChild(img);
 
+          const removeButton = document.createElement('button');
+          removeButton.innerText = 'Remove';
+          removeButton.onclick = function() {
+            previewContainer.innerHTML = '';
+            event.target.value = '';
+          };
+          previewContainer.appendChild(removeButton);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function previewFiles(event, previewId) {
+        const files = event.target.files;
+        const previewContainer = document.getElementById(previewId);
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.maxWidth = '100px';
+            img.style.height = '100px';
+            img.style.marginRight = '10px';
+            img.style.objectFit = 'cover';
+            previewContainer.appendChild(img);
+
+            const removeButton = document.createElement('button');
+            removeButton.innerText = 'Remove';
+            removeButton.onclick = function() {
+              previewContainer.removeChild(img);
+              previewContainer.removeChild(removeButton);
+              if (previewContainer.children.length === 0) {
+                event.target.value = '';
+              }
+            };
+            previewContainer.appendChild(removeButton);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      document.getElementById('applicationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch('https://api.example.com/submit-application', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status) {
+            alert('Your application was submitted successfully.');
+            window.location.href = '/';
+          } else {
+            alert('There was an error submitting your application. Please try again.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('There was an error submitting your application. Please try again.');
+        });
+      });
+    </script>
     <script
       data-cfasync="false"
       src="https://live.themewild.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
@@ -801,5 +863,5 @@
     <script src="assets/js/main.js"></script>
   </body>
 
-  <!-- Mirrored from live.themewild.com/edubo/application-form.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:26:42 GMT -->
+  <!-- Mirrored from live.themewild.com/edubo/alumni.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:27:21 GMT -->
 </html>
