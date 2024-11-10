@@ -155,10 +155,13 @@
                             <div class="d-flex justify-content-between mb-4">
 
                               <span></span>
-                              <!-- <a href="forgot-password.html" class="forgot-pass">Forgot Password?</a> -->
+                              <a href="forgot-password.html" class="forgot-pass">Forgot Password?</a>
                             </div>
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="theme-btn"><i class="far fa-sign-in"></i> Login</button>
+                                <div id="loginSpinner" style="display: none; margin-left: 10px;">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
                             </div>
                         </form>
                         
@@ -282,16 +285,35 @@
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const emailField = document.getElementById('email');
+            const passwordField = document.getElementById('password');
+            const email = emailField.value.trim().toLowerCase();
+            const password = passwordField.value.trim();
+
+            // Show loading spinner
+            const loginSpinner = document.getElementById('loginSpinner');
+            loginSpinner.style.display = 'block';
+
+            // Disable input fields and submit button
+            emailField.disabled = true;
+            passwordField.disabled = true;
+            event.target.querySelector('button[type="submit"]').disabled = true;
 
             if (!email || !password) {
                 showToast("Please fill in all fields.", "error");
+                loginSpinner.style.display = 'none';
+                emailField.disabled = false;
+                passwordField.disabled = false;
+                event.target.querySelector('button[type="submit"]').disabled = false;
                 return;
             }
 
             if (password.length < 6) {
                 showToast("Password must be at least 6 characters long.", "error");
+                loginSpinner.style.display = 'none';
+                emailField.disabled = false;
+                passwordField.disabled = false;
+                event.target.querySelector('button[type="submit"]').disabled = false;
                 return;
             }
 
@@ -301,7 +323,7 @@
             };
 
             // Send form data to the API
-            fetch('https://yourapi.com/login', {
+            fetch('https://conext.in/admissions/api/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -312,15 +334,27 @@
             .then(data => {
                 if (data.status) {
                     showToast(data.message || "Login successful!", "success");
-                    // Redirect to application form page on success
-                    window.location.href = 'apply.html';
+                    loginSpinner.style.display = 'none';
+                    // Redirect to application form page on success with data after showing toast for 3 seconds
+                    setTimeout(() => {
+                      window.location.href = `apply.html?data=${encodeURIComponent(JSON.stringify(data))}`;
+                    }, 2000);
                 } else {
                     showToast("Login failed: " + data.message, "error");
+                    loginSpinner.style.display = 'none';
+                    emailField.disabled = false;
+                    passwordField.disabled = false;
+                    event.target.querySelector('button[type="submit"]').disabled = false;
                 }
             })
             .catch(error => {
+                // Hide loading spinner
+                loginSpinner.style.display = 'none';
                 console.error('Error:', error);
                 showToast(error.response && error.response.data && (error.response.data.error || error.response.data.message) || error.message || "An error occurred during login. Please try again.", "error");
+                emailField.disabled = false;
+                passwordField.disabled = false;
+                event.target.querySelector('button[type="submit"]').disabled = false;
             });
         });
 
@@ -335,11 +369,7 @@
             }, 3000);
           }
     </script>
-  
-      <script
-        data-cfasync="false"
-        src="https://live.themewild.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-      ></script>
+      <script src="https://live.themewild.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
       <script src="assets/js/jquery-3.7.1.min.js"></script>
       <script src="assets/js/modernizr.min.js"></script>
       <script src="assets/js/bootstrap.bundle.min.js"></script>

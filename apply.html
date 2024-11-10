@@ -150,7 +150,6 @@
           </ul>
         </div>
       </div>
-
       <div class="application py-10">
         <div class="container">
           <div class="application-form">
@@ -165,11 +164,23 @@
                   <h5 class="mb-3">Personal Details</h5>
                   <div class="col-lg-6">
                     <div class="form-group">
+                      <label>Registration Number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="reg_no"
+                        placeholder="Your Registration Number"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
                       <label>First Name</label>
                       <input
                         type="text"
                         class="form-control"
-                        name="firstName"
+                        name="first_name"
                         placeholder="Your First Name"
                         required
                       />
@@ -181,7 +192,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name="lastName"
+                        name="last_name"
                         placeholder="Your Last Name"
                         required
                       />
@@ -193,7 +204,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name="fathersName"
+                        name="fathers_name"
                         placeholder="Your Father's Name"
                         required
                       />
@@ -205,7 +216,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name="mothersName"
+                        name="mothers_name"
                         placeholder="Your Mother's Name"
                         required
                       />
@@ -217,7 +228,7 @@
                       <input
                         type="date"
                         class="form-control"
-                        name="dateOfBirth"
+                        name="date_of_birth"
                         required
                       />
                     </div>
@@ -273,7 +284,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name="contactNumber"
+                        name="contact_number"
                         placeholder="Your Contact Number"
                         required
                         pattern="\d{10}"
@@ -287,7 +298,7 @@
                       <input
                         type="email"
                         class="form-control"
-                        name="emailAddress"
+                        name="email"
                         placeholder="Your Email Address"
                         required
                       />
@@ -298,7 +309,7 @@
                       <label>Present Address</label>
                       <textarea
                         class="form-control"
-                        name="presentAddress"
+                        name="present_address"
                         placeholder="Your Present Address"
                         rows="4"
                         required
@@ -311,7 +322,7 @@
                       <input
                         type="file"
                         class="form-control"
-                        name="studentPhoto"
+                        name="student_photo"
                         required
                         accept="image/*"
                         onchange="previewFile(event, 'studentPhotoPreview')"
@@ -328,7 +339,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name="aadharNumber"
+                        name="aadhar_number"
                         placeholder="Your Aadhar Number"
                         required
                       />
@@ -340,7 +351,7 @@
                       <input
                         type="file"
                         class="form-control"
-                        name="aadharPhoto"
+                        name="aadhar_photo"
                         required
                         multiple
                         onchange="previewFiles(event, 'aadharPhotoPreview')"
@@ -370,7 +381,7 @@
                       <label>Program Type</label>
                       <select
                         class="form-control"
-                        name="programType"
+                        name="program_type"
                         required
                       >
                         <option value="" disabled selected>Select Program Type</option>
@@ -386,7 +397,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name="highSchoolName"
+                        name="high_school_name"
                         placeholder="Your High School Name"
                         required
                       />
@@ -398,7 +409,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name="highSchoolYearOfPassing"
+                        name="high_school_year_of_passing"
                         placeholder="Year of Passing"
                         required
                       />
@@ -410,7 +421,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name="highSchoolPercentage"
+                        name="high_school_percentage"
                         placeholder="Percentage"
                         required
                       />
@@ -422,7 +433,7 @@
                       <input
                         type="file"
                         class="form-control"
-                        name="highSchoolCertificate"
+                        name="high_school_certificate"
                         required
                         onchange="previewFile(event, 'highSchoolCertificatePreview')"
                       />
@@ -436,7 +447,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        name="higherSecondarySchoolName"
+                        name="higher_secondary_school_name"
                         placeholder="Your Higher Secondary School Name"
                         required
                       />
@@ -448,7 +459,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name="higherSecondaryYearOfPassing"
+                        name="higher_secondary_year_of_passing"
                         placeholder="Year of Passing"
                         required
                       />
@@ -460,7 +471,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name="higherSecondaryPercentage"
+                        name="higher_secondary_percentage"
                         placeholder="Percentage"
                         required
                       />
@@ -472,7 +483,7 @@
                       <input
                         type="file"
                         class="form-control"
-                        name="higherSecondaryCertificate"
+                        name="higher_secondary_certificate"
                         required
                         onchange="previewFile(event, 'higherSecondaryCertificatePreview')"
                       />
@@ -486,7 +497,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name="physicsPercentage"
+                        name="physics_percentage"
                         placeholder="Physics Percentage"
                         required
                       />
@@ -498,7 +509,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name="chemistryPercentage"
+                        name="chemistry_percentage"
                         placeholder="Chemistry Percentage"
                         required
                       />
@@ -510,7 +521,7 @@
                       <input
                         type="number"
                         class="form-control"
-                        name="biologyPercentage"
+                        name="biology_percentage"
                         placeholder="Biology Percentage"
                         required
                       />
@@ -533,17 +544,20 @@
                       </label>
                     </div>
                   </div>
-                  <div class="col-lg-12 text-right">
-                    <button type="submit" class="theme-btn">
+                            <div class="d-flex align-items-center justify-content-end">
+                              <button type="submit" class="theme-btn" id="submitButton">
                       Submit Application<i class="fas fa-arrow-right-long"></i>
                     </button>
+                    <div id="submitSpinner" style="display: none; margin-left: 10px;">
+                      <i class="fas fa-spinner fa-spin"></i>
+                  </div>
                   </div>
                 </div>
               </form>
             </div>
-            <div id="alreadySubmittedMessage" style="display: none; text-align: center; ">
+            <!-- <div id="alreadySubmittedMessage" style="display: none; text-align: center; ">
               <h4 style="color: #4CAF50;">Your application has already been submitted. Thank you!</h4>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -551,7 +565,6 @@
     
     <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
     <div id="toast" style="position: fixed; top: 20px; right: 20px; min-width: 200px; padding: 10px; border-radius: 5px; display: none; z-index: 1000;"></div>
-
     <script>
       function previewFile(event, previewId) {
         const file = event.target.files[0];
@@ -571,6 +584,7 @@
           removeButton.onclick = function() {
             previewContainer.innerHTML = '';
             event.target.value = '';
+            event.target.required = true;
           };
           previewContainer.appendChild(removeButton);
         };
@@ -599,6 +613,7 @@
               previewContainer.removeChild(removeButton);
               if (previewContainer.children.length === 0) {
                 event.target.value = '';
+                event.target.required = true;
               }
             };
             previewContainer.appendChild(removeButton);
@@ -610,37 +625,75 @@
       document.getElementById('applicationForm').addEventListener('submit', function(event) {
         event.preventDefault();
         const form = event.target;
-        console.log(form);
-
+        
         const formData = new FormData(form);
+        const submitSpinner = document.getElementById('submitSpinner');
+        const submitButton = document.getElementById('submitButton');
+        submitSpinner.style.display = 'block'; // Show loading spinner
+        submitButton.disabled = true; // Disable submit button
+        submitButton.innerHTML = 'Submitting...'; // Change button text
+
+        // Disable all input fields
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => input.disabled = true);
+
+        // Remove fields with URLs from formData
+        const urlFields = ['student_photo', 'aadhar_photo', 'signature', 'high_school_certificate', 'higher_secondary_certificate'];
+        urlFields.forEach(field => {
+          const input = document.querySelector(`input[name="${field}"]`);
+          if (input && input.value.startsWith('https://connectv2s3.s3.ap-south-1.amazonaws.com/')) {
+            formData.delete(field);
+          }
+        });
+
+        // Ensure only non-empty file inputs are included in formData
+        const fileFields = ['student_photo', 'aadhar_photo', 'signature', 'high_school_certificate', 'higher_secondary_certificate'];
+        fileFields.forEach(field => {
+          const input = document.querySelector(`input[name="${field}"]`);
+          if (input && input.files.length === 0) {
+            formData.delete(field);
+          }
+        });
 
         // application form submit api
-        fetch('https://api.example.com/submit-application', {
-          method: 'POST',
+        fetch('https://conext.in/admissions/api/update_student_data/', {
+          method: 'PUT',
           body: formData
         })
         .then(response => response.json())
         .then(data => {
-          if (data.status && data.is_applied) {
-            localStorage.setItem('is_applied', 'true');
+          if (data.status) {
             showToast(data?.message || 'Your application was submitted successfully.', 'success');
-            window.location.href = '/';
+            submitSpinner.style.display = 'none'; // Hide loading spinner
+            setTimeout(() => {
+              window.location.href = '/';
+              window.history.pushState(null, null, window.location.href);
+              window.addEventListener('popstate', function(event) {
+                window.location.href = '/';
+              });
+            }, 2000);
           } else {
             showToast('There was an error submitting your application. Please try again.', 'error');
+            resetFormState();
           }
         })
         .catch(error => {
+          submitSpinner.style.display = 'none'; // Hide loading spinner
           console.error('Error:', error);
           showToast(error.response && error.response.data && (error.response.data.error || error.response.data.message) || error.message || "There was an error submitting your application. Please try again.", "error");
+          resetFormState();
         });
       });
 
-      document.addEventListener('DOMContentLoaded', function() {
-        if (localStorage.getItem('is_applied') === 'true') {
-          document.getElementById('applicationFormContainer').style.display = 'none';
-          document.getElementById('alreadySubmittedMessage').style.display = 'block';
-        }
-      });
+      function resetFormState() {
+        const submitButton = document.getElementById('submitButton');
+        submitButton.disabled = false; // Enable submit button
+        submitButton.innerHTML = 'Submit Application<i class="fas fa-arrow-right-long"></i>'; // Reset button text
+
+        // Enable all input fields
+        const inputs = document.querySelectorAll('#applicationForm input, #applicationForm select, #applicationForm textarea');
+        inputs.forEach(input => input.disabled = false);
+      }
 
       function showToast(message, type) {
             const toast = document.getElementById("toast");
@@ -652,6 +705,71 @@
               toast.style.display = "none";
             }, 3000);
           }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const data = JSON.parse(decodeURIComponent(urlParams.get('data')));
+
+        if (data) {
+          const formData = data.data;
+          document.querySelector('input[name="reg_no"]').value = formData.reg_number || data.reg_number || '';
+          document.querySelector('input[name="first_name"]').value = formData.first_name || '';
+          document.querySelector('input[name="last_name"]').value = formData.last_name || '';
+          document.querySelector('input[name="fathers_name"]').value = formData.fathers_name || '';
+          document.querySelector('input[name="mothers_name"]').value = formData.mothers_name || '';
+          document.querySelector('input[name="date_of_birth"]').value = formData.date_of_birth || '';
+          document.querySelector('select[name="gender"]').value = formData.gender || '';
+          document.querySelector('input[name="religion"]').value = formData.religion || '';
+          document.querySelector('input[name="caste"]').value = formData.caste || '';
+          document.querySelector('select[name="quota"]').value = formData.quota || '';
+          document.querySelector('input[name="contact_number"]').value = formData.contact_number || '';
+          document.querySelector('input[name="email"]').value = formData.email || data.email_address || '';
+          document.querySelector('textarea[name="present_address"]').value = formData.present_address || '';
+          document.querySelector('input[name="aadhar_number"]').value = formData.aadhar_number || '';
+          document.querySelector('select[name="program_type"]').value = formData.program_type || '';
+          document.querySelector('input[name="high_school_name"]').value = formData.high_school_name || '';
+          document.querySelector('input[name="high_school_year_of_passing"]').value = formData.high_school_year_of_passing || '';
+          document.querySelector('input[name="high_school_percentage"]').value = formData.high_school_percentage || '';
+          document.querySelector('input[name="higher_secondary_school_name"]').value = formData.higher_secondary_school_name || '';
+          document.querySelector('input[name="higher_secondary_year_of_passing"]').value = formData.higher_secondary_year_of_passing || '';
+          document.querySelector('input[name="higher_secondary_percentage"]').value = formData.higher_secondary_percentage || '';
+          document.querySelector('input[name="physics_percentage"]').value = formData.physics_percentage || '';
+          document.querySelector('input[name="chemistry_percentage"]').value = formData.chemistry_percentage || '';
+          document.querySelector('input[name="biology_percentage"]').value = formData.biology_percentage || '';
+
+          // Preview images
+          const imageFields = [
+            { field: 'student_photo', previewId: 'studentPhotoPreview' },
+            { field: 'aadhar_photo', previewId: 'aadharPhotoPreview' },
+            { field: 'signature', previewId: 'signaturePreview' },
+            { field: 'high_school_certificate', previewId: 'highSchoolCertificatePreview' },
+            { field: 'higher_secondary_certificate', previewId: 'higherSecondaryCertificatePreview' }
+          ];
+
+          imageFields.forEach(({ field, previewId }) => {
+            if (formData[field]) {
+              const previewContainer = document.getElementById(previewId);
+              const img = document.createElement('img');
+              img.src = formData[field];
+              img.style.maxWidth = '100px';
+              img.style.height = '100px';
+              img.style.marginRight = '10px';
+              img.style.objectFit = 'cover';
+              previewContainer.appendChild(img);
+
+              const removeButton = document.createElement('button');
+              removeButton.innerText = 'Remove';
+              removeButton.onclick = function() {
+                previewContainer.innerHTML = '';
+                document.querySelector(`input[name="${field}"]`).required = true;
+              };
+              previewContainer.appendChild(removeButton);
+
+              document.querySelector(`input[name="${field}"]`).required = false;
+            }
+          });
+        }
+      });
     </script>
     <script
       data-cfasync="false"

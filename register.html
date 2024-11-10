@@ -143,8 +143,7 @@
             </div>
         </div>
 
-
-        <div class="login-area py-120">
+        <div class="login-area py-120" id="registerSection">
             <div class="container">
                 <div class="col-md-5 mx-auto">
                     <div class="login-form">
@@ -168,6 +167,9 @@
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="theme-btn"><i class="far fa-paper-plane"></i>
                                     Register</button>
+                                <div id="registerSpinner" style="display: none; margin-left: 10px;">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
                             </div>
                         </form>
                         <div class="login-footer">
@@ -177,17 +179,27 @@
                 </div>
             </div>
         </div>
+        
         <div class="login-area py-120" id="otpSection" style="display: none;">
             <div class="container">
                 <div class="col-md-5 mx-auto">
                     <div class="login-form">
-                        <h3>OTP has been sent to <span id="userEmailDisplay"></span></h3>
+                        <h3 style="font-size: 1rem;">OTP has been sent to <span id="userEmailDisplay"></span></h3>
                         <form id="otpForm" onsubmit="verifyOtp(event)">
                             <div class="form-group">
                                 <label>Enter OTP</label>
                                 <input type="text" class="form-control" placeholder="OTP" required id="otpInput" maxlength="6" oninput="validateOtpInput(event)">
                             </div>
-                            <button type="submit" class="theme-btn">Verify OTP</button>
+                            <div class="d-flex align-items-center">
+                                <button type="submit" class="theme-btn">Verify OTP</button>
+                                <div id="otpSpinner" style="display: none; margin-left: 10px;">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </div>
+                            <div class="resend-otp" style="margin-top: 20px;">
+                              <p>Didn't receive the OTP? <a href="#" id="resendOtpLink" onclick="resendOtp(event)">Resend OTP</a></p>
+                              <p id="resendOtpTimer" style="display: none;">You can resend OTP in <span id="timer">5:00</span> minutes.</p>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -196,111 +208,22 @@
 
     </main>
 
-    <footer class="footer-area">
-        <div class="footer-shape">
-          <img src="assets/img/shape/03.png" alt />
-        </div>
-        <div class="footer-widget">
-          <div class="container">
-            <div class="row footer-widget-wrapper pt-100 pb-70">
-              <div class="col-md-6 col-lg-4">
-                <div class="footer-widget-box about-us">
-                  <h4 class="footer-widget-title">Contact Us</h4>
-                  <ul class="footer-contact">
-                    <li>
-                      <a href="tel:+917034555559"
-                        ><i class="far fa-phone"></i>+91 7034555559</a
-                      >
-                    </li>
-                    <li>
-                      <i class="far fa-map-marker-alt"></i>Manoor - Chekanoor Road, Manoor, Edappal,<br/> Malappuram,
-                      Kerala 679578
-                    </li>
-                    <li>
-                      <a href="mailto:mcp@macity.edu.in">
-                        <i class="far fa-envelope"></i>mcp@macity.edu.in
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-2">
-                <div class="footer-widget-box list">
-                  <h4 class="footer-widget-title">Quick Links</h4>
-                  <ul class="footer-list">
-                    <li>
-                      <a href="/#about-us"><i class="fas fa-caret-right"></i> About Us</a>
-                    </li>
-                    <li>
-                      <a href="/#testimonial"
-                        ><i class="fas fa-caret-right"></i> Testimonials</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-3">
-                <div class="footer-widget-box list">
-                  <h4 class="footer-widget-title">Newsletter</h4>
-                  <div class="footer-newsletter">
-                    <p>Subscribe Our Newsletter To Get Latest Update And News</p>
-                    <div class="subscribe-form">
-                      <form action="#">
-                        <input
-                          type="email"
-                          class="form-control"
-                          placeholder="Your Email"
-                        />
-                        <button class="theme-btn" type="submit">
-                          Subscribe Now <i class="far fa-paper-plane"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="copyright">
-          <div class="container">
-            <div class="copyright-wrapper">
-              <div class="row">
-                <div class="col-md-6 align-self-center"><span>Last updated on 08-11-2024</span>
-                  <p class="copyright-text">
-                    &copy; Copyright <span id="date"></span>
-                    <a href="https://connect.edentu.com/">Edentu Pvt Ltd</a> All Rights Reserved.
-                  </p>
-                </div>
-                <div class="col-md-6 align-self-center">
-                  <ul class="footer-social">
-                    <li>
-                      <a href="https://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i></a>
-                    </li>
-                    <li>
-                      <a href="http://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-  
       <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
 
       <div id="toast" style="position: fixed; top: 20px; right: 20px; min-width: 200px; padding: 10px; border-radius: 5px; display: none; z-index: 1000;"></div>
-
       <script>
         document.addEventListener("DOMContentLoaded", function() {
           const registerForm = document.getElementById("registerForm");
           const otpSection = document.getElementById("otpSection");
           const userEmailDisplay = document.getElementById("userEmailDisplay");
+          const registerSpinner = document.getElementById("registerSpinner");
+          const otpSpinner = document.getElementById("otpSpinner");
+          const resendOtpLink = document.getElementById("resendOtpLink");
           let userEmail = '';
 
           registerForm.addEventListener("submit", function(event) {
             event.preventDefault();
+            registerSpinner.style.display = 'block';
 
             const fullName = registerForm.querySelector('input[type="text"]').value;
             const email = registerForm.querySelector('input[type="email"]').value;
@@ -308,27 +231,31 @@
 
             if (!fullName || !email || !password) {
               showToast("Please fill in all fields.", "error");
+              registerSpinner.style.display = 'none';
               return;
             }
 
             if (!validateEmail(email)) {
               showToast("Please enter a valid email address.", "error");
+              registerSpinner.style.display = 'none';
               return;
             }
 
             if (password.length < 6) {
               showToast("Password must be at least 6 characters long.", "error");
+              registerSpinner.style.display = 'none';
               return;
             }
 
             const formData = {
-              fullName: fullName,
+              full_name: fullName,
               email: email,
-              password: password
+              password: password,
+              org: "MCP"
             };
 
             // Send form data to the API
-            fetch('https://yourapi.com/register', {
+            fetch('https://conext.in/admissions/api/register/', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -337,74 +264,127 @@
             })
             .then(response => response.json())
             .then(data => {
+              registerSpinner.style.display = 'none';
               if (data.status) {
                 showToast(data.message || "Registration successful! Please check your email for the OTP.", "success");
                 userEmail = email;
                 userEmailDisplay.textContent = userEmail;
-                registerForm.style.display = 'none';
+                document.getElementById("registerSection").style.display = 'none';
                 otpSection.style.display = 'block';
               } else {
                 showToast("Registration failed: " + data.message, "error");
               }
             })
             .catch(error => {
+              registerSpinner.style.display = 'none';
               console.error('Error:', error);
               showToast(error.response && error.response.data && (error.response.data.error || error.response.data.message) || error.message || "An error occurred during registration. Please try again.", "error");
             });
           });
-        });
 
-          function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(String(email).toLowerCase());
-          }
-
-          function showToast(message, type) {
-            const toast = document.getElementById("toast");
-            toast.innerText = message;
-            toast.style.display = "block";
-            toast.style.backgroundColor = type === "success" ? "#4CAF50" : "#f44336";
-            toast.style.color = "#fff";
-            setTimeout(() => {
-              toast.style.display = "none";
-            }, 3000);
-          }
-
-        function validateOtpInput(event) {
-            const input = event.target;
-            input.value = input.value.replace(/[^0-9]/g, '');
-        }
-
-        function verifyOtp(event) {
+          resendOtpLink.addEventListener("click", function(event) {
             event.preventDefault();
-            const otpInput = document.getElementById('otpInput').value;
-
-            if (otpInput.length !== 6) {
-                showToast('Please enter a 6-digit OTP.', "error");
-                return;
-            }
-
-            // Proceed with OTP verification
-            fetch('https://yourapi.com/verify-otp', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: userEmail, otp: otpInput })
+            resendOtpLink.style.display = 'none'; // Hide the resend link
+            fetch('https://conext.in/admissions/api/resend_otp/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email: userEmail })
             })
             .then(response => response.json())
             .then(data => {
-                if (data.status) {
-                    showToast(data.message || 'OTP verified successfully.', "success");
-                    window.location.href = 'login.html';
-                } else {
-                    showToast('OTP verification failed: ' + data.message, "error");
-                }
+              if (data.status) {
+                showToast(data.message || "OTP resent successfully.", "success");
+                startResendOtpTimer();
+              } else {
+                showToast("Failed to resend OTP: " + data.message, "error");
+                resendOtpLink.style.display = 'block'; // Show the resend link again if failed
+              }
             })
             .catch(error => {
-                console.error('Error:', error);
-                showToast(error.response && error.response.data && (error.response.data.error || error.response.data.message) || error.message || 'An error occurred during OTP verification. Please try again.', "error");
+              console.error('Error:', error);
+              showToast(error.response && error.response.data && (error.response.data.error || error.response.data.message) || error.message || "An error occurred while resending OTP. Please try again.", "error");
+              resendOtpLink.style.display = 'block'; // Show the resend link again if error
             });
+          });
+
+          document.getElementById("otpForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            otpSpinner.style.display = 'block';
+            const otpInput = document.getElementById('otpInput').value;
+
+            if (otpInput.length !== 6) {
+              showToast('Please enter a 6-digit OTP.', "error");
+              otpSpinner.style.display = 'none';
+              return;
+            }
+
+            // Proceed with OTP verification
+            fetch('https://conext.in/admissions/api/verify_otp/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email: userEmail, otp: otpInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+              otpSpinner.style.display = 'none';
+              if (data.status) {
+                showToast(data.message || 'OTP verified successfully.', "success");
+                window.location.href = 'login.html';
+              } else {
+                showToast('OTP verification failed: ' + data.message, "error");
+              }
+            })
+            .catch(error => {
+              otpSpinner.style.display = 'none';
+              console.error('Error:', error);
+              showToast(error.response && error.response.data && (error.response.data.error || error.response.data.message) || error.message || 'An error occurred during OTP verification. Please try again.', "error");
+            });
+          });
+
+          function startResendOtpTimer() {
+            const resendOtpTimer = document.getElementById("resendOtpTimer");
+            const timerElement = document.getElementById("timer");
+            let timeLeft = 300; // 5 minutes in seconds
+            resendOtpTimer.style.display = 'block';
+
+            const timerInterval = setInterval(() => {
+              const minutes = Math.floor(timeLeft / 60);
+              const seconds = timeLeft % 60;
+              timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+              timeLeft--;
+
+              if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                resendOtpTimer.style.display = 'none';
+                resendOtpLink.style.display = 'block'; // Show the resend link again after 5 minutes
+              }
+            }, 1000);
+          }
+        });
+
+        function validateEmail(email) {
+          const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return re.test(String(email).toLowerCase());
+        }
+
+        function showToast(message, type) {
+          const toast = document.getElementById("toast");
+          toast.innerText = message;
+          toast.style.display = "block";
+          toast.style.backgroundColor = type === "success" ? "#4CAF50" : "#f44336";
+          toast.style.color = "#fff";
+          setTimeout(() => {
+            toast.style.display = "none";
+          }, 3000);
+        }
+
+        function validateOtpInput(event) {
+          const input = event.target;
+          input.value = input.value.replace(/[^0-9]/g, '');
         }
       </script>
   
