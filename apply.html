@@ -657,6 +657,10 @@
           }
         });
 
+        // Add email and registration number to formData
+        formData.append('email', document.querySelector('input[name="email"]').value);
+        formData.append('reg_no', document.querySelector('input[name="reg_no"]').value);
+
         // application form submit api
         fetch('https://conext.in/admissions/api/update_student_data/', {
           method: 'PUT',
