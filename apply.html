@@ -327,7 +327,7 @@
                         name="student_photo"
                         required
                         accept="image/*"
-                        onchange="previewFile(event, 'studentPhotoPreview')"
+                        onchange="compressAndPreviewFile(event, 'studentPhotoPreview')"
                       />
                       <small>Your Photo Must be in Passport (PP) Size. Max Upload Size 1MB.</small>
                       <div id="studentPhotoPreview" class="preview-container"></div>
@@ -339,11 +339,12 @@
                     <div class="form-group">
                       <label>Aadhar Number</label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control"
                         name="aadhar_number"
                         placeholder="Your Aadhar Number"
                         required
+                        oninput="this.value = this.value.slice(0, 12)"
                       />
                     </div>
                   </div>
@@ -356,7 +357,7 @@
                         name="aadhar_photo"
                         required
                         multiple
-                        onchange="previewFiles(event, 'aadharPhotoPreview')"
+                        onchange="compressAndPreviewFiles(event, 'aadharPhotoPreview')"
                       />
                       <small>Max Upload Size 1MB.</small>
                       <div id="aadharPhotoPreview" class="preview-container"></div>
@@ -370,7 +371,7 @@
                         class="form-control"
                         name="signature"
                         required
-                        onchange="previewFile(event, 'signaturePreview')"
+                        onchange="compressAndPreviewFile(event, 'signaturePreview')"
                       />
                       <small>Max Upload Size 1MB.</small>
                       <div id="signaturePreview" class="preview-container"></div>
@@ -437,7 +438,7 @@
                         class="form-control"
                         name="high_school_certificate"
                         required
-                        onchange="previewFile(event, 'highSchoolCertificatePreview')"
+                        onchange="compressAndPreviewFile(event, 'highSchoolCertificatePreview')"
                       />
                       <small>Max Upload Size 1MB.</small>
                       <div id="highSchoolCertificatePreview" class="preview-container"></div>
@@ -487,7 +488,7 @@
                         class="form-control"
                         name="higher_secondary_certificate"
                         required
-                        onchange="previewFile(event, 'higherSecondaryCertificatePreview')"
+                        onchange="compressAndPreviewFile(event, 'higherSecondaryCertificatePreview')"
                       />
                       <small>Max Upload Size 1MB.</small>
                       <div id="higherSecondaryCertificatePreview" class="preview-container"></div>
@@ -568,7 +569,7 @@
     <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
     <div id="toast" style="position: fixed; top: 20px; right: 20px; min-width: 200px; padding: 10px; border-radius: 5px; display: none; z-index: 1000;"></div>
     <script>
-      function previewFile(event, previewId) {
+      function compressAndPreviewFile(event, previewId) {
         const file = event.target.files[0];
         const previewContainer = document.getElementById(previewId);
         const reader = new FileReader();
@@ -593,7 +594,7 @@
         reader.readAsDataURL(file);
       }
 
-      function previewFiles(event, previewId) {
+      function compressAndPreviewFiles(event, previewId) {
         const files = event.target.files;
         const previewContainer = document.getElementById(previewId);
         for (let i = 0; i < files.length; i++) {
