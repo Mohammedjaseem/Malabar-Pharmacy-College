@@ -171,6 +171,7 @@
                         name="reg_no"
                         placeholder="Your Registration Number"
                         required
+                        disabled
                       />
                     </div>
                   </div>
@@ -301,6 +302,7 @@
                         name="email"
                         placeholder="Your Email Address"
                         required
+                        disabled
                       />
                     </div>
                   </div>
@@ -713,6 +715,7 @@
         if (data) {
           const formData = data.data;
           document.querySelector('input[name="reg_no"]').value = formData.reg_number || data.reg_number || '';
+          document.querySelector('input[name="reg_no"]').disabled = true; // Disable the registration number field
           document.querySelector('input[name="first_name"]').value = formData.first_name || '';
           document.querySelector('input[name="last_name"]').value = formData.last_name || '';
           document.querySelector('input[name="fathers_name"]').value = formData.fathers_name || '';
@@ -724,6 +727,7 @@
           document.querySelector('select[name="quota"]').value = formData.quota || '';
           document.querySelector('input[name="contact_number"]').value = formData.contact_number || '';
           document.querySelector('input[name="email"]').value = formData.email || data.email_address || '';
+          document.querySelector('input[name="email"]').disabled = true; // Disable the email field
           document.querySelector('textarea[name="present_address"]').value = formData.present_address || '';
           document.querySelector('input[name="aadhar_number"]').value = formData.aadhar_number || '';
           document.querySelector('select[name="program_type"]').value = formData.program_type || '';
