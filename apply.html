@@ -335,7 +335,7 @@
                   </div>
 
                   <h5 class="mt-4 mb-3">Identification</h5>
-                  <div class="col-lg-6">
+                  <!-- <div class="col-lg-6">
                     <div class="form-group">
                       <label>Aadhar Number</label>
                       <input
@@ -347,8 +347,8 @@
                         oninput="this.value = this.value.slice(0, 12)"
                       />
                     </div>
-                  </div>
-                  <div class="col-lg-6">
+                  </div> -->
+                  <!-- <div class="col-lg-6">
                     <div class="form-group">
                       <label>Aadhar Photo</label>
                       <input
@@ -361,7 +361,7 @@
                       />
                       <small>Max Upload Size 1MB.</small>
                       <div id="aadharPhotoPreview" class="preview-container"></div>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -641,7 +641,7 @@
         inputs.forEach(input => input.disabled = true);
 
         // Remove fields with URLs from formData
-        const urlFields = ['student_photo', 'aadhar_photo', 'signature', 'high_school_certificate', 'higher_secondary_certificate'];
+        const urlFields = ['student_photo', 'signature', 'high_school_certificate', 'higher_secondary_certificate'];
         urlFields.forEach(field => {
           const input = document.querySelector(`input[name="${field}"]`);
           if (input && input.value.startsWith('https://connectv2s3.s3.ap-south-1.amazonaws.com/')) {
@@ -650,7 +650,7 @@
         });
 
         // Ensure only non-empty file inputs are included in formData
-        const fileFields = ['student_photo', 'aadhar_photo', 'signature', 'high_school_certificate', 'higher_secondary_certificate'];
+        const fileFields = ['student_photo', 'signature', 'high_school_certificate', 'higher_secondary_certificate'];
         fileFields.forEach(field => {
           const input = document.querySelector(`input[name="${field}"]`);
           if (input && input.files.length === 0) {
@@ -734,7 +734,7 @@
           document.querySelector('input[name="email"]').value = formData.email || data.email_address || '';
           document.querySelector('input[name="email"]').disabled = true; // Disable the email field
           document.querySelector('textarea[name="present_address"]').value = formData.present_address || '';
-          document.querySelector('input[name="aadhar_number"]').value = formData.aadhar_number || '';
+          // document.querySelector('input[name="aadhar_number"]').value = formData.aadhar_number || '';
           document.querySelector('select[name="program_type"]').value = formData.program_type || '';
           document.querySelector('input[name="high_school_name"]').value = formData.high_school_name || '';
           document.querySelector('input[name="high_school_year_of_passing"]').value = formData.high_school_year_of_passing || '';
@@ -749,7 +749,6 @@
           // Preview images
           const imageFields = [
             { field: 'student_photo', previewId: 'studentPhotoPreview' },
-            { field: 'aadhar_photo', previewId: 'aadharPhotoPreview' },
             { field: 'signature', previewId: 'signaturePreview' },
             { field: 'high_school_certificate', previewId: 'highSchoolCertificatePreview' },
             { field: 'higher_secondary_certificate', previewId: 'higherSecondaryCertificatePreview' }
