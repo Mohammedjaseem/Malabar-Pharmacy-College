@@ -4904,3 +4904,26 @@ label {
   from { opacity: 1; transform: translateX(0); }
   to { opacity: 0; transform: translateX(100%); }
 }
+
+
+/* Style for application closed notice */
+.application-closed-notice {
+  background-color: #f8d7da; /* Light red background */
+  color: #721c24; /* Dark red text color */
+  border-color: #f5c6cb; /* Light red border */
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Style for rank list announcement */
+.rank-list-announcement {
+  background-color: #d1ecf1; /* Light blue background */
+  color: #0c5460; /* Dark blue text color */
+  border-color: #bee5eb; /* Light blue border */
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
