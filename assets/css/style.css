@@ -4927,3 +4927,71 @@ label {
   border-radius: 5px;
   text-align: center;
 }
+
+
+/* Container for chat messages */
+.chat-message {
+	display: flex;
+	padding: 7px;
+	margin: 8px 0;
+	max-width: 100%;
+	border-radius: 12px;
+	word-wrap: break-word;
+	align-items: center;
+	font-family: 'Roboto', 'Segoe UI', sans-serif; /* Updated to a more modern and readable font */
+    font-size: 14px;
+	font-weight: 500;
+}
+  
+  /* User's message on the left side */
+  .chat-message.user {
+	align-self: flex-start; /* Left side */
+	background-color: #DBEAFE;
+	color: #1E3A8A;
+	border-top-right-radius: 12px;
+	border-top-left-radius: 0;
+	max-width: max-content; /* Width to fit content */
+  }
+  
+  /* Bot's message on the right side */
+  .chat-message.bot {
+    align-self: flex-end; /* Right side */
+    background-color: #F3F4F6;
+    color: #374151;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 0;
+    margin-left: auto; /* Start from right side */
+    max-width: max-content; /* Width to fit content */
+  }
+  
+  /* Typing indicator (dots) animation */
+  .typing-indicator {
+	display: flex;
+	align-items: center;
+	margin-left: 8px;
+	height: 20px;
+  }
+  
+  .typing-dot {
+	width: 6px;
+	height: 6px;
+	margin: 0 2px;
+	background-color: #6B7280;
+	border-radius: 50%;
+	animation: blink 1s infinite;
+  }
+  
+  .typing-dot:nth-child(2) {
+	animation-delay: 0.2s;
+  }
+  
+  .typing-dot:nth-child(3) {
+	animation-delay: 0.4s;
+  }
+  
+  /* Blink animation for dots */
+  @keyframes blink {
+	0%, 100% { opacity: 0; }
+	50% { opacity: 1; }
+  }
+  
