@@ -1883,7 +1883,37 @@ label {
 }
 .gallery-img img {
   width: 100%;
+  height: 300px; /* Fixed height */
   border-radius: 8px;
+  object-fit: cover;
+}
+
+/* For small screens */
+@media (max-width: 599px) {
+  .gallery-img img {
+    height: 500px; /* Adjusted height for small screens */
+  }
+}
+
+/* For medium screens */
+@media (min-width: 600px) and (max-width: 899px) {
+  .gallery-img img {
+    height: 400px; /* Adjusted height for medium screens */
+  }
+}
+
+/* For large screens */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .gallery-img img {
+    height: 300px; /* Adjusted height for large screens */
+  }
+}
+
+/* For extra large screens */
+@media (min-width: 1200px) {
+  .gallery-img img {
+    height: 350px; /* Adjusted height for extra large screens */
+  }
 }
 .gallery-content {
   position: absolute;
@@ -4995,3 +5025,20 @@ label {
 	50% { opacity: 1; }
   }
   
+
+  .mcp_logo {
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+    max-width: 100%; /* Add responsiveness */
+  }
+  @media (max-width: 768px) {
+    .mcp_logo {
+      width: 200px; /* Adjust width for smaller screens */
+    }
+  }
+  @media (max-width: 480px) {
+    .mcp_logo {
+      width: 150px; /* Adjust width for even smaller screens */
+    }
+  }
