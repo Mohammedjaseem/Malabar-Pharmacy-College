@@ -770,7 +770,7 @@ label {
     border-radius: 0;
     border-top: 4px solid var(--theme-color);
     background: var(--theme-color2);
-    width: 220px;
+    /* width: 220px; */
     box-shadow: var(--box-shadow);
   }
   .navbar .nav-item .dropdown-menu li {
@@ -5042,3 +5042,76 @@ label {
       width: 150px; /* Adjust width for even smaller screens */
     }
   }
+
+  /* Ensure all staff cards have the same height */
+.staff-card {
+  flex: 1 1 calc(33.333% - 20px); /* Each card takes one-third of the row */
+  max-width: calc(33.333% - 20px); /* Prevents cards from exceeding space */
+  display: flex;
+  flex-direction: column; /* Aligns items vertically */
+  justify-content: space-between; /* Ensures even spacing */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Ensure all cards stretch equally */
+  
+}
+
+/* Consistent image height */
+.staff-card img {
+  width: 100%; /* Ensures the image fills the container width */
+  height: 400px; /* Sets a fixed height for images */
+  object-fit: cover; /* Crops and fits images without distortion */
+}
+
+/* Content area with consistent padding */
+.staff-card .staff-details {
+  padding: 15px;
+  text-align: center;
+  flex-grow: 1; /* Ensures the content area stretches */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out content evenly */
+}
+
+.staff-card .staff-details h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.staff-card .staff-details p {
+  font-size: 1rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Hover effect for better UI */
+.staff-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive layout adjustments */
+/* .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+} */
+
+@media (max-width: 768px) {
+  .staff-card {
+    flex: 1 1 calc(50% - 20px); /* Two columns on smaller screens */
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-card {
+    flex: 1 1 100%; /* Single column on very small screens */
+    max-width: 100%;
+  }
+}
