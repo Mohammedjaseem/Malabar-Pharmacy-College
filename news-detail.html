@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Detail - MCP</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/logo.png" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/all-fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      .news-detail-header {
+        padding: 60px 0 30px;
+        background-color: #125875;
+        color: white;
+        margin-bottom: 30px;
+      }
+      .news-detail-header h1 {
+        color: white;
+      }
+      .news-detail-header span {
+        color: #d3d3d3;
+      }
+      .news-banner {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .news-meta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .news-meta-item {
+        display: flex;
+        align-items: center;
+      }
+      .news-meta-item i {
+        margin-right: 8px;
+        color: #d3d3d3;
+      }
+      .news-content {
+        line-height: 1.8;
+        font-size: 16px;
+        color: #333;
+      }
+      .news-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 20px 0;
+        border-radius: 8px;
+      }
+      .attachments-section {
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 30px;
+      }
+      .attachments-header {
+        margin-bottom: 20px;
+        color: #125875;
+        font-weight: 600;
+      }
+      .image-attachments {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+      .file-attachments {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+      }
+      .attachment-item {
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .attachment-item:hover {
+        transform: translateY(-5px);
+      }
+      .attachment-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+      .attachment-file {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s;
+      }
+      .attachment-file:hover {
+        background: #e9ecef;
+        color: #125875;
+      }
+      .attachment-file i {
+        font-size: 24px;
+        margin-right: 12px;
+        min-width: 24px;
+      }
+      .pdf-file {
+        color: #e74c3c;
+      }
+      .doc-file {
+        color: #2c81ba;
+      }
+      .xls-file {
+        color: #27ae60;
+      }
+      .back-btn {
+        margin-top: 30px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .news-title {
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .news-content-container {
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      }
+      @media (max-width: 767px) {
+        .news-detail-header {
+          padding: 40px 0 20px;
+        }
+        .image-attachments {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+        .file-attachments {
+          grid-template-columns: 1fr;
+        }
+        .news-content-container {
+          padding: 20px;
+        }
+      }
+      /* Loading spinner styles */
+      .loader-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 300px;
+      }
+      .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #125875;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="loader-book">
+        <div class="loader-book-page"></div>
+        <div class="loader-book-page"></div>
+        <div class="loader-book-page"></div>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="header-top">
+        <div class="container">
+          <div class="header-top-wrapper">
+            <div class="header-top-left">
+              <div class="header-top-contact">
+                <ul>
+                  <li>
+                    <div class="header-top-contact-icon">
+                      <img src="assets/img/icon/mail.svg" alt="Mail Icon" />
+                    </div>
+                    <div class="header-top-contact-info">
+                      <h6>Mail Us</h6>
+                      <a href="mailto:mcp@macity.edu.in">mcp@macity.edu.in</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="header-top-contact-icon">
+                      <img src="assets/img/icon/call.svg" alt />
+                    </div>
+                    <div class="header-top-contact-info">
+                      <h6>Call Now</h6>
+                      <a href="tel:+917034555559">+91 7034555559</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="header-top-right">
+              <div class="header-top-social">
+                <span>Follow Us: </span>
+                <a href="http://www.facebook.com/MalabarCollegeofPharmacy"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="http://www.instagram.com/malabar_college_of_pharmacy"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-navigation">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container position-relative">
+            <a class="navbar-brand" href="/">
+              <img src="assets/img/logo/logo.png" alt="logo" class="mcp_logo" />
+            </a>
+            <div class="mobile-menu-right">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#main_nav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-mobile-icon"
+                  ><i class="far fa-bars"></i
+                ></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="main_nav">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="/about-us.html">About Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href=""
+                    data-bs-toggle="dropdown"
+                    >Admission</a
+                  >
+                  <ul class="dropdown-menu fade-down">
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="/prospectus2024.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Prospects</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="/#courses">Courses</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/careers.html">Careers</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/gallery.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/news.html">News</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="news-detail-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+              <h1 id="news-title" class="news-title">Loading News...</h1>
+              <div class="news-meta">
+                <div class="news-meta-item">
+                  <i class="far fa-calendar-alt"></i>
+                  <span id="news-date"></span>
+                </div>
+                <div class="news-meta-item">
+                  <i class="far fa-user"></i>
+                  <span id="news-author"></span>
+                </div>
+                <div class="news-meta-item">
+                  <i class="far fa-map-marker-alt"></i>
+                  <span id="news-location"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mb-5">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div id="banner-container">
+              <img
+                id="news-banner"
+                src=""
+                alt=""
+                class="news-banner"
+                style="display: none"
+              />
+            </div>
+
+            <div class="news-content-container">
+              <div class="news-content" id="news-content">
+                <div class="loader-container">
+                  <div class="loader"></div>
+                </div>
+              </div>
+
+              <div id="attachments-section" style="display: none">
+                <div class="attachments-section">
+                  <h4 class="attachments-header">Image Attachments</h4>
+                  <div
+                    class="image-attachments"
+                    id="image-attachments-container"
+                  ></div>
+
+                  <h4 class="attachments-header">File Attachments</h4>
+                  <div
+                    class="file-attachments"
+                    id="file-attachments-container"
+                  ></div>
+                </div>
+              </div>
+
+              <a href="news.html" class="btn btn-primary back-btn">
+                <i class="fas fa-arrow-left me-2"></i>Back to News
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-area">
+      <!-- Footer content same as news.html -->
+    </footer>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Hide preloader when page is loaded
+        $(".preloader").fadeOut();
+
+        // Get news ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsId = urlParams.get("id");
+
+        if (!newsId) {
+          window.location.href = "news.html";
+          return;
+        }
+
+        // Show loading state
+        function showLoading() {
+          $("#news-content").html(`
+            <div class="loader-container">
+              <div class="loader"></div>
+            </div>
+          `);
+        }
+
+        // Show error state
+        function showError(message) {
+          $("#news-content").html(`
+            <div class="alert alert-danger">
+              ${message} <a href="news.html">Return to news list</a>.
+            </div>
+          `);
+        }
+
+        // Load specific news item directly
+        function loadNewsDetail() {
+          showLoading();
+
+          // Simulate API call delay
+          setTimeout(function () {
+            if (demoData && demoData.status) {
+              displayNewsDetail(demoData.data);
+            } else {
+              showError("Failed to load news data.");
+            }
+          }, 1000);
+
+          // In production, use this AJAX call instead:
+
+          $.ajax({
+            url: `https://conext.in/news/api/single-news-article/${newsId}/`,
+            method: "GET",
+            dataType: "json",
+            success: function (response) {
+              if (response && response.status) {
+                displayNewsDetail(response.data);
+              } else {
+                showError("News data format is invalid.");
+              }
+            },
+            error: function (xhr, status, error) {
+              showError("Failed to load news. Please try again later.");
+              console.error("Error loading news:", error);
+            },
+          });
+        }
+
+        // Display news detail
+        function displayNewsDetail(newsItem) {
+          if (!newsItem) {
+            showError("No news data available.");
+            return;
+          }
+
+          // Set content
+          $("#news-title").text(newsItem.subject || "News Detail");
+          $("#news-date").text(formatDate(newsItem.date) || "Not specified");
+          $("#news-author").text(newsItem.added_by_name || "Admin");
+          $("#news-location").text(newsItem.location || "Not specified");
+
+          // Set banner image with error handling
+          const bannerImage = newsItem.news_banner || newsItem.picture || "";
+          const banner = $("#news-banner");
+          if (bannerImage) {
+            banner
+              .attr("src", bannerImage)
+              .attr("alt", newsItem.subject || "")
+              .on("error", function () {
+                $(this).attr("src", "assets/img/news-placeholder.jpg");
+              })
+              .on("load", function () {
+                $(this).show();
+              });
+          } else {
+            banner.hide();
+          }
+
+          // Set content
+          if (newsItem.content) {
+            $("#news-content").html(newsItem.content);
+          } else {
+            $("#news-content").html("<p>No content available.</p>");
+          }
+
+          // Handle attachments
+          const imageAttachmentsContainer = $("#image-attachments-container");
+          const fileAttachmentsContainer = $("#file-attachments-container");
+          imageAttachmentsContainer.empty();
+          fileAttachmentsContainer.empty();
+
+          if (newsItem.attachments && newsItem.attachments.length > 0) {
+            let hasImageAttachments = false;
+            let hasFileAttachments = false;
+
+            newsItem.attachments.forEach((attachment) => {
+              if (attachment.picture) {
+                hasImageAttachments = true;
+                imageAttachmentsContainer.append(`
+                  <a href="${attachment.picture}" target="_blank" class="attachment-item">
+                    <img src="${attachment.picture}" class="attachment-img" alt="Attachment" 
+                         onerror="this.src='assets/img/news-placeholder.jpg'">
+                  </a>
+                `);
+              } else if (attachment.doc) {
+                hasFileAttachments = true;
+                const fileExt = attachment.doc.split(".").pop().toLowerCase();
+                let iconClass = "far fa-file-alt";
+                let fileType = "Document";
+                let fileTypeClass = "";
+
+                if (fileExt === "pdf") {
+                  iconClass = "far fa-file-pdf";
+                  fileType = "PDF Document";
+                  fileTypeClass = "pdf-file";
+                } else if (fileExt === "doc" || fileExt === "docx") {
+                  iconClass = "far fa-file-word";
+                  fileType = "Word Document";
+                  fileTypeClass = "doc-file";
+                } else if (fileExt === "xls" || fileExt === "xlsx") {
+                  iconClass = "far fa-file-excel";
+                  fileType = "Excel File";
+                  fileTypeClass = "xls-file";
+                }
+
+                const fileName = attachment.doc.split("/").pop();
+
+                fileAttachmentsContainer.append(`
+                  <a href="${attachment.doc}" target="_blank" class="attachment-file">
+                    <i class="${iconClass} ${fileTypeClass}"></i>
+                    <div>
+                      <div class="fw-bold">${fileType}</div>
+                      <div class="small text-muted">${fileName}</div>
+                    </div>
+                  </a>
+                `);
+              }
+            });
+
+            if (hasImageAttachments || hasFileAttachments) {
+              $("#attachments-section").show();
+
+              // Hide sections that don't have attachments
+              if (!hasImageAttachments) {
+                $("#image-attachments-container").closest("h4").hide();
+              }
+              if (!hasFileAttachments) {
+                $("#file-attachments-container").closest("h4").hide();
+              }
+            }
+          }
+        }
+
+        // Format date
+        function formatDate(dateString) {
+          try {
+            if (!dateString) return "Not specified";
+
+            const options = { year: "numeric", month: "long", day: "numeric" };
+            return new Date(dateString).toLocaleDateString("en-US", options);
+          } catch (e) {
+            console.error("Error formatting date:", e);
+            return "Not specified";
+          }
+        }
+
+        // Load news detail
+        loadNewsDetail();
+      });
+    </script>
+  </body>
+</html>
