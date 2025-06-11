@@ -21,6 +21,75 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
+  <style>
+.news-area {
+  background-color: #f9f9f9;
+}
+
+.news-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+.news-img {
+  height: 180px;
+  overflow: hidden;
+}
+
+.news-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-img img {
+  transform: scale(1.05);
+}
+
+.news-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 180px);
+}
+
+.news-meta {
+  font-size: 14px;
+  color: #666;
+}
+
+.news-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #125875;
+}
+
+.news-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.theme-btn-sm {
+  padding: 8px 15px;
+  font-size: 14px;
+  align-self: flex-start;
+}
+
+@media (max-width: 767px) {
+  .news-img {
+    height: 150px;
+  }
+}
+</style>
   <body>
     <div class="preloader">
       <div class="loader-book">
@@ -1091,6 +1160,34 @@
           </div>
         </div>
       </div>
+
+      <!-- News Section -->
+<div class="news-area py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        <div class="site-heading text-center">
+          <span class="site-title-tagline"><i class="far fa-newspaper"></i> Latest News</span>
+          <h2 class="site-title">College <span>Updates</span></h2>
+          <p>Stay informed with the latest news and announcements from Malabar College of Pharmacy.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="news-container">
+      <!-- News items will be loaded here dynamically -->
+      <div class="col-12 text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-lg-12 text-center">
+        <a href="news.html" class="theme-btn">View All News <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div class="gallery-area py-120">
         <div class="container">
@@ -2241,6 +2338,62 @@
     <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
 
     <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Fetch news from API
+  fetch('https://conext.in/news/api/get_org_news_articles/8/')
+    .then(response => response.json())
+    .then(data => {
+      const newsContainer = document.getElementById('news-container');
+      newsContainer.innerHTML = ''; // Clear loading spinner
+      
+      // Check if data exists
+      if(data.results && data.results.data && data.results.data.length > 0) {
+        // Get latest 4 news items
+        const latestNews = data.results.data.slice(0, 4);
+        
+        latestNews.forEach(news => {
+          // Use the correct date field from API response
+          const newsDate = new Date(news.date);
+          const formattedDate = newsDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          
+          // Create a short description from content (strip HTML tags)
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = news.content;
+          const shortDescription = tempDiv.textContent.slice(0, 150) + '...';
+          
+          const newsItem = document.createElement('div');
+          newsItem.className = 'col-md-6 col-lg-3 mb-4';
+          newsItem.innerHTML = `
+          <a href="news-detail.html?id=${news.id}">
+            <div class="news-card h-100">
+              <div class="news-img">
+                <img src="${news.picture || news.news_banner || 'assets/img/news/default-news.jpg'}" alt="${news.subject}" class="img-fluid">
+              </div>
+              <div class="news-content p-3">
+                <div class="news-meta mb-2">
+                  <span class="news-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</span>
+                  <span class="news-location ms-2"><i class="fas fa-map-marker-alt"></i> ${news.location}</span>
+                </div>
+                <h4 class="news-title">${news.subject}</h4>
+                <p class="news-text">${shortDescription}</p>
+              </div>
+            </div></a>
+          `;
+          newsContainer.appendChild(newsItem);
+        });
+      } else {
+        newsContainer.innerHTML = '<div class="col-12 text-center"><p>No news available at the moment.</p></div>';
+      }
+    })
+    .catch(error => {
+      console.error('Error loading news:', error);
+      document.getElementById('news-container').innerHTML = '<div class="col-12 text-center"><p>Failed to load news. Please try again later.</p></div>';
+    });
+});
       // Open chat sidebar when the icon is clicked
       document.getElementById("chatbotIcon").addEventListener("click", function() {
         var chatSidebar = document.getElementById("chatSidebar");
