@@ -24,11 +24,28 @@
       }
       .news-banner {
         width: 100%;
-        max-height: 500px;
-        object-fit: cover;
+        max-height: 500px; /* Maximum height for landscape images */
+        min-height: 300px; /* Minimum height to ensure visibility */
+        object-fit: contain; /* Changed from 'cover' to 'contain' to preserve aspect ratio */
         border-radius: 8px;
         margin-bottom: 30px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #f5f5f5; /* Add background color for transparent images */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Add a container to control the banner size */
+      .banner-container {
+        width: 100%;
+        max-height: 500px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        margin-bottom: 20px;
       }
       .news-meta {
         display: flex;
@@ -405,13 +422,14 @@
       <div class="container mb-5">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <div id="banner-container">
+            <div id="banner-container" class="banner-container">
               <img
                 id="news-banner"
                 src=""
                 alt=""
                 class="news-banner"
                 style="display: none"
+                onerror="this.src='assets/img/news-placeholder.jpg'"
               />
             </div>
 
