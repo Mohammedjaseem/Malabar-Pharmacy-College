@@ -2431,7 +2431,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const newsItem = document.createElement('div');
           newsItem.className = 'col-md-6 col-lg-3 mb-4';
           newsItem.innerHTML = `
-          <a href="news-detail.html?id=${news.id}">
+          <a href="news-detail.html?unique_id=${news.unique_id}">
             <div class="news-card h-100">
               <div class="news-img">
                 <img src="${news.picture || news.news_banner || 'assets/img/news/default-news.jpg'}" alt="${news.subject}" class="img-fluid">

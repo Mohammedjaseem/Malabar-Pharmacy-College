@@ -467,7 +467,7 @@
 
         // Function to create a news detail page URL
         function getNewsDetailUrl(newsId) {
-          return `news-detail.html?id=${newsId}`;
+          return `news-detail.html?unique_id=${newsId}`;
         }
 
         // Function to load news
@@ -505,7 +505,7 @@
                     <div class="col-md-6 col-lg-4 mb-4">
                       <div class="card news-card h-100">
                         <a href="${getNewsDetailUrl(
-                          news.id
+                          news.unique_id
                         )}" class="text-decoration-none">
                           <div class="news-img-container">
                             <img src="${bannerImage}" class="news-img" alt="${
