@@ -487,7 +487,7 @@
 
         // Get news ID from URL
         const urlParams = new URLSearchParams(window.location.search);
-        const newsId = urlParams.get("id");
+        const newsId = urlParams.get("unique_id");
 
         if (!newsId) {
           window.location.href = "news.html";
