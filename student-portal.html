@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MCP Malabar College of Pharmacy - Student Portal" />
+    <meta name="keywords" content="MCP, Malabar, College, Pharmacy, Student Portal" />
+
+    <title>Student Portal - MCP Malabar College of Pharmacy</title>
+
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/logo.png" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/all-fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    
+    <style>
+        .student-portal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        .student-info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        
+        .student-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .allotment-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .pending-card {
+            background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .download-btn {
+            background: #27ae60;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .download-btn:hover {
+            background: #219a52;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        .download-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .info-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .document-link {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            background: #e1f5fe;
+            color: #0288d1;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .document-link:hover {
+            background: #0288d1;
+            color: white;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .status-alloted {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            float: right;
+        }
+        
+        .logout-btn:hover {
+            background: #c0392b;
+            color: white;
+        }
+        
+        #toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            min-width: 250px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            z-index: 9999;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .memo-download-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .academic-details {
+            margin-top: 30px;
+        }
+        
+        .subject-percentages {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .subject-badge {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .student-portal-main {
+            min-height: 80vh;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader">
+        <div class="loader-book">
+            <div class="loader-book-page"></div>
+            <div class="loader-book-page"></div>
+            <div class="loader-book-page"></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <!-- Same header as your login page -->
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-wrapper">
+                    <div class="header-top-left">
+                        <div class="header-top-contact">
+                            <ul>
+                                <li>
+                                    <div class="header-top-contact-icon">
+                                        <img src="assets/img/icon/mail.svg" alt="Mail Icon" />
+                                    </div>
+                                    <div class="header-top-contact-info">
+                                        <h6>Mail Us</h6>
+                                        <a href="mailto:mcp@macity.edu.in">mcp@macity.edu.in</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="header-top-contact-icon">
+                                        <img src="assets/img/icon/call.svg" alt />
+                                    </div>
+                                    <div class="header-top-contact-info">
+                                        <h6>Call Now</h6>
+                                        <a href="tel:+918943600017">+91 8943600017</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header-top-right">
+                        <div class="header-top-social">
+                            <span>Follow Us: </span>
+                            <a href="http://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i></a>
+                            <a href="http://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-navigation">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container position-relative">
+                    <a class="navbar-brand" href="/">
+                        <img src="assets/img/logo/logo.png" alt="logo" class="mcp_logo" />
+                    </a>
+                    <div class="mobile-menu-right">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-mobile-icon"><i class="far fa-bars"></i></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="main_nav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/about-us.html">About Us</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown">Admission</a>
+                                <ul class="dropdown-menu fade-down">
+                                    <li><a class="dropdown-item" href="admission.html">Admission</a></li>
+                                    <li><a class="dropdown-item" href="/prospectus2025.html">Prospects</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="/#courses">Courses</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Activities</a>
+                                <ul class="dropdown-menu fade-down">
+                                    <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                                </ul>
+                            </li>  
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/careers.html">Careers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main student-portal-main">
+        <div class="student-portal-header">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2><i class="fas fa-user-graduate"></i> Student Portal</h2>
+                    <button onclick="logout()" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mb-5">
+            <div id="studentContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-area">
+        <!-- Same footer as your login page -->
+        <div class="footer-shape">
+            <img src="assets/img/logo/logo.png" alt="" class="footer-logo" />
+        </div>
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row footer-widget-wrapper pt-100 pb-70">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="footer-widget-box about-us">
+                            <h4 class="footer-widget-title">Contact Us</h4>
+                            <ul class="footer-contact">
+                                <li><a href="tel:+918943600017"><i class="far fa-phone"></i>+91 8943600017</a></li>
+                                <li><i class="far fa-map-marker-alt"></i>Manoor - Chekanoor Road, Manoor, Edappal,<br />Malappuram, Kerala 679578</li>
+                                <li><a href="mailto:mcp@macity.edu.in"><i class="far fa-envelope"></i>mcp@macity.edu.in</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <div class="footer-widget-box list">
+                            <h4 class="footer-widget-title">Quick Links</h4>
+                            <ul class="footer-list">
+                                <li><a href="/about-us.html"><i class="fas fa-caret-right"></i> About Us</a></li>
+                                <li><a href="/#testimonial"><i class="fas fa-caret-right"></i> Testimonials</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-widget-box list">
+                            <h4 class="footer-widget-title">Newsletter</h4>
+                            <div class="footer-newsletter">
+                                <p>Subscribe Our Newsletter To Get Latest Update And News</p>
+                                <div class="subscribe-form">
+                                    <form action="#">
+                                        <input type="email" class="form-control" placeholder="Your Email" />
+                                        <button class="theme-btn" type="submit">Subscribe Now <i class="far fa-paper-plane"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="copyright-wrapper">
+                    <div class="row">
+                        <div class="col-md-6 align-self-center">
+                            <span>Last updated on 19-02-2026</span>
+                            <p>&copy; Copyright <span id="date"></span> <a href="https://connect.edentu.com/">Edentu Pvt Ltd</a> All Rights Reserved.</p>
+                        </div>
+                        <div class="col-md-6 align-self-center">
+                            <ul class="footer-social">
+                                <li><a href="https://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="http://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
+    <div id="toast"></div>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="assets/js/jquery.appear.min.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/counter-up.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const userData = sessionStorage.getItem('userData');
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            try {
+                const parsedData = JSON.parse(userData);
+                if (!parsedData.status) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+                displayStudentData(parsedData);
+            } catch (e) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        function displayStudentData(data) {
+            const content = document.getElementById('studentContent');
+            const student = data.data;
+            const isAlloted = data.is_alloted;
+            
+            content.innerHTML = `
+                <div class="student-info-card">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <img src="${student.student_photo || 'assets/img/avatar/default-avatar.jpg'}" 
+                                 alt="Student Photo" 
+                                 class="student-photo mb-3"
+                                 onerror="this.src='assets/img/avatar/default-avatar.jpg'">
+                            <h4>${student.first_name} ${student.last_name}</h4>
+                            <p class="text-muted">${data.reg_number}</p>
+                            <span class="status-badge ${isAlloted ? 'status-alloted' : 'status-pending'}">
+                                ${isAlloted ? '✅ Allotted' : '⏳ Allotment Pending'}
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Father's Name</div>
+                                    <div class="info-value">${student.fathers_name}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Mother's Name</div>
+                                    <div class="info-value">${student.mothers_name}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Date of Birth</div>
+                                    <div class="info-value">${formatDate(student.date_of_birth)}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Gender</div>
+                                    <div class="info-value">${student.gender}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Contact Number</div>
+                                    <div class="info-value">${student.contact_number}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Program Type</div>
+                                    <div class="info-value">${student.program_type}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Quota</div>
+                                    <div class="info-value">${student.quota}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Aadhar Number</div>
+                                    <div class="info-value">${maskAadhar(student.aadhar_number)}</div>
+                                </div>
+                            </div>
+                            <div class="info-item mt-3">
+                                <div class="info-label">Present Address</div>
+                                <div class="info-value">${student.present_address.replace(/\r\n/g, ', ')}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                ${isAlloted ? getAllotedSection(data) : getPendingSection()}
+
+                <div class="student-info-card academic-details">
+                    <h4 class="mb-4"><i class="fas fa-graduation-cap"></i> Academic Details</h4>
+                    
+                    <h5>High School (SSLC)</h5>
+                    <div class="info-grid mb-4">
+                        <div class="info-item">
+                            <div class="info-label">School Name</div>
+                            <div class="info-value">${student.high_school_name}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Year of Passing</div>
+                            <div class="info-value">${student.high_school_year_of_passing}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Percentage</div>
+                            <div class="info-value">${student.high_school_percentage}%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Certificate</div>
+                            <div class="info-value">
+                                <a href="${student.high_school_certificate}" target="_blank" class="document-link">
+                                    <i class="fas fa-file-pdf"></i> View Certificate
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5>Higher Secondary (Plus Two)</h5>
+                    <div class="info-grid mb-4">
+                        <div class="info-item">
+                            <div class="info-label">School Name</div>
+                            <div class="info-value">${student.higher_secondary_school_name}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Year of Passing</div>
+                            <div class="info-value">${student.higher_secondary_year_of_passing}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Overall Percentage</div>
+                            <div class="info-value">${student.higher_secondary_percentage}%</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Subject Percentages</div>
+                            <div class="info-value">
+                                <div class="subject-percentages">
+                                    <span class="subject-badge">Physics: ${student.physics_percentage}%</span>
+                                    <span class="subject-badge">Chemistry: ${student.chemistry_percentage}%</span>
+                                    <span class="subject-badge">Biology: ${student.biology_percentage}%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Certificate</div>
+                            <div class="info-value">
+                                <a href="${student.higher_secondary_certificate}" target="_blank" class="document-link">
+                                    <i class="fas fa-file-pdf"></i> View Certificate
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">Signature</div>
+                        <div class="info-value">
+                            <img src="${student.signature}" alt="Signature" style="max-width: 200px; max-height: 50px; border: 1px solid #ddd; padding: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getAllotedSection(data) {
+            return `
+                <div class="allotment-card">
+                    <i class="fas fa-check-circle" style="font-size: 50px; margin-bottom: 20px;"></i>
+                    <h2 class="mb-3">Congratulations! 🎉</h2>
+                    <h4 class="mb-4">You have been allotted a seat</h4>
+                    <p class="mb-4">Your allotment memo is ready for download</p>
+                    <button onclick="downloadAllotmentMemo('${data.alloted_memo}')" class="download-btn">
+                        <i class="fas fa-download"></i> Download Allotment Memo
+                    </button>
+                </div>
+            `;
+        }
+
+        function getPendingSection() {
+            return `
+                <div class="pending-card">
+                    <i class="fas fa-clock" style="font-size: 50px; margin-bottom: 20px; color: #f39c12;"></i>
+                    <h3 class="mb-3">Allotment Pending</h3>
+                    <p class="mb-3">Your application is under review. Allotment status will be updated soon.</p>
+                    <p>Please check back later or contact the admission office for updates.</p>
+                    <div class="mt-4">
+                        <a href="tel:+918943600017" class="btn btn-primary me-2"><i class="fas fa-phone"></i> Call Admission Office</a>
+                        <a href="mailto:mcp@macity.edu.in" class="btn btn-info"><i class="fas fa-envelope"></i> Send Email</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function downloadAllotmentMemo(memoUrl) {
+            if (!memoUrl) {
+                showToast("Allotment memo not available yet.", "error");
+                return;
+            }
+
+            // Create a temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = memoUrl;
+            link.target = '_blank';
+            link.download = memoUrl.split('/').pop() || 'allotment_memo.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showToast("Downloading allotment memo...", "success");
+        }
+
+        function logout() {
+            sessionStorage.removeItem('userData');
+            window.location.href = 'login.html';
+        }
+
+        // Helper functions
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
+        function maskAadhar(aadhar) {
+            if (!aadhar) return 'N/A';
+            return 'XXXX-XXXX-' + aadhar.slice(-4);
+        }
+
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = message;
+            toast.style.display = 'block';
+            toast.style.backgroundColor = type === 'success' ? '#27ae60' : '#e74c3c';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
