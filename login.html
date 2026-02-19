@@ -174,10 +174,10 @@
                             </div>
                         </form>
 
-                        <div class="application-closed-notice" style="text-align: center; padding: 20px;">
+                        <!-- <div class="application-closed-notice" style="text-align: center; padding: 20px;">
                           <h4 style="color: #cc0000;">Application process is now closed.</h4>
                           <p>Rank list and allotments have been published below.</p>
-                        </div>
+                        </div> -->
                         
 
                         <!-- Application and Result Announcements -->
@@ -287,7 +287,7 @@
             <div class="copyright-wrapper">
               <div class="row">
                 <div class="col-md-6 align-self-center">
-                  <span>Last updated on 05-01-2026</span>                  <p copyright-text">
+                  <span>Last updated on 19-02-2026</span>                  <p copyright-text">
                     &copy; Copyright <span id="date"></span>
                     <a href="https://connect.edentu.com/">Edentu Pvt Ltd</a> All
                     Rights Reserved.
@@ -369,15 +369,25 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.status) {
-                    showToast(data.message || "Login successful!", "success");
-                    loginSpinner.style.display = 'none';
-                    // Redirect to application form page on success with data after showing toast for 3 seconds
-                    setTimeout(() => {
-                      window.location.href = `apply.html?data=${encodeURIComponent(JSON.stringify(data))}`;
-                    }, 2000);
-                } else {
-                    showToast("Login failed: " + data.message, "error");
+            if (data.status) {
+                showToast(data.message || "Login successful!", "success");
+                loginSpinner.style.display = 'none';
+                
+                // Store the complete user data in sessionStorage
+                sessionStorage.setItem('userData', JSON.stringify(data));
+                
+                // Check registration completion and redirect
+                setTimeout(() => {
+                    if (data.is_reg_completed) {
+                        // Redirect to student portal
+                        window.location.href = 'student-portal.html';
+                    } else {
+                        // If registration not complete, go to application form
+                        window.location.href = `apply.html?data=${encodeURIComponent(JSON.stringify(data))}`;
+                    }
+                }, 2000);
+            } else {
+        showToast("Login failed: " + data.message, "error");
                     loginSpinner.style.display = 'none';
                     emailField.disabled = false;
                     passwordField.disabled = false;
