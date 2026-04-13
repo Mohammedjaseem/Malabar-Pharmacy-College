@@ -120,7 +120,6 @@
         color: var(--heading);
         line-height: 1.25;
       }
-
       .container {
         width: 100%;
         max-width: 1240px;
@@ -179,7 +178,6 @@
         color: var(--primary);
         border-color: var(--white);
       }
-
       .section-label {
         display: inline-flex;
         align-items: center;
@@ -514,6 +512,12 @@
         background: var(--light-bg);
         color: var(--primary);
         padding-left: 20px;
+      }
+      /* Sub-dropdown link with arrow */
+      .dropdown-menu-custom .sub-dropdown > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
       /* Sub-dropdown */
@@ -1212,7 +1216,7 @@
       .gallery-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 220px 220px 220px;
+        grid-auto-rows: 220px;
         gap: 14px;
       }
       .gallery-item {
@@ -1244,14 +1248,6 @@
       }
       .gallery-item:hover::after {
         opacity: 1;
-      }
-      /* Desktop gallery layout: featured large + mix */
-      .gallery-item:nth-child(1) {
-        grid-column: 1 / 3;
-        grid-row: 1 / 3;
-      }
-      .gallery-item:nth-child(5) {
-        grid-column: 3 / 5;
       }
 
       /* ========== TESTIMONIALS ========== */
@@ -1913,6 +1909,162 @@
         animation: fadeInUp 0.6s ease forwards;
       }
 
+      /* ===== Home Gallery Image Viewer ===== */
+      .image-viewer-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+      }
+      .image-viewer-overlay.active {
+        display: flex;
+      }
+      .image-viewer-close {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(6px);
+      }
+      .image-viewer-close:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: rotate(90deg);
+      }
+      .image-viewer-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(6px);
+      }
+      .image-viewer-nav:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .image-viewer-prev {
+        left: 20px;
+      }
+      .image-viewer-next {
+        right: 20px;
+      }
+      .image-viewer-content {
+        max-width: 90vw;
+        max-height: 78vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .image-viewer-content img {
+        max-width: 100%;
+        max-height: 78vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        animation: fadeScaleIn 0.3s ease;
+      }
+      @keyframes fadeScaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .image-viewer-info {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: #fff;
+        max-width: 600px;
+        width: 90%;
+      }
+      .image-viewer-info h4 {
+        font-size: 18px;
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 4px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+      .image-viewer-info .viewer-meta {
+        font-size: 13px;
+        opacity: 0.8;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .image-viewer-info .viewer-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .image-viewer-counter {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.12);
+        padding: 6px 14px;
+        border-radius: 50px;
+        backdrop-filter: blur(6px);
+      }
+      .gallery-item {
+        cursor: pointer;
+      }
+      @media (max-width: 767px) {
+        .image-viewer-nav {
+          width: 38px;
+          height: 38px;
+          font-size: 14px;
+        }
+        .image-viewer-prev {
+          left: 10px;
+        }
+        .image-viewer-next {
+          right: 10px;
+        }
+        .image-viewer-info h4 {
+          font-size: 15px;
+        }
+      }
+
       /* ==========================================================
          RESPONSIVE — TABLET (max-width: 1024px)
          ========================================================== */
@@ -1942,15 +2094,6 @@
         }
         .gallery-grid {
           grid-template-columns: repeat(3, 1fr);
-          grid-template-rows: auto;
-          grid-auto-rows: 200px;
-        }
-        .gallery-item:nth-child(1) {
-          grid-column: 1 / 3;
-          grid-row: 1 / 3;
-        }
-        .gallery-item:nth-child(5) {
-          grid-column: span 1;
         }
       }
 
@@ -2602,27 +2745,56 @@
                 >Academics <i class="fas fa-chevron-down dropdown-arrow"></i
               ></a>
               <ul class="dropdown-menu-custom">
-                <li><a href="bpharm.html">B.Pharm</a></li>
-                <li><a href="dpharm.html">D.Pharm</a></li>
-                <li>
-                  <a href="pharmaceutical-chemistry.html"
-                    >Pharmaceutical Chemistry</a
-                  >
+                <li class="dropdown sub-dropdown">
+                  <a href="#"
+                    >Academic Programs
+                    <i
+                      class="fas fa-chevron-right"
+                      style="font-size: 0.6rem; margin-left: auto; opacity: 0.5"
+                    ></i
+                  ></a>
+                  <ul class="dropdown-menu-custom">
+                    <li><a href="bpharm.html">BPharm</a></li>
+                    <li><a href="dpharm.html">DPharm</a></li>
+                  </ul>
                 </li>
-                <li><a href="pharmacology.html">Pharmacology</a></li>
-                <li><a href="pharmaceutics.html">Pharmaceutics</a></li>
-                <li><a href="pharmacy-practice.html">Pharmacy Practice</a></li>
-                <li><a href="pharmacognosy.html">Pharmacognosy</a></li>
-                <li>
-                  <a href="pharmaceutical-analysis.html"
-                    >Pharmaceutical Analysis</a
-                  >
-                </li>
-                <li>
-                  <a href="computer-application.html">Computer Application</a>
+                <li class="dropdown sub-dropdown">
+                  <a href="#"
+                    >Departments
+                    <i
+                      class="fas fa-chevron-right"
+                      style="font-size: 0.6rem; margin-left: auto; opacity: 0.5"
+                    ></i
+                  ></a>
+                  <ul class="dropdown-menu-custom">
+                    <li>
+                      <a href="pharmaceutical-chemistry.html"
+                        >Pharmaceutical Chemistry</a
+                      >
+                    </li>
+                    <li><a href="pharmacology.html">Pharmacology</a></li>
+                    <li><a href="pharmaceutics.html">Pharmaceutics</a></li>
+                    <li>
+                      <a href="pharmacy-practice.html">Pharmacy Practice</a>
+                    </li>
+                    <li><a href="pharmacognosy.html">Pharmacognosy</a></li>
+                    <li>
+                      <a href="pharmaceutical-analysis.html"
+                        >Pharmaceutical Analysis</a
+                      >
+                    </li>
+                    <li>
+                      <a href="computer-application.html"
+                        >Computer Application</a
+                      >
+                    </li>
+                  </ul>
                 </li>
                 <li><a href="library.html">Library</a></li>
                 <li><a href="admission.html">Admission</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="achievements.html">Achievements</a></li>
+                <li><a href="events.html">Events</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -2651,11 +2823,11 @@
               </ul>
             </li>
           </ul>
-          <div class="nav-cta">
+          <!-- <div class="nav-cta">
             <a href="login.html" class="btn-apply">
               <i class="fas fa-pencil"></i> Apply Now
             </a>
-          </div>
+          </div> -->
           <button
             class="mobile-toggle"
             id="mobileToggle"
@@ -2714,9 +2886,9 @@
         </button>
       </div>
       <div class="mobile-nav-body">
-        <a href="login.html" class="mobile-nav-apply">
+        <!-- <a href="login.html" class="mobile-nav-apply">
           <i class="fas fa-pencil"></i> Apply Now
-        </a>
+        </a> -->
         <div class="mobile-nav-list">
           <span class="nav-section-label">Main Navigation</span>
           <a href="/"><i class="fas fa-home"></i> Home</a>
@@ -2840,9 +3012,9 @@
               healthcare with us.
             </p>
             <div class="hero-btns">
-              <a href="admission.html" class="btn btn-accent">
+              <!-- <a href="admission.html" class="btn btn-accent">
                 <i class="fas fa-arrow-right"></i> Apply Now
-              </a>
+              </a> -->
               <a href="prospectus2025.html" class="btn btn-outline">
                 <i class="fas fa-book-open"></i> View Prospectus
               </a>
@@ -3138,7 +3310,15 @@
 
     <!-- ===== VIDEO ===== -->
     <section class="video-section">
-      <video autoplay muted loop playsinline>
+      <video
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="assets/img/slider/mcpAi.png"
+      >
         <source
           src="https://connectv2s3.s3.ap-south-1.amazonaws.com/Media_Uploads/mccs-website-hero-video/81e241093a9b4578ad9dcde333494da8.mp4"
           type="video/mp4"
@@ -3151,7 +3331,7 @@
             A vibrant academic environment with collaborative learning,
             dedicated faculty, and diverse student community.
           </p>
-          <a href="/about-us.html" class="btn btn-accent">
+          <a href="/gallery.html" class="btn btn-accent">
             <i class="fas fa-play-circle"></i> Explore Campus
           </a>
         </div>
@@ -3355,59 +3535,24 @@
             curated photo gallery.
           </p>
         </div>
-        <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
-          <div class="gallery-item">
-            <img
-              src="/assets/img/gallery/environment_day_tree.jpg"
-              alt="Environment Day"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="/assets/img/gallery/environment_day_students.jpg"
-              alt="Students"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="/assets/img/gallery/environment_day_principal.jpg"
-              alt="Principal"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="/assets/img/gallery/antidrug_class.jpg"
-              alt="Anti Drug"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="assets/img/gallery/11.jpeg"
-              alt="College Event"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="assets/img/gallery/12.jpeg"
-              alt="College Life"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="assets/img/gallery/13.jpeg"
-              alt="Activities"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img src="assets/img/gallery/14.jpeg" alt="Campus" loading="lazy" />
-          </div>
+        <div
+          class="gallery-grid"
+          id="homeGalleryGrid"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <!-- Dynamically loaded -->
+          <p
+            id="homeGalleryLoading"
+            style="
+              grid-column: 1/-1;
+              text-align: center;
+              color: var(--text-light);
+              padding: 40px 0;
+            "
+          >
+            <i class="fas fa-spinner fa-spin"></i> Loading gallery...
+          </p>
         </div>
         <div class="text-center" style="margin-top: 40px">
           <a href="gallery.html" class="btn btn-primary"
@@ -3416,6 +3561,46 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== HOME GALLERY IMAGE VIEWER ===== -->
+    <div class="image-viewer-overlay" id="homeImageViewer">
+      <div class="image-viewer-counter" id="homeViewerCounter"></div>
+      <button
+        class="image-viewer-close"
+        id="homeViewerClose"
+        aria-label="Close"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <button
+        class="image-viewer-nav image-viewer-prev"
+        id="homeViewerPrev"
+        aria-label="Previous"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button
+        class="image-viewer-nav image-viewer-next"
+        id="homeViewerNext"
+        aria-label="Next"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="image-viewer-content" id="homeViewerContentArea">
+        <img id="homeViewerImage" src="" alt="" />
+      </div>
+      <div class="image-viewer-info">
+        <h4 id="homeViewerTitle"></h4>
+        <div class="viewer-meta">
+          <span id="homeViewerType"
+            ><i class="fas fa-tag"></i> <span></span
+          ></span>
+          <span id="homeViewerUploader"
+            ><i class="fas fa-user"></i> <span></span
+          ></span>
+        </div>
+      </div>
+    </div>
 
     <!-- ===== TESTIMONIALS ===== -->
     <section class="testimonials-section section-pad" id="testimonials">
@@ -3733,7 +3918,7 @@
         </div>
         <div class="footer-bottom">
           <p>
-            Last updated: 26-03-2026 &nbsp;|&nbsp; &copy;
+            Last updated on 13-04-2026 &nbsp;|&nbsp; &copy;
             <span id="year"></span> Malabar College of Pharmacy. Developed by
             <a href="https://bizforz.com/" target="_blank">Bizforz Solutions</a>
           </p>
@@ -3902,6 +4087,157 @@
               '<p style="text-align:center;color:var(--text-light);grid-column:1/-1;">Failed to load news.</p>';
           });
       });
+
+      // ===== Home Gallery: fetch latest 8 + viewer =====
+      (function () {
+        var homeGalleryItems = [];
+        var homeViewerIndex = 0;
+        var grid = document.getElementById("homeGalleryGrid");
+        var loadingEl = document.getElementById("homeGalleryLoading");
+
+        function escHtml(t) {
+          if (!t) return "";
+          var d = document.createElement("div");
+          d.appendChild(document.createTextNode(t));
+          return d.innerHTML;
+        }
+
+        fetch(
+          "https://conext.in/static_site_apis/api/get_gallery_images/8/?page=1&page_size=8",
+          {
+            headers: { Accept: "application/json" },
+          },
+        )
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (result) {
+            var data =
+              result.results && result.results.data ? result.results.data : [];
+            homeGalleryItems = data.slice(0, 8);
+            grid.innerHTML = "";
+
+            if (homeGalleryItems.length === 0) {
+              grid.innerHTML =
+                '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);">No photos available.</p>';
+              return;
+            }
+
+            homeGalleryItems.forEach(function (item, idx) {
+              var div = document.createElement("div");
+              div.className = "gallery-item";
+              div.setAttribute("data-idx", idx);
+              div.innerHTML =
+                '<img src="' +
+                item.picture +
+                '" alt="' +
+                escHtml(item.title) +
+                '" loading="lazy" />';
+              div.addEventListener("click", function () {
+                homeViewerIndex = parseInt(this.getAttribute("data-idx"));
+                openHomeViewer();
+              });
+              grid.appendChild(div);
+            });
+          })
+          .catch(function () {
+            grid.innerHTML =
+              '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);">Failed to load gallery.</p>';
+          });
+
+        function updateHomeViewer() {
+          var item = homeGalleryItems[homeViewerIndex];
+          if (!item) return;
+          document.getElementById("homeViewerImage").src = item.picture;
+          document.getElementById("homeViewerImage").alt = item.title || "";
+          document.getElementById("homeViewerTitle").textContent =
+            item.title || "";
+          document.querySelector(
+            "#homeViewerType span:last-child",
+          ).textContent = item.type || "";
+          document.querySelector(
+            "#homeViewerUploader span:last-child",
+          ).textContent = item.uploaded_by || "";
+          document.getElementById("homeViewerCounter").textContent =
+            homeViewerIndex + 1 + " / " + homeGalleryItems.length;
+          document.getElementById("homeViewerPrev").style.display =
+            homeViewerIndex > 0 ? "flex" : "none";
+          document.getElementById("homeViewerNext").style.display =
+            homeViewerIndex < homeGalleryItems.length - 1 ? "flex" : "none";
+        }
+
+        function openHomeViewer() {
+          updateHomeViewer();
+          document.getElementById("homeImageViewer").classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeHomeViewer() {
+          document.getElementById("homeImageViewer").classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        document
+          .getElementById("homeViewerClose")
+          .addEventListener("click", function (e) {
+            e.stopPropagation();
+            closeHomeViewer();
+          });
+        document
+          .getElementById("homeViewerPrev")
+          .addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (homeViewerIndex > 0) {
+              homeViewerIndex--;
+              updateHomeViewer();
+            }
+          });
+        document
+          .getElementById("homeViewerNext")
+          .addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (homeViewerIndex < homeGalleryItems.length - 1) {
+              homeViewerIndex++;
+              updateHomeViewer();
+            }
+          });
+
+        document.addEventListener("keydown", function (e) {
+          if (
+            !document
+              .getElementById("homeImageViewer")
+              .classList.contains("active")
+          )
+            return;
+          if (e.key === "Escape") closeHomeViewer();
+          else if (e.key === "ArrowLeft" && homeViewerIndex > 0) {
+            homeViewerIndex--;
+            updateHomeViewer();
+          } else if (
+            e.key === "ArrowRight" &&
+            homeViewerIndex < homeGalleryItems.length - 1
+          ) {
+            homeViewerIndex++;
+            updateHomeViewer();
+          }
+        });
+
+        document
+          .getElementById("homeImageViewer")
+          .addEventListener("click", function (e) {
+            if (
+              e.target.id === "homeImageViewer" ||
+              e.target.id === "homeViewerContentArea"
+            )
+              closeHomeViewer();
+          });
+
+        document
+          .getElementById("homeViewerImage")
+          .addEventListener("click", function (e) {
+            e.stopPropagation();
+          });
+      })();
     </script>
   </body>
 </html>

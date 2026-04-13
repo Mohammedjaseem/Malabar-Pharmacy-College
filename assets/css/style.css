@@ -73,6 +73,172 @@
   white-space: nowrap;
 }
 
+/* Mobile navbar fix */
+@media all and (max-width: 991px) {
+  .navbar-collapse {
+    max-height: 70vh;
+    overflow-y: auto;
+    background-color: var(--color-white);
+    padding: 10px 15px;
+    border-top: 2px solid var(--theme-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-collapse .navbar-nav .nav-item {
+    border-bottom: 1px solid #eee;
+  }
+
+  .navbar-collapse .navbar-nav .nav-link {
+    padding: 12px 15px !important;
+    display: block;
+  }
+
+  .navbar-collapse .dropdown-menu {
+    position: static !important;
+    float: none;
+    box-shadow: none !important;
+    border: none !important;
+    background: #f5f5f5 !important;
+    padding-left: 15px;
+  }
+
+  .navbar-collapse .dropdown-menu .dropdown-item {
+    color: var(--color-dark) !important;
+    padding: 8px 15px !important;
+  }
+
+  .navbar-collapse .dropdown-submenu .dropdown-menu {
+    margin-left: 15px !important;
+  }
+
+  .main-navigation .container {
+    position: relative;
+  }
+
+  .mobile-menu-right {
+    gap: 12px;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .navbar-brand .mcp_logo {
+    max-height: 30px !important;
+    width: auto !important;
+  }
+
+  .mobile-menu-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .mobile-menu-right .nav-right-btn {
+    margin-top: 0 !important;
+  }
+
+  .mobile-menu-right .nav-right-btn .theme-btn {
+    padding: 5px 8px !important;
+    font-size: 10px !important;
+    white-space: nowrap;
+  }
+
+  .navbar-brand {
+    padding-left: 5px;
+    margin-right: 0 !important;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .main-navigation .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 15px;
+    position: relative;
+  }
+
+  .navbar-brand {
+    padding: 0 !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .navbar-brand .mcp_logo {
+    max-height: 35px !important;
+    width: auto !important;
+  }
+
+  .mobile-menu-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .mobile-menu-right .search-btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-right .search-btn .nav-right-link {
+    font-size: 18px;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .mobile-menu-right .nav-right-btn {
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-right .nav-right-btn .theme-btn {
+    padding: 6px 12px !important;
+    font-size: 10px !important;
+    white-space: nowrap;
+    line-height: 1.4;
+    border-radius: 5px;
+  }
+
+  .mobile-menu-right .navbar-toggler {
+    padding: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-right .navbar-toggler-mobile-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .mobile-menu-right .nav-right-btn .theme-btn[style] {
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+    margin-top: 0 !important;
+    vertical-align: middle;
+  }
+
+  .mobile-menu-right .nav-right-btn {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .mobile-menu-right > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
 *,
 *:before,
 *:after {
@@ -197,90 +363,117 @@ label {
   font-size: 16px;
   opacity: 1;
 }
+/* ===== New Preloader ===== */
 .preloader {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: var(--theme-color);
+  background: linear-gradient(135deg, #ffffff 0%, #eef4f7 100%);
   top: 0;
   left: 0;
   z-index: 9999;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.mcp-loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
-.loader-book {
-  border: 5px solid var(--color-white);
-  width: 100px;
-  height: 61px;
-  position: relative;
-  perspective: 150px;
-}
-.loader-book-page {
-  display: block;
-  width: 50px;
-  height: 60px;
-  border: 5px solid var(--color-white);
-  border-left: 5px solid var(--color-white);
-  margin: 0;
+
+.mcp-loader-ring {
   position: absolute;
-  right: -4px;
-  top: -4px;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--theme-color, #2a8fad);
+  border-right-color: var(--theme-color, #2a8fad);
+  animation: mcp-spin 1.2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+.mcp-loader-ring-2 {
+  inset: 10px;
+  border-width: 2px;
+  border-top-color: var(--theme-color2, #125875);
+  border-right-color: transparent;
+  border-bottom-color: var(--theme-color2, #125875);
+  animation: mcp-spin-reverse 1.6s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+.mcp-loader-logo {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: mcp-pulse 1.4s ease-in-out infinite;
+}
+
+.mcp-loader-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.mcp-loader-text {
+  font-family: var(--heading-font, "Yantramanav", sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--theme-color2, #125875);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
   overflow: hidden;
-  background: var(--theme-color);
-  transform-style: preserve-3d;
-  -webkit-transform-origin: left center;
-  transform-origin: left center;
 }
-.loader-book-page:nth-child(1) {
-  -webkit-animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.6s
-    infinite;
-  animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.6s infinite;
+
+.mcp-loader-text::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  animation: mcp-dots 1.5s steps(4, end) infinite;
 }
-.loader-book-page:nth-child(2) {
-  -webkit-animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.45s
-    infinite;
-  animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.45s infinite;
+
+@keyframes mcp-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-.loader-book-page:nth-child(3) {
-  -webkit-animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.2s
-    infinite;
-  animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.2s infinite;
+
+@keyframes mcp-spin-reverse {
+  0%   { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
 }
-@-webkit-keyframes loader-book {
-  0% {
-    -webkit-transform: rotateY(0deg);
-    transform: rotateY(0deg);
-  }
-  20% {
-    background: #082f42;
-  }
-  40% {
-    background: #082f42;
-    -webkit-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-  }
-  100% {
-    background: var(--theme-color);
-    -webkit-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-  }
+
+@keyframes mcp-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(0.9); opacity: 0.75; }
 }
-@keyframes loader-book {
-  0% {
-    transform: rotateY(0deg);
-  }
-  20% {
-    background: #082f42;
-  }
-  40% {
-    background: #082f42;
-    transform: rotateY(-180deg);
-  }
-  100% {
-    background: var(--theme-color);
-    transform: rotateY(-180deg);
-  }
+
+@keyframes mcp-dots {
+  0%   { content: ""; }
+  25%  { content: "."; }
+  50%  { content: ".."; }
+  75%  { content: "..."; }
+  100% { content: ""; }
+}
+
+/* Smooth fade-out when hidden by jQuery fadeOut */
+.preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+@media (max-width: 576px) {
+  .mcp-loader { width: 90px; height: 90px; }
+  .mcp-loader-logo { width: 52px; height: 52px; }
+  .mcp-loader-text { font-size: 12px; letter-spacing: 1.5px; }
 }
 .ovrflow-hidden {
   overflow: hidden;
@@ -2187,7 +2380,7 @@ label {
 }
 .counter-area {
   position: relative;
-  background-image: url(https://mdcrc.edu.in/upload/about-title-bg.jpg);
+  background-image: url(https://www.malabarcollegeofpharmacy.com/assets/img/slider/mcpAi.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
