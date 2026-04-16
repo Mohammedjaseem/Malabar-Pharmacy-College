@@ -2,26 +2,243 @@
 :root {
   --body-font: "Roboto", sans-serif;
   --heading-font: "Yantramanav", sans-serif;
-  --theme-color: #ff7350;
+
+  --theme-color: #2a8fad;
   --theme-color2: #125875;
-  --theme-bg-light: #f2f3f5;
-  --body-text-color: #757f95;
+
+  --theme-bg-light: #eef4f7;
+  --body-text-color: #5f6f82;
   --color-white: #ffffff;
-  --color-dark: #19232b;
+  --color-dark: #10212b;
   --hero-overlay-color: #000000;
   --slider-arrow-bg: rgba(255, 255, 255, 0.2);
-  --box-shadow: 0 0 40px 5px rgb(0 0 0 / 5%);
-  --box-shadow2: 0 0 15px rgba(0, 0, 0, 0.17);
+
+  --box-shadow: 0 0 40px 5px rgb(18 88 117 / 10%);
+  --box-shadow2: 0 0 15px rgba(16, 33, 43, 0.16);
+
   --transition: all 0.5s ease-in-out;
   --transition2: all 0.3s ease-in-out;
-  --border-info-color: rgba(0, 0, 0, 0.08);
-  --border-info-color2: rgba(0, 0, 0, 0.05);
+
+  --border-info-color: rgba(18, 88, 117, 0.12);
+  --border-info-color2: rgba(18, 88, 117, 0.06);
   --border-white-color: rgba(255, 255, 255, 0.08);
   --border-white-color2: rgba(255, 255, 255, 0.05);
-  --footer-bg: #032e3f;
+
+  --footer-bg: #082f42;
   --footer-bg2: #125875;
   --footer-text-color: #f5faff;
 }
+
+/* Navbar alignment fix */
+.main-navigation .container {
+  max-width: 100%;
+  padding: 0 30px;
+}
+
+.main-navigation .navbar {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.main-navigation .navbar-brand {
+  flex-shrink: 0;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.main-navigation .navbar-brand .mcp_logo {
+  max-height: 55px;
+  width: auto;
+}
+
+.main-navigation .navbar-nav {
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.main-navigation .navbar-nav .nav-link {
+  padding: 25px 0;
+  font-size: 13px;
+}
+
+.main-navigation .nav-right {
+  flex-shrink: 0;
+}
+
+.main-navigation .nav-right .nav-right-btn .theme-btn {
+  padding: 10px 18px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Mobile navbar fix */
+@media all and (max-width: 991px) {
+  .navbar-collapse {
+    max-height: 70vh;
+    overflow-y: auto;
+    background-color: var(--color-white);
+    padding: 10px 15px;
+    border-top: 2px solid var(--theme-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-collapse .navbar-nav .nav-item {
+    border-bottom: 1px solid #eee;
+  }
+
+  .navbar-collapse .navbar-nav .nav-link {
+    padding: 12px 15px !important;
+    display: block;
+  }
+
+  .navbar-collapse .dropdown-menu {
+    position: static !important;
+    float: none;
+    box-shadow: none !important;
+    border: none !important;
+    background: #f5f5f5 !important;
+    padding-left: 15px;
+  }
+
+  .navbar-collapse .dropdown-menu .dropdown-item {
+    color: var(--color-dark) !important;
+    padding: 8px 15px !important;
+  }
+
+  .navbar-collapse .dropdown-submenu .dropdown-menu {
+    margin-left: 15px !important;
+  }
+
+  .main-navigation .container {
+    position: relative;
+  }
+
+  .mobile-menu-right {
+    gap: 12px;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .navbar-brand .mcp_logo {
+    max-height: 30px !important;
+    width: auto !important;
+  }
+
+  .mobile-menu-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .mobile-menu-right .nav-right-btn {
+    margin-top: 0 !important;
+  }
+
+  .mobile-menu-right .nav-right-btn .theme-btn {
+    padding: 5px 8px !important;
+    font-size: 10px !important;
+    white-space: nowrap;
+  }
+
+  .navbar-brand {
+    padding-left: 5px;
+    margin-right: 0 !important;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .main-navigation .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 15px;
+    position: relative;
+  }
+
+  .navbar-brand {
+    padding: 0 !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .navbar-brand .mcp_logo {
+    max-height: 35px !important;
+    width: auto !important;
+  }
+
+  .mobile-menu-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .mobile-menu-right .search-btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-right .search-btn .nav-right-link {
+    font-size: 18px;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .mobile-menu-right .nav-right-btn {
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-right .nav-right-btn .theme-btn {
+    padding: 6px 12px !important;
+    font-size: 10px !important;
+    white-space: nowrap;
+    line-height: 1.4;
+    border-radius: 5px;
+  }
+
+  .mobile-menu-right .navbar-toggler {
+    padding: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-right .navbar-toggler-mobile-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .mobile-menu-right .nav-right-btn .theme-btn[style] {
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+    margin-top: 0 !important;
+    vertical-align: middle;
+  }
+
+  .mobile-menu-right .nav-right-btn {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .mobile-menu-right > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
 *,
 *:before,
 *:after {
@@ -146,90 +363,117 @@ label {
   font-size: 16px;
   opacity: 1;
 }
+/* ===== New Preloader ===== */
 .preloader {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: var(--theme-color);
+  background: linear-gradient(135deg, #ffffff 0%, #eef4f7 100%);
   top: 0;
   left: 0;
   z-index: 9999;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.mcp-loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
-.loader-book {
-  border: 5px solid var(--color-white);
-  width: 100px;
-  height: 61px;
-  position: relative;
-  perspective: 150px;
-}
-.loader-book-page {
-  display: block;
-  width: 50px;
-  height: 60px;
-  border: 5px solid var(--color-white);
-  border-left: 5px solid var(--color-white);
-  margin: 0;
+
+.mcp-loader-ring {
   position: absolute;
-  right: -4px;
-  top: -4px;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--theme-color, #2a8fad);
+  border-right-color: var(--theme-color, #2a8fad);
+  animation: mcp-spin 1.2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+.mcp-loader-ring-2 {
+  inset: 10px;
+  border-width: 2px;
+  border-top-color: var(--theme-color2, #125875);
+  border-right-color: transparent;
+  border-bottom-color: var(--theme-color2, #125875);
+  animation: mcp-spin-reverse 1.6s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+.mcp-loader-logo {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: mcp-pulse 1.4s ease-in-out infinite;
+}
+
+.mcp-loader-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.mcp-loader-text {
+  font-family: var(--heading-font, "Yantramanav", sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--theme-color2, #125875);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
   overflow: hidden;
-  background: var(--theme-color);
-  transform-style: preserve-3d;
-  -webkit-transform-origin: left center;
-  transform-origin: left center;
 }
-.loader-book-page:nth-child(1) {
-  -webkit-animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.6s
-    infinite;
-  animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.6s infinite;
+
+.mcp-loader-text::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  animation: mcp-dots 1.5s steps(4, end) infinite;
 }
-.loader-book-page:nth-child(2) {
-  -webkit-animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.45s
-    infinite;
-  animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.45s infinite;
+
+@keyframes mcp-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-.loader-book-page:nth-child(3) {
-  -webkit-animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.2s
-    infinite;
-  animation: loader-book 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.2s infinite;
+
+@keyframes mcp-spin-reverse {
+  0%   { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
 }
-@-webkit-keyframes loader-book {
-  0% {
-    -webkit-transform: rotateY(0deg);
-    transform: rotateY(0deg);
-  }
-  20% {
-    background: #ff7c5b;
-  }
-  40% {
-    background: #ff7c5b;
-    -webkit-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-  }
-  100% {
-    background: var(--theme-color);
-    -webkit-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-  }
+
+@keyframes mcp-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(0.9); opacity: 0.75; }
 }
-@keyframes loader-book {
-  0% {
-    transform: rotateY(0deg);
-  }
-  20% {
-    background: #ff7c5b;
-  }
-  40% {
-    background: #ff7c5b;
-    transform: rotateY(-180deg);
-  }
-  100% {
-    background: var(--theme-color);
-    transform: rotateY(-180deg);
-  }
+
+@keyframes mcp-dots {
+  0%   { content: ""; }
+  25%  { content: "."; }
+  50%  { content: ".."; }
+  75%  { content: "..."; }
+  100% { content: ""; }
+}
+
+/* Smooth fade-out when hidden by jQuery fadeOut */
+.preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+@media (max-width: 576px) {
+  .mcp-loader { width: 90px; height: 90px; }
+  .mcp-loader-logo { width: 52px; height: 52px; }
+  .mcp-loader-text { font-size: 12px; letter-spacing: 1.5px; }
 }
 .ovrflow-hidden {
   overflow: hidden;
@@ -740,7 +984,7 @@ label {
     margin-left: 25px !important;
   }
   .navbar .nav-item .nav-link {
-    margin-right: 15px;
+    margin-right: 8px;
   }
   .navbar .nav-right-btn {
     display: block; /* Ensure the button is visible on the right side */
@@ -749,9 +993,9 @@ label {
 }
 @media all and (min-width: 992px) {
   .navbar .nav-item .nav-link {
-    margin-right: 22px;
+    margin-right: 12px;
     padding: 30px 0;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--color-dark);
     text-transform: capitalize;
@@ -843,8 +1087,8 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-left: 45px;
+    gap: 15px;
+    margin-left: 15px;
   }
   .nav-right-link {
     position: relative;
@@ -2136,7 +2380,7 @@ label {
 }
 .counter-area {
   position: relative;
-  background-image: url(https://mdcrc.edu.in/upload/about-title-bg.jpg);
+  background-image: url(https://www.malabarcollegeofpharmacy.com/assets/img/slider/mcpAi.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -4481,7 +4725,6 @@ label {
   }
 }
 
-
 .scholarship {
   position: relative;
 }
@@ -4565,7 +4808,7 @@ label {
   margin-right: 8px;
 }
 
-.careers-area{
+.careers-area {
   position: relative;
   background: var(--theme-bg-light);
 }
@@ -4867,7 +5110,6 @@ label {
   opacity: 0.95;
 }
 
-
 .marquee {
   /* overflow: hidden; */
   white-space: nowrap;
@@ -4879,10 +5121,13 @@ label {
 }
 
 @keyframes marquee {
-  0% { transform: translate(100%, 0); }
-  100% { transform: translate(-100%, 0); }
+  0% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
 }
-
 
 .content-text {
   font-size: 18px; /* Increased font size for better readability */
@@ -4890,9 +5135,6 @@ label {
   color: #333; /* Darker text color for better contrast and readability */
   margin-bottom: 20px; /* Added bottom margin for better separation between paragraphs */
 }
-
-
-
 
 /* toast.css */
 .toast-container {
@@ -4914,7 +5156,9 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  animation: fadeIn 0.5s, fadeOut 0.5s 3s;
+  animation:
+    fadeIn 0.5s,
+    fadeOut 0.5s 3s;
 }
 
 .toast.success {
@@ -4926,15 +5170,26 @@ label {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateX(100%); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; transform: translateX(0); }
-  to { opacity: 0; transform: translateX(100%); }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }
-
 
 /* Style for application closed notice */
 .application-closed-notice {
@@ -4958,92 +5213,96 @@ label {
   text-align: center;
 }
 
-
 /* Container for chat messages */
 .chat-message {
-	display: flex;
-	padding: 7px;
-	margin: 8px 0;
-	max-width: 100%;
-	border-radius: 12px;
-	word-wrap: break-word;
-	align-items: center;
-	font-family: 'Roboto', 'Segoe UI', sans-serif; /* Updated to a more modern and readable font */
-    font-size: 14px;
-	font-weight: 500;
+  display: flex;
+  padding: 7px;
+  margin: 8px 0;
+  max-width: 100%;
+  border-radius: 12px;
+  word-wrap: break-word;
+  align-items: center;
+  font-family:
+    "Roboto", "Segoe UI", sans-serif; /* Updated to a more modern and readable font */
+  font-size: 14px;
+  font-weight: 500;
 }
-  
-  /* User's message on the left side */
-  .chat-message.user {
-	align-self: flex-start; /* Left side */
-	background-color: #DBEAFE;
-	color: #1E3A8A;
-	border-top-right-radius: 12px;
-	border-top-left-radius: 0;
-	max-width: max-content; /* Width to fit content */
-  }
-  
-  /* Bot's message on the right side */
-  .chat-message.bot {
-    align-self: flex-end; /* Right side */
-    background-color: #F3F4F6;
-    color: #374151;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 0;
-    margin-left: auto; /* Start from right side */
-    max-width: max-content; /* Width to fit content */
-  }
-  
-  /* Typing indicator (dots) animation */
-  .typing-indicator {
-	display: flex;
-	align-items: center;
-	margin-left: 8px;
-	height: 20px;
-  }
-  
-  .typing-dot {
-	width: 6px;
-	height: 6px;
-	margin: 0 2px;
-	background-color: #6B7280;
-	border-radius: 50%;
-	animation: blink 1s infinite;
-  }
-  
-  .typing-dot:nth-child(2) {
-	animation-delay: 0.2s;
-  }
-  
-  .typing-dot:nth-child(3) {
-	animation-delay: 0.4s;
-  }
-  
-  /* Blink animation for dots */
-  @keyframes blink {
-	0%, 100% { opacity: 0; }
-	50% { opacity: 1; }
-  }
-  
 
+/* User's message on the left side */
+.chat-message.user {
+  align-self: flex-start; /* Left side */
+  background-color: #dbeafe;
+  color: #1e3a8a;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 0;
+  max-width: max-content; /* Width to fit content */
+}
+
+/* Bot's message on the right side */
+.chat-message.bot {
+  align-self: flex-end; /* Right side */
+  background-color: #f3f4f6;
+  color: #374151;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 0;
+  margin-left: auto; /* Start from right side */
+  max-width: max-content; /* Width to fit content */
+}
+
+/* Typing indicator (dots) animation */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  height: 20px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background-color: #6b7280;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Blink animation for dots */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.mcp_logo {
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+  max-width: 100%; /* Add responsiveness */
+}
+@media (max-width: 768px) {
   .mcp_logo {
-    width: 250px;
-    height: auto;
-    object-fit: cover;
-    max-width: 100%; /* Add responsiveness */
+    width: 200px; /* Adjust width for smaller screens */
   }
-  @media (max-width: 768px) {
-    .mcp_logo {
-      width: 200px; /* Adjust width for smaller screens */
-    }
+}
+@media (max-width: 480px) {
+  .mcp_logo {
+    width: 150px; /* Adjust width for even smaller screens */
   }
-  @media (max-width: 480px) {
-    .mcp_logo {
-      width: 150px; /* Adjust width for even smaller screens */
-    }
-  }
+}
 
-  /* Ensure all staff cards have the same height */
+/* Ensure all staff cards have the same height */
 .staff-card {
   flex: 1 1 calc(33.333% - 20px); /* Each card takes one-third of the row */
   max-width: calc(33.333% - 20px); /* Prevents cards from exceeding space */
@@ -5055,9 +5314,10 @@ label {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   height: 100%; /* Ensure all cards stretch equally */
-  
 }
 
 /* Consistent image height */

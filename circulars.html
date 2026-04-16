@@ -1,0 +1,2946 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MCP Malabar College of Pharmacy - Circulars and Notices"
+    />
+    <meta
+      name="keywords"
+      content="MCP, Malabar, College, Pharmacy, Circulars, Notices"
+    />
+    <title>Circulars & Notices - MCP Malabar College of Pharmacy</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/favicon.png" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/all-fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .circulars-area {
+        padding: 120px 0;
+      }
+
+      /* ---------- Search + Filter Bar ---------- */
+      .circular-controls {
+        background: #fff;
+        border: 1px solid #eef4f7;
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 22px;
+        box-shadow: 0 4px 18px rgba(18, 88, 117, 0.05);
+      }
+      .circular-search {
+        position: relative;
+      }
+      .circular-search input {
+        width: 100%;
+        height: 44px;
+        border: 2px solid #eef4f7;
+        border-radius: 10px;
+        padding: 0 40px 0 40px;
+        font-size: 14px;
+        color: var(--color-dark);
+        background: #fafcfd;
+        transition: all 0.3s ease;
+      }
+      .circular-search input:focus {
+        outline: none;
+        border-color: var(--theme-color);
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(42, 143, 173, 0.1);
+      }
+      .circular-search i.search-ico {
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translateY(-50%);
+        color: #a0b4c0;
+        font-size: 14px;
+      }
+      .circular-search .clear-search {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        padding: 6px;
+        color: #a0b4c0;
+        cursor: pointer;
+        border-radius: 50%;
+        display: none;
+        line-height: 1;
+      }
+      .circular-search .clear-search:hover {
+        background: #eef4f7;
+        color: var(--color-dark);
+      }
+      .circular-sort {
+        height: 44px;
+        border: 2px solid #eef4f7;
+        border-radius: 10px;
+        padding: 0 34px 0 14px;
+        font-size: 14px;
+        color: var(--color-dark);
+        background: #fafcfd;
+        cursor: pointer;
+        font-weight: 600;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%232a8fad' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .circular-sort:focus {
+        outline: none;
+        border-color: var(--theme-color);
+        background-color: #fff;
+      }
+
+      /* ---------- Filter Pills ---------- */
+      .circular-filter-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+      .circular-filter-btn {
+        background: #fff;
+        color: var(--color-dark);
+        border: 2px solid #eef4f7;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .circular-filter-btn:hover,
+      .circular-filter-btn.active {
+        background: var(--theme-color);
+        color: #fff;
+        border-color: var(--theme-color);
+        box-shadow: 0 4px 15px rgba(42, 143, 173, 0.3);
+      }
+
+      .circular-count {
+        font-size: 13px;
+        color: var(--body-text-color);
+        margin-bottom: 18px;
+        padding: 0 4px;
+      }
+      .circular-count strong {
+        color: var(--color-dark);
+        font-size: 15px;
+      }
+
+      /* ---------- Card ---------- */
+      .circular-item-card {
+        margin-bottom: 30px;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        background: #fff;
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 30px);
+      }
+      .circular-item-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(18, 88, 117, 0.15);
+      }
+
+      .circular-img-wrap {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        background: #f2f6f9;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .circular-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .circular-item-card:hover .circular-img-wrap img {
+        transform: scale(1.06);
+      }
+      .circular-img-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.55) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .circular-item-card:hover .circular-img-overlay {
+        opacity: 1;
+      }
+      .circular-img-zoom {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(6px);
+        color: #fff;
+        padding: 6px;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        line-height: 1;
+      }
+      .circular-item-card:hover .circular-img-zoom {
+        opacity: 1;
+      }
+
+      /* Banner fallback (no image) */
+      .circular-banner {
+        position: relative;
+        aspect-ratio: 16 / 5;
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        overflow: hidden;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .circular-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at 20% 50%, white 1.5px, transparent 1.5px),
+          radial-gradient(circle at 80% 30%, white 1px, transparent 1px);
+        background-size:
+          30px 30px,
+          50px 50px;
+        opacity: 0.18;
+      }
+      .circular-banner i {
+        position: relative;
+        font-size: 38px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      /* Badges on image/banner */
+      .circular-new-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        z-index: 2;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .circular-image-count-badge {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(4px);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 700;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* Card body */
+      .circular-info {
+        padding: 16px 18px 18px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .circular-chips {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 9px;
+        border-radius: 50px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .chip i {
+        font-size: 9px;
+      }
+      .chip-type {
+        background: #e0e7ff;
+        color: #4338ca;
+      }
+      .chip-vis-both {
+        background: #ede9fe;
+        color: #6d28d9;
+      }
+      .chip-vis-staff {
+        background: #fef3c7;
+        color: #b45309;
+      }
+      .chip-vis-student {
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+
+      .circular-info h5 {
+        font-size: 17px;
+        margin-bottom: 6px;
+        color: var(--color-dark);
+        line-height: 1.4;
+        font-weight: 700;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        transition: color 0.3s ease;
+      }
+      .circular-item-card:hover .circular-info h5 {
+        color: var(--theme-color);
+      }
+      .circular-desc {
+        font-size: 13px;
+        color: var(--body-text-color);
+        line-height: 1.6;
+        margin-bottom: 14px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 40px;
+      }
+      .circular-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 12px;
+        padding-top: 12px;
+        border-top: 1px solid #eef4f7;
+        margin-top: auto;
+      }
+      .circular-meta-date {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--body-text-color);
+        font-weight: 500;
+        min-width: 0;
+      }
+      .circular-meta-date i {
+        color: var(--theme-color);
+        flex-shrink: 0;
+      }
+      .circular-meta-date span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .circular-meta-files {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .file-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        padding: 2px 7px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .file-badge-pdf {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      .file-badge-img {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+      .circular-arrow {
+        color: #9aa5b1;
+        transition: all 0.3s ease;
+      }
+      .circular-item-card:hover .circular-arrow {
+        color: var(--theme-color);
+        transform: translateX(3px);
+      }
+
+      /* Clickable zone */
+      .circular-click-zone {
+        display: block;
+        flex: 1;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        text-align: left;
+        padding: 0;
+        width: 100%;
+      }
+      .circular-click-zone:focus {
+        outline: none;
+      }
+
+      /* ---------- Loading & Empty ---------- */
+      .loading-spinner {
+        display: none;
+        text-align: center;
+        padding: 60px 0;
+      }
+      .loading-spinner .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #eef4f7;
+        border-top: 4px solid var(--theme-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+      }
+      .empty-state-icon {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 18px;
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 36px;
+        box-shadow: 0 10px 30px rgba(42, 143, 173, 0.25);
+      }
+      .empty-state h5 {
+        color: var(--color-dark);
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+      .empty-state p {
+        color: var(--body-text-color);
+        max-width: 400px;
+        margin: 0 auto 20px;
+      }
+      .empty-state-btn {
+        background: var(--color-dark);
+        color: #fff;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+      }
+      .empty-state-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      /* ---------- Detail Modal ---------- */
+      .circular-detail-modal .modal-dialog {
+        max-width: 900px;
+      }
+      .circular-detail-modal .modal-content {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+      }
+      .circular-detail-modal .modal-header {
+        background: linear-gradient(
+          135deg,
+          var(--theme-color2),
+          var(--theme-color)
+        );
+        padding: 18px 24px;
+        border-bottom: none;
+        position: relative;
+      }
+      .circular-detail-modal .modal-header .modal-title {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        font-family: var(--heading-font);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .circular-detail-modal .modal-header .btn-close {
+        filter: brightness(0) invert(1);
+        opacity: 0.8;
+      }
+      .circular-detail-modal .modal-body {
+        padding: 0;
+        max-height: 82vh;
+        overflow-y: auto;
+      }
+
+      .circular-hero {
+        position: relative;
+        padding: 28px 28px 24px;
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        color: #fff;
+        overflow: hidden;
+      }
+      .circular-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at 20% 80%, white 1.5px, transparent 1.5px),
+          radial-gradient(circle at 80% 20%, white 2px, transparent 2px),
+          radial-gradient(circle at 50% 50%, white 1px, transparent 1px);
+        background-size:
+          45px 45px,
+          80px 80px,
+          30px 30px;
+        opacity: 0.1;
+        pointer-events: none;
+      }
+      .circular-hero-inner {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .circular-hero-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(6px);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .circular-hero-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .circular-hero-new {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(6px);
+        padding: 3px 9px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+      .circular-hero-text h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 6px;
+        line-height: 1.3;
+        word-break: break-word;
+      }
+      .circular-hero-date {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.92);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+      }
+
+      .circular-detail-body {
+        padding: 22px 28px 28px;
+      }
+      .circular-detail-chips {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .chip-lg {
+        padding: 5px 12px;
+        font-size: 11px;
+      }
+      .chip-time {
+        background: #f1f5f9;
+        color: #475569;
+      }
+
+      .detail-section {
+        background: linear-gradient(135deg, #fafcfd, #f4f8fa);
+        border: 1px solid #eef4f7;
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 18px;
+      }
+      .detail-section-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .detail-section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .detail-section-title .ico {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+      }
+      .detail-section-title.files .ico {
+        background: linear-gradient(135deg, #f97316, #d97706);
+      }
+      .detail-section-title h6 {
+        margin: 0;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+      .detail-count-pill {
+        background: #ffedd5;
+        color: #c2410c;
+        padding: 2px 10px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .detail-description {
+        color: var(--body-text-color);
+        font-size: 14px;
+        line-height: 1.75;
+        word-break: break-word;
+      }
+      .detail-description p {
+        margin-bottom: 10px;
+      }
+      .detail-description p:last-child {
+        margin-bottom: 0;
+      }
+      .detail-description a {
+        color: var(--theme-color);
+        text-decoration: underline;
+      }
+
+      /* Attachments grid */
+      .attachment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+      }
+      .attachment-tile {
+        position: relative;
+        background: #fff;
+        border: 2px solid #eef4f7;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: block;
+      }
+      .attachment-tile:hover {
+        border-color: var(--theme-color);
+        box-shadow: 0 6px 18px rgba(42, 143, 173, 0.12);
+        transform: translateY(-2px);
+      }
+      .attachment-tile-thumb {
+        aspect-ratio: 1;
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .attachment-tile-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .attachment-tile:hover .attachment-tile-thumb img {
+        transform: scale(1.08);
+      }
+      .attachment-tile-thumb.pdf {
+        background: linear-gradient(135deg, #fef2f2, #fecaca);
+        flex-direction: column;
+        gap: 8px;
+      }
+      .attachment-tile-thumb.pdf .pdf-icon-wrap {
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 22px;
+        box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .attachment-tile:hover .pdf-icon-wrap {
+        transform: scale(1.1);
+      }
+      .attachment-tile-thumb.pdf .pdf-label {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #b91c1c;
+      }
+      .attachment-tile-name {
+        padding: 8px 10px;
+        background: #fff;
+        border-top: 1px solid #eef4f7;
+      }
+      .attachment-tile-name p {
+        margin: 0;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-dark);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .attachment-tile-actions {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        gap: 4px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .attachment-tile:hover .attachment-tile-actions {
+        opacity: 1;
+      }
+      .attachment-tile-action {
+        width: 28px;
+        height: 28px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(6px);
+        color: var(--color-dark);
+        border: none;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+      .attachment-tile-action:hover {
+        background: #fff;
+        color: var(--theme-color);
+        transform: scale(1.08);
+      }
+
+      /* Posted by */
+      .posted-by-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 18px;
+        background: linear-gradient(135deg, #fafcfd, #f4f8fa);
+        border: 1px solid #eef4f7;
+        border-radius: 14px;
+      }
+      .posted-by-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #06b6d4, #2563eb);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        flex-shrink: 0;
+      }
+      .posted-by-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .posted-by-label {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #64748b;
+        margin-bottom: 2px;
+      }
+      .posted-by-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-dark);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .posted-by-date {
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .posted-by-date .time-val {
+        font-size: 12px;
+        font-weight: 600;
+        color: #475569;
+      }
+
+      /* ---------- Image Lightbox ---------- */
+      .image-viewer-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(8px);
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+      }
+      .image-viewer-overlay.active {
+        display: flex;
+      }
+      .image-viewer-topbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+        z-index: 10;
+      }
+      .image-viewer-fileinfo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+      .image-viewer-fileicon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .image-viewer-filemeta {
+        min-width: 0;
+      }
+      .image-viewer-filename {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 40vw;
+      }
+      .image-viewer-counter {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 11px;
+        font-weight: 500;
+      }
+      .image-viewer-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .image-viewer-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        transition: all 0.3s ease;
+      }
+      .image-viewer-btn:hover {
+        background: rgba(255, 255, 255, 0.28);
+        transform: scale(1.05);
+      }
+      .image-viewer-btn a {
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+      }
+
+      .image-viewer-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 46px;
+        height: 46px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .image-viewer-nav:hover {
+        background: rgba(255, 255, 255, 0.28);
+      }
+      .image-viewer-prev {
+        left: 20px;
+      }
+      .image-viewer-next {
+        right: 20px;
+      }
+
+      .image-viewer-content {
+        max-width: 92vw;
+        max-height: 78vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .image-viewer-content img {
+        max-width: 100%;
+        max-height: 78vh;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        animation: fadeScaleIn 0.3s ease;
+      }
+      @keyframes fadeScaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Thumbnails strip */
+      .image-viewer-thumbs {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 16px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        overflow-x: auto;
+      }
+      .image-viewer-thumb {
+        width: 52px;
+        height: 52px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        opacity: 0.55;
+        transition: all 0.25s ease;
+        flex-shrink: 0;
+        background: transparent;
+        padding: 0;
+      }
+      .image-viewer-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .image-viewer-thumb:hover {
+        opacity: 1;
+      }
+      .image-viewer-thumb.active {
+        opacity: 1;
+        border-color: #fff;
+        transform: scale(1.08);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+      }
+      /* ---------- Pagination ---------- */
+      .pagination-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        padding: 20px 12px;
+      }
+      .pagination-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 16px;
+        background: #fff;
+        color: var(--color-dark);
+        border: 2px solid #eef4f7;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .pagination-btn:hover:not(:disabled) {
+        background: var(--theme-color);
+        color: #fff;
+        border-color: var(--theme-color);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(42, 143, 173, 0.25);
+      }
+      .pagination-btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .pagination-numbers {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .pagination-num {
+        min-width: 40px;
+        height: 40px;
+        padding: 0 10px;
+        background: #fff;
+        color: var(--color-dark);
+        border: 2px solid #eef4f7;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pagination-num:hover:not(.active):not(.ellipsis) {
+        border-color: var(--theme-color);
+        color: var(--theme-color);
+        transform: translateY(-2px);
+      }
+      .pagination-num.active {
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        color: #fff;
+        border-color: var(--theme-color);
+        box-shadow: 0 6px 15px rgba(42, 143, 173, 0.35);
+        cursor: default;
+      }
+      .pagination-num.ellipsis {
+        background: transparent;
+        border: none;
+        cursor: default;
+        color: #94a3b8;
+        min-width: 24px;
+      }
+      @media (max-width: 575px) {
+        .pagination-btn {
+          padding: 8px 12px;
+        }
+        .pagination-num {
+          min-width: 36px;
+          height: 36px;
+          font-size: 12px;
+        }
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 991px) {
+        .circulars-area {
+          padding: 80px 0;
+        }
+      }
+      @media (max-width: 767px) {
+        .circulars-area {
+          padding: 60px 0;
+        }
+        .circular-filter-wrapper {
+          gap: 6px;
+          margin-bottom: 20px;
+        }
+        .circular-filter-btn {
+          padding: 6px 14px;
+          font-size: 12px;
+        }
+        .circular-info h5 {
+          font-size: 16px;
+        }
+        .circular-desc {
+          font-size: 12px;
+        }
+        .circular-detail-modal .modal-header {
+          padding: 14px 18px;
+        }
+        .circular-hero {
+          padding: 22px 22px 20px;
+        }
+        .circular-hero-text h2 {
+          font-size: 18px;
+        }
+        .circular-detail-body {
+          padding: 18px 18px 22px;
+        }
+        .detail-section {
+          padding: 14px 16px;
+        }
+        .attachment-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 10px;
+        }
+        .posted-by-card {
+          padding: 12px 14px;
+        }
+        .image-viewer-nav {
+          width: 38px;
+          height: 38px;
+          font-size: 14px;
+        }
+        .image-viewer-prev {
+          left: 10px;
+        }
+        .image-viewer-next {
+          right: 10px;
+        }
+        .image-viewer-filename {
+          max-width: 50vw;
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 575px) {
+        .circular-img-wrap {
+          aspect-ratio: 16 / 10;
+        }
+        .image-viewer-thumbs {
+          padding: 10px;
+        }
+        .image-viewer-thumb {
+          width: 42px;
+          height: 42px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preloader" id="preloader">
+      <div class="mcp-loader">
+        <div class="mcp-loader-ring"></div>
+        <div class="mcp-loader-ring mcp-loader-ring-2"></div>
+        <div class="mcp-loader-logo">
+          <img src="assets/img/logo/logo.png" alt="MCP" />
+        </div>
+      </div>
+      <div class="mcp-loader-text">Malabar College of Pharmacy</div>
+    </div>
+
+    <header class="header">
+      <div class="header-top">
+        <div class="container">
+          <div class="header-top-wrapper">
+            <div class="header-top-left">
+              <div class="header-top-contact">
+                <ul>
+                  <li>
+                    <div class="header-top-contact-icon">
+                      <img src="assets/img/icon/mail.svg" alt="Mail Icon" />
+                    </div>
+                    <div class="header-top-contact-info">
+                      <h6>Mail Us</h6>
+                      <a href="mailto:mcp@macity.edu.in">mcp@macity.edu.in</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="header-top-contact-icon">
+                      <img src="assets/img/icon/call.svg" alt />
+                    </div>
+                    <div class="header-top-contact-info">
+                      <h6>Call Now</h6>
+                      <a href="tel:+918943600017">+91 8943600017</a>,
+                      <a href="tel:+917034555563">+91 7034555563</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="header-top-right">
+              <div class="header-top-social">
+                <span>Follow Us: </span>
+                <a href="http://www.facebook.com/MalabarCollegeofPharmacy"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="http://www.instagram.com/malabar_college_of_pharmacy"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-navigation">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container position-relative">
+            <a class="navbar-brand" href="/"
+              ><img
+                src="assets/img/logo/logo.png"
+                alt="Malabar College of Pharmacy Logo"
+                class="mcp_logo"
+            /></a>
+            <div class="mobile-menu-right">
+              <div class="search-btn">
+                <button type="button" class="nav-right-link search-box-outer">
+                  <i class="far fa-search"></i>
+                </button>
+              </div>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#main_nav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-mobile-icon"
+                  ><i class="far fa-bars"></i
+                ></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="main_nav">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                    >About HEI</a
+                  >
+                  <ul class="dropdown-menu fade-down">
+                    <li>
+                      <a class="dropdown-item" href="/about-us.html"
+                        >About Us: Overview</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    >Administration</a
+                  >
+                  <ul class="dropdown-menu fade-down">
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="/about-us.html#board-of-directors"
+                        >Board of Management</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/about-us.html#principal"
+                        >Principal</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="academic-leadership.html"
+                        >Academic Leadership</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    >Academics</a
+                  >
+                  <ul class="dropdown-menu fade-down">
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#"
+                        >Academic Programs</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item" href="bpharm.html">BPharm</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="dpharm.html">DPharm</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#"
+                        >Departments</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            href="pharmaceutical-chemistry.html"
+                            >Pharmaceutical Chemistry</a
+                          >
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="pharmacology.html"
+                            >Pharmacology</a
+                          >
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="pharmaceutics.html"
+                            >Pharmaceutics</a
+                          >
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="pharmacy-practice.html"
+                            >Pharmacy Practice</a
+                          >
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="pharmacognosy.html"
+                            >Pharmacognosy</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            href="pharmaceutical-analysis.html"
+                            >Pharmaceutical Analysis</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            href="computer-application.html"
+                            >Computer Application</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="library.html">Library</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="admission.html"
+                        >Admission</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="gallery.html">Gallery</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="achievements.html"
+                        >Achievements</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="events.html">Events</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="circulars.html"
+                        >Circulars</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    >Admission & Fee</a
+                  >
+                  <ul class="dropdown-menu fade-down">
+                    <li>
+                      <a class="dropdown-item" href="prospectus2025.html"
+                        >Prospectus</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="admission.html"
+                        >Admission Process And Guidelines</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    >Student Life</a
+                  >
+                  <ul class="dropdown-menu fade-down">
+                    <li>
+                      <a class="dropdown-item" href="anti-ragging-cell.html"
+                        >Anti-Ragging Cell</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="gender-sensitisation-committee.html"
+                        >Gender Harassment Committee</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    >Information Corner</a
+                  >
+                  <ul class="dropdown-menu fade-down">
+                    <li>
+                      <a class="dropdown-item" href="announcements.html"
+                        >Announcements</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="newsletters.html"
+                        >Newsletters</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="news-recent-events-achievements.html"
+                        >News, Recent Events & Achievements</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="careers.html"
+                        >Job Openings</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="enquiry.html">Enquiry</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="news.html">News</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification.html">Notification</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="search-popup">
+      <button class="close-search"><span class="far fa-times"></span></button>
+      <form action="#">
+        <div class="form-group">
+          <input
+            type="search"
+            name="search-field"
+            placeholder="Search Here..."
+            required
+          /><button type="submit"><i class="far fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <main class="main">
+      <div
+        class="site-breadcrumb"
+        style="background: url(assets/img/breadcrumb/01.jpg)"
+      >
+        <div class="container">
+          <h2 class="breadcrumb-title">Circulars & Notices</h2>
+          <ul class="breadcrumb-menu">
+            <li><a href="/">Home</a></li>
+            <li class="active">Circulars & Notices</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="circulars-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 mx-auto">
+              <div class="site-heading text-center">
+                <span class="site-title-tagline"
+                  ><i class="far fa-bullhorn"></i> Official Communications</span
+                >
+                <h2 class="site-title">Circulars & <span>Notices</span></h2>
+                <p>
+                  Stay informed with the latest announcements, official
+                  circulars, and important notices from Malabar College of
+                  Pharmacy.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search + Sort -->
+          <div class="circular-controls">
+            <div class="row g-2 align-items-center">
+              <div class="col-md-8">
+                <div class="circular-search">
+                  <i class="far fa-search search-ico"></i>
+                  <input
+                    type="text"
+                    id="circularSearch"
+                    placeholder="Search by title, description, or posted by..."
+                    autocomplete="off"
+                  />
+                  <button
+                    type="button"
+                    class="clear-search"
+                    id="circularSearchClear"
+                    aria-label="Clear"
+                  >
+                    <i class="far fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <select
+                  id="circularSort"
+                  class="circular-sort w-100"
+                  aria-label="Sort"
+                >
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="title_asc">Title A-Z</option>
+                  <option value="title_desc">Title Z-A</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Type Filter -->
+          <div class="circular-filter-wrapper" id="circularFilterWrapper">
+            <button class="circular-filter-btn active" data-filter="all">
+              <i class="far fa-th-large"></i> All
+            </button>
+          </div>
+
+          <!-- Count -->
+          <div class="circular-count" id="circularCount" style="display: none">
+            <strong id="countNumber">0</strong>
+            <span id="countLabel">circulars</span>
+            <span id="countFiltered"></span>
+          </div>
+
+          <!-- Loading -->
+          <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p>Loading circulars...</p>
+          </div>
+
+          <!-- Grid -->
+          <div class="row" id="circularsContainer"></div>
+          <!-- Pagination -->
+          <div
+            class="pagination-wrapper"
+            id="paginationWrapper"
+            style="display: none"
+          >
+            <button
+              class="pagination-btn"
+              id="paginationPrev"
+              type="button"
+              aria-label="Previous page"
+            >
+              <i class="far fa-chevron-left"></i>
+              <span class="d-none d-sm-inline">Previous</span>
+            </button>
+            <div class="pagination-numbers" id="paginationNumbers"></div>
+            <button
+              class="pagination-btn"
+              id="paginationNext"
+              type="button"
+              aria-label="Next page"
+            >
+              <span class="d-none d-sm-inline">Next</span>
+              <i class="far fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div
+      class="modal fade circular-detail-modal"
+      id="circularDetailModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="far fa-file-alt"></i> Circular Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="circularDetailBody">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Lightbox -->
+    <div class="image-viewer-overlay" id="imageViewer">
+      <div class="image-viewer-topbar">
+        <div class="image-viewer-fileinfo">
+          <div class="image-viewer-fileicon">
+            <i class="far fa-image"></i>
+          </div>
+          <div class="image-viewer-filemeta">
+            <div class="image-viewer-filename" id="viewerFilename"></div>
+            <div class="image-viewer-counter" id="viewerCounter"></div>
+          </div>
+        </div>
+        <div class="image-viewer-actions">
+          <button class="image-viewer-btn" id="viewerDownload" title="Download">
+            <i class="far fa-download"></i>
+          </button>
+          <button class="image-viewer-btn" id="viewerClose" title="Close (Esc)">
+            <i class="far fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <button class="image-viewer-nav image-viewer-prev" id="viewerPrev">
+        <i class="far fa-chevron-left"></i>
+      </button>
+      <button class="image-viewer-nav image-viewer-next" id="viewerNext">
+        <i class="far fa-chevron-right"></i>
+      </button>
+      <div class="image-viewer-content">
+        <img id="viewerImage" src="" alt="" />
+      </div>
+      <div class="image-viewer-thumbs" id="viewerThumbs"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-area">
+      <div class="footer-shape">
+        <img src="assets/img/logo/logo.png" alt="" class="footer-logo" />
+      </div>
+      <div class="footer-widget">
+        <div class="container">
+          <div class="row footer-widget-wrapper pt-100 pb-70">
+            <div class="col-md-6 col-lg-4">
+              <div class="footer-widget-box about-us">
+                <h4 class="footer-widget-title">Contact Us</h4>
+                <ul class="footer-contact">
+                  <li>
+                    <a href="tel:+918943600017"
+                      ><i class="far fa-phone"></i>+91 8943600017</a
+                    >, <a href="tel:+917034555563">+91 7034555563</a>
+                  </li>
+                  <li>
+                    <i class="far fa-map-marker-alt"></i>Manoor - Chekanoor
+                    Road, Manoor, Edappal,<br />Malappuram, Kerala 679578
+                  </li>
+                  <li>
+                    <a href="mailto:mcp@macity.edu.in"
+                      ><i class="far fa-envelope"></i>mcp@macity.edu.in</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-2">
+              <div class="footer-widget-box list">
+                <h4 class="footer-widget-title">Quick Links</h4>
+                <ul class="footer-list">
+                  <li>
+                    <a href="/about-us.html"
+                      ><i class="fas fa-caret-right"></i> About Us</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/#testimonial"
+                      ><i class="fas fa-caret-right"></i> Testimonials</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="footer-widget-box list">
+                <h4 class="footer-widget-title">Newsletter</h4>
+                <div class="footer-newsletter">
+                  <p>Subscribe Our Newsletter To Get Latest Update And News</p>
+                  <div class="subscribe-form">
+                    <form action="#">
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Your Email"
+                      /><button class="theme-btn" type="submit">
+                        Subscribe Now <i class="far fa-paper-plane"></i>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="copyright-wrapper">
+            <div class="row">
+              <div class="col-md-6 align-self-center">
+                <span>Last updated on 16-04-2026</span>
+                <p class="copyright-text">
+                  &copy; Copyright <span id="date"></span>
+                  <a href="https://bizforz.com/" target="_blank"
+                    >Bizforz Solutions Pvt Ltd</a
+                  >
+                  All Rights Reserved.
+                </p>
+              </div>
+              <div class="col-md-6 align-self-center">
+                <ul class="footer-social">
+                  <li>
+                    <a href="https://www.facebook.com/MalabarCollegeofPharmacy"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      href="http://www.instagram.com/malabar_college_of_pharmacy"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="assets/js/jquery.appear.min.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/counter-up.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+      // ======================================================================
+      // CONFIG — update the API base if your backend lives on a different host
+      // ======================================================================
+      var CIRCULAR_API = {
+        base: "https://conext.in",
+        list: "/news/api/get-circular-for-website/",
+        single: "/news/api/get-single-circular-for-website/",
+        org: 8, // MCP organization id
+        pageSize: 20, // cards per page (3 cols x 3 rows)
+      };
+
+      $(document).ready(function () {
+        // ==================================================================
+        // STATE
+        // ==================================================================
+        var allCirculars = [];
+        var filteredCirculars = [];
+        var circularTypes = [];
+        var currentType = "all";
+        var currentSearch = "";
+        var currentSort = "newest";
+
+        var viewer = {
+          open: false,
+          images: [],
+          index: 0,
+        };
+
+        var pagination = {
+          currentPage: 1,
+          totalCount: 0,
+          totalPages: 1,
+          hasNext: false,
+          hasPrev: false,
+        };
+
+        // ==================================================================
+        // INIT
+        // ==================================================================
+        loadCirculars();
+        bindEvents();
+
+        // ==================================================================
+        // EVENTS
+        // ==================================================================
+        function bindEvents() {
+          // Type filter
+          $("#circularFilterWrapper").on(
+            "click",
+            ".circular-filter-btn",
+            function () {
+              $(".circular-filter-btn").removeClass("active");
+              $(this).addClass("active");
+              currentType = String($(this).data("filter"));
+              applyFilterAndRender();
+            },
+          );
+
+          // Search
+          var searchTimer;
+          $("#circularSearch").on("input", function () {
+            var val = $(this).val();
+            $("#circularSearchClear").toggle(val.length > 0);
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function () {
+              currentSearch = val.trim().toLowerCase();
+              applyFilterAndRender();
+            }, 180);
+          });
+          $("#circularSearchClear").on("click", function () {
+            $("#circularSearch").val("").trigger("input").focus();
+          });
+
+          // Sort
+          $("#circularSort").on("change", function () {
+            currentSort = $(this).val();
+            applyFilterAndRender();
+          });
+
+          // Card click -> open detail modal
+          $("#circularsContainer").on(
+            "click",
+            ".circular-click-zone",
+            function () {
+              var id = $(this).data("id");
+              openDetailById(id);
+            },
+          );
+
+          // First image click on card -> open lightbox
+          $("#circularsContainer").on(
+            "click",
+            ".circular-img-wrap[data-has-image='1']",
+            function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              var id = $(this).data("id");
+              var item = allCirculars.find(function (c) {
+                return String(c.id) === String(id);
+              });
+              if (!item) return;
+              var images = getImageAttachments(item);
+              openViewer(images, 0);
+            },
+          );
+
+          // Attachment tile clicks inside modal
+          $(document).on(
+            "click",
+            "#circularDetailBody .attachment-tile[data-kind='image']",
+            function (e) {
+              if ($(e.target).closest(".attachment-tile-action").length) return;
+              e.preventDefault();
+              var id = $(this).data("circular-id");
+              var idx = parseInt($(this).data("img-index"), 10) || 0;
+              var item = allCirculars.find(function (c) {
+                return String(c.id) === String(id);
+              });
+              if (!item) return;
+              openViewer(getImageAttachments(item), idx);
+            },
+          );
+
+          $(document).on(
+            "click",
+            "#circularDetailBody .attachment-tile-action[data-action='download']",
+            function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              downloadFile($(this).data("url"), $(this).data("name"));
+            },
+          );
+
+          // Lightbox controls
+          $("#viewerClose").on("click", closeViewer);
+          $("#viewerPrev").on("click", function (e) {
+            e.stopPropagation();
+            navigateViewer(-1);
+          });
+          $("#viewerNext").on("click", function (e) {
+            e.stopPropagation();
+            navigateViewer(1);
+          });
+          $("#viewerDownload").on("click", function (e) {
+            e.stopPropagation();
+            if (!viewer.images.length) return;
+            var cur = viewer.images[viewer.index];
+            if (cur)
+              downloadFile(cur.file_url, getFileNameFromUrl(cur.file_url));
+          });
+
+          $("#imageViewer").on("click", function (e) {
+            // Close when clicking backdrop (not the image / controls)
+            if (e.target.id === "imageViewer") closeViewer();
+          });
+          $("#viewerImage").on("click", function (e) {
+            e.stopPropagation();
+          });
+
+          // Thumb clicks
+          $("#viewerThumbs").on("click", ".image-viewer-thumb", function () {
+            var idx = parseInt($(this).data("idx"), 10);
+            if (!isNaN(idx)) {
+              viewer.index = idx;
+              updateViewer();
+            }
+          });
+
+          // Pagination
+          $("#paginationPrev").on("click", function () {
+            if (pagination.currentPage > 1)
+              loadCirculars(pagination.currentPage - 1);
+          });
+          $("#paginationNext").on("click", function () {
+            if (pagination.currentPage < pagination.totalPages)
+              loadCirculars(pagination.currentPage + 1);
+          });
+          $("#paginationNumbers").on("click", ".pagination-num", function () {
+            var p = parseInt($(this).data("page"), 10);
+            if (!isNaN(p) && p !== pagination.currentPage) loadCirculars(p);
+          });
+
+          // Keyboard nav
+          $(document).on("keydown", function (e) {
+            if (!viewer.open) return;
+            if (e.key === "Escape") closeViewer();
+            else if (e.key === "ArrowLeft") navigateViewer(-1);
+            else if (e.key === "ArrowRight") navigateViewer(1);
+          });
+        }
+
+        // ==================================================================
+        // DATA LOADING
+        // ==================================================================
+        async function loadCirculars(page) {
+          var p = page && page > 0 ? page : 1;
+          var $container = $("#circularsContainer");
+          var $spinner = $("#loadingSpinner");
+          $container.empty();
+          $("#circularCount").hide();
+          $("#paginationWrapper").hide();
+          $spinner.show();
+
+          try {
+            var url =
+              CIRCULAR_API.base +
+              CIRCULAR_API.list +
+              "?org=" +
+              CIRCULAR_API.org +
+              "&page=" +
+              p +
+              "&page_size=" +
+              CIRCULAR_API.pageSize;
+
+            var res = await fetch(url, {
+              method: "GET",
+              headers: { Accept: "application/json" },
+            });
+            if (!res.ok) throw new Error("Request failed: " + res.status);
+            var json = await res.json();
+
+            // Response shape: { count, next, previous, results: { status, page_size, data: [...] } }
+            var items = [];
+            if (json && json.results && Array.isArray(json.results.data)) {
+              items = json.results.data;
+            } else if (json && Array.isArray(json.data)) {
+              items = json.data;
+            } else if (Array.isArray(json)) {
+              items = json;
+            }
+
+            allCirculars = items;
+
+            // Pagination state
+            var serverPageSize =
+              (json && json.results && json.results.page_size) ||
+              CIRCULAR_API.pageSize;
+            pagination.currentPage = p;
+            pagination.totalCount = (json && json.count) || items.length;
+            pagination.totalPages = Math.max(
+              1,
+              Math.ceil(pagination.totalCount / serverPageSize),
+            );
+            pagination.hasNext = !!(json && json.next);
+            pagination.hasPrev = !!(json && json.previous);
+
+            buildTypeFilters(allCirculars);
+            applyFilterAndRender();
+            renderPagination();
+
+            // Scroll back to the grid when changing pages
+            if (p > 1) {
+              $("html, body").animate(
+                {
+                  scrollTop: $(".circulars-area").offset().top - 80,
+                },
+                300,
+              );
+            }
+          } catch (err) {
+            console.error("Error loading circulars:", err);
+            renderError(err && err.message ? err.message : "Unknown error");
+          } finally {
+            $spinner.hide();
+          }
+        }
+
+        // ==================================================================
+        // TYPE FILTER PILLS (dynamic)
+        // ==================================================================
+        function buildTypeFilters(items) {
+          // Accumulate types across pages so pills don't disappear when paginating
+          if (!window._allSeenTypes) window._allSeenTypes = {};
+          items.forEach(function (c) {
+            var t = c.circular_type;
+            if (t && t.id != null && t.name) {
+              window._allSeenTypes[t.id] = t.name;
+            }
+          });
+
+          circularTypes = Object.keys(window._allSeenTypes).map(function (k) {
+            return { id: k, name: window._allSeenTypes[k] };
+          });
+          circularTypes.sort(function (a, b) {
+            return a.name.localeCompare(b.name);
+          });
+
+          var $wrap = $("#circularFilterWrapper");
+          $wrap.empty();
+          $wrap.append(
+            '<button class="circular-filter-btn ' +
+              (currentType === "all" ? "active" : "") +
+              '" data-filter="all"><i class="far fa-th-large"></i> All</button>',
+          );
+          circularTypes.forEach(function (t) {
+            $wrap.append(
+              '<button class="circular-filter-btn ' +
+                (String(currentType) === String(t.id) ? "active" : "") +
+                '" data-filter="' +
+                escapeAttr(t.id) +
+                '"><i class="far fa-tag"></i> ' +
+                escapeHtml(t.name) +
+                "</button>",
+            );
+          });
+        }
+
+        // ==================================================================
+        // FILTERING + SORTING
+        // ==================================================================
+        function applyFilterAndRender() {
+          var data = allCirculars.slice();
+
+          // Type
+          if (currentType !== "all") {
+            data = data.filter(function (c) {
+              return (
+                c.circular_type &&
+                String(c.circular_type.id) === String(currentType)
+              );
+            });
+          }
+
+          // Search
+          if (currentSearch) {
+            data = data.filter(function (c) {
+              var hay = [
+                c.title || "",
+                stripHtml(c.description || ""),
+                (c.circular_type && c.circular_type.name) || "",
+                c.created_by_name || "",
+              ]
+                .join(" ")
+                .toLowerCase();
+              return hay.indexOf(currentSearch) !== -1;
+            });
+          }
+
+          // Sort
+          data.sort(function (a, b) {
+            switch (currentSort) {
+              case "oldest":
+                return (
+                  new Date(a.circular_date || 0) -
+                  new Date(b.circular_date || 0)
+                );
+              case "title_asc":
+                return (a.title || "").localeCompare(b.title || "");
+              case "title_desc":
+                return (b.title || "").localeCompare(a.title || "");
+              case "newest":
+              default:
+                return (
+                  new Date(b.circular_date || 0) -
+                  new Date(a.circular_date || 0)
+                );
+            }
+          });
+
+          filteredCirculars = data;
+          renderGrid(data);
+          renderCount(data);
+        }
+
+        function renderCount(items) {
+          var $c = $("#circularCount");
+          if (!items.length) {
+            $c.hide();
+            return;
+          }
+          $("#countNumber").text(items.length);
+          $("#countLabel").text(items.length === 1 ? "circular" : "circulars");
+          var hasFilter = currentType !== "all" || currentSearch.length > 0;
+          $("#countFiltered").text(hasFilter ? " matched" : "");
+          $c.show();
+        }
+
+        function renderPagination() {
+          var $wrap = $("#paginationWrapper");
+          var $nums = $("#paginationNumbers");
+
+          if (pagination.totalPages <= 1) {
+            $wrap.hide();
+            return;
+          }
+
+          var cur = pagination.currentPage;
+          var total = pagination.totalPages;
+
+          $("#paginationPrev").prop("disabled", cur <= 1);
+          $("#paginationNext").prop("disabled", cur >= total);
+
+          // Build page numbers with ellipsis (1 … 4 5 6 … 20)
+          var pages = [];
+          if (total <= 7) {
+            for (var i = 1; i <= total; i++) pages.push(i);
+          } else {
+            pages.push(1);
+            if (cur > 3) pages.push("...");
+            var start = Math.max(2, cur - 1);
+            var end = Math.min(total - 1, cur + 1);
+            for (var j = start; j <= end; j++) pages.push(j);
+            if (cur < total - 2) pages.push("...");
+            pages.push(total);
+          }
+
+          $nums.empty();
+          pages.forEach(function (p) {
+            if (p === "...") {
+              $nums.append('<span class="pagination-num ellipsis">...</span>');
+            } else {
+              $nums.append(
+                '<button type="button" class="pagination-num ' +
+                  (p === cur ? "active" : "") +
+                  '" data-page="' +
+                  p +
+                  '">' +
+                  p +
+                  "</button>",
+              );
+            }
+          });
+
+          $wrap.show();
+        }
+
+        // ==================================================================
+        // RENDERING
+        // ==================================================================
+        function renderGrid(items) {
+          var $container = $("#circularsContainer");
+          $container.empty();
+
+          if (!items.length) {
+            renderEmpty();
+            return;
+          }
+
+          items.forEach(function (item, index) {
+            $container.append(createCard(item, index));
+          });
+
+          if (typeof WOW !== "undefined") new WOW().init();
+        }
+
+        function renderEmpty() {
+          var hasFilter = currentType !== "all" || currentSearch.length > 0;
+          var msg = hasFilter
+            ? "Try different filters or a different search term."
+            : "No public circulars available at the moment. Please check back later.";
+          var btn = hasFilter
+            ? '<button class="empty-state-btn" id="resetFiltersBtn"><i class="far fa-times"></i> Clear Filters</button>'
+            : "";
+
+          $("#circularsContainer").html(
+            '<div class="col-12"><div class="empty-state">' +
+              '<div class="empty-state-icon"><i class="far fa-inbox"></i></div>' +
+              "<h5>" +
+              (hasFilter ? "No matching circulars" : "No circulars yet") +
+              "</h5>" +
+              "<p>" +
+              msg +
+              "</p>" +
+              btn +
+              "</div></div>",
+          );
+
+          $("#resetFiltersBtn").on("click", function () {
+            currentType = "all";
+            currentSearch = "";
+            currentSort = "newest";
+            $("#circularSearch").val("");
+            $("#circularSearchClear").hide();
+            $("#circularSort").val("newest");
+            $(".circular-filter-btn").removeClass("active");
+            $('.circular-filter-btn[data-filter="all"]').addClass("active");
+            applyFilterAndRender();
+          });
+        }
+
+        function renderError(msg) {
+          $("#circularsContainer").html(
+            '<div class="col-12"><div class="empty-state">' +
+              '<div class="empty-state-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626);"><i class="far fa-exclamation-triangle"></i></div>' +
+              "<h5>Unable to Load Circulars</h5>" +
+              "<p>" +
+              escapeHtml(msg) +
+              ". Please try again later.</p>" +
+              '<button class="empty-state-btn" onclick="location.reload()"><i class="far fa-redo"></i> Retry</button>' +
+              "</div></div>",
+          );
+        }
+
+        // ==================================================================
+        // CARD HTML
+        // ==================================================================
+        function createCard(item, index) {
+          var delay = ((index % 3) * 0.1 + 0.1).toFixed(2);
+          var images = getImageAttachments(item);
+          var firstImage = images[0];
+          var pdfCount = (item.attachments || []).filter(function (a) {
+            return a.file_type === "PDF";
+          }).length;
+          var recent = isRecent(item.created_at, 3);
+          var visMeta = getVisibilityMeta(item.visibility);
+
+          var formattedDate = formatDate(item.circular_date);
+          var desc = stripHtml(item.description || ""); // still used for length checks
+          var descHtml = sanitizeInlineHtml(item.description || ""); // rendered on the card
+          var typeName =
+            (item.circular_type && item.circular_type.name) || "General";
+
+          var imageArea;
+          if (firstImage) {
+            imageArea =
+              '<div class="circular-img-wrap" data-id="' +
+              item.id +
+              '" data-has-image="1">' +
+              '<img src="' +
+              escapeAttr(firstImage.file_url) +
+              '" alt="' +
+              escapeAttr(item.title) +
+              '" loading="lazy" />' +
+              '<div class="circular-img-overlay"></div>' +
+              '<div class="circular-img-zoom"><i class="far fa-expand"></i></div>' +
+              (recent
+                ? '<span class="circular-new-badge"><i class="fas fa-bolt"></i> NEW</span>'
+                : "") +
+              (images.length > 1
+                ? '<span class="circular-image-count-badge"><i class="far fa-images"></i> ' +
+                  images.length +
+                  "</span>"
+                : "") +
+              "</div>";
+          } else {
+            imageArea =
+              '<div class="circular-banner">' +
+              '<i class="far fa-bullhorn"></i>' +
+              (recent
+                ? '<span class="circular-new-badge"><i class="fas fa-bolt"></i> NEW</span>'
+                : "") +
+              "</div>";
+          }
+
+          var fileBadges = "";
+          if (pdfCount > 0) {
+            fileBadges +=
+              '<span class="file-badge file-badge-pdf"><i class="far fa-file-pdf"></i>' +
+              pdfCount +
+              "</span>";
+          }
+          if (images.length > 0 && !firstImage) {
+            fileBadges +=
+              '<span class="file-badge file-badge-img"><i class="far fa-image"></i>' +
+              images.length +
+              "</span>";
+          }
+
+          return (
+            '<div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="' +
+            delay +
+            's">' +
+            '<div class="circular-item-card">' +
+            imageArea +
+            '<button type="button" class="circular-click-zone" data-id="' +
+            item.id +
+            '">' +
+            '<div class="circular-info">' +
+            '<div class="circular-chips">' +
+            '<span class="chip chip-type"><i class="far fa-tag"></i>' +
+            escapeHtml(typeName) +
+            "</span>" +
+            '<span class="chip ' +
+            visMeta.chipClass +
+            '"><i class="' +
+            visMeta.icon +
+            '"></i>' +
+            visMeta.label +
+            "</span>" +
+            "</div>" +
+            "<h5>" +
+            escapeHtml(item.title || "Untitled") +
+            "</h5>" +
+            '<p class="circular-desc">' +
+            (descHtml ? descHtml : "No description provided.") +
+            "</p>" +
+            '<div class="circular-meta">' +
+            '<div class="circular-meta-date"><i class="far fa-calendar-alt"></i><span>' +
+            formattedDate +
+            "</span></div>" +
+            '<div class="circular-meta-files">' +
+            fileBadges +
+            '<i class="far fa-chevron-right circular-arrow"></i>' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</button>" +
+            "</div>" +
+            "</div>"
+          );
+        }
+
+        // ==================================================================
+        // DETAIL MODAL
+        // ==================================================================
+        function openDetailById(id) {
+          var local = allCirculars.find(function (c) {
+            return String(c.id) === String(id);
+          });
+
+          // Render with local data first, then try to fetch fresh (non-blocking)
+          if (local) {
+            renderDetail(local);
+            showDetailModal();
+            fetchSingleCircular(id)
+              .then(function (fresh) {
+                if (fresh) {
+                  // Refresh our cached copy and re-render
+                  var idx = allCirculars.findIndex(function (c) {
+                    return String(c.id) === String(id);
+                  });
+                  if (idx !== -1) allCirculars[idx] = fresh;
+                  renderDetail(fresh);
+                }
+              })
+              .catch(function () {
+                /* silent — local already shown */
+              });
+          } else {
+            // No local — fetch and open
+            fetchSingleCircular(id)
+              .then(function (fresh) {
+                if (fresh) {
+                  renderDetail(fresh);
+                  showDetailModal();
+                }
+              })
+              .catch(function () {
+                Swal.fire({
+                  icon: "error",
+                  title: "Could not load",
+                  text: "Unable to load this circular right now.",
+                  confirmButtonColor: "#2a8fad",
+                });
+              });
+          }
+        }
+
+        async function fetchSingleCircular(id) {
+          var url =
+            CIRCULAR_API.base +
+            CIRCULAR_API.single +
+            id +
+            "/?org=" +
+            CIRCULAR_API.org;
+          var res = await fetch(url, {
+            method: "GET",
+            headers: { Accept: "application/json" },
+          });
+          if (!res.ok) throw new Error("Request failed: " + res.status);
+          var json = await res.json();
+          if (json && json.status && json.data) return json.data;
+          return null;
+        }
+
+        function showDetailModal() {
+          var modalEl = document.getElementById("circularDetailModal");
+          var modal =
+            bootstrap.Modal.getInstance(modalEl) ||
+            new bootstrap.Modal(modalEl);
+          modal.show();
+        }
+
+        function renderDetail(c) {
+          var visMeta = getVisibilityMeta(c.visibility);
+          var recent = isRecent(c.created_at, 3);
+          var formattedDateLong = formatDateLong(c.circular_date);
+          var typeName = (c.circular_type && c.circular_type.name) || "General";
+          var images = getImageAttachments(c);
+
+          var attachmentsHtml = "";
+          if (c.attachments && c.attachments.length > 0) {
+            var tiles = c.attachments
+              .map(function (att) {
+                var isPdf = att.file_type === "PDF";
+                var fileName = getFileNameFromUrl(att.file_url);
+
+                if (isPdf) {
+                  return (
+                    '<a href="' +
+                    escapeAttr(att.file_url) +
+                    '" target="_blank" rel="noopener noreferrer" class="attachment-tile" data-kind="pdf">' +
+                    '<div class="attachment-tile-thumb pdf">' +
+                    '<div class="pdf-icon-wrap"><i class="far fa-file-pdf"></i></div>' +
+                    '<span class="pdf-label">PDF</span>' +
+                    "</div>" +
+                    '<div class="attachment-tile-name"><p>' +
+                    escapeHtml(fileName) +
+                    "</p></div>" +
+                    '<div class="attachment-tile-actions">' +
+                    '<span class="attachment-tile-action" title="Open"><i class="far fa-external-link"></i></span>' +
+                    '<button type="button" class="attachment-tile-action" data-action="download" data-url="' +
+                    escapeAttr(att.file_url) +
+                    '" data-name="' +
+                    escapeAttr(fileName) +
+                    '" title="Download"><i class="far fa-download"></i></button>' +
+                    "</div>" +
+                    "</a>"
+                  );
+                }
+
+                var imgIdx = images.findIndex(function (i) {
+                  return i.id === att.id;
+                });
+                return (
+                  '<div class="attachment-tile" data-kind="image" data-circular-id="' +
+                  c.id +
+                  '" data-img-index="' +
+                  Math.max(0, imgIdx) +
+                  '">' +
+                  '<div class="attachment-tile-thumb">' +
+                  '<img src="' +
+                  escapeAttr(att.file_url) +
+                  '" alt="' +
+                  escapeAttr(fileName) +
+                  '" loading="lazy" />' +
+                  "</div>" +
+                  '<div class="attachment-tile-name"><p>' +
+                  escapeHtml(fileName) +
+                  "</p></div>" +
+                  '<div class="attachment-tile-actions">' +
+                  '<button type="button" class="attachment-tile-action" data-action="download" data-url="' +
+                  escapeAttr(att.file_url) +
+                  '" data-name="' +
+                  escapeAttr(fileName) +
+                  '" title="Download"><i class="far fa-download"></i></button>' +
+                  "</div>" +
+                  "</div>"
+                );
+              })
+              .join("");
+
+            attachmentsHtml =
+              '<div class="detail-section">' +
+              '<div class="detail-section-head">' +
+              '<div class="detail-section-title files">' +
+              '<div class="ico"><i class="far fa-paperclip"></i></div>' +
+              "<h6>Attachments</h6>" +
+              "</div>" +
+              '<span class="detail-count-pill">' +
+              c.attachments.length +
+              "</span>" +
+              "</div>" +
+              '<div class="attachment-grid">' +
+              tiles +
+              "</div>" +
+              "</div>";
+          }
+
+          var postedByHtml = "";
+          if (c.created_by_name) {
+            postedByHtml =
+              '<div class="posted-by-card">' +
+              '<div class="posted-by-avatar"><i class="far fa-user"></i></div>' +
+              '<div class="posted-by-info">' +
+              '<div class="posted-by-label">Posted by</div>' +
+              '<div class="posted-by-name">' +
+              escapeHtml(c.created_by_name) +
+              "</div>" +
+              "</div>" +
+              '<div class="posted-by-date">' +
+              '<div class="posted-by-label">Posted on</div>' +
+              '<div class="time-val"><i class="far fa-clock"></i> ' +
+              formatDate(c.created_at) +
+              "</div>" +
+              "</div>" +
+              "</div>";
+          }
+
+          var html =
+            '<div class="circular-hero">' +
+            '<div class="circular-hero-inner">' +
+            '<div class="circular-hero-icon"><i class="far fa-bullhorn"></i></div>' +
+            '<div class="circular-hero-text">' +
+            (recent
+              ? '<span class="circular-hero-new"><i class="fas fa-bolt"></i> NEW</span>'
+              : "") +
+            "<h2>" +
+            escapeHtml(c.title || "Untitled") +
+            "</h2>" +
+            '<div class="circular-hero-date"><i class="far fa-calendar-alt"></i> ' +
+            formattedDateLong +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="circular-detail-body">' +
+            '<div class="circular-detail-chips">' +
+            '<span class="chip chip-lg chip-type"><i class="far fa-tag"></i>' +
+            escapeHtml(typeName) +
+            "</span>" +
+            '<span class="chip chip-lg ' +
+            visMeta.chipClass +
+            '"><i class="' +
+            visMeta.icon +
+            '"></i>For ' +
+            visMeta.label +
+            "</span>" +
+            (c.created_at
+              ? '<span class="chip chip-lg chip-time"><i class="far fa-clock"></i>' +
+                timeAgo(c.created_at) +
+                "</span>"
+              : "") +
+            "</div>" +
+            '<div class="detail-section">' +
+            '<div class="detail-section-head">' +
+            '<div class="detail-section-title">' +
+            '<div class="ico"><i class="far fa-file-alt"></i></div>' +
+            "<h6>Description</h6>" +
+            "</div>" +
+            "</div>" +
+            '<div class="detail-description">' +
+            (c.description || "<em>No description</em>") +
+            "</div>" +
+            "</div>" +
+            attachmentsHtml +
+            postedByHtml +
+            "</div>";
+
+          $("#circularDetailBody").html(html);
+          // Scroll to top inside the modal body on re-render
+          $("#circularDetailBody").scrollTop(0);
+        }
+
+        // ==================================================================
+        // IMAGE LIGHTBOX
+        // ==================================================================
+        function openViewer(images, startIndex) {
+          if (!images || !images.length) return;
+          viewer.images = images;
+          viewer.index = Math.max(
+            0,
+            Math.min(startIndex || 0, images.length - 1),
+          );
+          viewer.open = true;
+          $("#imageViewer").addClass("active");
+          $("body").css("overflow", "hidden");
+          updateViewer();
+        }
+
+        function closeViewer() {
+          viewer.open = false;
+          $("#imageViewer").removeClass("active");
+          $("body").css("overflow", "");
+        }
+
+        function navigateViewer(delta) {
+          if (!viewer.images.length) return;
+          viewer.index =
+            (viewer.index + delta + viewer.images.length) %
+            viewer.images.length;
+          updateViewer();
+        }
+
+        function updateViewer() {
+          var cur = viewer.images[viewer.index];
+          if (!cur) return;
+          var name = getFileNameFromUrl(cur.file_url);
+
+          $("#viewerImage").attr("src", cur.file_url).attr("alt", name);
+          $("#viewerFilename").text(name);
+          $("#viewerCounter").text(
+            viewer.images.length > 1
+              ? viewer.index + 1 + " of " + viewer.images.length
+              : "",
+          );
+
+          // Show/hide nav arrows
+          $("#viewerPrev, #viewerNext").toggle(viewer.images.length > 1);
+
+          // Thumbs
+          var $thumbs = $("#viewerThumbs");
+          $thumbs.empty();
+          if (viewer.images.length > 1) {
+            viewer.images.forEach(function (img, idx) {
+              $thumbs.append(
+                '<button type="button" class="image-viewer-thumb ' +
+                  (idx === viewer.index ? "active" : "") +
+                  '" data-idx="' +
+                  idx +
+                  '">' +
+                  '<img src="' +
+                  escapeAttr(img.file_url) +
+                  '" alt="" />' +
+                  "</button>",
+              );
+            });
+            $thumbs.show();
+          } else {
+            $thumbs.hide();
+          }
+        }
+
+        // ==================================================================
+        // UTILITIES
+        // ==================================================================
+        function getImageAttachments(c) {
+          return (c && c.attachments ? c.attachments : []).filter(function (a) {
+            return a && a.file_type === "IMAGE";
+          });
+        }
+
+        function getVisibilityMeta(v) {
+          switch (v) {
+            case "STAFF":
+              return {
+                label: "Staff",
+                chipClass: "chip-vis-staff",
+                icon: "far fa-user-tie",
+              };
+            case "STUDENT":
+              return {
+                label: "Students",
+                chipClass: "chip-vis-student",
+                icon: "far fa-graduation-cap",
+              };
+            case "BOTH":
+            default:
+              return {
+                label: "Everyone",
+                chipClass: "chip-vis-both",
+                icon: "far fa-users",
+              };
+          }
+        }
+
+        function stripHtml(html) {
+          if (!html) return "";
+          var d = document.createElement("div");
+          d.innerHTML = html;
+          return (d.textContent || d.innerText || "")
+            .replace(/\s+/g, " ")
+            .trim();
+        }
+        // Keeps only safe inline formatting tags; strips everything else.
+        // Used for card previews so <b>, <i>, <u>, <strong>, <em>, <br>
+        // render properly while line-clamp still works.
+        function sanitizeInlineHtml(html) {
+          if (!html) return "";
+          var s = String(html);
+          // Flatten block-level tags to a space so the preview stays one line
+          s = s.replace(/<\/?(p|div|h[1-6]|ul|ol|li|blockquote)[^>]*>/gi, " ");
+          // Strip every tag NOT in the whitelist
+          s = s.replace(/<(?!\/?(b|strong|i|em|u|br)\b)[^>]*>/gi, "");
+          // Remove attributes from allowed tags (keeps them clean)
+          s = s.replace(
+            /<(b|strong|i|em|u|br)(\s[^>]*)?>/gi,
+            function (m, tag) {
+              return "<" + tag.toLowerCase() + ">";
+            },
+          );
+          // Collapse whitespace
+          s = s.replace(/\s+/g, " ").trim();
+          return s;
+        }
+
+        function truncate(str, n) {
+          if (!str) return "";
+          return str.length > n ? str.slice(0, n).trim() + "..." : str;
+        }
+
+        function getFileNameFromUrl(url) {
+          if (!url) return "file";
+          try {
+            var parts = url.split("?")[0].split("/");
+            return decodeURIComponent(parts[parts.length - 1]) || "file";
+          } catch (e) {
+            return "file";
+          }
+        }
+
+        function isRecent(dateStr, days) {
+          if (!dateStr) return false;
+          var d = new Date(dateStr);
+          if (isNaN(d.getTime())) return false;
+          var now = new Date();
+          var diff = now - d;
+          return diff >= 0 && diff <= days * 24 * 60 * 60 * 1000;
+        }
+
+        function formatDate(dateStr) {
+          if (!dateStr) return "—";
+          var d = new Date(dateStr);
+          if (isNaN(d.getTime())) return "—";
+          return d.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          });
+        }
+
+        function formatDateLong(dateStr) {
+          if (!dateStr) return "—";
+          var d = new Date(dateStr);
+          if (isNaN(d.getTime())) return "—";
+          var formatted = d.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "2-digit",
+            weekday: "long",
+          });
+          return formatted;
+        }
+
+        function timeAgo(dateStr) {
+          if (!dateStr) return "";
+          var d = new Date(dateStr);
+          if (isNaN(d.getTime())) return "";
+          var diff = Math.floor((Date.now() - d.getTime()) / 1000);
+          if (diff < 60) return "just now";
+          if (diff < 3600) {
+            var m = Math.floor(diff / 60);
+            return m + " minute" + (m > 1 ? "s" : "") + " ago";
+          }
+          if (diff < 86400) {
+            var h = Math.floor(diff / 3600);
+            return h + " hour" + (h > 1 ? "s" : "") + " ago";
+          }
+          if (diff < 2592000) {
+            var day = Math.floor(diff / 86400);
+            return day + " day" + (day > 1 ? "s" : "") + " ago";
+          }
+          if (diff < 31536000) {
+            var mo = Math.floor(diff / 2592000);
+            return mo + " month" + (mo > 1 ? "s" : "") + " ago";
+          }
+          var y = Math.floor(diff / 31536000);
+          return y + " year" + (y > 1 ? "s" : "") + " ago";
+        }
+
+        async function downloadFile(url, filename) {
+          try {
+            var res = await fetch(url);
+            var blob = await res.blob();
+            var blobUrl = URL.createObjectURL(blob);
+            var a = document.createElement("a");
+            a.href = blobUrl;
+            a.download = filename || "download";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(blobUrl);
+          } catch (e) {
+            // Fallback: open in a new tab (CORS blocked scenarios)
+            window.open(url, "_blank", "noopener,noreferrer");
+          }
+        }
+
+        function escapeHtml(text) {
+          if (text === null || text === undefined) return "";
+          var d = document.createElement("div");
+          d.appendChild(document.createTextNode(String(text)));
+          return d.innerHTML;
+        }
+
+        function escapeAttr(text) {
+          if (text === null || text === undefined) return "";
+          return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        }
+
+        // Footer year
+        var $date = $("#date");
+        if ($date.length) $date.text(new Date().getFullYear());
+      });
+    </script>
+  </body>
+</html>

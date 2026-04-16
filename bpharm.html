@@ -1,37 +1,650 @@
 <!doctype html>
 <html lang="en">
-  <!-- Mirrored from live.themewild.com/edubo/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:23:34 GMT -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="MCP Malabar College of Pharmacy - Providing quality education in pharmacy."
+      content="MCP Malabar College of Pharmacy - Bachelor of Pharmacy (B.Pharm) Program"
     />
     <meta
       name="keywords"
-      content="MCP, Malabar, College, Pharmacy, Education, Quality"
+      content="BPharm, B.Pharm, Bachelor of Pharmacy, MCP, Malabar College of Pharmacy, Pharmacy subjects, PCI curriculum"
     />
-
-    <title>MCP - Malabar College of Pharmacy</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/img/logo/logo.png" />
-
+    <title>BPharm - MCP Malabar College of Pharmacy</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/favicon.png" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/all-fontawesome.min.css" />
     <link rel="stylesheet" href="assets/css/animate.min.css" />
     <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      /* ======================================================
+         PROGRAM OVERVIEW / STATS STRIP
+         ====================================================== */
+      .bpharm-intro {
+        padding: 100px 0 60px;
+      }
+      .bpharm-intro .intro-content {
+        max-width: 780px;
+        margin: 0 auto;
+      }
+
+      .program-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 50px;
+      }
+      .stat-card {
+        background: #fff;
+        border: 1px solid #eef4f7;
+        border-radius: 16px;
+        padding: 24px 18px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 0;
+      }
+      .stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(18, 88, 117, 0.18);
+      }
+      .stat-card:hover::before {
+        opacity: 1;
+      }
+      .stat-card:hover .stat-icon,
+      .stat-card:hover .stat-value,
+      .stat-card:hover .stat-label {
+        color: #fff;
+      }
+      .stat-card:hover .stat-icon {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .stat-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 14px;
+        background: linear-gradient(
+          135deg,
+          rgba(42, 143, 173, 0.1),
+          rgba(18, 88, 117, 0.15)
+        );
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: var(--theme-color);
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+      }
+      .stat-value {
+        font-size: 30px;
+        font-weight: 800;
+        color: var(--color-dark);
+        line-height: 1;
+        margin-bottom: 6px;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s ease;
+        font-family: var(--heading-font);
+      }
+      .stat-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--body-text-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s ease;
+      }
+
+      /* ======================================================
+         CURRICULUM SECTION
+         ====================================================== */
+      .curriculum-area {
+        padding: 80px 0 100px;
+        background: linear-gradient(180deg, #fafcfd 0%, #fff 100%);
+      }
+
+      /* Legend */
+      .subject-legend {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 20px 0 36px;
+      }
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--body-text-color);
+        font-weight: 500;
+      }
+      .legend-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+      .legend-theory {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      }
+      .legend-practical {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+      .legend-elective {
+        background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      }
+      .legend-optional {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+      }
+
+      /* Semester tabs */
+      .semester-tabs-wrap {
+        background: #fff;
+        border: 1px solid #eef4f7;
+        border-radius: 16px;
+        padding: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 18px rgba(18, 88, 117, 0.06);
+        overflow-x: auto;
+        scrollbar-width: thin;
+      }
+      .semester-tabs-wrap::-webkit-scrollbar {
+        height: 5px;
+      }
+      .semester-tabs-wrap::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 5px;
+      }
+      .semester-tabs {
+        display: flex;
+        gap: 4px;
+        min-width: max-content;
+      }
+      .semester-tab {
+        flex: 1;
+        min-width: 95px;
+        background: transparent;
+        border: none;
+        padding: 12px 16px;
+        border-radius: 12px;
+        color: var(--color-dark);
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        white-space: nowrap;
+      }
+      .semester-tab:hover:not(.active) {
+        background: rgba(42, 143, 173, 0.08);
+        color: var(--theme-color);
+      }
+      .semester-tab.active {
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(42, 143, 173, 0.35);
+      }
+      .semester-tab .tab-num {
+        font-size: 18px;
+        font-weight: 800;
+        font-family: var(--heading-font);
+        line-height: 1;
+      }
+      .semester-tab .tab-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.85;
+      }
+
+      /* Semester content panel */
+      .semester-panel {
+        display: none;
+        animation: fadeSlideUp 0.4s ease;
+      }
+      .semester-panel.active {
+        display: block;
+      }
+      @keyframes fadeSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .semester-header {
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        color: #fff;
+        padding: 22px 26px;
+        border-radius: 16px 16px 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .semester-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at 15% 80%, white 1.5px, transparent 1.5px),
+          radial-gradient(circle at 85% 20%, white 2px, transparent 2px);
+        background-size:
+          45px 45px,
+          70px 70px;
+        opacity: 0.12;
+      }
+      .semester-header-inner {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .semester-header-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(6px);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .semester-header-text h3 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 4px;
+        line-height: 1.2;
+      }
+      .semester-header-text p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.88);
+        margin: 0;
+      }
+      .semester-subject-count {
+        position: absolute;
+        top: 22px;
+        right: 26px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(6px);
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .semester-body {
+        background: #fff;
+        border: 1px solid #eef4f7;
+        border-top: none;
+        border-radius: 0 0 16px 16px;
+        padding: 28px;
+      }
+
+      .subject-group {
+        margin-bottom: 28px;
+      }
+      .subject-group:last-child {
+        margin-bottom: 0;
+      }
+      .subject-group-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px dashed #eef4f7;
+      }
+      .subject-group-ico {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .subject-group-ico.theory {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      }
+      .subject-group-ico.practical {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+      .subject-group-ico.elective {
+        background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      }
+      .subject-group-head h4 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--color-dark);
+        margin: 0;
+        flex: 1;
+      }
+      .subject-group-head .group-count {
+        background: #f1f5f9;
+        color: #475569;
+        padding: 3px 10px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 12px;
+      }
+
+      .subject-card {
+        position: relative;
+        background: #fff;
+        border: 1px solid #eef4f7;
+        border-radius: 12px;
+        padding: 14px 16px 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+      .subject-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        transition: width 0.3s ease;
+      }
+      .subject-card.theory::before {
+        background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+      }
+      .subject-card.practical::before {
+        background: linear-gradient(180deg, #10b981, #059669);
+      }
+      .subject-card.elective::before {
+        background: linear-gradient(180deg, #8b5cf6, #6d28d9);
+      }
+      .subject-card:hover {
+        transform: translateX(4px);
+        box-shadow: 0 8px 20px rgba(18, 88, 117, 0.1);
+        border-color: transparent;
+      }
+      .subject-card:hover::before {
+        width: 6px;
+      }
+
+      .subject-code {
+        flex-shrink: 0;
+        min-width: 72px;
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 8px;
+        border-radius: 6px;
+        text-align: center;
+        letter-spacing: 0.5px;
+      }
+      .subject-card.theory .subject-code {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+      .subject-card.practical .subject-code {
+        background: #d1fae5;
+        color: #047857;
+      }
+      .subject-card.elective .subject-code {
+        background: #ede9fe;
+        color: #6d28d9;
+      }
+
+      .subject-name {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-dark);
+        line-height: 1.4;
+      }
+      .subject-name .optional-star {
+        color: #f59e0b;
+        font-weight: 800;
+        margin-left: 2px;
+      }
+
+      /* Optional / footnote */
+      .elective-note {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        border: 1px solid #fcd34d;
+        border-radius: 12px;
+        padding: 14px 18px;
+        margin-top: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .elective-note-ico {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border-radius: 10px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 14px;
+      }
+      .elective-note-text {
+        font-size: 13px;
+        color: #78350f;
+        line-height: 1.6;
+      }
+      .elective-note-text strong {
+        color: #78350f;
+      }
+
+      /* ======================================================
+         CTA SECTION
+         ====================================================== */
+      .bpharm-cta {
+        background: linear-gradient(
+          135deg,
+          var(--theme-color2),
+          var(--theme-color)
+        );
+        border-radius: 20px;
+        padding: 40px;
+        color: #fff;
+        text-align: center;
+        margin-top: 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .bpharm-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at 20% 80%, white 1.5px, transparent 1.5px),
+          radial-gradient(circle at 80% 20%, white 2px, transparent 2px);
+        background-size:
+          45px 45px,
+          70px 70px;
+        opacity: 0.1;
+      }
+      .bpharm-cta-content {
+        position: relative;
+      }
+      .bpharm-cta h3 {
+        color: #fff;
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .bpharm-cta p {
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 520px;
+        margin: 0 auto 24px;
+      }
+      .cta-buttons {
+        display: inline-flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 26px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .cta-btn-primary {
+        background: #fff;
+        color: var(--theme-color);
+      }
+      .cta-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        color: var(--theme-color2);
+      }
+      .cta-btn-outline {
+        background: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+      }
+      .cta-btn-outline:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #fff;
+        color: #fff;
+        transform: translateY(-3px);
+      }
+
+      /* ======================================================
+         RESPONSIVE
+         ====================================================== */
+      @media (max-width: 991px) {
+        .program-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 767px) {
+        .bpharm-intro {
+          padding: 60px 0 40px;
+        }
+        .curriculum-area {
+          padding: 50px 0 70px;
+        }
+        .semester-header {
+          padding: 18px 20px;
+        }
+        .semester-subject-count {
+          position: static;
+          display: inline-block;
+          margin-top: 10px;
+        }
+        .semester-header-text h3 {
+          font-size: 18px;
+        }
+        .semester-body {
+          padding: 20px 18px;
+        }
+        .subject-grid {
+          grid-template-columns: 1fr;
+        }
+        .subject-card {
+          padding: 12px 14px 12px 16px;
+        }
+        .subject-name {
+          font-size: 13px;
+        }
+        .bpharm-cta {
+          padding: 28px 22px;
+        }
+        .bpharm-cta h3 {
+          font-size: 22px;
+        }
+      }
+      @media (max-width: 575px) {
+        .program-stats {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        .stat-card {
+          padding: 18px 12px;
+        }
+        .stat-value {
+          font-size: 24px;
+        }
+        .subject-legend {
+          gap: 10px;
+        }
+        .legend-item {
+          font-size: 12px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="preloader">
-      <div class="loader-book">
-        <div class="loader-book-page"></div>
-        <div class="loader-book-page"></div>
-        <div class="loader-book-page"></div>
+    <div class="preloader" id="preloader">
+      <div class="mcp-loader">
+        <div class="mcp-loader-ring"></div>
+        <div class="mcp-loader-ring mcp-loader-ring-2"></div>
+        <div class="mcp-loader-logo">
+          <img src="assets/img/logo/logo.png" alt="MCP" />
+        </div>
       </div>
+      <div class="mcp-loader-text">Malabar College of Pharmacy</div>
     </div>
 
     <header class="header">
@@ -66,12 +679,12 @@
             <div class="header-top-right">
               <div class="header-top-social">
                 <span>Follow Us:</span>
-                <a href="http://www.facebook.com/MalabarCollegeofPharmacy">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="http://www.instagram.com/malabar_college_of_pharmacy">
-                  <i class="fab fa-instagram"></i>
-                </a>
+                <a href="http://www.facebook.com/MalabarCollegeofPharmacy"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="http://www.instagram.com/malabar_college_of_pharmacy"
+                  ><i class="fab fa-instagram"></i
+                ></a>
               </div>
             </div>
           </div>
@@ -87,7 +700,6 @@
                 alt="Malabar College of Pharmacy Logo"
                 class="mcp_logo"
               />
-              <!-- <span>Malabar College of Pharmacy</span> -->
             </a>
             <div class="mobile-menu-right">
               <div class="search-btn">
@@ -95,16 +707,6 @@
                   <i class="far fa-search"></i>
                 </button>
               </div>
-              <div class="nav-right-btn mt-2">
-                <a
-                  href="login.html"
-                  class="theme-btn"
-                  style="padding: 8px 10px"
-                >
-                  Apply Now
-                </a>
-              </div>
-
               <button
                 class="navbar-toggler"
                 type="button"
@@ -113,15 +715,15 @@
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-mobile-icon">
-                  <i class="far fa-bars"></i>
-                </span>
+                <span class="navbar-toggler-mobile-icon"
+                  ><i class="far fa-bars"></i
+                ></span>
               </button>
             </div>
             <div class="collapse navbar-collapse" id="main_nav">
               <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                  <a class="nav-link active" href="/">Home</a>
+                  <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -133,54 +735,8 @@
                         >About Us: Overview</a
                       >
                     </li>
-                    <!-- <li><a class="dropdown-item" href="act-and-statutes-or-moa.html">Act and Statutes or MOA</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="institutional-development-plan.html">Institutional Development Plan</a></li> -->
-                    <!-- <li class="dropdown-submenu">
-                      <a class="dropdown-item dropdown-toggle" href="#">Accreditation/Ranking Status</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="naac.html">NAAC</a></li>
-                        <li><a class="dropdown-item" href="NAAC_Files/NIRF/NIRF_2023.pdf" target="_blank">NIRF 2023</a></li>
-                        <li><a class="dropdown-item" href="NAAC_Files/NIRF/NIRF_2022.pdf" target="_blank">NIRF 2022</a></li>
-                      </ul>
-                    </li> -->
-                    <!-- <li><a class="dropdown-item" href="recognition-approval.html">Recognition/Approval</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="annual-reports.html">Annual Reports</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="audited-accounts.html">Audited Accounts</a></li> -->
                   </ul>
                 </li>
-
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    data-bs-toggle="dropdown"
-                    >Administration</a
-                  >
-                  <ul class="dropdown-menu fade-down">
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="/about-us.html#board-of-directors"
-                        >Board of Management</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/about-us.html#principal"
-                        >Principal</a
-                      >
-                    </li>
-                    <!-- <li><a class="dropdown-item" href="finance-officer.html">Finance Officer</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="controller-of-examination.html">Controller of Examination</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="chief-vigilance-officer.html">Chief Vigilance Officer</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="internal-complaint-committee.html">Internal Complaint Committee</a></li> -->
-                    <li>
-                      <a class="dropdown-item" href="academic-leadership.html"
-                        >Academic Leadership</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-
                 <li class="nav-item dropdown">
                   <a
                     class="nav-link dropdown-toggle"
@@ -195,15 +751,15 @@
                       >
                       <ul class="dropdown-menu">
                         <li>
-                          <a class="dropdown-item" href="bpharm.html">BPharm</a>
+                          <a class="dropdown-item active" href="bpharm.html"
+                            >BPharm</a
+                          >
                         </li>
                         <li>
                           <a class="dropdown-item" href="dpharm.html">DPharm</a>
                         </li>
                       </ul>
                     </li>
-                    <!-- <li><a class="dropdown-item" href="/assets/MDCRC 2024 ACADEMIC CALENDER.pdf" target="_blank">Academic Calendar</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="/assets/ACADEMICPROSPECTS.pdf" target="_blank">Ordinances pertaining to <br>Academics/Examinations</a></li> -->
                     <li class="dropdown-submenu">
                       <a class="dropdown-item dropdown-toggle" href="#"
                         >Departments</a
@@ -255,17 +811,29 @@
                     <li>
                       <a class="dropdown-item" href="library.html">Library</a>
                     </li>
-                    <!-- <li><a class="dropdown-item" href="feedbacks.html">Feedbacks</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="journals.html">Journals</a></li> -->
                     <li>
                       <a class="dropdown-item" href="admission.html"
                         >Admission</a
                       >
                     </li>
-                    <!-- <li><a class="dropdown-item" href="code-of-conduct.html">Code of Conduct</a></li> -->
+                    <li>
+                      <a class="dropdown-item" href="gallery.html">Gallery</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="achievements.html"
+                        >Achievements</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="events.html">Events</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="circulars.html"
+                        >Circulars</a
+                      >
+                    </li>
                   </ul>
                 </li>
-
                 <li class="nav-item dropdown">
                   <a
                     class="nav-link dropdown-toggle"
@@ -284,10 +852,8 @@
                         >Admission Process And Guidelines</a
                       >
                     </li>
-                    <!-- <li><a class="dropdown-item" href="fund-refund-policy.html">Fund Refund Policy</a></li> -->
                   </ul>
                 </li>
-
                 <li class="nav-item dropdown">
                   <a
                     class="nav-link dropdown-toggle"
@@ -310,7 +876,6 @@
                     </li>
                   </ul>
                 </li>
-
                 <li class="nav-item dropdown">
                   <a
                     class="nav-link dropdown-toggle"
@@ -334,13 +899,13 @@
                         >Newsletters</a
                       >
                     </li>
-                    <!-- <li>
+                    <li>
                       <a
                         class="dropdown-item"
                         href="news-recent-events-achievements.html"
                         >News, Recent Events & Achievements</a
                       >
-                    </li> -->
+                    </li>
                     <li>
                       <a class="dropdown-item" href="careers.html"
                         >Job Openings</a
@@ -348,7 +913,6 @@
                     </li>
                   </ul>
                 </li>
-
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html">Contact Us</a>
                 </li>
@@ -361,13 +925,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="notification.html">Notification</a>
                 </li>
-                <div class="nav-right">
-                  <div class="nav-right-btn mt-2">
-                    <a href="login.html" class="theme-btn"
-                      ><span class="fal fa-pencil"></span>Apply Now</a
-                    >
-                  </div>
-                </div>
               </ul>
             </div>
           </div>
@@ -404,41 +961,878 @@
         </div>
       </div>
 
-      <div class="event-area py-120">
+      <!-- ============================================================
+           INTRO + STATS
+           ============================================================ -->
+      <section class="bpharm-intro">
         <div class="container">
-          <!-- <div class="row">
-            <div class="col-lg-6 mx-auto">
-              <div class="site-heading text-center">
-                <span class="site-title-tagline"
-                  ><i class="far fa-book-open-reader"></i> Act and Statutes or MoA</span
-                >
-                <h2 class="site-title">Our Upcoming <span>Act and Statutes or MoA</span></h2>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-              </div>
+          <div class="intro-content">
+            <div class="site-heading text-center">
+              <span class="site-title-tagline">
+                <i class="far fa-book-open-reader"></i> BPharm Program
+              </span>
+              <h2 class="site-title">Bachelor of Pharmacy</h2>
+              <p>
+                The <b>Bachelor of Pharmacy (B.Pharm)</b> program at Malabar
+                College of Pharmacy is a four-year undergraduate course designed
+                to provide students with a comprehensive foundation in pharmacy
+                practice, pharmaceutical sciences, and patient care — following
+                the <b>Pharmacy Council of India (PCI)</b> curriculum.
+              </p>
             </div>
-          </div> -->
 
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="site-heading text-center">
-                <span class="site-title-tagline"
-                  ><i class="far fa-book-open-reader"></i> BPharm Program</span
-                >
-                <h2 class="site-title">Bachelor of Pharmacy</h2>
-                <p>
-                  The Bachelor of Pharmacy (BPharm) program at Malabar College
-                  of Pharmacy is designed to provide students with a
-                  comprehensive education in pharmacy practice and
-                  pharmaceutical sciences.
-                </p>
+            <div class="program-stats">
+              <div class="stat-card">
+                <div class="stat-icon"><i class="far fa-calendar-alt"></i></div>
+                <div class="stat-value">4 Years</div>
+                <div class="stat-label">Duration</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon"><i class="far fa-layer-group"></i></div>
+                <div class="stat-value">8</div>
+                <div class="stat-label">Semesters</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="far fa-book-open-reader"></i>
+                </div>
+                <div class="stat-value">70+</div>
+                <div class="stat-label">Subjects</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon"><i class="far fa-award"></i></div>
+                <div class="stat-value">PCI</div>
+                <div class="stat-label">Approved</div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- ============================================================
+           CURRICULUM
+           ============================================================ -->
+      <section class="curriculum-area">
+        <div class="container">
+          <div class="site-heading text-center">
+            <span class="site-title-tagline">
+              <i class="far fa-list-check"></i> Curriculum
+            </span>
+            <h2 class="site-title">Subjects by <span>Semester</span></h2>
+            <p>
+              Explore the complete subject structure of the B.Pharm program.
+              Click any semester below to view its theory and practical
+              subjects.
+            </p>
+          </div>
+
+          <!-- Legend -->
+          <div class="subject-legend">
+            <div class="legend-item">
+              <span class="legend-dot legend-theory"></span> Theory
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot legend-practical"></span> Practical
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot legend-elective"></span> Elective
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot legend-optional"></span>
+              <span>*</span> Non-University Exam
+            </div>
+          </div>
+
+          <!-- Semester tab navigation -->
+          <div class="semester-tabs-wrap">
+            <div class="semester-tabs" id="semesterTabs">
+              <button class="semester-tab active" data-sem="1">
+                <span class="tab-num">1</span>
+                <span class="tab-label">Sem</span>
+              </button>
+              <button class="semester-tab" data-sem="2">
+                <span class="tab-num">2</span>
+                <span class="tab-label">Sem</span>
+              </button>
+              <button class="semester-tab" data-sem="3">
+                <span class="tab-num">3</span>
+                <span class="tab-label">Sem</span>
+              </button>
+              <button class="semester-tab" data-sem="4">
+                <span class="tab-num">4</span>
+                <span class="tab-label">Sem</span>
+              </button>
+              <button class="semester-tab" data-sem="5">
+                <span class="tab-num">5</span>
+                <span class="tab-label">Sem</span>
+              </button>
+              <button class="semester-tab" data-sem="6">
+                <span class="tab-num">6</span>
+                <span class="tab-label">Sem</span>
+              </button>
+              <button class="semester-tab" data-sem="7">
+                <span class="tab-num">7</span>
+                <span class="tab-label">Sem</span>
+              </button>
+              <button class="semester-tab" data-sem="8">
+                <span class="tab-num">8</span>
+                <span class="tab-label">Sem</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 1 ================== -->
+          <div class="semester-panel active" data-panel="1">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>First Semester</h3>
+                  <p>Year 1 · Foundation of pharmacy and life sciences</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">13 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <!-- Theory -->
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Theory Subjects</h4>
+                  <span class="group-count">7</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP101T</span>
+                    <div class="subject-name">
+                      Human Anatomy and Physiology I
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP102T</span>
+                    <div class="subject-name">Pharmaceutical Analysis I</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP103T</span>
+                    <div class="subject-name">Pharmaceutics I</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP104T</span>
+                    <div class="subject-name">
+                      Pharmaceutical Inorganic Chemistry
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP105T</span>
+                    <div class="subject-name">
+                      Communication Skills<span class="optional-star">*</span>
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP106RBT</span>
+                    <div class="subject-name">
+                      Remedial Biology<span class="optional-star">*</span>
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP106RMT</span>
+                    <div class="subject-name">Remedial Mathematics</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Practical -->
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Practical Subjects</h4>
+                  <span class="group-count">6</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP107P</span>
+                    <div class="subject-name">Human Anatomy and Physiology</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP108P</span>
+                    <div class="subject-name">Pharmaceutical Analysis I</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP109P</span>
+                    <div class="subject-name">Pharmaceutics I</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP110P</span>
+                    <div class="subject-name">
+                      Pharmaceutical Inorganic Chemistry
+                    </div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP111P</span>
+                    <div class="subject-name">
+                      Communication Skills<span class="optional-star">*</span>
+                    </div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP112RBP</span>
+                    <div class="subject-name">
+                      Remedial Biology<span class="optional-star">*</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 2 ================== -->
+          <div class="semester-panel" data-panel="2">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>Second Semester</h3>
+                  <p>Year 1 · Organic chemistry and biochemistry basics</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">10 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Theory Subjects</h4>
+                  <span class="group-count">6</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP201T</span>
+                    <div class="subject-name">
+                      Human Anatomy and Physiology II
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP202T</span>
+                    <div class="subject-name">
+                      Pharmaceutical Organic Chemistry I
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP203T</span>
+                    <div class="subject-name">Biochemistry</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP204T</span>
+                    <div class="subject-name">Pathophysiology</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP205T</span>
+                    <div class="subject-name">
+                      Computer Applications in Pharmacy<span
+                        class="optional-star"
+                        >*</span
+                      >
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP206T</span>
+                    <div class="subject-name">
+                      Environmental Sciences<span class="optional-star">*</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Practical Subjects</h4>
+                  <span class="group-count">4</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP207P</span>
+                    <div class="subject-name">
+                      Human Anatomy and Physiology II
+                    </div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP208P</span>
+                    <div class="subject-name">
+                      Pharmaceutical Organic Chemistry I
+                    </div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP209P</span>
+                    <div class="subject-name">Biochemistry</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP210P</span>
+                    <div class="subject-name">
+                      Computer Applications in Pharmacy<span
+                        class="optional-star"
+                        >*</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 3 ================== -->
+          <div class="semester-panel" data-panel="3">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>Third Semester</h3>
+                  <p>Year 2 · Microbiology and engineering principles</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">8 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Theory Subjects</h4>
+                  <span class="group-count">4</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP301T</span>
+                    <div class="subject-name">
+                      Pharmaceutical Organic Chemistry II
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP302T</span>
+                    <div class="subject-name">Physical Pharmaceutics I</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP303T</span>
+                    <div class="subject-name">Pharmaceutical Microbiology</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP304T</span>
+                    <div class="subject-name">Pharmaceutical Engineering</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Practical Subjects</h4>
+                  <span class="group-count">4</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP305P</span>
+                    <div class="subject-name">
+                      Pharmaceutical Organic Chemistry II
+                    </div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP306P</span>
+                    <div class="subject-name">Physical Pharmaceutics I</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP307P</span>
+                    <div class="subject-name">Pharmaceutical Microbiology</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP308P</span>
+                    <div class="subject-name">Pharmaceutical Engineering</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 4 ================== -->
+          <div class="semester-panel" data-panel="4">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>Fourth Semester</h3>
+                  <p>Year 2 · Medicinal chemistry and pharmacology basics</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">9 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Theory Subjects</h4>
+                  <span class="group-count">5</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP401T</span>
+                    <div class="subject-name">
+                      Pharmaceutical Organic Chemistry III
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP402T</span>
+                    <div class="subject-name">Medicinal Chemistry I</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP403T</span>
+                    <div class="subject-name">Physical Pharmaceutics II</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP404T</span>
+                    <div class="subject-name">Pharmacology I</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP405T</span>
+                    <div class="subject-name">
+                      Pharmacognosy and Phytochemistry I
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Practical Subjects</h4>
+                  <span class="group-count">4</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP406P</span>
+                    <div class="subject-name">Medicinal Chemistry I</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP407P</span>
+                    <div class="subject-name">Physical Pharmaceutics II</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP408P</span>
+                    <div class="subject-name">Pharmacology I</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP409P</span>
+                    <div class="subject-name">
+                      Pharmacognosy and Phytochemistry I
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 5 ================== -->
+          <div class="semester-panel" data-panel="5">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>Fifth Semester</h3>
+                  <p>Year 3 · Advanced formulation and jurisprudence</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">8 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Theory Subjects</h4>
+                  <span class="group-count">5</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP501T</span>
+                    <div class="subject-name">Medicinal Chemistry II</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP502T</span>
+                    <div class="subject-name">Formulative Pharmacy</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP503T</span>
+                    <div class="subject-name">Pharmacology II</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP504T</span>
+                    <div class="subject-name">
+                      Pharmacognosy and Phytochemistry II
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP505T</span>
+                    <div class="subject-name">Pharmaceutical Jurisprudence</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Practical Subjects</h4>
+                  <span class="group-count">3</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP506P</span>
+                    <div class="subject-name">Formulative Pharmacy</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP507P</span>
+                    <div class="subject-name">Pharmacology II</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP508P</span>
+                    <div class="subject-name">
+                      Pharmacognosy and Phytochemistry II
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 6 ================== -->
+          <div class="semester-panel" data-panel="6">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>Sixth Semester</h3>
+                  <p>Year 3 · Biotechnology and biopharmaceutics</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">9 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Theory Subjects</h4>
+                  <span class="group-count">6</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP601T</span>
+                    <div class="subject-name">Medicinal Chemistry III</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP602T</span>
+                    <div class="subject-name">Pharmacology III</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP603T</span>
+                    <div class="subject-name">Herbal Drug Technology</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP604T</span>
+                    <div class="subject-name">
+                      Biopharmaceutics and Pharmacokinetics
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP605T</span>
+                    <div class="subject-name">Pharmaceutical Biotechnology</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP606T</span>
+                    <div class="subject-name">Quality Assurance</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Practical Subjects</h4>
+                  <span class="group-count">3</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP607P</span>
+                    <div class="subject-name">Medicinal Chemistry III</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP608P</span>
+                    <div class="subject-name">Pharmacology III</div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP609P</span>
+                    <div class="subject-name">Herbal Drug Technology</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 7 ================== -->
+          <div class="semester-panel" data-panel="7">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>Seventh Semester</h3>
+                  <p>Year 4 · Industrial training and advanced techniques</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">6 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Theory Subjects</h4>
+                  <span class="group-count">4</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP701T</span>
+                    <div class="subject-name">
+                      Instrumental Methods of Analysis
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP702T</span>
+                    <div class="subject-name">Industrial Pharmacy</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP703T</span>
+                    <div class="subject-name">Pharmacy Practice</div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP704T</span>
+                    <div class="subject-name">Novel Drug Delivery System</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Practical Subjects</h4>
+                  <span class="group-count">2</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP705P</span>
+                    <div class="subject-name">
+                      Instrumental Methods of Analysis
+                    </div>
+                  </div>
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP706PS</span>
+                    <div class="subject-name">
+                      Practice School<span class="optional-star">*</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== SEMESTER 8 ================== -->
+          <div class="semester-panel" data-panel="8">
+            <div class="semester-header">
+              <div class="semester-header-inner">
+                <div class="semester-header-icon">
+                  <i class="far fa-graduation-cap"></i>
+                </div>
+                <div class="semester-header-text">
+                  <h3>Eighth Semester</h3>
+                  <p>Year 4 · Electives and project work · Final semester</p>
+                </div>
+              </div>
+              <span class="semester-subject-count">12 Subjects</span>
+            </div>
+            <div class="semester-body">
+              <!-- Core -->
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico theory">
+                    <i class="far fa-book"></i>
+                  </div>
+                  <h4>Core Theory Subjects</h4>
+                  <span class="group-count">2</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP801T</span>
+                    <div class="subject-name">
+                      Biostatistics and Research Methodology
+                    </div>
+                  </div>
+                  <div class="subject-card theory">
+                    <span class="subject-code">BP802T</span>
+                    <div class="subject-name">
+                      Social and Preventive Pharmacy
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Electives -->
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico elective">
+                    <i class="far fa-star"></i>
+                  </div>
+                  <h4>Elective Theory (Choose Any)</h4>
+                  <span class="group-count">9</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP803ET</span>
+                    <div class="subject-name">Pharmaceutical Marketing</div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP804ET</span>
+                    <div class="subject-name">
+                      Pharmaceutical Regulatory Science
+                    </div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP805ET</span>
+                    <div class="subject-name">Pharmacovigilance</div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP806ET</span>
+                    <div class="subject-name">
+                      Quality Control and Standardization of Herbs
+                    </div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP807ET</span>
+                    <div class="subject-name">
+                      Computer Aided Drug Designing
+                    </div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP808ET</span>
+                    <div class="subject-name">Cell and Molecular Biology</div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP809ET</span>
+                    <div class="subject-name">Cosmetic Science</div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP810ET</span>
+                    <div class="subject-name">Experimental Pharmacology</div>
+                  </div>
+                  <div class="subject-card elective">
+                    <span class="subject-code">BP811ET</span>
+                    <div class="subject-name">
+                      Advanced Instrumentation Techniques
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project -->
+              <div class="subject-group">
+                <div class="subject-group-head">
+                  <div class="subject-group-ico practical">
+                    <i class="far fa-flask"></i>
+                  </div>
+                  <h4>Project Work</h4>
+                  <span class="group-count">1</span>
+                </div>
+                <div class="subject-grid">
+                  <div class="subject-card practical">
+                    <span class="subject-code">BP812PW</span>
+                    <div class="subject-name">Project Work</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Elective note -->
+              <div class="elective-note">
+                <div class="elective-note-ico">
+                  <i class="far fa-info-circle"></i>
+                </div>
+                <div class="elective-note-text">
+                  <strong>About Electives:</strong> From the elective theory
+                  subjects (BP803ET – BP811ET), students select a specialisation
+                  aligned with their career interests — such as industry,
+                  research, regulatory, or clinical practice. Final electives
+                  offered each year are subject to department availability.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============================================================
+               CTA
+               ============================================================ -->
+          <div class="bpharm-cta">
+            <div class="bpharm-cta-content">
+              <h3>Ready to begin your pharmacy career?</h3>
+              <p>
+                Join Malabar College of Pharmacy and build a strong foundation
+                for a rewarding future in the pharmaceutical profession.
+              </p>
+              <div class="cta-buttons">
+                <a href="admission.html" class="cta-btn cta-btn-primary">
+                  <i class="far fa-pencil"></i> Apply Now
+                </a>
+                <a href="prospectus2025.html" class="cta-btn cta-btn-outline">
+                  <i class="far fa-file-pdf"></i> View Prospectus
+                </a>
+                <a href="enquiry.html" class="cta-btn cta-btn-outline">
+                  <i class="far fa-envelope"></i> Enquire
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="footer-area">
@@ -450,14 +1844,6 @@
           <div class="row footer-widget-wrapper pt-100 pb-70">
             <div class="col-md-6 col-lg-4">
               <div class="footer-widget-box about-us">
-                <!-- <a href="/" class="footer-logo">
-                    <span style="font-size: larger; color: #125875; font-weight: bolder;">Malabar College of Pharmacy</span>
-                  </a> -->
-                <!-- <p class="mb-3">
-                    We are many variations of passages available but the majority
-                    have suffered alteration in some form by injected humour words
-                    believable.
-                  </p> -->
                 <h4 class="footer-widget-title">Contact Us</h4>
                 <ul class="footer-contact">
                   <li>
@@ -494,71 +1880,14 @@
                       ><i class="fas fa-caret-right"></i> About Us</a
                     >
                   </li>
-                  <!-- <li>
-                      <a href="#"><i class="fas fa-caret-right"></i> FAQ's</a>
-                    </li> -->
                   <li>
                     <a href="index.html#testimonial"
                       ><i class="fas fa-caret-right"></i> Testimonials</a
                     >
                   </li>
-                  <!-- <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Terms Of Service</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Privacy policy</a
-                      >
-                    </li> -->
-                  <!-- <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Update News</a
-                      >
-                    </li> -->
                 </ul>
               </div>
             </div>
-            <!-- <div class="col-md-6 col-lg-3">
-              <div class="footer-widget-box list">
-                <h4 class="footer-widget-title">Our Campus</h4>
-                <ul class="footer-list">
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Campus Safety</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Student Activities</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Academic Department</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Planning &
-                      Administration</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Office Of The
-                      Chancellor</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Facility Services</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div> -->
             <div class="col-md-6 col-lg-3">
               <div class="footer-widget-box list">
                 <h4 class="footer-widget-title">Newsletter</h4>
@@ -590,11 +1919,13 @@
           <div class="copyright-wrapper">
             <div class="row">
               <div class="col-md-6 align-self-center">
-                <span>Last updated on 26-03-2026</span>
+                <span>Last updated on 16-04-2026</span>
                 <p class="copyright-text">
                   &copy; Copyright <span id="date"></span>
-                  <a href="https://bizforz.com/" target="_blank">Bizforz Solutions Pvt Ltd</a> All
-                  Rights Reserved.
+                  <a href="https://bizforz.com/" target="_blank"
+                    >Bizforz Solutions Pvt Ltd</a
+                  >
+                  All Rights Reserved.
                 </p>
               </div>
               <div class="col-md-6 align-self-center">
@@ -620,10 +1951,6 @@
 
     <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
 
-    <script
-      data-cfasync="false"
-      src="https://live.themewild.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/modernizr.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -636,7 +1963,37 @@
     <script src="assets/js/counter-up.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
-  </body>
 
-  <!-- Mirrored from live.themewild.com/edubo/event.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:26:29 GMT -->
+    <script>
+      // Semester tab switcher
+      $(document).ready(function () {
+        $("#semesterTabs").on("click", ".semester-tab", function () {
+          var sem = $(this).data("sem");
+          $(".semester-tab").removeClass("active");
+          $(this).addClass("active");
+          $(".semester-panel").removeClass("active");
+          $('.semester-panel[data-panel="' + sem + '"]').addClass("active");
+
+          // Smoothly scroll active tab into view on mobile
+          if (window.innerWidth < 768) {
+            var tabsWrap = document.querySelector(".semester-tabs-wrap");
+            var activeTab = this;
+            if (tabsWrap && activeTab) {
+              tabsWrap.scrollTo({
+                left:
+                  activeTab.offsetLeft -
+                  tabsWrap.clientWidth / 2 +
+                  activeTab.clientWidth / 2,
+                behavior: "smooth",
+              });
+            }
+          }
+        });
+
+        // Footer year
+        var $date = $("#date");
+        if ($date.length) $date.text(new Date().getFullYear());
+      });
+    </script>
+  </body>
 </html>
