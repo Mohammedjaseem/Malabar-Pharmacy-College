@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="MCP Malabar College of Pharmacy - Gallery"
+      content="MCP Malabar College of Pharmacy - Events"
     />
-    <meta name="keywords" content="MCP, Malabar, College, Pharmacy, Gallery" />
-    <title>Gallery - MCP Malabar College of Pharmacy</title>
+    <meta name="keywords" content="MCP, Malabar, College, Pharmacy, Events" />
+    <title>Events - MCP Malabar College of Pharmacy</title>
     <link rel="icon" type="image/x-icon" href="assets/img/logo/favicon.png" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/all-fontawesome.min.css" />
@@ -23,18 +23,19 @@
     />
 
     <style>
-      .gallery-area {
+      .events-area {
         padding: 120px 0;
       }
 
-      .gallery-filter-wrapper {
+      /* Filter Buttons */
+      .event-filter-wrapper {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
         margin-bottom: 35px;
       }
-      .gallery-filter-btn {
+      .event-filter-btn {
         background: #fff;
         color: var(--color-dark);
         border: 2px solid #eef4f7;
@@ -46,15 +47,16 @@
         transition: all 0.3s ease;
         white-space: nowrap;
       }
-      .gallery-filter-btn:hover,
-      .gallery-filter-btn.active {
+      .event-filter-btn:hover,
+      .event-filter-btn.active {
         background: var(--theme-color);
         color: #fff;
         border-color: var(--theme-color);
         box-shadow: 0 4px 15px rgba(42, 143, 173, 0.3);
       }
 
-      .gallery-item-card {
+      /* Event Card */
+      .event-item-card {
         margin-bottom: 30px;
         border-radius: 12px;
         overflow: hidden;
@@ -62,28 +64,28 @@
         background: #fff;
         transition: all 0.4s ease;
       }
-      .gallery-item-card:hover {
+      .event-item-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 15px 35px rgba(18, 88, 117, 0.15);
       }
 
-      .gallery-img-wrap {
+      .event-img-wrap {
         position: relative;
         overflow: hidden;
         height: 260px;
         cursor: pointer;
       }
-      .gallery-img-wrap img {
+      .event-img-wrap img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
-      .gallery-item-card:hover .gallery-img-wrap img {
+      .event-item-card:hover .event-img-wrap img {
         transform: scale(1.08);
       }
 
-      .gallery-hover-overlay {
+      .event-hover-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -96,14 +98,13 @@
         opacity: 0;
         transition: all 0.4s ease;
       }
-      .gallery-item-card:hover .gallery-hover-overlay {
+      .event-item-card:hover .event-hover-overlay {
         opacity: 1;
       }
 
-      .gallery-open-btn {
+      .event-view-btn {
         width: 50px;
         height: 50px;
-        text-align: center;
         background: var(--theme-color);
         color: #fff;
         border-radius: 50%;
@@ -115,12 +116,12 @@
         border: none;
         cursor: pointer;
       }
-      .gallery-open-btn:hover {
+      .event-view-btn:hover {
         background: var(--theme-color2);
         transform: scale(1.1);
       }
 
-      .gallery-type-badge {
+      .event-date-badge {
         position: absolute;
         top: 12px;
         left: 12px;
@@ -131,35 +132,66 @@
         font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.5px;
+        z-index: 2;
+      }
+      .event-date-badge i {
+        margin-right: 4px;
+      }
+
+      .event-dept-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--theme-color2);
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
         text-transform: uppercase;
         z-index: 2;
       }
 
-      .gallery-info {
-        padding: 15px 18px;
+      .event-info {
+        padding: 18px;
       }
-      .gallery-info h5 {
-        font-size: 16px;
-        margin-bottom: 4px;
+      .event-info h5 {
+        font-size: 18px;
+        margin-bottom: 8px;
         color: var(--color-dark);
         line-height: 1.4;
-        white-space: nowrap;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         overflow: hidden;
-        text-overflow: ellipsis;
       }
-      .gallery-info .gallery-meta {
+      .event-info p.event-desc {
+        font-size: 14px;
+        color: var(--body-text-color);
+        line-height: 1.6;
+        margin-bottom: 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .event-info .event-meta {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 12px;
         color: var(--body-text-color);
+        padding-top: 12px;
+        border-top: 1px solid var(--border-info-color2);
       }
-      .gallery-info .gallery-meta span i {
+      .event-info .event-meta span i {
         color: var(--theme-color);
         margin-right: 4px;
       }
 
-      .add-gallery-btn {
+      /* Add Event Button */
+      .add-event-btn {
         display: inline-flex;
         align-items: center;
         gap: 8px;
@@ -179,7 +211,7 @@
         overflow: hidden;
         z-index: 1;
       }
-      .add-gallery-btn::before {
+      .add-event-btn::before {
         content: "";
         height: 300px;
         width: 300px;
@@ -192,21 +224,21 @@
         transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         z-index: -1;
       }
-      .add-gallery-btn:hover::before {
+      .add-event-btn:hover::before {
         transform: translateY(-50%) translateX(-50%) scale(1);
       }
-      .add-gallery-btn:hover {
+      .add-event-btn:hover {
         color: #fff;
       }
 
       /* Modal */
-      .gallery-modal .modal-content {
+      .event-modal .modal-content {
         border: none;
         border-radius: 16px;
         overflow: hidden;
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
       }
-      .gallery-modal .modal-header {
+      .event-modal .modal-header {
         background: linear-gradient(
           135deg,
           var(--theme-color2),
@@ -216,7 +248,7 @@
         border-bottom: none;
         position: relative;
       }
-      .gallery-modal .modal-header::after {
+      .event-modal .modal-header::after {
         content: "";
         position: absolute;
         bottom: 0;
@@ -230,7 +262,7 @@
           var(--theme-color)
         );
       }
-      .gallery-modal .modal-header .modal-title {
+      .event-modal .modal-header .modal-title {
         color: #fff;
         font-size: 22px;
         font-weight: 700;
@@ -239,28 +271,28 @@
         align-items: center;
         gap: 10px;
       }
-      .gallery-modal .modal-header .modal-title i {
+      .event-modal .modal-header .modal-title i {
         font-size: 20px;
         opacity: 0.9;
       }
-      .gallery-modal .modal-header .btn-close {
+      .event-modal .modal-header .btn-close {
         filter: brightness(0) invert(1);
         opacity: 0.8;
       }
-      .gallery-modal .modal-header .btn-close:hover {
+      .event-modal .modal-header .btn-close:hover {
         opacity: 1;
       }
-      .gallery-modal .modal-body {
+      .event-modal .modal-body {
         padding: 30px 28px;
       }
-      .gallery-modal .form-label {
+      .event-modal .form-label {
         font-weight: 600;
         color: var(--color-dark);
         font-size: 14px;
         margin-bottom: 6px;
       }
-      .gallery-modal .form-control,
-      .gallery-modal .form-select {
+      .event-modal .form-control,
+      .event-modal .form-select {
         border: 2px solid #eef4f7;
         border-radius: 10px;
         padding: 11px 16px;
@@ -269,16 +301,62 @@
         transition: all 0.3s ease;
         background-color: #fafcfd;
       }
-      .gallery-modal .form-control:focus,
-      .gallery-modal .form-select:focus {
+      .event-modal .form-control:focus,
+      .event-modal .form-select:focus {
         border-color: var(--theme-color);
         box-shadow: 0 0 0 4px rgba(42, 143, 173, 0.12);
         background-color: #fff;
       }
-      .gallery-modal .form-control::placeholder {
+      .event-modal .form-control::placeholder {
         color: #a0b4c0;
       }
+      .event-modal textarea.form-control {
+        resize: vertical;
+        min-height: 90px;
+      }
+      .event-modal .modal-footer {
+        padding: 16px 28px 22px;
+        border-top: 1px solid #eef4f7;
+        gap: 10px;
+      }
+      .event-modal .btn-cancel {
+        background: #eef4f7;
+        color: var(--color-dark);
+        border: none;
+        padding: 11px 26px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+      .event-modal .btn-cancel:hover {
+        background: #dce4ec;
+      }
+      .event-modal .btn-submit {
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color2)
+        );
+        color: #fff;
+        border: none;
+        padding: 11px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.4s ease;
+      }
+      .event-modal .btn-submit:hover {
+        box-shadow: 0 6px 20px rgba(42, 143, 173, 0.4);
+        transform: translateY(-1px);
+      }
+      .event-modal .btn-submit:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
 
+      /* File Upload */
       .file-upload-area {
         border: 2px dashed #d0dce5;
         border-radius: 12px;
@@ -292,10 +370,6 @@
       .file-upload-area:hover {
         border-color: var(--theme-color);
         background: #f0f7fa;
-      }
-      .file-upload-area.dragover {
-        border-color: var(--theme-color);
-        background: #e8f4f8;
       }
       .file-upload-area i.upload-icon {
         font-size: 36px;
@@ -328,91 +402,19 @@
         opacity: 0;
         cursor: pointer;
       }
-
-      .preview-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 15px;
+      .preview-container {
+        margin-top: 12px;
+        text-align: center;
       }
-      .preview-grid .preview-item {
-        position: relative;
-        width: 90px;
-        height: 90px;
-        border-radius: 10px;
-        overflow: hidden;
+      .preview-container img {
+        max-width: 100%;
+        max-height: 180px;
+        border-radius: 8px;
         border: 2px solid #eef4f7;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
-      .preview-grid .preview-item img {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
       }
-      .preview-grid .preview-item .remove-preview {
-        position: absolute;
-        top: 4px;
-        right: 4px;
-        width: 22px;
-        height: 22px;
-        background: rgba(231, 76, 60, 0.9);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        font-size: 10px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-      }
-      .preview-grid .preview-item .remove-preview:hover {
-        background: #e74c3c;
-        transform: scale(1.1);
-      }
 
-      .gallery-modal .modal-footer {
-        padding: 16px 28px 22px;
-        border-top: 1px solid #eef4f7;
-        gap: 10px;
-      }
-      .gallery-modal .btn-cancel {
-        background: #eef4f7;
-        color: var(--color-dark);
-        border: none;
-        padding: 11px 26px;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.3s ease;
-      }
-      .gallery-modal .btn-cancel:hover {
-        background: #dce4ec;
-      }
-      .gallery-modal .btn-submit {
-        background: linear-gradient(
-          135deg,
-          var(--theme-color),
-          var(--theme-color2)
-        );
-        color: #fff;
-        border: none;
-        padding: 11px 28px;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.4s ease;
-      }
-      .gallery-modal .btn-submit:hover {
-        box-shadow: 0 6px 20px rgba(42, 143, 173, 0.4);
-        transform: translateY(-1px);
-      }
-      .gallery-modal .btn-submit:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-        transform: none;
-      }
-
+      /* Loading & Empty */
       .loading-spinner {
         display: none;
         text-align: center;
@@ -435,7 +437,6 @@
           transform: rotate(360deg);
         }
       }
-
       .empty-state {
         text-align: center;
         padding: 60px 20px;
@@ -451,53 +452,6 @@
       }
       .empty-state p {
         color: var(--body-text-color);
-      }
-
-      .gallery-pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        margin-top: 30px;
-        flex-wrap: wrap;
-      }
-      .gallery-pagination .page-btn {
-        width: 42px;
-        height: 42px;
-        border: 2px solid #eef4f7;
-        background: #fff;
-        color: var(--color-dark);
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .gallery-pagination .page-btn:hover,
-      .gallery-pagination .page-btn.active {
-        background: var(--theme-color);
-        color: #fff;
-        border-color: var(--theme-color);
-        box-shadow: 0 4px 12px rgba(42, 143, 173, 0.3);
-      }
-      .gallery-pagination .page-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        box-shadow: none;
-      }
-      .gallery-pagination .page-btn:disabled:hover {
-        background: #fff;
-        color: var(--color-dark);
-        border-color: #eef4f7;
-      }
-      .gallery-pagination .page-info {
-        font-size: 14px;
-        color: var(--body-text-color);
-        padding: 0 12px;
-        font-weight: 500;
       }
 
       /* Image Viewer */
@@ -571,14 +525,14 @@
       }
       .image-viewer-content {
         max-width: 90vw;
-        max-height: 78vh;
+        max-height: 75vh;
         display: flex;
         align-items: center;
         justify-content: center;
       }
       .image-viewer-content img {
         max-width: 100%;
-        max-height: 78vh;
+        max-height: 75vh;
         object-fit: contain;
         border-radius: 8px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
@@ -596,24 +550,37 @@
       }
       .image-viewer-info {
         position: absolute;
-        bottom: 25px;
+        bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
         color: #fff;
-        max-width: 600px;
-        width: 90%;
+        max-width: 700px;
+        width: 92%;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        padding: 16px 20px;
+        backdrop-filter: blur(10px);
       }
       .image-viewer-info h4 {
         font-size: 18px;
         color: #fff;
         font-weight: 700;
-        margin-bottom: 4px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        margin-bottom: 6px;
+      }
+      .image-viewer-info .viewer-desc {
+        font-size: 13px;
+        opacity: 0.85;
+        margin-bottom: 8px;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
       .image-viewer-info .viewer-meta {
-        font-size: 13px;
-        opacity: 0.8;
+        font-size: 12px;
+        opacity: 0.75;
         display: flex;
         justify-content: center;
         gap: 16px;
@@ -638,50 +605,40 @@
       }
 
       @media (max-width: 991px) {
-        .gallery-img-wrap {
+        .event-img-wrap {
           height: 220px;
         }
       }
       @media (max-width: 767px) {
-        .gallery-area {
+        .events-area {
           padding: 80px 0;
         }
-        .gallery-img-wrap {
+        .event-img-wrap {
           height: 200px;
         }
-        .gallery-filter-wrapper {
+        .event-filter-wrapper {
           gap: 6px;
           margin-bottom: 25px;
         }
-        .gallery-filter-btn {
+        .event-filter-btn {
           padding: 6px 14px;
           font-size: 12px;
         }
-        .add-gallery-btn {
+        .add-event-btn {
           padding: 10px 20px;
           font-size: 13px;
         }
-        .gallery-modal .modal-header {
+        .event-modal .modal-header {
           padding: 18px 20px;
         }
-        .gallery-modal .modal-body {
+        .event-modal .modal-body {
           padding: 22px 18px;
         }
-        .gallery-modal .modal-footer {
+        .event-modal .modal-footer {
           padding: 14px 18px 18px;
         }
-        .gallery-modal .modal-header .modal-title {
+        .event-modal .modal-header .modal-title {
           font-size: 18px;
-        }
-        .file-upload-area {
-          padding: 22px 15px;
-        }
-        .file-upload-area i.upload-icon {
-          font-size: 28px;
-        }
-        .preview-grid .preview-item {
-          width: 70px;
-          height: 70px;
         }
         .image-viewer-nav {
           width: 38px;
@@ -697,24 +654,22 @@
         .image-viewer-info h4 {
           font-size: 15px;
         }
-        .gallery-pagination .page-btn {
-          width: 36px;
-          height: 36px;
-          font-size: 13px;
+        .image-viewer-info {
+          padding: 12px 14px;
         }
       }
       @media (max-width: 575px) {
-        .gallery-item-card {
+        .event-item-card {
           margin-bottom: 20px;
         }
-        .gallery-img-wrap {
+        .event-img-wrap {
           height: 180px;
         }
-        .gallery-info {
-          padding: 12px 14px;
+        .event-info {
+          padding: 14px;
         }
-        .gallery-info h5 {
-          font-size: 14px;
+        .event-info h5 {
+          font-size: 15px;
         }
       }
     </style>
@@ -1057,27 +1012,27 @@
         style="background: url(assets/img/breadcrumb/01.jpg)"
       >
         <div class="container">
-          <h2 class="breadcrumb-title">Gallery</h2>
+          <h2 class="breadcrumb-title">Events</h2>
           <ul class="breadcrumb-menu">
             <li><a href="/">Home</a></li>
-            <li class="active">Gallery</li>
+            <li class="active">Events</li>
           </ul>
         </div>
       </div>
 
-      <div class="gallery-area">
+      <div class="events-area">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 mx-auto">
               <div class="site-heading text-center">
                 <span class="site-title-tagline"
-                  ><i class="far fa-images"></i> Gallery</span
+                  ><i class="far fa-calendar-alt"></i> Events</span
                 >
-                <h2 class="site-title">Our Photo <span>Gallery</span></h2>
+                <h2 class="site-title">Our <span>Events</span></h2>
                 <p>
-                  Explore the vibrant campus life of Malabar College of Pharmacy
-                  through our gallery, showcasing the best moments of our
-                  students, faculty, and events.
+                  Stay updated with all the exciting events happening at Malabar
+                  College of Pharmacy. Explore workshops, seminars,
+                  celebrations, and more.
                 </p>
               </div>
             </div>
@@ -1085,54 +1040,53 @@
 
           <div class="text-center mb-4">
             <button
-              class="add-gallery-btn"
+              class="add-event-btn"
               data-bs-toggle="modal"
-              data-bs-target="#addGalleryModal"
+              data-bs-target="#addEventModal"
             >
-              <i class="far fa-plus-circle"></i> Add Photo
+              <i class="far fa-plus-circle"></i> Add Event
             </button>
           </div>
 
-          <div class="gallery-filter-wrapper" id="filterWrapper">
-            <button class="gallery-filter-btn active" data-filter="All">
+          <!-- Department Filter -->
+          <div class="event-filter-wrapper" id="eventFilterWrapper">
+            <button class="event-filter-btn active" data-filter="All">
               All
             </button>
-            <button class="gallery-filter-btn" data-filter="Life at MCP">
-              Life at MCP
+            <button
+              class="event-filter-btn"
+              data-filter="Pharmaceutical Chemistry"
+            >
+              Pharmaceutical Chemistry
             </button>
-            <button class="gallery-filter-btn" data-filter="Arts">Arts</button>
-            <button class="gallery-filter-btn" data-filter="Sports">
-              Sports
+            <button class="event-filter-btn" data-filter="Pharmacology">
+              Pharmacology
             </button>
-            <button class="gallery-filter-btn" data-filter="Graduation">
-              Graduation
+            <button class="event-filter-btn" data-filter="Pharmaceutics">
+              Pharmaceutics
             </button>
-            <button class="gallery-filter-btn" data-filter="Outing">
-              Outing
+            <button class="event-filter-btn" data-filter="Pharmacy Practice">
+              Pharmacy Practice
             </button>
-            <button class="gallery-filter-btn" data-filter="Coffee Lab">
-              Coffee Lab
+            <button class="event-filter-btn" data-filter="Pharmacognosy">
+              Pharmacognosy
             </button>
-            <button class="gallery-filter-btn" data-filter="College Tour">
-              College Tour
+            <button
+              class="event-filter-btn"
+              data-filter="Pharmaceutical Analysis"
+            >
+              Pharmaceutical Analysis
             </button>
-            <button class="gallery-filter-btn" data-filter="Clubs">
-              Clubs
-            </button>
-            <button class="gallery-filter-btn" data-filter="Programs">
-              Programs
-            </button>
-            <button class="gallery-filter-btn" data-filter="MCP Events">
-              MCP Events
+            <button class="event-filter-btn" data-filter="General">
+              General
             </button>
           </div>
 
           <div class="loading-spinner" id="loadingSpinner">
             <div class="spinner"></div>
-            <p>Loading gallery...</p>
+            <p>Loading events...</p>
           </div>
-          <div class="row" id="galleryContainer"></div>
-          <div class="gallery-pagination" id="galleryPagination"></div>
+          <div class="row" id="eventsContainer"></div>
         </div>
       </div>
     </main>
@@ -1154,21 +1108,27 @@
       </div>
       <div class="image-viewer-info">
         <h4 id="viewerTitle"></h4>
+        <p class="viewer-desc" id="viewerDesc"></p>
         <div class="viewer-meta">
-          <span id="viewerType"><i class="far fa-tag"></i> <span></span></span>
-          <span id="viewerUploader"
+          <span id="viewerDate"
+            ><i class="far fa-calendar-alt"></i> <span></span
+          ></span>
+          <span id="viewerDept"
+            ><i class="far fa-building"></i> <span></span
+          ></span>
+          <span id="viewerCoord"
             ><i class="far fa-user"></i> <span></span
           ></span>
         </div>
       </div>
     </div>
 
-    <!-- Upload Modal -->
+    <!-- Add Event Modal -->
     <div
-      class="modal fade gallery-modal"
-      id="addGalleryModal"
+      class="modal fade event-modal"
+      id="addEventModal"
       tabindex="-1"
-      aria-labelledby="addGalleryModalLabel"
+      aria-labelledby="addEventModalLabel"
       aria-hidden="true"
     >
       <div
@@ -1176,8 +1136,8 @@
       >
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addGalleryModalLabel">
-              <i class="far fa-cloud-upload-alt"></i> Upload Gallery Photo
+            <h5 class="modal-title" id="addEventModalLabel">
+              <i class="far fa-calendar-plus"></i> Add New Event
             </h5>
             <button
               type="button"
@@ -1189,65 +1149,100 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-12 mb-3">
-                <label for="galleryTitle" class="form-label"
-                  >Title <span style="color: #e74c3c">*</span></label
+                <label for="eventTitle" class="form-label"
+                  >Event Title <span style="color: #e74c3c">*</span></label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  id="galleryTitle"
-                  placeholder="Enter photo title"
+                  id="eventTitle"
+                  placeholder="Enter event title"
+                  required
+                />
+              </div>
+              <div class="col-12 mb-3">
+                <label for="eventDescription" class="form-label"
+                  >Description <span style="color: #e74c3c">*</span></label
+                >
+                <textarea
+                  class="form-control"
+                  id="eventDescription"
+                  rows="3"
+                  placeholder="Describe the event"
+                  required
+                ></textarea>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="eventDate" class="form-label"
+                  >Event Date <span style="color: #e74c3c">*</span></label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="eventDate"
                   required
                 />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="galleryType" class="form-label"
-                  >Type <span style="color: #e74c3c">*</span></label
+                <label for="eventCoordinator" class="form-label"
+                  >Coordinator <span style="color: #e74c3c">*</span></label
                 >
-                <select class="form-select" id="galleryType" required>
-                  <option value="" disabled selected>Select category</option>
-                  <option value="Life at MCP">Life at MCP</option>
-                  <option value="Arts">Arts</option>
-                  <option value="Sports">Sports</option>
-                  <option value="Graduation">Graduation</option>
-                  <option value="Outing">Outing</option>
-                  <option value="Coffee Lab">Coffee Lab</option>
-                  <option value="College Tour">College Tour</option>
-                  <option value="Clubs">Clubs</option>
-                  <option value="Programs">Programs</option>
-                  <option value="MCP Events">MCP Events</option>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eventCoordinator"
+                  placeholder="Coordinator name"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="eventDepartment" class="form-label"
+                  >Department <span style="color: #e74c3c">*</span></label
+                >
+                <select class="form-select" id="eventDepartment" required>
+                  <option value="" disabled selected>Select department</option>
+                  <option value="Pharmaceutical Chemistry">
+                    Pharmaceutical Chemistry
+                  </option>
+                  <option value="Pharmacology">Pharmacology</option>
+                  <option value="Pharmaceutics">Pharmaceutics</option>
+                  <option value="Pharmacy Practice">Pharmacy Practice</option>
+                  <option value="Pharmacognosy">Pharmacognosy</option>
+                  <option value="Pharmaceutical Analysis">
+                    Pharmaceutical Analysis
+                  </option>
+                  <option value="General">General</option>
                 </select>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="galleryUploader" class="form-label"
+                <label for="eventAuthor" class="form-label"
                   >Your Name <span style="color: #e74c3c">*</span></label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  id="galleryUploader"
+                  id="eventAuthor"
                   placeholder="Enter your name"
                   required
                 />
               </div>
               <div class="col-12 mb-3">
                 <label class="form-label"
-                  >Photos <span style="color: #e74c3c">*</span></label
+                  >Event Poster <span style="color: #e74c3c">*</span></label
                 >
                 <div class="file-upload-area" id="fileUploadArea">
                   <i class="far fa-cloud-upload-alt upload-icon"></i>
-                  <p>Drag & drop your images here or <span>browse</span></p>
-                  <small
-                    >Supports JPG, PNG, JPEG. Multiple files allowed.</small
-                  >
-                  <input
-                    type="file"
-                    id="galleryImages"
-                    accept="image/*"
-                    multiple
-                  />
+                  <p>Drag & drop your image here or <span>browse</span></p>
+                  <small>Supports JPG, PNG, JPEG.</small>
+                  <input type="file" id="eventImage" accept="image/*" />
                 </div>
-                <div class="preview-grid" id="previewGrid"></div>
+                <div
+                  class="preview-container"
+                  id="previewContainer"
+                  style="display: none"
+                >
+                  <img id="imagePreview" alt="Preview" />
+                </div>
               </div>
             </div>
           </div>
@@ -1255,9 +1250,8 @@
             <button type="button" class="btn-cancel" data-bs-dismiss="modal">
               <i class="far fa-times" style="margin-right: 5px"></i>Cancel
             </button>
-            <button type="button" class="btn-submit" id="saveGalleryBtn">
-              <i class="far fa-upload" style="margin-right: 5px"></i>Upload
-              Photo
+            <button type="button" class="btn-submit" id="saveEventBtn">
+              <i class="far fa-check" style="margin-right: 5px"></i>Save Event
             </button>
           </div>
         </div>
@@ -1385,58 +1379,48 @@
 
     <script>
       $(document).ready(function () {
-        var currentPage = 1;
-        var totalPages = 1;
-        var totalCount = 0;
-        var pageSize = 20;
         var currentFilter = "All";
-        var allFetchedItems = [];
-        var filteredItems = [];
-        var selectedFiles = [];
+        var allEvents = [];
+        var filteredEvents = [];
 
-        loadGallery(1);
+        loadEvents();
 
-        // ---- FILTER (client-side) ----
-        $("#filterWrapper").on("click", ".gallery-filter-btn", function () {
-          $(".gallery-filter-btn").removeClass("active");
+        // ---- FILTER ----
+        $("#eventFilterWrapper").on("click", ".event-filter-btn", function () {
+          $(".event-filter-btn").removeClass("active");
           $(this).addClass("active");
           currentFilter = $(this).data("filter");
-          // Re-apply filter on already-fetched data and re-render
           applyFilterAndRender();
         });
 
         function applyFilterAndRender() {
           if (currentFilter !== "All") {
-            filteredItems = allFetchedItems.filter(function (item) {
-              return item.type === currentFilter;
+            filteredEvents = allEvents.filter(function (item) {
+              return item.department === currentFilter;
             });
           } else {
-            filteredItems = allFetchedItems.slice();
+            filteredEvents = allEvents.slice();
           }
-          renderCards(filteredItems);
+          renderCards(filteredEvents);
         }
 
         function renderCards(items) {
-          var $container = $("#galleryContainer");
+          var $container = $("#eventsContainer");
           $container.empty();
-
           if (!items || items.length === 0) {
-            var filterMsg =
+            var msg =
               currentFilter !== "All"
                 ? ' for "<strong>' + escapeHtml(currentFilter) + '</strong>"'
                 : "";
             $container.html(
-              '<div class="col-12"><div class="empty-state">' +
-                '<i class="far fa-images"></i>' +
-                "<h5>No Photos Found</h5>" +
-                "<p>No photos available" +
-                filterMsg +
-                ". Be the first to add one!</p>" +
-                "</div></div>",
+              '<div class="col-12"><div class="empty-state"><i class="far fa-calendar-alt"></i>' +
+                "<h5>No Events Found</h5><p>No events available" +
+                msg +
+                ". Be the first to add one!</p></div></div>",
             );
           } else {
             items.forEach(function (item, index) {
-              $container.append(createGalleryCard(item, index));
+              $container.append(createEventCard(item, index));
             });
             if (typeof WOW !== "undefined") {
               new WOW().init();
@@ -1444,74 +1428,44 @@
           }
         }
 
-        // ---- DRAG & DROP ----
-        var uploadArea = document.getElementById("fileUploadArea");
-        uploadArea.addEventListener("dragover", function (e) {
-          e.preventDefault();
-          this.classList.add("dragover");
-        });
-        uploadArea.addEventListener("dragleave", function () {
-          this.classList.remove("dragover");
-        });
-        uploadArea.addEventListener("drop", function (e) {
-          e.preventDefault();
-          this.classList.remove("dragover");
-          handleFiles(e.dataTransfer.files);
-        });
-        $("#galleryImages").on("change", function () {
-          handleFiles(this.files);
-          this.value = "";
-        });
-
-        function handleFiles(files) {
-          for (var i = 0; i < files.length; i++) {
-            if (files[i].type.startsWith("image/")) {
-              selectedFiles.push(files[i]);
-              addPreview(files[i], selectedFiles.length - 1);
-            }
+        // ---- IMAGE PREVIEW ----
+        $("#eventImage").on("change", function () {
+          var file = this.files[0];
+          if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $("#imagePreview").attr("src", e.target.result);
+              $("#previewContainer").show();
+            };
+            reader.readAsDataURL(file);
+          } else {
+            $("#previewContainer").hide();
           }
-        }
-
-        function addPreview(file, index) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $("#previewGrid").append(
-              '<div class="preview-item" data-index="' +
-                index +
-                '">' +
-                '<img src="' +
-                e.target.result +
-                '" alt="Preview" />' +
-                '<button class="remove-preview" data-index="' +
-                index +
-                '"><i class="far fa-times"></i></button>' +
-                "</div>",
-            );
-          };
-          reader.readAsDataURL(file);
-        }
-
-        $("#previewGrid").on("click", ".remove-preview", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          selectedFiles[parseInt($(this).data("index"))] = null;
-          $(this).closest(".preview-item").remove();
         });
 
-        // ---- UPLOAD ----
-        $("#saveGalleryBtn").on("click", async function () {
-          var title = $("#galleryTitle").val().trim();
-          var type = $("#galleryType").val();
-          var uploaded_by = $("#galleryUploader").val().trim();
-          var validFiles = selectedFiles.filter(function (f) {
-            return f !== null;
-          });
+        // ---- SAVE EVENT ----
+        $("#saveEventBtn").on("click", async function () {
+          var title = $("#eventTitle").val().trim();
+          var description = $("#eventDescription").val().trim();
+          var date = $("#eventDate").val();
+          var coordinator = $("#eventCoordinator").val().trim();
+          var department = $("#eventDepartment").val();
+          var uploaded_by = $("#eventAuthor").val().trim();
+          var pictureInput = $("#eventImage")[0];
 
-          if (!title || !type || !uploaded_by || validFiles.length === 0) {
+          if (
+            !title ||
+            !description ||
+            !date ||
+            !coordinator ||
+            !department ||
+            !uploaded_by ||
+            !pictureInput.files.length
+          ) {
             Swal.fire({
               icon: "warning",
               title: "Incomplete",
-              text: "Please fill all required fields and select at least one image.",
+              text: "Please fill all required fields.",
               confirmButtonColor: "#2a8fad",
             });
             return;
@@ -1520,107 +1474,91 @@
           var formData = new FormData();
           formData.append("org", "8");
           formData.append("title", title);
-          formData.append("type", type);
+          formData.append("description", description);
+          formData.append("date", date);
+          formData.append("coordinator", coordinator);
+          formData.append("department", department);
           formData.append("uploaded_by", uploaded_by);
-          validFiles.forEach(function (file) {
-            formData.append("picture", file);
-          });
+          formData.append("picture", pictureInput.files[0]);
 
           var $btn = $(this);
           $btn
             .prop("disabled", true)
             .html(
-              '<i class="fas fa-spinner fa-spin" style="margin-right:5px"></i>Uploading...',
+              '<i class="fas fa-spinner fa-spin" style="margin-right:5px"></i>Saving...',
             );
 
           try {
             var response = await fetch(
-              "https://conext.in/static_site_apis/api/upload_gallery_image/",
+              "https://conext.in/static_site_apis/api/upload_event_images/",
               {
                 method: "POST",
                 body: formData,
                 headers: { Accept: "application/json" },
               },
             );
-            if (!response.ok) throw new Error("Failed to upload photo");
+            if (!response.ok) throw new Error("Failed to save event");
             await response.json();
-            $("#addGalleryModal").modal("hide");
+            $("#addEventModal").modal("hide");
             resetForm();
             Swal.fire({
               icon: "success",
-              title: "Uploaded!",
-              text: "Photo submitted successfully. It will appear after approval.",
+              title: "Success!",
+              text: "Event submitted successfully. It will appear after approval.",
               confirmButtonColor: "#2a8fad",
               timer: 3000,
               showConfirmButton: true,
             });
-            loadGallery(1);
+            loadEvents();
           } catch (error) {
             Swal.fire({
               icon: "error",
               title: "Error",
-              text: error.message || "Something went wrong. Please try again.",
+              text: error.message || "Something went wrong.",
               confirmButtonColor: "#2a8fad",
             });
           } finally {
             $btn
               .prop("disabled", false)
               .html(
-                '<i class="far fa-upload" style="margin-right:5px"></i>Upload Photo',
+                '<i class="far fa-check" style="margin-right:5px"></i>Save Event',
               );
           }
         });
 
-        $("#addGalleryModal").on("hidden.bs.modal", function () {
+        $("#addEventModal").on("hidden.bs.modal", function () {
           resetForm();
         });
 
-        // ---- LOAD GALLERY ----
-        async function loadGallery(page) {
-          var $container = $("#galleryContainer");
+        // ---- LOAD EVENTS ----
+        async function loadEvents() {
+          var $container = $("#eventsContainer");
           var $spinner = $("#loadingSpinner");
-          var $pagination = $("#galleryPagination");
-
           $container.empty();
-          $pagination.empty();
           $spinner.show();
 
           try {
-            var url =
-              "https://conext.in/static_site_apis/api/get_gallery_images/8/?page=" +
-              page +
-              "&page_size=" +
-              pageSize;
-
-            var response = await fetch(url, {
-              method: "GET",
-              headers: { Accept: "application/json" },
-            });
-            if (!response.ok) throw new Error("Failed to load gallery");
-
+            var response = await fetch(
+              "https://conext.in/static_site_apis/api/get_event_images/8/",
+              {
+                method: "GET",
+                headers: { Accept: "application/json" },
+              },
+            );
+            if (!response.ok) throw new Error("Failed to load events");
             var result = await response.json();
-            totalCount = result.count || 0;
-            var galleryData =
-              result.results && result.results.data ? result.results.data : [];
-            var resultPageSize =
-              result.results && result.results.page_size
-                ? result.results.page_size
-                : pageSize;
-            totalPages = Math.ceil(totalCount / resultPageSize) || 1;
-            currentPage = page;
-
-            // Store raw data, then apply filter
-            allFetchedItems = galleryData;
+            var events = result.data || [];
+            // Sort newest first
+            events.sort(function (a, b) {
+              return new Date(b.date) - new Date(a.date);
+            });
+            allEvents = events;
             applyFilterAndRender();
-            renderPagination();
           } catch (error) {
-            console.error("Error loading gallery:", error);
+            console.error("Error loading events:", error);
             $container.html(
-              '<div class="col-12"><div class="empty-state">' +
-                '<i class="far fa-exclamation-circle"></i>' +
-                "<h5>Unable to Load</h5>" +
-                "<p>Could not load gallery. Please try again later.</p>" +
-                "</div></div>",
+              '<div class="col-12"><div class="empty-state"><i class="far fa-exclamation-circle"></i>' +
+                "<h5>Unable to Load</h5><p>Could not load events. Please try again later.</p></div></div>",
             );
           } finally {
             $spinner.hide();
@@ -1628,14 +1566,19 @@
         }
 
         // ---- CARD HTML ----
-        function createGalleryCard(item, index) {
+        function createEventCard(item, index) {
           var delay = (index % 3) * 0.15 + 0.15;
+          var formattedDate = new Date(item.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
           return (
             '<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="' +
             delay +
             's">' +
-            '<div class="gallery-item-card">' +
-            '<div class="gallery-img-wrap" data-viewer-idx="' +
+            '<div class="event-item-card">' +
+            '<div class="event-img-wrap" data-viewer-idx="' +
             index +
             '">' +
             '<img src="' +
@@ -1643,21 +1586,27 @@
             '" alt="' +
             escapeHtml(item.title) +
             '" loading="lazy" />' +
-            '<span class="gallery-type-badge">' +
-            escapeHtml(item.type) +
+            '<span class="event-date-badge"><i class="far fa-calendar-alt"></i>' +
+            formattedDate +
             "</span>" +
-            '<div class="gallery-hover-overlay">' +
-            '<button type="button" class="gallery-open-btn" data-viewer-idx="' +
+            '<span class="event-dept-badge">' +
+            escapeHtml(item.department) +
+            "</span>" +
+            '<div class="event-hover-overlay">' +
+            '<button type="button" class="event-view-btn" data-viewer-idx="' +
             index +
             '"><i class="fal fa-plus"></i></button>' +
             "</div></div>" +
-            '<div class="gallery-info">' +
+            '<div class="event-info">' +
             "<h5>" +
             escapeHtml(item.title) +
             "</h5>" +
-            '<div class="gallery-meta">' +
-            '<span><i class="far fa-tag"></i> ' +
-            escapeHtml(item.type) +
+            '<p class="event-desc">' +
+            escapeHtml(item.description) +
+            "</p>" +
+            '<div class="event-meta">' +
+            '<span><i class="far fa-user-tie"></i> ' +
+            escapeHtml(item.coordinator) +
             "</span>" +
             '<span><i class="far fa-user"></i> ' +
             escapeHtml(item.uploaded_by) +
@@ -1666,87 +1615,18 @@
           );
         }
 
-        // ---- PAGINATION ----
-        function renderPagination() {
-          var $p = $("#galleryPagination");
-          $p.empty();
-          if (totalPages <= 1) return;
-
-          $p.append(
-            '<button class="page-btn" ' +
-              (currentPage === 1 ? "disabled" : "") +
-              ' data-page="' +
-              (currentPage - 1) +
-              '"><i class="far fa-chevron-left"></i></button>',
-          );
-
-          var s = Math.max(1, currentPage - 2),
-            e = Math.min(totalPages, currentPage + 2);
-          if (s > 1) {
-            $p.append('<button class="page-btn" data-page="1">1</button>');
-            if (s > 2) $p.append('<span class="page-info">...</span>');
-          }
-          for (var i = s; i <= e; i++) {
-            $p.append(
-              '<button class="page-btn ' +
-                (i === currentPage ? "active" : "") +
-                '" data-page="' +
-                i +
-                '">' +
-                i +
-                "</button>",
-            );
-          }
-          if (e < totalPages) {
-            if (e < totalPages - 1)
-              $p.append('<span class="page-info">...</span>');
-            $p.append(
-              '<button class="page-btn" data-page="' +
-                totalPages +
-                '">' +
-                totalPages +
-                "</button>",
-            );
-          }
-
-          $p.append(
-            '<button class="page-btn" ' +
-              (currentPage === totalPages ? "disabled" : "") +
-              ' data-page="' +
-              (currentPage + 1) +
-              '"><i class="far fa-chevron-right"></i></button>',
-          );
-        }
-
-        $("#galleryPagination").on("click", ".page-btn", function () {
-          if ($(this).prop("disabled")) return;
-          var page = parseInt($(this).data("page"));
-          if (page >= 1 && page <= totalPages) {
-            loadGallery(page);
-            $("html, body").animate(
-              { scrollTop: $(".gallery-area").offset().top - 100 },
-              400,
-            );
-          }
-        });
-
-        // ============================================
-        // IMAGE VIEWER — uses <button> + event delegation
-        // to avoid magnific-popup conflict from main.js
-        // ============================================
+        // ---- IMAGE VIEWER ----
         var viewerIndex = 0;
 
-        // Open via the + button
-        $("#galleryContainer").on("click", ".gallery-open-btn", function (e) {
+        $("#eventsContainer").on("click", ".event-view-btn", function (e) {
           e.preventDefault();
           e.stopPropagation();
           viewerIndex = parseInt($(this).attr("data-viewer-idx"));
           openViewer();
         });
 
-        // Open via clicking the image area
-        $("#galleryContainer").on("click", ".gallery-img-wrap", function (e) {
-          if ($(e.target).closest(".gallery-open-btn").length) return;
+        $("#eventsContainer").on("click", ".event-img-wrap", function (e) {
+          if ($(e.target).closest(".event-view-btn").length) return;
           e.preventDefault();
           e.stopPropagation();
           viewerIndex = parseInt($(this).attr("data-viewer-idx"));
@@ -1760,19 +1640,26 @@
         }
 
         function updateViewer() {
-          var item = filteredItems[viewerIndex];
+          var item = filteredEvents[viewerIndex];
           if (!item) return;
+          var formattedDate = new Date(item.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
           $("#viewerImage").attr("src", item.picture).attr("alt", item.title);
           $("#viewerTitle").text(item.title);
-          $("#viewerType").find("span").last().text(item.type);
-          $("#viewerUploader").find("span").last().text(item.uploaded_by);
+          $("#viewerDesc").text(item.description);
+          $("#viewerDate").find("span").last().text(formattedDate);
+          $("#viewerDept").find("span").last().text(item.department);
+          $("#viewerCoord").find("span").last().text(item.coordinator);
           $("#viewerCounter").text(
-            viewerIndex + 1 + " / " + filteredItems.length,
+            viewerIndex + 1 + " / " + filteredEvents.length,
           );
           $("#viewerPrev").css("display", viewerIndex > 0 ? "flex" : "none");
           $("#viewerNext").css(
             "display",
-            viewerIndex < filteredItems.length - 1 ? "flex" : "none",
+            viewerIndex < filteredEvents.length - 1 ? "flex" : "none",
           );
         }
 
@@ -1785,7 +1672,6 @@
           e.stopPropagation();
           closeViewer();
         });
-
         $("#viewerPrev").on("click", function (e) {
           e.stopPropagation();
           if (viewerIndex > 0) {
@@ -1793,10 +1679,9 @@
             updateViewer();
           }
         });
-
         $("#viewerNext").on("click", function (e) {
           e.stopPropagation();
-          if (viewerIndex < filteredItems.length - 1) {
+          if (viewerIndex < filteredEvents.length - 1) {
             viewerIndex++;
             updateViewer();
           }
@@ -1810,14 +1695,13 @@
             updateViewer();
           } else if (
             e.key === "ArrowRight" &&
-            viewerIndex < filteredItems.length - 1
+            viewerIndex < filteredEvents.length - 1
           ) {
             viewerIndex++;
             updateViewer();
           }
         });
 
-        // Close on overlay background click only
         $("#imageViewer").on("click", function (e) {
           var $t = $(e.target);
           if (
@@ -1826,7 +1710,6 @@
           )
             closeViewer();
         });
-
         $("#viewerImage").on("click", function (e) {
           e.stopPropagation();
         });
@@ -1840,12 +1723,15 @@
         }
 
         function resetForm() {
-          $("#galleryTitle").val("");
-          $("#galleryType").val("");
-          $("#galleryUploader").val("");
-          $("#galleryImages").val("");
-          $("#previewGrid").empty();
-          selectedFiles = [];
+          $("#eventTitle").val("");
+          $("#eventDescription").val("");
+          $("#eventDate").val("");
+          $("#eventCoordinator").val("");
+          $("#eventDepartment").val("");
+          $("#eventAuthor").val("");
+          $("#eventImage").val("");
+          $("#previewContainer").hide();
+          $("#imagePreview").attr("src", "");
         }
       });
     </script>

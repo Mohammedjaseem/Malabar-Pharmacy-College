@@ -16,7 +16,7 @@
 
     <title>MCP - Malabar College of Pharmacy</title>
 
-    <link rel="icon" type="image/x-icon" href="assets/img/logo/logo.png" />
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/favicon.png" />
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/all-fontawesome.min.css" />
@@ -26,13 +26,16 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <div class="preloader">
-      <div class="loader-book">
-        <div class="loader-book-page"></div>
-        <div class="loader-book-page"></div>
-        <div class="loader-book-page"></div>
-      </div>
+    <div class="preloader" id="preloader">
+  <div class="mcp-loader">
+    <div class="mcp-loader-ring"></div>
+    <div class="mcp-loader-ring mcp-loader-ring-2"></div>
+    <div class="mcp-loader-logo">
+      <img src="assets/img/logo/logo.png" alt="MCP" />
     </div>
+  </div>
+  <div class="mcp-loader-text">Malabar College of Pharmacy</div>
+</div>
 
     <header class="header">
       <div class="header-top">
@@ -95,7 +98,7 @@
                   <i class="far fa-search"></i>
                 </button>
               </div>
-                           <div class="nav-right-btn mt-2">
+                           <!-- <div class="nav-right-btn mt-2">
                 <a
                   href="login.html"
                   class="theme-btn"
@@ -103,7 +106,7 @@
                 >
                   Apply Now
                 </a>
-              </div>
+              </div> -->
 
               <button
                 class="navbar-toggler"
@@ -149,37 +152,7 @@
                   </ul>
                 </li>
 
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    data-bs-toggle="dropdown"
-                    >Administration</a
-                  >
-                  <ul class="dropdown-menu fade-down">
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="/about-us.html#board-of-directors"
-                        >Board of Management</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/about-us.html#principal"
-                        >Principal</a
-                      >
-                    </li>
-                    <!-- <li><a class="dropdown-item" href="finance-officer.html">Finance Officer</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="controller-of-examination.html">Controller of Examination</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="chief-vigilance-officer.html">Chief Vigilance Officer</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="internal-complaint-committee.html">Internal Complaint Committee</a></li> -->
-                    <li>
-                      <a class="dropdown-item" href="academic-leadership.html"
-                        >Academic Leadership</a
-                      >
-                    </li>
-                  </ul>
-                </li>
+                 
 
                 <li class="nav-item dropdown">
                   <a
@@ -255,14 +228,31 @@
                     <li>
                       <a class="dropdown-item" href="library.html">Library</a>
                     </li>
-                    <!-- <li><a class="dropdown-item" href="feedbacks.html">Feedbacks</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="journals.html">Journals</a></li> -->
                     <li>
                       <a class="dropdown-item" href="admission.html"
                         >Admission</a
                       >
                     </li>
-                    <!-- <li><a class="dropdown-item" href="code-of-conduct.html">Code of Conduct</a></li> -->
+                    <li>
+                      <a class="dropdown-item" href="gallery.html"
+                        >Gallery</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="achievements.html"
+                        >Achievements</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="events.html"
+                        >Events</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="circulars.html"
+                        >Circulars</a
+                      >
+                    </li>
                   </ul>
                 </li>
 
@@ -334,13 +324,13 @@
                         >Newsletters</a
                       >
                     </li>
-                    <!-- <li>
+                    <li>
                       <a
                         class="dropdown-item"
                         href="news-recent-events-achievements.html"
                         >News, Recent Events & Achievements</a
                       >
-                    </li> -->
+                    </li>
                     <li>
                       <a class="dropdown-item" href="careers.html"
                         >Job Openings</a
@@ -361,13 +351,13 @@
 <li class="nav-item">
                   <a class="nav-link" href="notification.html">Notification</a>
                 </li>
-                                 <div class="nav-right">
+                                 <!-- <div class="nav-right">
                   <div class="nav-right-btn mt-2">
                     <a href="login.html" class="theme-btn"
                       ><span class="fal fa-pencil"></span>Apply Now</a
                     >
                   </div>
-                </div>       
+                </div> -->       
          </ul>
             </div>
           </div>
@@ -1384,7 +1374,7 @@
           <div class="copyright-wrapper">
             <div class="row">
               <div class="col-md-6 align-self-center">
-                <span>Last updated on 26-03-2026</span>                <p class="copyright-text">
+                <span>Last updated on 16-04-2026</span>                <p class="copyright-text">
                   &copy; Copyright <span id="date"></span>
                   <a href="https://bizforz.com/" target="_blank">Bizforz Solutions Pvt Ltd</a> All
                   Rights Reserved.
