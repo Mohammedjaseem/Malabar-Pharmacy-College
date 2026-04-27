@@ -1815,7 +1815,7 @@
           <div class="copyright-wrapper">
             <div class="row">
               <div class="col-md-6 align-self-center">
-                <span>Last updated on 16-04-2026</span>
+                <span>Last updated on 27-04-2026</span>
                 <p class="copyright-text">
                   &copy; Copyright <span id="date"></span>
                   <a href="https://bizforz.com/" target="_blank"
@@ -2358,24 +2358,31 @@
         // ==================================================================
         // CARD HTML
         // ==================================================================
+        // ==================================================================
+        // CARD HTML - UPDATED
+        // ==================================================================
         function createCard(item, index) {
           var delay = ((index % 3) * 0.1 + 0.1).toFixed(2);
           var images = getImageAttachments(item);
           var firstImage = images[0];
-          var pdfCount = (item.attachments || []).filter(function (a) {
+          var pdfAttachments = (item.attachments || []).filter(function (a) {
             return a.file_type === "PDF";
-          }).length;
+          });
+          var pdfCount = pdfAttachments.length;
+          var firstPdf = pdfAttachments[0]; // Take first PDF for preview
+
           var recent = isRecent(item.created_at, 3);
           var visMeta = getVisibilityMeta(item.visibility);
-
           var formattedDate = formatDate(item.circular_date);
-          var desc = stripHtml(item.description || ""); // still used for length checks
-          var descHtml = sanitizeInlineHtml(item.description || ""); // rendered on the card
+          var descHtml = sanitizeInlineHtml(item.description || "");
+
           var typeName =
             (item.circular_type && item.circular_type.name) || "General";
 
-          var imageArea;
+          var imageArea = "";
+
           if (firstImage) {
+            // Has image → show image (existing logic)
             imageArea =
               '<div class="circular-img-wrap" data-id="' +
               item.id +
@@ -2396,7 +2403,34 @@
                   "</span>"
                 : "") +
               "</div>";
+          } else if (firstPdf) {
+            // NO image, but HAS PDF → Show PDF preview
+            imageArea =
+              '<div class="circular-img-wrap pdf-preview-wrap" data-id="' +
+              item.id +
+              '" data-has-image="0" style="position:relative; overflow:hidden; aspect-ratio:16/9; background:#f8fafc; border-bottom:3px solid #ef4444;">' +
+              // PDF Icon + Filename
+              '<div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:#b91c1c; background:linear-gradient(135deg, #fef2f2, #fee2e2);">' +
+              '<div style="width:72px; height:72px; background:#ef4444; border-radius:12px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(239,68,68,0.3);">' +
+              '<i class="far fa-file-pdf" style="font-size:36px; color:#fff;"></i>' +
+              "</div>" +
+              '<div style="font-size:13px; font-weight:700; text-align:center; max-width:85%; line-height:1.3; padding:0 12px;">' +
+              escapeHtml(getFileNameFromUrl(firstPdf.file_url)) +
+              "</div>" +
+              "</div>" +
+              // Subtle "PDF" label at bottom
+              '<div style="position:absolute; bottom:12px; right:12px; background:rgba(239,68,68,0.9); color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:6px; letter-spacing:0.5px;">PDF</div>' +
+              (recent
+                ? '<span class="circular-new-badge"><i class="fas fa-bolt"></i> NEW</span>'
+                : "") +
+              (pdfCount > 1
+                ? '<span class="circular-image-count-badge" style="background:rgba(185,28,28,0.85);"><i class="far fa-file-pdf"></i> ' +
+                  pdfCount +
+                  "</span>"
+                : "") +
+              "</div>";
           } else {
+            // No image and no PDF → fallback banner (original)
             imageArea =
               '<div class="circular-banner">' +
               '<i class="far fa-bullhorn"></i>' +
