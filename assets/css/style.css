@@ -670,9 +670,9 @@ label {
   z-index: 1;
 }
 .site-title-tagline {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 18px;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.5px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--theme-color);
   position: relative;
@@ -680,7 +680,7 @@ label {
 }
 .site-title-tagline i {
   line-height: 0;
-  font-size: 20px;
+  font-size: 22px;
 }
 .site-title {
   font-weight: 800;

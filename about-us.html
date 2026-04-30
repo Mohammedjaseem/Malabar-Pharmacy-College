@@ -61,6 +61,115 @@
     line-height: 1;
     margin-left: 4px;
   }
+  /* New style for centering counter boxes */
+  .counter-area .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .counter-area .col-lg-3 {
+    text-align: center;
+  }
+  /* Awards comment section styles */
+  .awards-comment-section {
+    margin-top: 40px;
+    text-align: center;
+    background: #f9f9f9;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+  }
+  .awards-comment-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--theme-color2);
+    margin-bottom: 15px;
+    font-family: var(--heading-font);
+  }
+  .awards-comment-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto 25px auto;
+  }
+  .comment-input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .comment-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s;
+  }
+  .comment-input:focus {
+    border-color: var(--theme-color);
+    box-shadow: 0 0 0 2px rgba(42,143,173,0.2);
+  }
+  .comment-submit-btn {
+    background: var(--theme-color);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .comment-submit-btn:hover {
+    background: var(--theme-color2);
+    transform: translateY(-2px);
+  }
+  .comments-list {
+    margin-top: 35px;
+    text-align: left;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .single-comment {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--theme-color);
+  }
+  .comment-author {
+    font-weight: 700;
+    color: var(--theme-color2);
+    margin-bottom: 5px;
+  }
+  .comment-date {
+    font-size: 12px;
+    color: #888;
+    margin-left: 10px;
+    font-weight: normal;
+  }
+  .comment-message {
+    color: #333;
+    margin-top: 5px;
+  }
+  .no-comments {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+    padding: 15px;
+  }
+  @media (max-width: 768px) {
+    .awards-comment-title { font-size: 22px; }
+    .comment-input-group { flex-direction: column; align-items: center; }
+    .comment-input { width: 100%; }
+  }
 </style>
 
     <header class="header">
@@ -86,7 +195,7 @@
                     <div class="header-top-contact-info">
                       <h6>Call Now</h6>
                         <a href="tel:+918943600017">+91 8943600017</a>,
-                        <a href="tel:+917034555563">+91 7034555563</a>
+                        <a href="tel:+917736311182">+91 7736311182</a>
                     </div>
                   </li>
                 </ul>
@@ -258,11 +367,11 @@
                             >Pharmaceutical Analysis</a
                           >
                         </li>
-                        <li>
+                        <!-- <li>
                           <a class="dropdown-item" href="computer-application.html"
                             >Computer Application</a
                           >
-                        </li>
+                        </li> -->
                       </ul>
                     </li>
                     <li>
@@ -439,18 +548,19 @@
         style="background-color: #f2f2f2; padding: 20px"
       >
         <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="affiliation-recognition-title">
-                Affiliation & Recognition
-              </h3>
-              <p class="affiliation-recognition-text">
-                Malabar College of Pharmacy is affiliated to Kerala University
-                of Health Sciences and recognized by Pharmacy Council of India.
-              </p>
-            </div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="affiliation-recognition-title">
+        Affiliation & Approval
+      </h3>
+      <p class="affiliation-recognition-text">
+        Malabar College of Pharmacy is affiliated to Kerala University
+        of Health Sciences and approved by Pharmacy Council of India and
+        Directorate of Medical Education (DME).
+      </p>
+    </div>
+  </div>
+</div>
       </div>
 
       <div class="about-area py-120">
@@ -466,7 +576,7 @@
                     <img src="assets/img/icon/exchange-idea.svg" alt="" />
                   </div>
                   <b class="text-start"
-                    >30 Years Of <br />
+                    >19+ Years Of <br />
                     Quality Service</b
                   >
                 </div>
@@ -753,9 +863,11 @@
         </div>
       </div>
 
+<!-- Counter Area with Three Boxes Centered + Awards Comment Section -->
 <div class="counter-area pt-60 pb-60">
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
+      <!-- Total Course -->
       <div class="col-lg-3 col-sm-6">
         <div class="counter-box">
           <div class="icon">
@@ -763,18 +875,13 @@
           </div>
           <div>
             <div class="counter-wrap">
-              <span
-                class="counter"
-                data-count="+"
-                data-to="2"
-                data-speed="1000"
-                >2</span
-              ><span class="counter-plus">+</span>
+              <span class="counter" data-count="+" data-to="2" data-speed="1000">2</span><span class="counter-plus">+</span>
             </div>
             <h6 class="title">Total Course</h6>
           </div>
         </div>
       </div>
+      <!-- Our Students -->
       <div class="col-lg-3 col-sm-6">
         <div class="counter-box">
           <div class="icon">
@@ -782,18 +889,13 @@
           </div>
           <div>
             <div class="counter-wrap">
-              <span
-                class="counter"
-                data-count="+"
-                data-to="200"
-                data-speed="1000"
-                >200</span
-              ><span class="counter-plus">+</span>
+              <span class="counter" data-count="+" data-to="200" data-speed="1000">200</span><span class="counter-plus">+</span>
             </div>
             <h6 class="title">Our Students</h6>
           </div>
         </div>
       </div>
+      <!-- Skilled Lecturers -->
       <div class="col-lg-3 col-sm-6">
         <div class="counter-box">
           <div class="icon">
@@ -801,323 +903,16 @@
           </div>
           <div>
             <div class="counter-wrap">
-              <span
-                class="counter"
-                data-count="+"
-                data-to="20"
-                data-speed="1000"
-                >20</span
-              ><span class="counter-plus">+</span>
+              <span class="counter" data-count="+" data-to="20" data-speed="1000">20</span><span class="counter-plus">+</span>
             </div>
             <h6 class="title">Skilled Lecturers</h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="counter-box">
-          <div class="icon">
-            <img src="assets/img/icon/award.svg" alt />
-          </div>
-          <div>
-            <div class="counter-wrap">
-              <span
-                class="counter"
-                data-count="+"
-                data-to="0"
-                data-speed="1000"
-                >0</span
-              ><span class="counter-plus">+</span>
-            </div>
-            <h6 class="title">Win Awards</h6>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-      <!-- <div class="testimonial-area bg py-120">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 mx-auto">
-              <div class="site-heading text-center">
-                <span class="site-title-tagline"
-                  ><i class="far fa-book-open-reader"></i> Testimonials</span
-                >
-                <h2 class="site-title">What Our Students <span>Say's</span></h2>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-slider owl-carousel owl-theme">
-            <div class="testimonial-single">
-              <div class="testimonial-rate">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="testimonial-quote">
-                <p>
-                  There are many variations of passages available but the
-                  majority have suffered alteration in some form by injected
-                  humour randomised words slightly believable.
-                </p>
-              </div>
-              <div class="testimonial-content">
-                <div class="testimonial-author-img">
-                  <img src="assets/img/testimonial/01.jpg" alt />
-                </div>
-                <div class="testimonial-author-info">
-                  <h4>Anthony Nicoll</h4>
-                  <p>Student</p>
-                </div>
-              </div>
-              <span class="testimonial-quote-icon"
-                ><i class="far fa-quote-right"></i
-              ></span>
-            </div>
-            <div class="testimonial-single">
-              <div class="testimonial-rate">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="testimonial-quote">
-                <p>
-                  There are many variations of passages available but the
-                  majority have suffered alteration in some form by injected
-                  humour randomised words slightly believable.
-                </p>
-              </div>
-              <div class="testimonial-content">
-                <div class="testimonial-author-img">
-                  <img src="assets/img/testimonial/02.jpg" alt />
-                </div>
-                <div class="testimonial-author-info">
-                  <h4>Richard Lock</h4>
-                  <p>Student</p>
-                </div>
-              </div>
-              <span class="testimonial-quote-icon"
-                ><i class="far fa-quote-right"></i
-              ></span>
-            </div>
-            <div class="testimonial-single">
-              <div class="testimonial-rate">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="testimonial-quote">
-                <p>
-                  There are many variations of passages available but the
-                  majority have suffered alteration in some form by injected
-                  humour randomised words slightly believable.
-                </p>
-              </div>
-              <div class="testimonial-content">
-                <div class="testimonial-author-img">
-                  <img src="assets/img/testimonial/03.jpg" alt />
-                </div>
-                <div class="testimonial-author-info">
-                  <h4>Randal Grand</h4>
-                  <p>Student</p>
-                </div>
-              </div>
-              <span class="testimonial-quote-icon"
-                ><i class="far fa-quote-right"></i
-              ></span>
-            </div>
-            <div class="testimonial-single">
-              <div class="testimonial-rate">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="testimonial-quote">
-                <p>
-                  There are many variations of passages available but the
-                  majority have suffered alteration in some form by injected
-                  humour randomised words slightly believable.
-                </p>
-              </div>
-              <div class="testimonial-content">
-                <div class="testimonial-author-img">
-                  <img src="assets/img/testimonial/04.jpg" alt />
-                </div>
-                <div class="testimonial-author-info">
-                  <h4>Edward Miles</h4>
-                  <p>Student</p>
-                </div>
-              </div>
-              <span class="testimonial-quote-icon"
-                ><i class="far fa-quote-right"></i
-              ></span>
-            </div>
-            <div class="testimonial-single">
-              <div class="testimonial-rate">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="testimonial-quote">
-                <p>
-                  There are many variations of passages available but the
-                  majority have suffered alteration in some form by injected
-                  humour randomised words slightly believable.
-                </p>
-              </div>
-              <div class="testimonial-content">
-                <div class="testimonial-author-img">
-                  <img src="assets/img/testimonial/05.jpg" alt />
-                </div>
-                <div class="testimonial-author-info">
-                  <h4>Ninal Gordon</h4>
-                  <p>Student</p>
-                </div>
-              </div>
-              <span class="testimonial-quote-icon"
-                ><i class="far fa-quote-right"></i
-              ></span>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
-      <!-- <div class="team-area py-120">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 mx-auto">
-              <div class="site-heading text-center">
-                <span class="site-title-tagline"
-                  ><i class="far fa-book-open-reader"></i> Our Teachers</span
-                >
-                <h2 class="site-title">Meet With Our <span>Teachers</span></h2>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 col-lg-3">
-              <div class="team-item wow fadeInUp" data-wow-delay=".25s">
-                <div class="team-img">
-                  <img src="assets/img/team/01.jpg" alt="thumb" />
-                </div>
-                <div class="team-social">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-                <div class="team-content">
-                  <div class="team-bio">
-                    <h5><a href="#">Angela T. Vigil</a></h5>
-                    <span>Associate Professor</span>
-                  </div>
-                </div>
-                <span class="team-social-btn"
-                  ><i class="far fa-share-nodes"></i
-                ></span>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="team-item wow fadeInUp" data-wow-delay=".50s">
-                <div class="team-img">
-                  <img src="assets/img/team/02.jpg" alt="thumb" />
-                </div>
-                <div class="team-social">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-                <div class="team-content">
-                  <div class="team-bio">
-                    <h5><a href="#">Frank A. Mitchell</a></h5>
-                    <span>Associate Professor</span>
-                  </div>
-                </div>
-                <span class="team-social-btn"
-                  ><i class="far fa-share-nodes"></i
-                ></span>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="team-item wow fadeInUp" data-wow-delay=".75s">
-                <div class="team-img">
-                  <img src="assets/img/team/03.jpg" alt="thumb" />
-                </div>
-                <div class="team-social">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-                <div class="team-content">
-                  <div class="team-bio">
-                    <h5><a href="#">Susan D. Lunsford</a></h5>
-                    <span>CEO & Founder</span>
-                  </div>
-                </div>
-                <span class="team-social-btn"
-                  ><i class="far fa-share-nodes"></i
-                ></span>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="team-item wow fadeInUp" data-wow-delay="1s">
-                <div class="team-img">
-                  <img src="assets/img/team/04.jpg" alt="thumb" />
-                </div>
-                <div class="team-social">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-                <div class="team-content">
-                  <div class="team-bio">
-                    <h5><a href="#">Dennis A. Pruitt</a></h5>
-                    <span>Associate Professor</span>
-                  </div>
-                </div>
-                <span class="team-social-btn"
-                  ><i class="far fa-share-nodes"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <div class="partner-area bg pt-50 pb-50">
-        <div class="container">
-          <div class="partner-wrapper partner-slider owl-carousel owl-theme">
-            <img src="assets/img/partner/01.png" alt="thumb" />
-            <img src="assets/img/partner/01.png" alt="thumb" />
-            <img src="assets/img/partner/01.png" alt="thumb" />
-            <img src="assets/img/partner/01.png" alt="thumb" />
-            <img src="assets/img/partner/01.png" alt="thumb" />
-            <img src="assets/img/partner/01.png" alt="thumb" />
-            <img src="assets/img/partner/01.png" alt="thumb" />
-          </div>
-        </div>
-      </div> -->
     </main>
 
     <footer class="footer-area">
@@ -1129,14 +924,6 @@
           <div class="row footer-widget-wrapper pt-100 pb-70">
             <div class="col-md-6 col-lg-4">
               <div class="footer-widget-box about-us">
-                <!-- <a href="/" class="footer-logo">
-                    <span style="font-size: larger; color: #125875; font-weight: bolder;">Malabar College of Pharmacy</span>
-                  </a> -->
-                <!-- <p class="mb-3">
-                    We are many variations of passages available but the majority
-                    have suffered alteration in some form by injected humour words
-                    believable.
-                  </p> -->
                 <h4 class="footer-widget-title">Contact Us</h4>
                 <ul class="footer-contact">
                   <li>
@@ -1148,8 +935,8 @@
                     <a href="tel:+918943600017"
                       ><i class="far fa-phone"></i>+91 8943600017</a
                     >,
-                    <a href="tel:+917034555563"
-                      >+91 7034555563</a
+                    <a href="tel:+917736311182"
+                      >+91 7736311182</a
                     >
                   </li>
                   <li>
@@ -1175,71 +962,14 @@
                       ><i class="fas fa-caret-right"></i> About Us</a
                     >
                   </li>
-                  <!-- <li>
-                      <a href="#"><i class="fas fa-caret-right"></i> FAQ's</a>
-                    </li> -->
                   <li>
                     <a href="index.html#testimonial"
                       ><i class="fas fa-caret-right"></i> Testimonials</a
                     >
                   </li>
-                  <!-- <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Terms Of Service</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Privacy policy</a
-                      >
-                    </li> -->
-                  <!-- <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Update News</a
-                      >
-                    </li> -->
                 </ul>
               </div>
             </div>
-            <!-- <div class="col-md-6 col-lg-3">
-              <div class="footer-widget-box list">
-                <h4 class="footer-widget-title">Our Campus</h4>
-                <ul class="footer-list">
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Campus Safety</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Student Activities</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Academic Department</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Planning &
-                      Administration</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Office Of The
-                      Chancellor</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Facility Services</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div> -->
             <div class="col-md-6 col-lg-3">
               <div class="footer-widget-box list">
                 <h4 class="footer-widget-title">Newsletter</h4>
@@ -1271,7 +1001,7 @@
           <div class="copyright-wrapper">
             <div class="row">
               <div class="col-md-6 align-self-center">
-                <span>Last updated on 27-04-2026</span>                <p class="copyright-text">
+                <span>Last updated on 30-04-2026</span>                <p class="copyright-text">
                   &copy; Copyright <span id="date"></span>
                   <a href="https://bizforz.com/" target="_blank">Bizforz Solutions Pvt Ltd</a> All
                   Rights Reserved.
@@ -1315,7 +1045,94 @@
     <script src="assets/js/counter-up.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
-  </body>
+    
+    <!-- Local storage comments script for awards section -->
+    <script>
+      (function() {
+        const STORAGE_KEY = 'mcp_awards_comments';
+        let comments = [];
 
-  <!-- Mirrored from live.themewild.com/edubo/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:26:27 GMT -->
+        function loadComments() {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if(stored) {
+            try {
+              comments = JSON.parse(stored);
+            } catch(e) { comments = []; }
+          } else {
+            comments = [];
+          }
+          renderComments();
+        }
+
+        function saveComments() {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+          renderComments();
+        }
+
+        function renderComments() {
+          const container = document.getElementById('commentsListContainer');
+          if(!container) return;
+          if(comments.length === 0) {
+            container.innerHTML = '<div class="no-comments">No comments yet. Be the first to appreciate our awards! ✨</div>';
+            return;
+          }
+          let html = '';
+          comments.forEach(comment => {
+            html += `
+              <div class="single-comment">
+                <div class="comment-author">${escapeHtml(comment.name)} <span class="comment-date">${comment.date}</span></div>
+                <div class="comment-message">${escapeHtml(comment.message)}</div>
+              </div>
+            `;
+          });
+          container.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+          if(!str) return '';
+          return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+          }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+          });
+        }
+
+        function addComment(name, message) {
+          if(!name.trim() || !message.trim()) {
+            alert("Please enter both name and comment.");
+            return false;
+          }
+          const now = new Date();
+          const dateStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+          comments.unshift({
+            name: name.trim(),
+            message: message.trim(),
+            date: dateStr
+          });
+          saveComments();
+          return true;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+          loadComments();
+          const submitBtn = document.getElementById('submitCommentBtn');
+          const nameInput = document.getElementById('commentNameInput');
+          const msgInput = document.getElementById('commentMessageInput');
+          if(submitBtn) {
+            submitBtn.addEventListener('click', function() {
+              const name = nameInput ? nameInput.value : '';
+              const message = msgInput ? msgInput.value : '';
+              if(addComment(name, message)) {
+                if(nameInput) nameInput.value = '';
+                if(msgInput) msgInput.value = '';
+              }
+            });
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>
