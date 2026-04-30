@@ -700,6 +700,10 @@
         top: 40px;
         right: -20px;
       }
+      .hero-float-card.card-3 {
+        bottom: -20px;
+  right: -20px;
+}
       .hero-float-icon {
         width: 48px;
         height: 48px;
@@ -1453,6 +1457,199 @@
       .contact-info-item a:hover {
         color: var(--primary);
       }
+
+      /* ========== QUICK CONTACT CARDS ========== */
+.quick-contact-wrap {
+  background: linear-gradient(135deg, var(--off-white) 0%, var(--light-bg) 100%);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  border: 1px solid var(--gray-200);
+}
+.quick-contact-heading {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--gray-900);
+}
+.quick-contact-sub {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+.quick-contact-grid {
+  display: grid;
+  gap: 16px;
+}
+.quick-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 22px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.quick-contact-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: var(--transition);
+  transform-origin: bottom;
+}
+.quick-contact-card:hover {
+  transform: translateX(6px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+.quick-contact-card:hover::before {
+  transform: scaleY(1);
+}
+
+/* WhatsApp Card */
+.whatsapp-card::before { background: #25d366; }
+.whatsapp-card:hover { background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%); }
+
+/* Call Cards */
+.call-card::before { background: var(--primary); }
+.call-card-2::before { background: var(--primary-light); }
+
+/* Email Card */
+.email-card::before { background: var(--accent); }
+
+.qc-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.whatsapp-icon {
+  background: #e7f9ee;
+  color: #25d366;
+}
+.call-icon {
+  background: var(--light-bg);
+  color: var(--primary);
+}
+.call-icon-2 {
+  background: rgba(26, 125, 168, 0.12);
+  color: var(--primary-light);
+}
+.email-icon {
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--accent-dark);
+}
+.quick-contact-card:hover .qc-icon-wrap {
+  transform: scale(1.08);
+}
+.whatsapp-card:hover .whatsapp-icon {
+  background: #25d366;
+  color: var(--white);
+}
+.call-card:hover .call-icon {
+  background: var(--primary);
+  color: var(--white);
+}
+.call-card-2:hover .call-icon-2 {
+  background: var(--primary-light);
+  color: var(--white);
+}
+.email-card:hover .email-icon {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.qc-content {
+  flex: 1;
+  min-width: 0;
+}
+.qc-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+.qc-content h4 {
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.qc-content p {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+.qc-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--light-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.quick-contact-card:hover .qc-arrow {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateX(4px);
+}
+.whatsapp-card:hover .qc-arrow {
+  background: #25d366;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .quick-contact-wrap {
+    padding: 24px;
+  }
+  .quick-contact-heading {
+    font-size: 1.2rem;
+  }
+  .quick-contact-card {
+    padding: 16px;
+    gap: 14px;
+  }
+  .qc-icon-wrap {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+  .qc-content h4 {
+    font-size: 0.98rem;
+  }
+  .qc-content p {
+    font-size: 0.78rem;
+  }
+  .qc-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+}
 
       .map-wrap {
         border-radius: var(--radius-md);
@@ -2682,8 +2879,8 @@
             <a href="tel:+918943600017"
               ><i class="fas fa-phone"></i> +91 8943600017</a
             >
-            <a href="tel:+917034555563"
-              ><i class="fas fa-phone"></i> +91 7034555563</a
+            <a href="tel:+917736311182"
+              ><i class="fas fa-phone"></i> +91 7736311182</a
             >
           </div>
           <div class="top-bar-social">
@@ -2781,11 +2978,11 @@
                         >Pharmaceutical Analysis</a
                       >
                     </li>
-                    <li>
+                    <!-- <li>
                       <a href="computer-application.html"
                         >Computer Application</a
                       >
-                    </li>
+                    </li> -->
                   </ul>
                 </li>
                 <li><a href="library.html">Library</a></li>
@@ -2874,7 +3071,6 @@
       <div class="mobile-nav-header">
         <div class="mobile-nav-logo">
           <img src="assets/img/logo/logo.png" alt="MCP" />
-          <span>Malabar College<br />of Pharmacy</span>
         </div>
         <button
           class="mobile-nav-close"
@@ -2927,9 +3123,9 @@
           <a href="pharmaceutical-analysis.html"
             ><i class="fas fa-vials"></i> Pharmaceutical Analysis</a
           >
-          <a href="computer-application.html"
+          <!-- <a href="computer-application.html"
             ><i class="fas fa-laptop-code"></i> Computer Application</a
-          >
+          > -->
 
           <span class="nav-section-label">Administration</span>
           <a href="/about-us.html#board-of-directors"
@@ -2997,9 +3193,9 @@
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content" data-aos="fade-up" data-aos-duration="600">
-            <div class="hero-badge">
+            <!-- <div class="hero-badge">
               <i class="fas fa-graduation-cap"></i> Admissions Open 2026-27
-            </div>
+            </div> -->
             <h1 class="hero-title">
               Leading Innovation in <br /><span class="highlight"
                 >Pharmaceutical Education</span
@@ -3020,8 +3216,8 @@
             </div>
             <div class="hero-stats">
               <div class="hero-stat-item">
-                <h3>17+</h3>
-                <p>Years of Excellence</p>
+                <h3>19+</h3>
+                <p>Years of Group Legacy</p>
               </div>
               <div class="hero-stat-item">
                 <h3>60+</h3>
@@ -3071,6 +3267,19 @@
                 <p>Kerala University of Health Sciences</p>
               </div>
             </div>
+            <div
+  class="hero-float-card card-3"
+  data-aos="fade-up"
+  data-aos-delay="1000"
+>
+  <div class="hero-float-icon green">
+    <i class="fas fa-user-md"></i>
+  </div>
+  <div class="hero-float-text">
+    <h5>DME Approved</h5>
+    <p>Directorate of Medical Education</p>
+  </div>
+</div>
           </div>
         </div>
       </div>
@@ -3079,10 +3288,10 @@
     <!-- ===== MARQUEE ===== -->
     <div class="marquee-bar">
       <div class="marquee-track">
-        <span
+        <!-- <span
           ><i class="fas fa-circle"></i> Admissions Open for B.Pharm
           2025-26</span
-        >
+        > -->
         <span
           ><i class="fas fa-circle"></i> Affiliated to Kerala University of
           Health Sciences</span
@@ -3091,6 +3300,13 @@
           ><i class="fas fa-circle"></i> Approved by Pharmacy Council of
           India</span
         >
+        <span
+          ><i class="fas fa-circle"></i> Approved by Directorate of Medical Education</span
+        >
+<span
+  ><i class="fas fa-circle"></i> Established in 2024 — Part of Malabar
+  Academic City</span
+>
         <span
           ><i class="fas fa-circle"></i> State-of-the-Art Laboratory
           Facilities</span
@@ -3103,10 +3319,10 @@
           1800-180-5522</span
         >
         <!-- Duplicate for seamless loop -->
-        <span
+        <!-- <span
           ><i class="fas fa-circle"></i> Admissions Open for B.Pharm
           2025-26</span
-        >
+        > -->
         <span
           ><i class="fas fa-circle"></i> Affiliated to Kerala University of
           Health Sciences</span
@@ -3115,6 +3331,13 @@
           ><i class="fas fa-circle"></i> Approved by Pharmacy Council of
           India</span
         >
+        <span
+          ><i class="fas fa-circle"></i> Approved by Directorate of Medical Education</span
+        >
+<span
+  ><i class="fas fa-circle"></i> Established in 2024 — Part of Malabar
+  Academic City</span
+>
         <span
           ><i class="fas fa-circle"></i> State-of-the-Art Laboratory
           Facilities</span
@@ -3141,6 +3364,10 @@
             <i class="fas fa-shield-alt"></i>
             Approved by Pharmacy Council of India (PCI)
           </div>
+          <div class="affiliation-item">
+            <i class="fas fa-user-md"></i>
+            Approved by Directorate of Medical Education (DME)
+          </div>
         </div>
       </div>
     </div>
@@ -3154,9 +3381,9 @@
               <img src="assets/img/slider/mcpAi.png" alt="About MCP" />
             </div>
             <div class="about-experience-badge">
-              <h3>17+</h3>
-              <p>Years of<br />Excellence</p>
-            </div>
+  <h3>19+</h3>
+  <p>Years of<br />Group Legacy</p>
+</div>
           </div>
           <div
             class="about-text-content"
@@ -3171,12 +3398,13 @@
               Nurturing Future Pharmacists With <span>Excellence</span>
             </h2>
             <p class="about-paragraph">
-              Malabar College of Pharmacy is dedicated to excellence in pharmacy
-              education, research, and community service. Our state-of-the-art
-              facilities, experienced faculty, and robust curriculum equip
-              students with the knowledge and skills necessary for a successful
-              career in pharmacy.
-            </p>
+  Established in <strong>2024</strong> under the prestigious Malabar
+  Academic City group (with 19+ years of legacy in education), Malabar
+  College of Pharmacy is dedicated to excellence in pharmacy education,
+  research, and community service. Our state-of-the-art facilities,
+  experienced faculty, and robust curriculum equip students with the
+  knowledge and skills necessary for a successful career in pharmacy.
+</p>
             <div class="about-features">
               <div class="about-feature">
                 <div class="about-feature-icon">
@@ -3485,7 +3713,7 @@
             <h4>Pharmaceutical Analysis</h4>
             <p>Quality control, analytical methods and instrumentation.</p>
           </a>
-          <a
+          <!-- <a
             href="computer-application.html"
             class="dept-card"
             data-aos="fade-up"
@@ -3494,7 +3722,7 @@
             <div class="dept-icon"><i class="fas fa-laptop-code"></i></div>
             <h4>Computer Application</h4>
             <p>Digital tools and technology in pharmaceutical sciences.</p>
-          </a>
+          </a> -->
         </div>
       </div>
     </section>
@@ -3699,22 +3927,22 @@
           </div>
         </div>
         <div class="partners-grid">
-          <a href="https://mdcrc.edu.in/"
+          <a target="_blank" href="https://mdcrc.edu.in/"
             ><img src="assets/img/partner/Partner_1.png" alt="MDCRC"
           /></a>
-          <a href="https://ekc.edu.in/"
+          <a target="_blank" href="https://ekc.edu.in/"
             ><img src="assets/img/partner/Partner_2.png" alt="EKC"
           /></a>
-          <a href="https://edentu.com/"
+          <a target="_blank" href="https://edentu.com/"
             ><img src="assets/img/partner/Partner_4.png" alt="Edentu"
           /></a>
-          <a href="https://levalorhealth.com/"
-            ><img src="assets/img/partner/Partner_5.png" alt="Levalor Health"
+          <a target="_blank" href="https://macityhospital.com/"
+            ><img src="assets/img/partner/Partner_5.png" alt="MACITY Hospital"
           /></a>
-          <a href="https://malabarccs.edu.in/"
+          <a target="_blank" href="https://malabarccs.edu.in/"
             ><img src="assets/img/partner/Partner_6.png" alt="MCCS"
           /></a>
-          <a href="https://alameen.edu.in/"
+          <a target="_blank" href="https://alameen.edu.in/"
             ><img src="assets/img/partner/Partner_7.png" alt="Alameen"
           /></a>
         </div>
@@ -3722,131 +3950,136 @@
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section class="contact-cta-section section-pad" id="contact">
-      <div class="container">
-        <div class="text-center" data-aos="fade-up" style="margin-bottom: 48px">
-          <div class="section-label">
-            <i class="fas fa-envelope"></i> Contact Us
-          </div>
-          <h2 class="section-title">Get In <span>Touch</span></h2>
-          <p class="section-desc">
-            We value your inquiries. Reach out to us and we will respond
-            promptly.
-          </p>
-        </div>
-        <div class="contact-cta-grid">
-          <div class="contact-form-wrap" data-aos="fade-up">
-            <h3>Send Us a Message</h3>
-            <p>Fill in the form below and we'll get back to you shortly.</p>
-            <form
-              action="https://formsubmit.co/itmanager@edentu.com"
-              method="POST"
-            >
-              <div class="form-row">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="Subject"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <textarea
-                  name="message"
-                  placeholder="Your Message"
-                  rows="5"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                style="width: 100%; justify-content: center"
-              >
-                Send Message <i class="fas fa-paper-plane"></i>
-              </button>
-            </form>
-          </div>
-          <div
-            class="contact-info-side"
-            data-aos="fade-up"
-            data-aos-delay="100"
+<section class="contact-cta-section section-pad" id="contact">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up" style="margin-bottom: 48px">
+      <div class="section-label">
+        <i class="fas fa-envelope"></i> Contact Us
+      </div>
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <p class="section-desc">
+        We value your inquiries. Reach out to us instantly via WhatsApp or
+        Call — we'll respond promptly.
+      </p>
+    </div>
+    <div class="contact-cta-grid">
+      <!-- LEFT: Quick Contact Cards -->
+      <div class="quick-contact-wrap" data-aos="fade-up">
+        <h3 class="quick-contact-heading">Reach Us Instantly</h3>
+        <p class="quick-contact-sub">
+          Have a question? Talk to our admissions team directly.
+        </p>
+
+        <div class="quick-contact-grid">
+          <!-- WhatsApp Card -->
+          <a
+            href="https://wa.me/918943600017?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20MCP%20admissions"
+            target="_blank"
+            class="quick-contact-card whatsapp-card"
           >
-            <h3>Contact Information</h3>
-            <div class="contact-info-list">
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <div>
-                  <h5>Our Location</h5>
-                  <p>
-                    Manoor - Chekanoor Road, Manoor, Edappal,<br />Malappuram,
-                    Kerala 679578
-                  </p>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <i class="fas fa-phone-alt"></i>
-                </div>
-                <div>
-                  <h5>Phone Numbers</h5>
-                  <p>
-                    <a href="tel:+918943600017">+91 8943600017</a><br />
-                    <a href="tel:+917034555563">+91 7034555563</a>
-                  </p>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <i class="fas fa-envelope"></i>
-                </div>
-                <div>
-                  <h5>Email Address</h5>
-                  <a href="mailto:mcp@macity.edu.in">mcp@macity.edu.in</a>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <i class="fas fa-phone"></i>
-                </div>
-                <div>
-                  <h5>Anti-Ragging Helpline</h5>
-                  <a href="tel:1800180552">1800-180-5522 (Toll Free)</a>
-                </div>
-              </div>
+            <div class="qc-icon-wrap whatsapp-icon">
+              <i class="fab fa-whatsapp"></i>
             </div>
-            <div class="map-wrap">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.001384223867!2d76.02709107480545!3d10.8112051893397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7b9b826254cbf%3A0xfbf72ddb9d67a5aa!2sMalabar%20College%20Of%20Pharmacy!5e0!3m2!1sen!2sin!4v1736769162505!5m2!1sen!2sin"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              >
-              </iframe>
+            <div class="qc-content">
+              <span class="qc-label">Chat on WhatsApp</span>
+              <h4>+91 8943600017</h4>
+              <p>Quick replies • Available 8:30 AM – 4:00 PM</p>
             </div>
-          </div>
+            <div class="qc-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <!-- Call Card -->
+          <a href="tel:+918943600017" class="quick-contact-card call-card">
+            <div class="qc-icon-wrap call-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="qc-content">
+              <span class="qc-label">Call Admissions</span>
+              <h4>+91 8943600017</h4>
+              <p>Speak directly with our team</p>
+            </div>
+            <div class="qc-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <!-- Secondary Call Card -->
+          <a href="tel:+917736311182" class="quick-contact-card call-card-2">
+            <div class="qc-icon-wrap call-icon-2">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="qc-content">
+              <span class="qc-label">Office Helpline</span>
+              <h4>+91 7736311182</h4>
+              <p>General enquiries & support</p>
+            </div>
+            <div class="qc-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <!-- Email Card -->
+          <a href="mailto:mcp@macity.edu.in" class="quick-contact-card email-card">
+            <div class="qc-icon-wrap email-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="qc-content">
+              <span class="qc-label">Email Us</span>
+              <h4>mcp@macity.edu.in</h4>
+              <p>For detailed enquiries</p>
+            </div>
+            <div class="qc-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
         </div>
       </div>
-    </section>
+
+      <!-- RIGHT: Contact Info + Map -->
+      <div class="contact-info-side" data-aos="fade-up" data-aos-delay="100">
+        <h3>Contact Information</h3>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h5>Our Location</h5>
+              <p>
+                Manoor - Chekanoor Road, Manoor, Edappal,<br />Malappuram,
+                Kerala 679578
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h5>Office Hours</h5>
+              <p>
+                Monday – Saturday: 8:30 AM – 4:00 PM<br />
+                Sunday: Closed
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div>
+              <h5>Anti-Ragging Helpline</h5>
+              <a href="tel:18001805522">1800-180-5522 (Toll Free)</a>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.001384223867!2d76.02709107480545!3d10.8112051893397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7b9b826254cbf%3A0xfbf72ddb9d67a5aa!2sMalabar%20College%20Of%20Pharmacy!5e0!3m2!1sen!2sin!4v1736769162505!5m2!1sen!2sin"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
@@ -3859,7 +4092,7 @@
             <p>
               Dedicated to excellence in pharmacy education, research, and
               community service. Shaping the future of pharmaceutical
-              professionals since 2008.
+              professionals since 2024.
             </p>
             <div class="footer-social">
               <a
@@ -3917,7 +4150,7 @@
         </div>
         <div class="footer-bottom">
           <p>
-            Last updated on 27-04-2026 &nbsp;|&nbsp; &copy;
+            Last updated on 30-04-2026 &nbsp;|&nbsp; &copy;
             <span id="year"></span> Malabar College of Pharmacy. Developed by
             <a href="https://bizforz.com/" target="_blank">Bizforz Solutions</a>
           </p>
@@ -3936,7 +4169,7 @@
 
     <!-- Floating Contact Buttons -->
     <div class="floating-contact">
-      <a href="tel:+917034555563" class="fab-btn fab-call" aria-label="Call Us">
+      <a href="tel:+917736311182" class="fab-btn fab-call" aria-label="Call Us">
         <i class="fas fa-phone-alt"></i>
         <span class="fab-tooltip">Call Us</span>
       </a>

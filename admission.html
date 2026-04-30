@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <!-- Mirrored from live.themewild.com/edubo/alumni.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:27:19 GMT -->
   <head>
@@ -24,18 +24,101 @@
     <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Custom CSS for Admission Tabs -->
+    <style>
+      .admission-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        background: #f2f3f5;
+        padding: 12px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px !important;
+      }
+
+      .admission-tabs .nav-item {
+        flex: 1;
+        min-width: 160px;
+      }
+
+      .admission-tabs .nav-link {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #125875;
+        background: #ffffff;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .admission-tabs .nav-link i {
+        margin-right: 8px;
+        font-size: 18px;
+      }
+
+      .admission-tabs .nav-link:hover {
+        color: #2a8fad;
+        border-color: #2a8fad;
+        transform: translateY(-2px);
+      }
+
+      .admission-tabs .nav-link.active {
+        color: #ffffff;
+        background: linear-gradient(135deg, #2a8fad 0%, #125875 100%);
+        border-color: #125875;
+        box-shadow: 0 6px 14px rgba(18, 88, 117, 0.3);
+      }
+
+      .admission-tabs .nav-link.active i {
+        color: #ffffff;
+      }
+
+      .tab-content > .tab-pane {
+        animation: fadeInTab 0.4s ease-in-out;
+      }
+
+      @keyframes fadeInTab {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 576px) {
+        .admission-tabs .nav-item {
+          min-width: 100%;
+        }
+        .admission-tabs .nav-link {
+          padding: 12px 18px;
+          font-size: 14px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="preloader" id="preloader">
-  <div class="mcp-loader">
-    <div class="mcp-loader-ring"></div>
-    <div class="mcp-loader-ring mcp-loader-ring-2"></div>
-    <div class="mcp-loader-logo">
-      <img src="assets/img/logo/logo.png" alt="MCP" />
+      <div class="mcp-loader">
+        <div class="mcp-loader-ring"></div>
+        <div class="mcp-loader-ring mcp-loader-ring-2"></div>
+        <div class="mcp-loader-logo">
+          <img src="assets/img/logo/logo.png" alt="MCP" />
+        </div>
+      </div>
+      <div class="mcp-loader-text">Malabar College of Pharmacy</div>
     </div>
-  </div>
-  <div class="mcp-loader-text">Malabar College of Pharmacy</div>
-</div>
 
     <header class="header">
       <div class="header-top">
@@ -59,8 +142,8 @@
                     </div>
                     <div class="header-top-contact-info">
                       <h6>Call Now</h6>
-                        <a href="tel:+918943600017">+91 8943600017</a>,
-                        <a href="tel:+917034555563">+91 7034555563</a>
+                      <a href="tel:+918943600017">+91 8943600017</a>,
+                      <a href="tel:+917736311182">+91 7736311182</a>
                     </div>
                   </li>
                 </ul>
@@ -90,23 +173,13 @@
                 alt="Malabar College of Pharmacy Logo"
                 class="mcp_logo"
               />
-              <!-- <span>Malabar College of Pharmacy</span> -->
             </a>
             <div class="mobile-menu-right">
-             <div class="search-btn">
+              <div class="search-btn">
                 <button type="button" class="nav-right-link search-box-outer">
                   <i class="far fa-search"></i>
                 </button>
               </div>
-                           <!-- <div class="nav-right-btn mt-2">
-                <a
-                  href="login.html"
-                  class="theme-btn"
-                  style="padding: 8px 10px"
-                >
-                  Apply Now
-                </a>
-              </div> -->
 
               <button
                 class="navbar-toggler"
@@ -136,23 +209,8 @@
                         >About Us: Overview</a
                       >
                     </li>
-                    <!-- <li><a class="dropdown-item" href="act-and-statutes-or-moa.html">Act and Statutes or MOA</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="institutional-development-plan.html">Institutional Development Plan</a></li> -->
-                    <!-- <li class="dropdown-submenu">
-                      <a class="dropdown-item dropdown-toggle" href="#">Accreditation/Ranking Status</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="naac.html">NAAC</a></li>
-                        <li><a class="dropdown-item" href="NAAC_Files/NIRF/NIRF_2023.pdf" target="_blank">NIRF 2023</a></li>
-                        <li><a class="dropdown-item" href="NAAC_Files/NIRF/NIRF_2022.pdf" target="_blank">NIRF 2022</a></li>
-                      </ul>
-                    </li> -->
-                    <!-- <li><a class="dropdown-item" href="recognition-approval.html">Recognition/Approval</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="annual-reports.html">Annual Reports</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="audited-accounts.html">Audited Accounts</a></li> -->
                   </ul>
                 </li>
-
-                 
 
                 <li class="nav-item dropdown">
                   <a
@@ -175,8 +233,6 @@
                         </li>
                       </ul>
                     </li>
-                    <!-- <li><a class="dropdown-item" href="/assets/MDCRC 2024 ACADEMIC CALENDER.pdf" target="_blank">Academic Calendar</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="/assets/ACADEMICPROSPECTS.pdf" target="_blank">Ordinances pertaining to <br>Academics/Examinations</a></li> -->
                     <li class="dropdown-submenu">
                       <a class="dropdown-item dropdown-toggle" href="#"
                         >Departments</a
@@ -234,9 +290,7 @@
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="gallery.html"
-                        >Gallery</a
-                      >
+                      <a class="dropdown-item" href="gallery.html">Gallery</a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="achievements.html"
@@ -244,9 +298,7 @@
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="events.html"
-                        >Events</a
-                      >
+                      <a class="dropdown-item" href="events.html">Events</a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="circulars.html"
@@ -274,7 +326,6 @@
                         >Admission Process And Guidelines</a
                       >
                     </li>
-                    <!-- <li><a class="dropdown-item" href="fund-refund-policy.html">Fund Refund Policy</a></li> -->
                   </ul>
                 </li>
 
@@ -348,17 +399,10 @@
                 <li class="nav-item">
                   <a class="nav-link" href="news.html">News</a>
                 </li>
-<li class="nav-item">
+                <li class="nav-item">
                   <a class="nav-link" href="notification.html">Notification</a>
                 </li>
-                                 <!-- <div class="nav-right">
-                  <div class="nav-right-btn mt-2">
-                    <a href="login.html" class="theme-btn"
-                      ><span class="fal fa-pencil"></span>Apply Now</a
-                    >
-                  </div>
-                </div> -->       
-         </ul>
+              </ul>
             </div>
           </div>
         </nav>
@@ -398,824 +442,618 @@
           <div class="row align-items-center">
             <div class="col-lg-12">
               <div class="content-info wow fadeInUp" data-wow-delay=".25s">
-                <div
-                  class="site-heading mb-3"
-                  style="
-                    background-color: #f2f3f5;
-                    padding: 10px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                  "
+                <!-- ============================================ -->
+                <!-- TAB NAVIGATION: B.Pharm / D.Pharm -->
+                <!-- ============================================ -->
+                <ul
+                  class="nav admission-tabs"
+                  id="admissionTabs"
+                  role="tablist"
                 >
-                  <h1
-                    class="site-title"
-                    style="font-size: 32px; font-weight: 600; color: #125875"
-                  >
-                    Admission
-                  </h1>
-                  <p style="font-size: 20px; color: #333; font-weight: 500">
-                    Malabar College of Pharmacy, approved by the Pharmacy
-                    Council of India and affiliated to Kerala University of
-                    Health Sciences, offers a Bachelor of Pharmacy (B.Pharm)
-                    with a duration of 4 years.
-                  </p>
-                </div>
-                <div class="site-heading mb-3">
-                  <span class="site-title-tagline"
-                    ><i class="far fa-book-open-reader"></i> B.Pharm
-                    Course</span
-                  >
-                </div>
-                <p class="content-text">
-                  Selection of candidates for admission to B.Pharm course in
-                  Malabar College of Pharmacy will be purely on a merit basis.
-                  Details pertaining to admission are as follows.
-                </p>
-                <div class="site-heading mb-3">
-                  <span class="site-title-tagline"
-                    ><i class="far fa-book-open-reader"></i> Details of
-                    Seats</span
-                  >
-                </div>
-                <p class="content-text mt-2">
-                  Total Number of Seats: 60, with 30 seats open to all
-                  candidates under General Merit and 30 seats available through
-                  Management Quota. All applicants are eligible to be considered
-                  under General Merit.
-                </p>
-                <div class="site-heading mb-3">
-                  <span class="site-title-tagline"
-                    ><i class="far fa-book-open-reader"></i> Eligibility for
-                    Admission</span
-                  >
-                </div>
-                <p class="content-text mt-2">
-                  <strong>Citizenship:</strong> Only Indian nationals are
-                  eligible to apply.<br />
-                  <strong>Academic Qualification:</strong> Applicants must have
-                  successfully completed the Higher Secondary Examination in
-                  Kerala or an equivalent examination, securing a minimum of 50%
-                  in Physics, Chemistry, and Biology/Mathematics.<br />
-                  <strong>Age:</strong> Candidates must be at least 17 years old
-                  as of December 31, 2025. There is no upper age limit for the
-                  B.Pharm program, although this may be revised by PCI/KUHS in
-                  the future.
-                </p>
-                <div class="site-heading mb-3">
-                  <span class="site-title-tagline"
-                    ><i class="far fa-book-open-reader"></i> Procedure of
-                    Admission:</span
-                  >
-                </div>
-                <p class="content-text mt-2">
-                  Selected Candidates shall take admission at the appointed time
-                  and date in the College after paying the Tuition fee, Caution
-                  Deposit, and Special fee.
-                </p>
-                <div class="site-heading mb-3">
-                  <span class="site-title-tagline"
-                    ><i class="far fa-book-open-reader"></i> Documents to be
-                    submitted at the time of Admission:</span
-                  >
-                </div>
-                <ul class="content-text mt-2" style="list-style-type: none">
-                  <li>&#x2192; 10th Certificate</li>
-                  <li>&#x2192; Plus Two Certificate</li>
-                  <li>&#x2192; Transfer Certificate</li>
-                  <li>&#x2192; Conduct Certificate</li>
-                  <li>&#x2192; Migration Certificate</li>
-                  <li>
-                    &#x2192; Eligibility Certificate from KUHS if applicable
+                  <li class="nav-item" role="presentation">
+                    <button
+                      class="nav-link active"
+                      id="bpharm-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#bpharm-content"
+                      type="button"
+                      role="tab"
+                      aria-controls="bpharm-content"
+                      aria-selected="true"
+                    >
+                      <i class="far fa-graduation-cap"></i> B.Pharm
+                    </button>
                   </li>
-                  <li>&#x2192; Copy of AADHAR card</li>
-                  <li>&#x2192; Passport Size Photo</li>
-                  <li>
-                    &#x2192; Physical Fitness certificate from Medical officer
+                  <li class="nav-item" role="presentation">
+                    <button
+                      class="nav-link"
+                      id="dpharm-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#dpharm-content"
+                      type="button"
+                      role="tab"
+                      aria-controls="dpharm-content"
+                      aria-selected="false"
+                    >
+                      <i class="far fa-graduation-cap"></i> D.Pharm
+                    </button>
                   </li>
                 </ul>
-                <div class="site-heading mb-4">
-                  <span class="site-title-tagline"
-                    ><i class="fas fa-file-alt"></i> Online Application
-                    Requirements</span
-                  >
-                </div>
 
-                <div class="bg-light p-4 rounded shadow-sm mb-4">
-                  <p
-                    class="mb-3 font-weight-bold text-dark"
-                    style="font-size: 1.1rem"
+                <!-- ============================================ -->
+                <!-- TAB CONTENT WRAPPER -->
+                <!-- ============================================ -->
+                <div class="tab-content" id="admissionTabsContent">
+                  <!-- ============================================ -->
+                  <!-- B.PHARM TAB PANE (ACTIVE BY DEFAULT) -->
+                  <!-- ============================================ -->
+                  <div
+                    class="tab-pane fade show active"
+                    id="bpharm-content"
+                    role="tabpanel"
+                    aria-labelledby="bpharm-tab"
                   >
-                    <strong
-                      >The online application should contain the following
-                      particulars:</strong
-                    >
-                  </p>
-                  <ol
-                    class="content-text"
-                    style="padding-left: 20px; line-height: 1.8"
-                  >
-                    <li>
-                      <strong>1) College Details:</strong> Name of the Pharmacy
-                      College with Address and Registration details should be
-                      included in the online application form.
-                    </li>
-                    <li>
-                      <strong>2) Auto-generated Tracking:</strong> The online
-                      application form should contain Auto-generated
-                      Registration/Application Number and auto-generate date and
-                      time of submission of application.
-                    </li>
-                    <li>
-                      <strong>3) Upload Facility:</strong> The facility for
-                      uploading the photograph and signature of the candidate
-                      shall be provided.
-                    </li>
-                    <li>
-                      <strong>4) Quota Specification:</strong> The
-                      category/quota shall be clearly specified in the online
-                      application form.
-                    </li>
-                    <li>
-                      <strong>5) Candidate Declaration:</strong> A declaration
-                      by the candidate that the details provided are true to the
-                      best of their knowledge must be included.
-                    </li>
-                    <li>
-                      <strong>6) Print Facility:</strong> The facility for
-                      taking a printout of the application shall be provided to
-                      the candidate by the Pharmacy College.
-                    </li>
-                  </ol>
-                  <!-- <p class="mt-4 text-muted" style="font-size: 0.95rem">
-                    <i class="fas fa-exclamation-circle text-primary"></i>
-                    <em
-                      >Principal of the Pharmacy College shall ensure that the
-                      aforesaid particulars are included in the online
-                      application form.</em
-                    >
-                  </p> -->
-                </div>
-
-                <div class="site-heading mb-3">
-                  <span class="site-title-tagline"
-                    ><i class="far fa-book-open-reader"></i> Admission
-                    Schedule</span
-                  >
-                </div>
-                <div
-                  class="admission-schedule-table mb-3"
-                  style="overflow-x: auto"
-                >
-                  <table
-                    class="table table-bordered"
-                    style="
-                      width: 100%;
-                      border-collapse: collapse;
-                      min-width: 600px;
-                    "
-                  >
-                    <thead>
-                      <tr style="background-color: #f0f0f0; color: #333">
-                        <th>SL No.</th>
-                        <th>Event/Particulars</th>
-                        <th>Important Dates</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">1</td>
-                        <td>Publication of Notification</td>
-                        <td>23.07.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">2</td>
-                        <td>Issue of Application</td>
-                        <td>25.07.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">3</td>
-                        <td>Last Date of Submission of Application</td>
-                        <td>
-                          02.08.2025
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">4</td>
-                        <td>Publication of Rank List</td>
-                        <td>
-                          03.08.2025
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">5</td>
-                        <td>Publication of First Allotment List</td>
-                        <td>
-                          03.08.2025
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">6</td>
-                        <td>Date of Joining and Fee Remittance</td>
-                        <td>04.08.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">7</td>
-                        <td>
-                          Publishing the Joining and Non-Joining Candidate List
-                        </td>
-                        <td style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
-                          04.08.2025
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">8</td>
-                        <td>Publication of Second Allotment</td>
-                        <td>05.08.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">9</td>
-                        <td>Date of Joining and Fee Remittance</td>
-                        <td>08.08.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">10</td>
-                        <td>
-                          Publishing the Joining and Non-Joining Candidate List
-                        </td>
-                        <td>11.08.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">11</td>
-                        <td>Publication of Third Allotment</td>
-                        <td>12.08.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">12</td>
-                        <td>Date of Joining and Fee Remittance</td>
-                        <td>16.08.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">13</td>
-                        <td>
-                          Publishing the Joining and Non-Joining Candidate List
-                        </td>
-                        <td>18.08.2025</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">14</td>
-                        <td>Spot Admission, if any</td>
-                        <td>With Prior Approval from the Committee</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">15</td>
-                        <td>Closing Date</td>
-                        <td>Will be fixed by the Competent Authority</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- <div class="site-heading mb-3">
-                  <span class="site-title-tagline"
-                    ><i class="far fa-book-open-reader"></i> Fee Structure</span
-                  >
-                </div>
-                <div class="fee-structure-table">
-                  <div style="overflow-x: auto">
-                    <table
-                      class="table table-bordered table-responsive"
+                    <div
+                      class="site-heading mb-3"
                       style="
-                        border-collapse: collapse;
-                        border-spacing: 0;
-                        width: 100%;
-                        border: 1px solid #ddd;
-                        margin-bottom: 20px;
+                        background-color: #f2f3f5;
+                        padding: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                       "
                     >
-                      <thead>
-                        <tr>
-                          <th
-                            style="
-                              background-color: #f0f0f0;
-                              color: #333;
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Details of fee in Indian Rupees
-                          </th>
-                          <th
-                            style="
-                              background-color: #f0f0f0;
-                              color: #333;
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            1st Year
-                          </th>
-                          <th
-                            style="
-                              background-color: #f0f0f0;
-                              color: #333;
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            2nd Year
-                          </th>
-                          <th
-                            style="
-                              background-color: #f0f0f0;
-                              color: #333;
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            3rd Year
-                          </th>
-                          <th
-                            style="
-                              background-color: #f0f0f0;
-                              color: #333;
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            4th Year
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Annual Tuition fee
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 98000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 98000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 98000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 98000
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Admission fee
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 1000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Statutory body fee
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 10000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 10000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 10000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 10000
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Stationery fee
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 5000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 5000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 5000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 5000
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Medical check-up, Vaccination and Health Insurance
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 2500
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 2500
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 2500
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 2500
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Internet charges
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 4500
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 4500
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 4500
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 4500
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Caution deposit
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 10000
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            Project fee
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          ></td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 10000
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                            "
-                          >
-                            University affiliation fee**
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 3605
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 3605
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 3605
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                            "
-                          >
-                            ₹ 3605
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: left;
-                              font-weight: bold;
-                            "
-                          >
-                            Total fees
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                              font-weight: bold;
-                            "
-                          >
-                            ₹ 135105
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                              font-weight: bold;
-                            "
-                          >
-                            ₹ 123605
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                              font-weight: bold;
-                            "
-                          >
-                            ₹ 123605
-                          </td>
-                          <td
-                            style="
-                              padding: 10px;
-                              border: 1px solid #ddd;
-                              text-align: center;
-                              font-weight: bold;
-                            "
-                          >
-                            ₹ 133605
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <h1
+                        class="site-title"
+                        style="
+                          font-size: 32px;
+                          font-weight: 600;
+                          color: #125875;
+                        "
+                      >
+                        B.Pharm Admission
+                      </h1>
+                      <p style="font-size: 20px; color: #333; font-weight: 500">
+                        Malabar College of Pharmacy, approved by the Pharmacy
+                        Council of India and affiliated to Kerala University of
+                        Health Sciences, offers a Bachelor of Pharmacy (B.Pharm)
+                        with a duration of 4 years.
+                      </p>
+                    </div>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> B.Pharm
+                        Course</span
+                      >
+                    </div>
+                    <p class="content-text">
+                      Selection of candidates for admission to B.Pharm course in
+                      Malabar College of Pharmacy will be purely on a merit
+                      basis. Details pertaining to admission are as follows.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Details of
+                        Seats</span
+                      >
+                    </div>
+                    <p class="content-text mt-2">
+                      Total Number of Seats: 60, with 30 seats open to all
+                      candidates under General Merit and 30 seats available
+                      through Management Quota. All applicants are eligible to
+                      be considered under General Merit.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Eligibility for
+                        Admission</span
+                      >
+                    </div>
+                    <p class="content-text mt-2">
+                      <strong>Citizenship:</strong> Only Indian nationals are
+                      eligible to apply.<br />
+                      <strong>Academic Qualification:</strong> Applicants must
+                      have successfully completed the Higher Secondary
+                      Examination in Kerala or an equivalent examination,
+                      securing a minimum of 50% in Physics, Chemistry, and
+                      Biology/Mathematics.<br />
+                      <strong>Age:</strong> Candidates must be at least 17 years
+                      old as of December 31, 2025. There is no upper age limit
+                      for the B.Pharm program, although this may be revised by
+                      PCI/KUHS in the future.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Procedure of
+                        Admission:</span
+                      >
+                    </div>
+                    <p class="content-text mt-2">
+                      Selected Candidates shall take admission at the appointed
+                      time and date in the College after paying the Tuition fee,
+                      Caution Deposit, and Special fee.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Documents to be
+                        submitted at the time of Admission:</span
+                      >
+                    </div>
+                    <ul class="content-text mt-2" style="list-style-type: none">
+                      <li>&#x2192; 10th Certificate</li>
+                      <li>&#x2192; Plus Two Certificate</li>
+                      <li>&#x2192; Transfer Certificate</li>
+                      <li>&#x2192; Conduct Certificate</li>
+                      <li>&#x2192; Migration Certificate</li>
+                      <li>
+                        &#x2192; Eligibility Certificate from KUHS if applicable
+                      </li>
+                      <li>&#x2192; Copy of AADHAR card</li>
+                      <li>&#x2192; Passport Size Photo</li>
+                      <li>
+                        &#x2192; Physical Fitness certificate from Medical
+                        officer
+                      </li>
+                    </ul>
+                    <div class="site-heading mb-4">
+                      <span class="site-title-tagline"
+                        ><i class="fas fa-file-alt"></i> Online Application
+                        Requirements</span
+                      >
+                    </div>
+
+                    <div class="bg-light p-4 rounded shadow-sm mb-4">
+                      <p
+                        class="mb-3 font-weight-bold text-dark"
+                        style="font-size: 1.1rem"
+                      >
+                        <strong
+                          >The online application should contain the following
+                          particulars:</strong
+                        >
+                      </p>
+                      <ol
+                        class="content-text"
+                        style="padding-left: 20px; line-height: 1.8"
+                      >
+                        <li>
+                          <strong>1) College Details:</strong> Name of the
+                          Pharmacy College with Address and Registration details
+                          should be included in the online application form.
+                        </li>
+                        <li>
+                          <strong>2) Auto-generated Tracking:</strong> The
+                          online application form should contain Auto-generated
+                          Registration/Application Number and auto-generate date
+                          and time of submission of application.
+                        </li>
+                        <li>
+                          <strong>3) Upload Facility:</strong> The facility for
+                          uploading the photograph and signature of the
+                          candidate shall be provided.
+                        </li>
+                        <li>
+                          <strong>4) Quota Specification:</strong> The
+                          category/quota shall be clearly specified in the
+                          online application form.
+                        </li>
+                        <li>
+                          <strong>5) Candidate Declaration:</strong> A
+                          declaration by the candidate that the details provided
+                          are true to the best of their knowledge must be
+                          included.
+                        </li>
+                        <li>
+                          <strong>6) Print Facility:</strong> The facility for
+                          taking a printout of the application shall be provided
+                          to the candidate by the Pharmacy College.
+                        </li>
+                      </ol>
+                    </div>
+
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Admission
+                        Schedule</span
+                      >
+                    </div>
+                    <div
+                      class="admission-schedule-table mb-3"
+                      style="overflow-x: auto"
+                    >
+                      <table
+                        class="table table-bordered"
+                        style="
+                          width: 100%;
+                          border-collapse: collapse;
+                          min-width: 600px;
+                        "
+                      >
+                        <thead>
+                          <tr style="background-color: #f0f0f0; color: #333">
+                            <th>SL No.</th>
+                            <th>Event/Particulars</th>
+                            <th>Important Dates</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-center">1</td>
+                            <td>Publication of Notification</td>
+                            <td>23.07.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">2</td>
+                            <td>Issue of Application</td>
+                            <td>25.07.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">3</td>
+                            <td>Last Date of Submission of Application</td>
+                            <td>02.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">4</td>
+                            <td>Publication of Rank List</td>
+                            <td>03.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">5</td>
+                            <td>Publication of First Allotment List</td>
+                            <td>03.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">6</td>
+                            <td>Date of Joining and Fee Remittance</td>
+                            <td>04.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">7</td>
+                            <td>
+                              Publishing the Joining and Non-Joining Candidate
+                              List
+                            </td>
+                            <td
+                              style="
+                                display: flex;
+                                flex-wrap: wrap;
+                                align-items: center;
+                                gap: 8px;
+                              "
+                            >
+                              04.08.2025
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">8</td>
+                            <td>Publication of Second Allotment</td>
+                            <td>05.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">9</td>
+                            <td>Date of Joining and Fee Remittance</td>
+                            <td>08.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">10</td>
+                            <td>
+                              Publishing the Joining and Non-Joining Candidate
+                              List
+                            </td>
+                            <td>11.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">11</td>
+                            <td>Publication of Third Allotment</td>
+                            <td>12.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">12</td>
+                            <td>Date of Joining and Fee Remittance</td>
+                            <td>16.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">13</td>
+                            <td>
+                              Publishing the Joining and Non-Joining Candidate
+                              List
+                            </td>
+                            <td>18.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">14</td>
+                            <td>Spot Admission, if any</td>
+                            <td>With Prior Approval from the Committee</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">15</td>
+                            <td>Closing Date</td>
+                            <td>Will be fixed by the Competent Authority</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                </div> -->
-                <!-- <div class="apply-now-btn mt-4 text-end">
-                  <a href="login.html" class="theme-btn"
-                    ><span class="fal fa-pencil"></span>Apply Now</a
+                  <!-- END B.PHARM TAB PANE -->
+
+                  <!-- ============================================ -->
+                  <!-- D.PHARM TAB PANE -->
+                  <!-- ============================================ -->
+                  <div
+                    class="tab-pane fade"
+                    id="dpharm-content"
+                    role="tabpanel"
+                    aria-labelledby="dpharm-tab"
                   >
-                </div> -->
+                    <div
+                      class="site-heading mb-3"
+                      style="
+                        background-color: #f2f3f5;
+                        padding: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                      "
+                    >
+                      <h1
+                        class="site-title"
+                        style="
+                          font-size: 32px;
+                          font-weight: 600;
+                          color: #125875;
+                        "
+                      >
+                        D.Pharm Admission
+                      </h1>
+                      <p style="font-size: 20px; color: #333; font-weight: 500">
+                        Malabar College of Pharmacy, approved by the Pharmacy
+                        Council of India and affiliated to the Kerala State
+                        Board of Examinations, offers a Diploma in Pharmacy
+                        (D.Pharm) with a duration of 2 years.
+                      </p>
+                    </div>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> D.Pharm
+                        Course</span
+                      >
+                    </div>
+                    <p class="content-text">
+                      Selection of candidates for admission to the D.Pharm
+                      course at Malabar College of Pharmacy will be purely on a
+                      merit basis. Details pertaining to admission are as
+                      follows.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Details of
+                        Seats</span
+                      >
+                    </div>
+                    <p class="content-text mt-2">
+                      Total Number of Seats: 60, with 30 seats open to all
+                      candidates under General Merit and 30 seats available
+                      through Management Quota. All applicants are eligible to
+                      be considered under General Merit.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Eligibility for
+                        Admission</span
+                      >
+                    </div>
+                    <p class="content-text mt-2">
+                      <strong>Citizenship:</strong> Only Indian nationals are
+                      eligible to apply.<br />
+                      <strong>Academic Qualification:</strong> Applicants must
+                      have successfully completed the Higher Secondary
+                      Examination in Kerala (Plus Two) or an equivalent
+                      examination, securing a minimum of 50% in Physics,
+                      Chemistry, and Biology/Mathematics.<br />
+                      <strong>Age:</strong> Candidates must be at least 17 years
+                      old as of December 31, 2025. There is no upper age limit
+                      for the D.Pharm program, although this may be revised by
+                      PCI in the future.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Procedure of
+                        Admission:</span
+                      >
+                    </div>
+                    <p class="content-text mt-2">
+                      Selected Candidates shall take admission at the appointed
+                      time and date in the College after paying the Tuition fee,
+                      Caution Deposit, and Special fee.
+                    </p>
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Documents to be
+                        submitted at the time of Admission:</span
+                      >
+                    </div>
+                    <ul class="content-text mt-2" style="list-style-type: none">
+                      <li>&#x2192; 10th Certificate</li>
+                      <li>&#x2192; Plus Two Certificate</li>
+                      <li>&#x2192; Transfer Certificate</li>
+                      <li>&#x2192; Conduct Certificate</li>
+                      <li>&#x2192; Migration Certificate (if applicable)</li>
+                      <li>&#x2192; Copy of AADHAR card</li>
+                      <li>&#x2192; Passport Size Photo</li>
+                      <li>
+                        &#x2192; Physical Fitness certificate from Medical
+                        officer
+                      </li>
+                    </ul>
+                    <div class="site-heading mb-4">
+                      <span class="site-title-tagline"
+                        ><i class="fas fa-file-alt"></i> Online Application
+                        Requirements</span
+                      >
+                    </div>
+
+                    <div class="bg-light p-4 rounded shadow-sm mb-4">
+                      <p
+                        class="mb-3 font-weight-bold text-dark"
+                        style="font-size: 1.1rem"
+                      >
+                        <strong
+                          >The online application should contain the following
+                          particulars:</strong
+                        >
+                      </p>
+                      <ol
+                        class="content-text"
+                        style="padding-left: 20px; line-height: 1.8"
+                      >
+                        <li>
+                          <strong>1) College Details:</strong> Name of the
+                          Pharmacy College with Address and Registration details
+                          should be included in the online application form.
+                        </li>
+                        <li>
+                          <strong>2) Auto-generated Tracking:</strong> The
+                          online application form should contain Auto-generated
+                          Registration/Application Number and auto-generate date
+                          and time of submission of application.
+                        </li>
+                        <li>
+                          <strong>3) Upload Facility:</strong> The facility for
+                          uploading the photograph and signature of the
+                          candidate shall be provided.
+                        </li>
+                        <li>
+                          <strong>4) Quota Specification:</strong> The
+                          category/quota shall be clearly specified in the
+                          online application form.
+                        </li>
+                        <li>
+                          <strong>5) Candidate Declaration:</strong> A
+                          declaration by the candidate that the details provided
+                          are true to the best of their knowledge must be
+                          included.
+                        </li>
+                        <li>
+                          <strong>6) Print Facility:</strong> The facility for
+                          taking a printout of the application shall be provided
+                          to the candidate by the Pharmacy College.
+                        </li>
+                      </ol>
+                    </div>
+
+                    <div class="site-heading mb-3">
+                      <span class="site-title-tagline"
+                        ><i class="far fa-book-open-reader"></i> Admission
+                        Schedule</span
+                      >
+                    </div>
+                    <div
+                      class="admission-schedule-table mb-3"
+                      style="overflow-x: auto"
+                    >
+                      <table
+                        class="table table-bordered"
+                        style="
+                          width: 100%;
+                          border-collapse: collapse;
+                          min-width: 600px;
+                        "
+                      >
+                        <thead>
+                          <tr style="background-color: #f0f0f0; color: #333">
+                            <th>SL No.</th>
+                            <th>Event/Particulars</th>
+                            <th>Important Dates</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-center">1</td>
+                            <td>Publication of Notification</td>
+                            <td>23.07.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">2</td>
+                            <td>Issue of Application</td>
+                            <td>25.07.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">3</td>
+                            <td>Last Date of Submission of Application</td>
+                            <td>02.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">4</td>
+                            <td>Publication of Rank List</td>
+                            <td>03.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">5</td>
+                            <td>Publication of First Allotment List</td>
+                            <td>03.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">6</td>
+                            <td>Date of Joining and Fee Remittance</td>
+                            <td>04.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">7</td>
+                            <td>
+                              Publishing the Joining and Non-Joining Candidate
+                              List
+                            </td>
+                            <td>04.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">8</td>
+                            <td>Publication of Second Allotment</td>
+                            <td>05.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">9</td>
+                            <td>Date of Joining and Fee Remittance</td>
+                            <td>08.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">10</td>
+                            <td>
+                              Publishing the Joining and Non-Joining Candidate
+                              List
+                            </td>
+                            <td>11.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">11</td>
+                            <td>Publication of Third Allotment</td>
+                            <td>12.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">12</td>
+                            <td>Date of Joining and Fee Remittance</td>
+                            <td>16.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">13</td>
+                            <td>
+                              Publishing the Joining and Non-Joining Candidate
+                              List
+                            </td>
+                            <td>18.08.2025</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">14</td>
+                            <td>Spot Admission, if any</td>
+                            <td>With Prior Approval from the Committee</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">15</td>
+                            <td>Closing Date</td>
+                            <td>Will be fixed by the Competent Authority</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- END D.PHARM TAB PANE -->
+                </div>
+                <!-- END TAB CONTENT WRAPPER -->
               </div>
             </div>
           </div>
@@ -1232,14 +1070,6 @@
           <div class="row footer-widget-wrapper pt-100 pb-70">
             <div class="col-md-6 col-lg-4">
               <div class="footer-widget-box about-us">
-                <!-- <a href="/" class="footer-logo">
-                    <span style="font-size: larger; color: #125875; font-weight: bolder;">Malabar College of Pharmacy</span>
-                  </a> -->
-                <!-- <p class="mb-3">
-                    We are many variations of passages available but the majority
-                    have suffered alteration in some form by injected humour words
-                    believable.
-                  </p> -->
                 <h4 class="footer-widget-title">Contact Us</h4>
                 <ul class="footer-contact">
                   <li>
@@ -1247,13 +1077,11 @@
                     Road, Manoor, Edappal,<br />
                     Malappuram, Kerala 679578
                   </li>
-                  <li>              
+                  <li>
                     <a href="tel:+918943600017"
                       ><i class="far fa-phone"></i>+91 8943600017</a
                     >,
-                    <a href="tel:+917034555563"
-                      >+91 7034555563</a
-                    >
+                    <a href="tel:+917736311182">+91 7736311182</a>
                   </li>
                   <li>
                     <a href="tel:1800180552"
@@ -1278,71 +1106,14 @@
                       ><i class="fas fa-caret-right"></i> About Us</a
                     >
                   </li>
-                  <!-- <li>
-                      <a href="#"><i class="fas fa-caret-right"></i> FAQ's</a>
-                    </li> -->
                   <li>
                     <a href="index.html#testimonial"
                       ><i class="fas fa-caret-right"></i> Testimonials</a
                     >
                   </li>
-                  <!-- <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Terms Of Service</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Privacy policy</a
-                      >
-                    </li> -->
-                  <!-- <li>
-                      <a href="#"
-                        ><i class="fas fa-caret-right"></i> Update News</a
-                      >
-                    </li> -->
                 </ul>
               </div>
             </div>
-            <!-- <div class="col-md-6 col-lg-3">
-              <div class="footer-widget-box list">
-                <h4 class="footer-widget-title">Our Campus</h4>
-                <ul class="footer-list">
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Campus Safety</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Student Activities</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Academic Department</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Planning &
-                      Administration</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Office Of The
-                      Chancellor</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fas fa-caret-right"></i> Facility Services</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div> -->
             <div class="col-md-6 col-lg-3">
               <div class="footer-widget-box list">
                 <h4 class="footer-widget-title">Newsletter</h4>
@@ -1374,10 +1145,13 @@
           <div class="copyright-wrapper">
             <div class="row">
               <div class="col-md-6 align-self-center">
-                <span>Last updated on 27-04-2026</span>                <p class="copyright-text">
+                <span>Last updated on 30-04-2026</span>
+                <p class="copyright-text">
                   &copy; Copyright <span id="date"></span>
-                  <a href="https://bizforz.com/" target="_blank">Bizforz Solutions Pvt Ltd</a> All
-                  Rights Reserved.
+                  <a href="https://bizforz.com/" target="_blank"
+                    >Bizforz Solutions Pvt Ltd</a
+                  >
+                  All Rights Reserved.
                 </p>
               </div>
               <div class="col-md-6 align-self-center">
@@ -1419,6 +1193,20 @@
     <script src="assets/js/counter-up.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Optional: Support tab selection via URL hash (e.g., admission.html#dpharm) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var hash = window.location.hash;
+        if (hash === "#dpharm") {
+          var dpharmTab = document.getElementById("dpharm-tab");
+          if (dpharmTab && typeof bootstrap !== "undefined") {
+            var tab = new bootstrap.Tab(dpharmTab);
+            tab.show();
+          }
+        }
+      });
+    </script>
   </body>
 
   <!-- Mirrored from live.themewild.com/edubo/alumni.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:27:21 GMT -->
