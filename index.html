@@ -1806,26 +1806,26 @@
 
       /* ========== SCROLL TO TOP ========== */
       .scroll-top {
-        position: fixed;
-        bottom: 150px;
-        right: 30px;
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        background: var(--primary);
-        color: var(--white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: var(--shadow-md);
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition);
-        z-index: 900;
-        border: none;
-        font-size: 1rem;
-      }
+  position: fixed;
+  bottom: 210px;   /* was 150px — now clears the 3 FABs */
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 900;
+  border: none;
+  font-size: 1rem;
+}
       .scroll-top.visible {
         opacity: 1;
         visibility: visible;
@@ -2697,12 +2697,12 @@
 
         /* --- Scroll to top mobile --- */
         .scroll-top {
-          bottom: 130px;
-          right: 16px;
-          width: 40px;
-          height: 40px;
-          font-size: 0.9rem;
-        }
+  bottom: 195px;  /* was 130px */
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  font-size: 0.9rem;
+}
       }
 
       /* ==========================================================
@@ -2865,6 +2865,151 @@
           padding-bottom: calc(24px + env(safe-area-inset-bottom));
         }
       }
+
+      /* ===== BROCHURE FAB ===== */
+.fab-brochure {
+  background: #e8a838;
+  box-shadow: 0 4px 18px rgba(232, 168, 56, 0.45);
+  font-size: 1.2rem;
+  border: none;       /* remove default button border */
+  outline: none;
+}
+.fab-brochure:hover {
+  background: #d4922a;
+  box-shadow: 0 6px 24px rgba(232, 168, 56, 0.55);
+  color: var(--white);
+}
+
+/* ===== BROCHURE PDF MODAL ===== */
+.pdf-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  user-select: none;
+}
+.pdf-modal.active { display: flex; animation: bfadeIn 0.25s ease; }
+@keyframes bfadeIn { from { opacity: 0; } to { opacity: 1; } }
+.pdf-modal-dialog {
+  background: #2b2b2b;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+.pdf-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1f1f1f;
+  padding: 14px 20px;
+  color: #fff;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pdf-modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ui);
+  color: #fff;
+}
+.pdf-modal-title i { color: #1a8fa8; }
+.pdf-modal-controls { display: flex; align-items: center; gap: 8px; }
+.pdf-modal-controls button {
+  background: #3a3a3a;
+  color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.pdf-modal-controls button:hover { background: #1a8fa8; }
+.pdf-modal-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+.pdf-modal-controls .zoom-level {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 50px;
+  text-align: center;
+  font-family: var(--font-ui);
+}
+.pdf-modal-close { background: #c0392b !important; }
+.pdf-modal-close:hover { background: #e74c3c !important; }
+.pdf-modal-body {
+  flex: 1;
+  background: #525252;
+  overflow-y: auto;
+  padding: 20px 12px;
+}
+.pdf-modal-body::-webkit-scrollbar { width: 10px; }
+.pdf-modal-body::-webkit-scrollbar-track { background: #3a3a3a; }
+.pdf-modal-body::-webkit-scrollbar-thumb { background: #1a8fa8; border-radius: 5px; }
+.pdf-modal-page { display: flex; justify-content: center; margin-bottom: 18px; }
+.pdf-modal-page canvas {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  background: #fff;
+}
+.pdf-modal-loader { text-align: center; padding: 80px 20px; color: #fff; }
+.pdf-modal-loader .spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top-color: #1a8fa8;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  animation: pdfspin 0.9s linear infinite;
+}
+@keyframes pdfspin { to { transform: rotate(360deg); } }
+.pdf-modal-error { text-align: center; padding: 60px 20px; color: #ff8a8a; }
+.pdf-modal-error i { font-size: 42px; margin-bottom: 12px; }
+body.pdf-modal-open { overflow: hidden; }
+
+/* Brochure download bar inside modal footer */
+.pdf-modal-footer {
+  background: #1f1f1f;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.pdf-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 22px;
+  border-radius: 30px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  background: #1a8fa8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pdf-dl-btn:hover { background: #0f7a92; color: #fff; }
     </style>
   </head>
   <body>
@@ -2999,7 +3144,7 @@
                 <i class="fas fa-chevron-down dropdown-arrow"></i
               ></a>
               <ul class="dropdown-menu-custom">
-                <li><a href="prospectus2025.html">Prospectus</a></li>
+                <li><a href="prospectus2026.html">Prospectus</a></li>
                 <li>
                   <a href="admission.html">Admission Process And Guidelines</a>
                 </li>
@@ -3093,7 +3238,7 @@
           <a href="admission.html"
             ><i class="fas fa-user-plus"></i> Admission</a
           >
-          <a href="prospectus2025.html"
+          <a href="prospectus2026.html"
             ><i class="fas fa-book-open"></i> Prospectus</a
           >
 
@@ -3210,7 +3355,7 @@
               <!-- <a href="admission.html" class="btn btn-accent">
                 <i class="fas fa-arrow-right"></i> Apply Now
               </a> -->
-              <a href="prospectus2025.html" class="btn btn-outline">
+              <a href="prospectus2026.html" class="btn btn-outline">
                 <i class="fas fa-book-open"></i> View Prospectus
               </a>
             </div>
@@ -4150,7 +4295,7 @@
         </div>
         <div class="footer-bottom">
           <p>
-            Last updated on 30-04-2026 &nbsp;|&nbsp; &copy;
+            Last updated on 06-05-2026 &nbsp;|&nbsp; &copy;
             <span id="year"></span> Malabar College of Pharmacy. Developed by
             <a href="https://bizforz.com/" target="_blank">Bizforz Solutions</a>
           </p>
@@ -4168,21 +4313,48 @@
     </button>
 
     <!-- Floating Contact Buttons -->
-    <div class="floating-contact">
-      <a href="tel:+917736311182" class="fab-btn fab-call" aria-label="Call Us">
-        <i class="fas fa-phone-alt"></i>
-        <span class="fab-tooltip">Call Us</span>
-      </a>
-      <a
-        href="https://wa.me/918943600017"
-        target="_blank"
-        class="fab-btn fab-whatsapp"
-        aria-label="WhatsApp"
-      >
-        <i class="fab fa-whatsapp"></i>
-        <span class="fab-tooltip">WhatsApp</span>
+<div class="floating-contact">
+  <button class="fab-btn fab-brochure" id="fabBrochureOpen" aria-label="View Brochure">
+    <i class="fas fa-book-open"></i>
+    <span class="fab-tooltip">View Brochure</span>
+</button>
+  <a href="tel:+917736311182" class="fab-btn fab-call" aria-label="Call Us">
+    <i class="fas fa-phone-alt"></i>
+    <span class="fab-tooltip">Call Us</span>
+  </a>
+  <a href="https://wa.me/918943600017" target="_blank" class="fab-btn fab-whatsapp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-tooltip">WhatsApp</span>
+  </a>
+</div>
+
+<!-- PDF MODAL (Brochure) -->
+<div class="pdf-modal" id="homeBrochureModal" role="dialog" aria-modal="true" aria-labelledby="homeBrochureTitle">
+  <div class="pdf-modal-dialog">
+    <div class="pdf-modal-header">
+      <h5 class="pdf-modal-title" id="homeBrochureTitle">
+        <i class="fas fa-file-pdf"></i> MCP College Brochure
+      </h5>
+      <div class="pdf-modal-controls">
+        <button id="hbrZoomOut" title="Zoom out" aria-label="Zoom out"><i class="fas fa-search-minus"></i></button>
+        <span class="zoom-level" id="hbrZoomLevel">100%</span>
+        <button id="hbrZoomIn" title="Zoom in" aria-label="Zoom in"><i class="fas fa-search-plus"></i></button>
+        <button id="hbrClose" class="pdf-modal-close" title="Close" aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <div class="pdf-modal-body" id="hbrBody">
+      <div class="pdf-modal-loader" id="hbrLoader">
+        <div class="spinner"></div>
+        <div>Loading brochure…</div>
+      </div>
+    </div>
+    <div class="pdf-modal-footer">
+      <a href="assets/pdf/Brochure.pdf" download="MCP-Brochure.pdf" class="pdf-dl-btn">
+        <i class="fas fa-download"></i> Download PDF
       </a>
     </div>
+  </div>
+</div>
 
     <!-- AOS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -4471,5 +4643,108 @@
           });
       })();
     </script>
+    <!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function () {
+  const BROCHURE_URL = "assets/pdf/Brochure.pdf";
+
+  if (typeof pdfjsLib !== "undefined") {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  }
+
+  const modal   = document.getElementById("homeBrochureModal");
+  const openBtn = document.getElementById("fabBrochureOpen");
+  const closeBtn = document.getElementById("hbrClose");
+  const body    = document.getElementById("hbrBody");
+  const zoomIn  = document.getElementById("hbrZoomIn");
+  const zoomOut = document.getElementById("hbrZoomOut");
+  const zoomLbl = document.getElementById("hbrZoomLevel");
+
+  let pdfDoc = null;
+  let scale  = 1.2;
+  const minScale = 0.5, maxScale = 2.5;
+  let loaded = false;
+
+  function updateZoom() {
+    zoomLbl.textContent = Math.round((scale / 1.2) * 100) + "%";
+  }
+
+  async function renderAllPages() {
+    if (!pdfDoc) return;
+    body.innerHTML = "";
+    const availableWidth = body.clientWidth - 24;
+    for (let i = 1; i <= pdfDoc.numPages; i++) {
+      const page = await pdfDoc.getPage(i);
+      const natural = page.getViewport({ scale: 1 });
+      const fitScale = availableWidth / natural.width;
+      const renderScale = Math.min(scale, fitScale);
+      const viewport = page.getViewport({ scale: renderScale });
+      const wrap = document.createElement("div");
+      wrap.className = "pdf-modal-page";
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width  = Math.floor(viewport.width  * dpr);
+      canvas.height = Math.floor(viewport.height * dpr);
+      canvas.style.width  = Math.floor(viewport.width)  + "px";
+      canvas.style.height = Math.floor(viewport.height) + "px";
+      wrap.appendChild(canvas);
+      body.appendChild(wrap);
+      await page.render({
+        canvasContext: ctx,
+        transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null,
+        viewport
+      }).promise;
+    }
+  }
+
+  async function loadPDF() {
+    try {
+      pdfDoc = await pdfjsLib.getDocument(BROCHURE_URL).promise;
+      await renderAllPages();
+      updateZoom();
+      loaded = true;
+    } catch (err) {
+      body.innerHTML =
+        '<div class="pdf-modal-error"><i class="fas fa-exclamation-triangle"></i>' +
+        '<div>Unable to load brochure. Please download instead.</div></div>';
+    }
+  }
+
+  function openModal() {
+    modal.classList.add("active");
+    document.body.classList.add("pdf-modal-open");
+    if (!loaded) loadPDF();
+  }
+  function closeModal() {
+    modal.classList.remove("active");
+    document.body.classList.remove("pdf-modal-open");
+  }
+
+  if (openBtn)  openBtn.addEventListener("click",  openModal);
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
+  });
+
+  zoomIn.addEventListener("click", async function () {
+    if (scale >= maxScale) return;
+    scale = Math.min(maxScale, scale + 0.25);
+    updateZoom();
+    if (loaded) await renderAllPages();
+  });
+  zoomOut.addEventListener("click", async function () {
+    if (scale <= minScale) return;
+    scale = Math.max(minScale, scale - 0.25);
+    updateZoom();
+    if (loaded) await renderAllPages();
+  });
+
+  modal.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+})();
+</script>
   </body>
 </html>

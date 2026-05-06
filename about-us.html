@@ -170,6 +170,278 @@
     .comment-input-group { flex-direction: column; align-items: center; }
     .comment-input { width: 100%; }
   }
+
+  /* ============= BROCHURE SECTION ============= */
+  .brochure-area {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0a3d4c 0%, #1a8fa8 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .brochure-area::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
+  .brochure-area::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+  }
+  .brochure-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 45px 40px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+  }
+  .brochure-icon {
+    flex-shrink: 0;
+    width: 110px;
+    height: 110px;
+    background: #fff;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  }
+  .brochure-icon i {
+    font-size: 48px;
+    color: #1a8fa8;
+  }
+  .brochure-content {
+    flex: 1;
+    min-width: 260px;
+    color: #fff;
+  }
+  .brochure-content .tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .brochure-content h3 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .brochure-content p {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+  .brochure-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .brochure-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+  }
+  .brochure-btn.primary {
+    background: #fff;
+    color: #0a3d4c;
+  }
+  .brochure-btn.primary:hover {
+    background: #f1c40f;
+    color: #0a3d4c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+  }
+  .brochure-btn.outline {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+  }
+  .brochure-btn.outline:hover {
+    background: #fff;
+    color: #0a3d4c;
+    transform: translateY(-2px);
+  }
+
+  /* ============= PDF MODAL ============= */
+  .pdf-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .pdf-modal.active {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .pdf-modal-dialog {
+    background: #2b2b2b;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 1100px;
+    max-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  }
+  .pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1f1f1f;
+    padding: 14px 20px;
+    color: #fff;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pdf-modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pdf-modal-title i { color: #1a8fa8; }
+  .pdf-modal-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pdf-modal-controls button {
+    background: #3a3a3a;
+    color: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+  .pdf-modal-controls button:hover { background: #1a8fa8; }
+  .pdf-modal-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .pdf-modal-controls .zoom-level {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 50px;
+    text-align: center;
+  }
+  .pdf-modal-close {
+    background: #c0392b !important;
+  }
+  .pdf-modal-close:hover { background: #e74c3c !important; }
+  .pdf-modal-body {
+    flex: 1;
+    background: #525252;
+    overflow-y: auto;
+    padding: 20px 12px;
+  }
+  .pdf-modal-body::-webkit-scrollbar { width: 10px; }
+  .pdf-modal-body::-webkit-scrollbar-track { background: #3a3a3a; }
+  .pdf-modal-body::-webkit-scrollbar-thumb {
+    background: #1a8fa8;
+    border-radius: 5px;
+  }
+  .pdf-modal-page {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .pdf-modal-page canvas {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    background: #fff;
+  }
+  .pdf-modal-loader {
+    text-align: center;
+    padding: 80px 20px;
+    color: #fff;
+  }
+  .pdf-modal-loader .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #1a8fa8;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    animation: pdfspin 0.9s linear infinite;
+  }
+  @keyframes pdfspin { to { transform: rotate(360deg); } }
+  .pdf-modal-error {
+    text-align: center;
+    padding: 60px 20px;
+    color: #ff8a8a;
+  }
+  .pdf-modal-error i {
+    font-size: 42px;
+    margin-bottom: 12px;
+  }
+
+  body.pdf-modal-open { overflow: hidden; }
+
+  @media (max-width: 768px) {
+    .brochure-card {
+      padding: 30px 22px;
+      text-align: center;
+      justify-content: center;
+    }
+    .brochure-icon { margin: 0 auto; }
+    .brochure-content h3 { font-size: 22px; }
+    .brochure-actions { width: 100%; }
+    .brochure-btn { width: 100%; }
+    .pdf-modal-header { padding: 10px 12px; }
+    .pdf-modal-title { font-size: 14px; }
+  }
 </style>
 
     <header class="header">
@@ -414,7 +686,7 @@
                   >
                   <ul class="dropdown-menu fade-down">
                     <li>
-                      <a class="dropdown-item" href="prospectus2025.html"
+                      <a class="dropdown-item" href="prospectus2026.html"
                         >Prospectus</a
                       >
                     </li>
@@ -563,7 +835,7 @@
 </div>
       </div>
 
-      <div class="about-area py-120">
+      <div class="about-area py-5">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-6">
@@ -643,14 +915,49 @@
         </div>
       </div>
 
-      <div class="team-area">
+      
+      <!-- ============ BROCHURE DOWNLOAD SECTION ============ -->
+      <div class="brochure-area">
+        <div class="container">
+          <div class="brochure-card wow fadeInUp" data-wow-delay=".2s">
+            <div class="brochure-icon">
+              <i class="far fa-file-pdf"></i>
+            </div>
+            <div class="brochure-content">
+              <span class="tag">Download &amp; Share</span>
+              <h3>College Brochure</h3>
+              <p>
+                Get a quick overview of our courses, facilities, faculty, and
+                admission details. Preview it instantly or download the PDF
+                to share with friends and family.
+              </p>
+            </div>
+            <div class="brochure-actions">
+              <button
+                type="button"
+                class="brochure-btn primary"
+                id="openBrochurePreview"
+              >
+                <i class="far fa-eye"></i> Preview Brochure
+              </button>
+              <a
+                href="assets/pdf/Brochure.pdf"
+                download="MCP-Brochure.pdf"
+                class="brochure-btn outline"
+              >
+                <i class="far fa-download"></i> Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-area mt-10">
         <div class="container">
           <div class="row">
             <div id="principal" class="col-lg-6 mx-auto">
               <div class="site-heading text-center">
-                <span class="site-title-tagline"
-                  ><i class="far fa-book-open-reader"></i> Our Principal</span
-                >
+                <h2 id="board-of-directors" class="site-title">Our <span>Principal</span></h2>
                 <div class="d-flex justify-content-center" style="margin-top: 20px;">
                   <div class="text-center">
                     <a href="./assets/img/team/principal sir.jpg" target="_blank" rel="noopener noreferrer">
@@ -820,7 +1127,7 @@
                           Educate and inspire future pharmacists to become compassionate, competent and socially responsible healthcare professionals.
                         </p>
                         <p>
-                          Address complex healthcare challenges, promote interprofessional collaboration, and enhance the quality and accessibility of pharmaceutical care.                      </p>
+                          Address complex healthcare challenges, promote interprofessional collaboration, and enhance the quality and accessibility of pharmaceutical care.                      </p>
                         </p>
                       </ul>
                     </div>
@@ -862,6 +1169,8 @@
           </div>
         </div>
       </div>
+
+      <!-- ============ /BROCHURE DOWNLOAD SECTION ============ -->
 
 <!-- Counter Area with Three Boxes Centered + Awards Comment Section -->
 <div class="counter-area pt-60 pb-60">
@@ -914,6 +1223,33 @@
 </div>
 
     </main>
+
+    <!-- ============ PDF MODAL (BROCHURE PREVIEW) ============ -->
+    <div class="pdf-modal" id="brochureModal" role="dialog" aria-modal="true" aria-labelledby="brochureModalTitle">
+      <div class="pdf-modal-dialog">
+        <div class="pdf-modal-header">
+          <h5 class="pdf-modal-title" id="brochureModalTitle">
+            <i class="far fa-file-pdf"></i> College Brochure
+          </h5>
+          <div class="pdf-modal-controls">
+            <button id="brZoomOut" title="Zoom out" aria-label="Zoom out"><i class="fas fa-search-minus"></i></button>
+            <span class="zoom-level" id="brZoomLevel">100%</span>
+            <button id="brZoomIn" title="Zoom in" aria-label="Zoom in"><i class="fas fa-search-plus"></i></button>
+            <a href="assets/pdf/Brochure.pdf" download="MCP-Brochure.pdf" title="Download" aria-label="Download">
+              <button type="button"><i class="far fa-download"></i></button>
+            </a>
+            <button id="brClose" class="pdf-modal-close" title="Close" aria-label="Close"><i class="far fa-times"></i></button>
+          </div>
+        </div>
+        <div class="pdf-modal-body" id="brBody">
+          <div class="pdf-modal-loader" id="brLoader">
+            <div class="spinner"></div>
+            <div>Loading brochure…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============ /PDF MODAL ============ -->
 
     <footer class="footer-area">
       <div class="footer-shape">
@@ -1001,7 +1337,7 @@
           <div class="copyright-wrapper">
             <div class="row">
               <div class="col-md-6 align-self-center">
-                <span>Last updated on 30-04-2026</span>                <p class="copyright-text">
+                <span>Last updated on 06-05-2026</span>                <p class="copyright-text">
                   &copy; Copyright <span id="date"></span>
                   <a href="https://bizforz.com/" target="_blank">Bizforz Solutions Pvt Ltd</a> All
                   Rights Reserved.
@@ -1045,6 +1381,146 @@
     <script src="assets/js/counter-up.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- ============ PDF.js (loaded once, used for brochure modal) ============ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- ============ BROCHURE MODAL SCRIPT ============ -->
+    <script>
+      (function () {
+        // ====== CHANGE PATH IF NEEDED ======
+        const BROCHURE_URL = "assets/pdf/Brochure.pdf";
+        // ===================================
+
+        if (typeof pdfjsLib !== "undefined") {
+          pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        }
+
+        const modal = document.getElementById("brochureModal");
+        const openBtn = document.getElementById("openBrochurePreview");
+        const closeBtn = document.getElementById("brClose");
+        const body = document.getElementById("brBody");
+        const loader = document.getElementById("brLoader");
+        const zoomIn = document.getElementById("brZoomIn");
+        const zoomOut = document.getElementById("brZoomOut");
+        const zoomLevel = document.getElementById("brZoomLevel");
+
+        let pdfDoc = null;
+        let scale = 1.2;
+        const minScale = 0.5;
+        const maxScale = 2.5;
+        let loaded = false;
+
+        function updateZoomDisplay() {
+          zoomLevel.textContent = Math.round((scale / 1.2) * 100) + "%";
+        }
+
+        async function renderAllPages() {
+  if (!pdfDoc) return;
+  body.innerHTML = "";
+
+  // Calculate available width (subtract body padding 12px × 2)
+  const availableWidth = body.clientWidth - 24;
+
+  for (let i = 1; i <= pdfDoc.numPages; i++) {
+    const page = await pdfDoc.getPage(i);
+
+    // Get natural page width at scale 1
+    const naturalViewport = page.getViewport({ scale: 1 });
+    // Fit-to-width scale so page never overflows on mobile
+    const fitScale = availableWidth / naturalViewport.width;
+    // Use whichever is smaller: user's zoom scale or the fit scale
+    const renderScale = Math.min(scale, fitScale);
+
+    const viewport = page.getViewport({ scale: renderScale });
+    const pageWrap = document.createElement("div");
+    pageWrap.className = "pdf-modal-page";
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const outputScale = window.devicePixelRatio || 1;
+    canvas.width = Math.floor(viewport.width * outputScale);
+    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.style.width = Math.floor(viewport.width) + "px";
+    canvas.style.height = Math.floor(viewport.height) + "px";
+
+    const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+
+    pageWrap.appendChild(canvas);
+    body.appendChild(pageWrap);
+
+    await page.render({ canvasContext: ctx, transform, viewport }).promise;
+  }
+}
+
+        async function loadPDF() {
+          try {
+            if (typeof pdfjsLib === "undefined") {
+              throw new Error("PDF.js not loaded");
+            }
+            pdfDoc = await pdfjsLib.getDocument(BROCHURE_URL).promise;
+            await renderAllPages();
+            updateZoomDisplay();
+            loaded = true;
+          } catch (err) {
+            console.error("Brochure load error:", err);
+            body.innerHTML =
+              '<div class="pdf-modal-error">' +
+              '<i class="fas fa-exclamation-triangle"></i>' +
+              "<div>Unable to load the brochure. Please try downloading instead.</div>" +
+              "</div>";
+          }
+        }
+
+        function openModal() {
+          modal.classList.add("active");
+          document.body.classList.add("pdf-modal-open");
+          if (!loaded) loadPDF();
+        }
+
+        function closeModal() {
+          modal.classList.remove("active");
+          document.body.classList.remove("pdf-modal-open");
+        }
+
+        if (openBtn) openBtn.addEventListener("click", openModal);
+        if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+        // Close when clicking on the dark overlay (outside the dialog)
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+
+        // Close on ESC key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeModal();
+          }
+        });
+
+        // Zoom controls
+        zoomIn.addEventListener("click", async () => {
+          if (scale >= maxScale) return;
+          scale = Math.min(maxScale, scale + 0.25);
+          updateZoomDisplay();
+          if (loaded) await renderAllPages();
+        });
+        zoomOut.addEventListener("click", async () => {
+          if (scale <= minScale) return;
+          scale = Math.max(minScale, scale - 0.25);
+          updateZoomDisplay();
+          if (loaded) await renderAllPages();
+        });
+
+        // Disable right-click in the modal
+        modal.addEventListener("contextmenu", (e) => e.preventDefault());
+
+        // Set copyright year
+        const dateEl = document.getElementById("date");
+        if (dateEl) dateEl.textContent = new Date().getFullYear();
+      })();
+    </script>
     
     <!-- Local storage comments script for awards section -->
     <script>
