@@ -1,69 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <!-- Mirrored from live.themewild.com/edubo/application-form.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:26:42 GMT -->
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="MCP Malabar College of Pharmacy - Providing quality education in pharmacy."
-    />
-    <meta
-      name="keywords"
-      content="MCP, Malabar, College, Pharmacy, Education, Quality"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MCP - Application Form | Malabar College of Pharmacy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Inter", sans-serif; background-color: #f4f7fc; color: #1e2a3e; }
 
-    <title>MCP - Malabar College of Pharmacy</title>
+    .header-top { background: #0a3b4b; color: white; padding: 6px 0; font-size: 12px; }
+    .header-top a { color: #f0f9ff; text-decoration: none; transition: 0.2s; }
+    .header-top a:hover { color: #ffd966; }
+    .header-top-wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .header-top-contact ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
+    .header-top-contact li { display: flex; align-items: center; gap: 6px; }
+    .header-top-contact-icon img { width: 18px; height: 18px; filter: brightness(0) invert(1); }
+    .header-top-contact-info h6 { font-size: 9px; margin: 0; opacity: 0.8; }
+    .header-top-contact-info a { font-size: 11px; font-weight: 500; }
+    .header-top-social span { font-size: 11px; margin-right: 6px; }
+    .header-top-social a { margin-left: 8px; font-size: 12px; color: white; transition: 0.2s; }
+    .header-top-social a:hover { color: #ffd966; }
 
-    <link rel="icon" type="image/x-icon" href="assets/img/logo/favicon.png" />
+    .form-wrapper { max-width: 1200px; margin: 25px auto; background: white; border-radius: 20px; box-shadow: 0 10px 25px -8px rgba(0,0,0,0.1); padding: 1.2rem 2rem 1.5rem; }
+    .college-header { text-align: center; border-bottom: 1px solid #e9ecef; padding-bottom: 8px; margin-bottom: 15px; }
+    .college-header h2 { font-weight: 800; color: #125875; font-size: 22px; margin-bottom: 2px; }
+    .college-header p { color: #4a627a; font-size: 0.8rem; margin-bottom: 0; }
+    .section-title { font-size: 1rem; font-weight: 600; color: #1c5d6e; background: #eef3f7; padding: 4px 12px; border-radius: 25px; margin: 12px 0 8px 0; display: inline-block; }
+    .sub-section-title { font-size: 0.9rem; font-weight: 600; color: #125875; background: transparent; padding: 3px 0; margin: 8px 0 6px 0; display: inline-block; border-bottom: 2px solid #0f7b8c; }
+    .form-label { font-weight: 600; margin-bottom: 3px; color: #1f3b4c; font-size: 0.7rem; text-transform: uppercase; }
+    .form-control, .form-select { border-radius: 8px; border: 1px solid #cfdee9; padding: 6px 10px; font-size: 13px; }
+    .form-control:focus, .form-select:focus { border-color: #0f7b8c; box-shadow: 0 0 0 2px rgba(15,123,140,0.2); }
+    .mb-3 { margin-bottom: 0.6rem !important; }
+    .mt-2 { margin-top: 0.4rem !important; }
+    
+    /* Error styling */
+    .error-message { color: #dc3545; font-size: 10px; margin-top: 3px; display: block; }
+    .is-invalid { border-color: #dc3545 !important; background-color: #fff0f0 !important; }
+    .is-valid { border-color: #198754 !important; }
+    
+    .preview-container { margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .preview-container img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; }
+    .preview-container button { background: #e74c3c; border: none; color: white; padding: 2px 6px; border-radius: 20px; font-size: 10px; }
+    .theme-btn { background: #125875; border: none; padding: 8px 22px; font-weight: 600; border-radius: 30px; color: white; transition: 0.2s; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; }
+    .theme-btn:hover { background: #0e4a62; transform: translateY(-1px); }
+    .footer-note { margin-top: 20px; text-align: center; font-size: 0.7rem; color: #6c86a3; border-top: 1px solid #e2edf2; padding-top: 12px; }
+    .form-check-label { font-size: 12px; margin-left: 5px; }
+    small { font-size: 10px; color: #5f7f9e; }
 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/all-fontawesome.min.css" />
-    <link rel="stylesheet" href="assets/css/animate.min.css" />
-    <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-  <body>
-    <!-- ################## 1 ################## -->
-    <style>
-      .lateral-entry-fields {
-        display: none;
-        background-color: #f8f9fa;
-        padding: 20px;
-        border-radius: 8px;
-        margin-top: 15px;
-        border-left: 4px solid #125875;
-      }
+    .review-modal .modal-dialog { max-width: 800px; }
+    .review-modal .modal-content { border-radius: 16px; }
+    .review-modal .modal-header { background: #125875; color: white; border-bottom: none; padding: 12px 20px; }
+    .review-modal .modal-header .btn-close { filter: brightness(0) invert(1); }
+    .review-modal .modal-body { padding: 20px; max-height: 65vh; overflow-y: auto; }
+    .review-section { margin-bottom: 15px; border-bottom: 1px solid #e9ecef; padding-bottom: 10px; }
+    .review-section h6 { color: #125875; font-weight: 700; margin-bottom: 8px; font-size: 0.85rem; }
+    .review-item { display: flex; margin-bottom: 4px; font-size: 12px; }
+    .review-label { width: 35%; font-weight: 600; color: #4a627a; }
+    .review-value { width: 65%; color: #1e2a3e; }
+    .toast-notify { position: fixed; bottom: 20px; right: 20px; background: #1e2a3e; color: white; padding: 8px 15px; border-radius: 35px; z-index: 1100; display: none; font-size: 12px; }
+    .site-breadcrumb .breadcrumb-menu li::before {
+    content: ">>" !important;
+    font-family: inherit !important;
+    right: -22px !important;
+    top: 0px !important;
+    font-size: 12px !important;
+    color: var(--theme-color, #2a8fad) !important;
+  }
+  
+  .site-breadcrumb .breadcrumb-menu li:first-child {
+    margin-left: 0 !important;
+  }
+  
+  .site-breadcrumb .breadcrumb-menu li:last-child:before {
+    display: none !important;
+  }
 
-      .lateral-entry-fields.active {
-        display: block;
-        animation: fadeIn 0.5s;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-    </style>
-    <!-- ################## 1 ################## -->
-    <div class="preloader" id="preloader">
-  <div class="mcp-loader">
-    <div class="mcp-loader-ring"></div>
-    <div class="mcp-loader-ring mcp-loader-ring-2"></div>
-    <div class="mcp-loader-logo">
-      <img src="assets/img/logo/logo.png" alt="MCP" />
-    </div>
-  </div>
-  <div class="mcp-loader-text">Malabar College of Pharmacy</div>
-</div>
-
-    <header class="header">
+  /* Change navbar dropdown indicators from square to arrow */
+  .navbar .dropdown-toggle::after {
+    content: "\f107" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    border: none !important;
+    margin-left: 5px !important;
+    vertical-align: middle !important;
+    font-size: 12px !important;
+  }
+  
+  /* For dropdown submenu arrows */
+  .navbar .nav-item .dropdown-submenu a::after {
+    content: "\f105" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    border: none !important;
+    transform: none !important;
+    position: absolute !important;
+    right: 15px !important;
+    top: 10px !important;
+  }
+  
+  /* Remove any box/square backgrounds from nav items */
+  .navbar .nav-link {
+    background: transparent !important;
+  }
+  
+  .navbar .nav-link::before {
+    display: none !important;
+  }
+  
+  /* For mobile view */
+  @media all and (max-width: 991px) {
+    .dropdown-toggle::after {
+      float: right !important;
+      margin-top: 8px !important;
+    }
+    
+    .navbar .nav-item .dropdown-submenu a::after {
+      top: 4px !important;
+      right: 0 !important;
+    }
+    @media (max-width: 768px) {
+      .form-wrapper { padding: 0.8rem 1rem; margin: 12px; }
+      .review-item { flex-direction: column; }
+      .review-label, .review-value { width: 100%; }
+      .header-top-wrapper { flex-direction: column; text-align: center; gap: 5px; }
+      .header-top-contact ul { justify-content: center; }
+    }
+    
+  </style>
+</head>
+<body>
+  <header class="header">
       <div class="header-top">
         <div class="container">
           <div class="header-top-wrapper">
@@ -129,10 +199,10 @@
             <div class="collapse navbar-collapse" id="main_nav">
               <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                  <a class="nav-link active" href="/">Home</a>
+                  <a class="nav-link active" href="index.html">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="/about-us.html">About Us</a>
+                  <a class="nav-link" href="about-us.html">About Us</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -149,7 +219,7 @@
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/prospectus2026.html"
+                      <a class="dropdown-item" href="prospectus2026.html"
                         >Prospects</a
                       >
                     </li>
@@ -157,7 +227,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="/#courses">Courses</a>
+                  <a class="nav-link" href="course-single.html">Courses</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a
@@ -176,7 +246,7 @@
                   <a class="nav-link" href="contact.html">Contact</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/careers.html">Careers</a>
+                  <a class="nav-link" href="careers.html">Careers</a>
                 </li>
               </ul>
             </div>
@@ -185,30 +255,14 @@
       </div>
     </header>
 
-    <div class="search-popup">
-      <button class="close-search"><span class="far fa-times"></span></button>
-      <form action="#">
-        <div class="form-group">
-          <input
-            type="search"
-            name="search-field"
-            placeholder="Search Here..."
-            required
-          />
-          <button type="submit"><i class="far fa-search"></i></button>
-        </div>
-      </form>
-    </div>
-
-    <main class="main">
-      <div
+<div
         class="site-breadcrumb"
         style="background: url(assets/img/breadcrumb/01.jpg)"
       >
         <div class="container">
           <h2 class="breadcrumb-title">Application Form</h2>
           <ul class="breadcrumb-menu">
-            <li><a href="/">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="admission.html">Admission</a></li>
             <li class="active">Application Form</li>
           </ul>
@@ -230,1002 +284,566 @@
               <h3 style="text-align: center; margin-top: 20px">
                 Application Form
               </h3>
-              <form id="applicationForm" action="#">
-                <div class="row">
-                  <h5 class="mb-3">Personal Details</h5>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Registration Number</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="reg_no"
-                        placeholder="Your Registration Number"
-                        required
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>First Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="first_name"
-                        placeholder="Your First Name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Last Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="last_name"
-                        placeholder="Your Last Name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Father's Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="fathers_name"
-                        placeholder="Your Father's Name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Mother's Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="mothers_name"
-                        placeholder="Your Mother's Name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Date Of Birth</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        name="date_of_birth"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Gender</label>
-                      <select class="form-select" name="gender" required>
-                        <option value="">Choose Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Religion</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="religion"
-                        placeholder="Your Religion"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Caste</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="caste"
-                        placeholder="Your Caste"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Quota</label>
-                      <select class="form-select" name="quota" required>
-                        <option value="">Choose Quota</option>
-                        <option value="Merit">Merit</option>
-                        <option value="Management">Management</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Contact Number</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="contact_number"
-                        placeholder="Your Contact Number"
-                        required
-                        pattern="\d{10}"
-                        title="Please enter a valid 10-digit contact number"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Email Address</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        placeholder="Your Email Address"
-                        required
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label>Present Address</label>
-                      <textarea
-                        class="form-control"
-                        name="present_address"
-                        placeholder="Your Present Address"
-                        rows="4"
-                        required
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Student Photo</label>
-                      <input
-                        type="file"
-                        class="form-control"
-                        name="student_photo"
-                        required
-                        accept="image/*"
-                        onchange="
-                          compressAndPreviewFile(event, 'studentPhotoPreview')
-                        "
-                      />
-                      <small
-                        >Your Photo Must be in Passport (PP) Size. Max Upload
-                        Size 1MB.</small
-                      >
-                      <div
-                        id="studentPhotoPreview"
-                        class="preview-container"
-                      ></div>
-                    </div>
-                  </div>
 
-                  <h5 class="mt-4 mb-3">Identification</h5>
-                  <!-- <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Aadhar Number</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="aadhar_number"
-                        placeholder="Your Aadhar Number"
-                        required
-                        oninput="this.value = this.value.slice(0, 12)"
-                      />
-                    </div>
-                  </div> -->
-                  <!-- <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Aadhar Photo</label>
-                      <input
-                        type="file"
-                        class="form-control"
-                        name="aadhar_photo"
-                        required
-                        multiple
-                        onchange="compressAndPreviewFiles(event, 'aadharPhotoPreview')"
-                      />
-                      <small>Max Upload Size 1MB.</small>
-                      <div id="aadharPhotoPreview" class="preview-container"></div>
-                    </div>
-                  </div> -->
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Signature</label>
-                      <input
-                        type="file"
-                        class="form-control"
-                        name="signature"
-                        required
-                        onchange="
-                          compressAndPreviewFile(event, 'signaturePreview')
-                        "
-                      />
-                      <small>Max Upload Size 1MB.</small>
-                      <div
-                        id="signaturePreview"
-                        class="preview-container"
-                      ></div>
-                    </div>
-                  </div>
-
-                  <h5 class="mt-4 mb-3">Program Details</h5>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Program Type</label>
-                      <select class="form-control" name="program_type" required>
-                        <option value="" disabled selected>
-                          Select Program Type
-                        </option>
-                        <option value="B.Pharm">B.Pharm</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <h5 class="mt-4 mb-3">Academic Details</h5>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>High School Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="high_school_name"
-                        placeholder="Your High School Name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>High School Year of Passing</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="high_school_year_of_passing"
-                        placeholder="Year of Passing"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>High School Percentage</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="high_school_percentage"
-                        placeholder="Percentage"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>High School Certificate</label>
-                      <input
-                        type="file"
-                        class="form-control"
-                        name="high_school_certificate"
-                        required
-                        onchange="
-                          compressAndPreviewFile(
-                            event,
-                            'highSchoolCertificatePreview',
-                          )
-                        "
-                      />
-                      <small>Max Upload Size 1MB.</small>
-                      <div
-                        id="highSchoolCertificatePreview"
-                        class="preview-container"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Higher Secondary School Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="higher_secondary_school_name"
-                        placeholder="Your Higher Secondary School Name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Higher Secondary Year of Passing</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="higher_secondary_year_of_passing"
-                        placeholder="Year of Passing"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Higher Secondary Percentage</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="higher_secondary_percentage"
-                        placeholder="Percentage"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Higher Secondary Certificate</label>
-                      <input
-                        type="file"
-                        class="form-control"
-                        name="higher_secondary_certificate"
-                        required
-                        onchange="
-                          compressAndPreviewFile(
-                            event,
-                            'higherSecondaryCertificatePreview',
-                          )
-                        "
-                      />
-                      <small>Max Upload Size 1MB.</small>
-                      <div
-                        id="higherSecondaryCertificatePreview"
-                        class="preview-container"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label>Physics Percentage</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="physics_percentage"
-                        placeholder="Physics Percentage"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label>Chemistry Percentage</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="chemistry_percentage"
-                        placeholder="Chemistry Percentage"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label>Biology Percentage</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        name="biology_percentage"
-                        placeholder="Biology Percentage"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <!-- <h5 class="mt-4 mb-3">Agreement</h5>
-                  <div class="col-lg-12">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="agree"
-                        name="termsAndConditions"
-                        value="1"
-                        required
-                      />
-                      <label class="form-check-label" for="agree">
-                        I hereby declare that the information provided in this
-                        application is true to the best of my knowledge.
-                      </label>
-                    </div>
-                  </div> -->
-                  <!-- ################## 2 ################## -->
-                  <h5 class="mt-4 mb-3">Agreement</h5>
-                  <div class="col-lg-12">
-                    <div class="form-check mb-3">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="lateral_entry"
-                        name="lateral_entry"
-                        value="1"
-                      />
-                      <label class="form-check-label" for="lateral_entry">
-                        <strong>Lateral Entry</strong> - Check if you are
-                        applying through Lateral Entry scheme
-                      </label>
-                    </div>
-
-                    <!-- Lateral Entry Fields (Hidden by default) -->
-                    <div class="lateral-entry-fields" id="lateralEntryFields">
-                      <h6 class="mb-3" style="color: #125875">
-                        Lateral Entry Institute Details
-                      </h6>
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label>Institute Name</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="lateral_institute_name"
-                              placeholder="Name of Institute/College"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label>Institute Year of Passing</label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              name="lateral_institute_year_of_passing"
-                              placeholder="Year of Passing"
-                              min="1900"
-                              max="2099"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label>Institute Percentage</label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              name="lateral_institute_percentage"
-                              placeholder="Percentage"
-                              min="0"
-                              max="100"
-                              step="0.01"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label>Institute Certificate</label>
-                            <input
-                              type="file"
-                              class="form-control"
-                              name="lateral_institute_certificate"
-                              accept="image/*,.pdf"
-                              onchange="
-                                compressAndPreviewFile(
-                                  event,
-                                  'lateralInstituteCertificatePreview',
-                                )
-                              "
-                            />
-                            <small
-                              >Upload your institute certificate. Max Upload
-                              Size 1MB.</small
-                            >
-                            <div
-                              id="lateralInstituteCertificatePreview"
-                              class="preview-container"
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-check mt-3">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="agree"
-                        name="termsAndConditions"
-                        value="1"
-                        required
-                      />
-                      <label class="form-check-label" for="agree">
-                        I hereby declare that the information provided in this
-                        application is true to the best of my knowledge.
-                      </label>
-                    </div>
-                  </div>
-                  <!-- ################## 2 ################## -->
-                  <div class="d-flex align-items-center justify-content-end">
-                    <button type="submit" class="theme-btn" id="submitButton">
-                      Submit Application<i class="fas fa-arrow-right-long"></i>
-                    </button>
-                    <div
-                      id="submitSpinner"
-                      style="display: none; margin-left: 10px"
-                    >
-                      <i class="fas fa-spinner fa-spin"></i>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- <div id="alreadySubmittedMessage" style="display: none; text-align: center; ">
-              <h4 style="color: #4CAF50;">Your application has already been submitted. Thank you!</h4>
-            </div> -->
-          </div>
+      <form id="applicationForm">
+        <!-- PERSONAL DETAILS -->
+        <div class="row">
+          <div class="col-12"><span class="section-title"><i class="fas fa-user-circle me-1"></i>PERSONAL DETAILS</span></div>
+          <div class="col-12 mb-3"><label class="form-label">Name (as per 10th Mark Sheet) <span class="text-danger">*</span></label><input type="text" class="form-control" id="full_name" name="full_name" placeholder="Your Full Name" oninput="clearError('full_name')"><div class="error-message" id="error_full_name"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Father's Name <span class="text-danger">*</span></label><input type="text" class="form-control" id="fathers_name" name="fathers_name" placeholder="Father's Name" oninput="clearError('fathers_name')"><div class="error-message" id="error_fathers_name"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Father's Occupation <span class="text-danger">*</span></label><input type="text" class="form-control" id="father_occupation" name="father_occupation" placeholder="Occupation" oninput="clearError('father_occupation')"><div class="error-message" id="error_father_occupation"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Mother's Name <span class="text-danger">*</span></label><input type="text" class="form-control" id="mothers_name" name="mothers_name" placeholder="Mother's Name" oninput="clearError('mothers_name')"><div class="error-message" id="error_mothers_name"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Mother's Occupation <span class="text-danger">*</span></label><input type="text" class="form-control" id="mother_occupation" name="mother_occupation" placeholder="Occupation" oninput="clearError('mother_occupation')"><div class="error-message" id="error_mother_occupation"></div></div>
+          <div class="col-lg-12 mb-3"><label class="form-label">Correspondence Address <span class="text-danger">*</span></label><textarea class="form-control" id="correspondence_address" name="correspondence_address" rows="2" placeholder="House/Street, City, Pincode" oninput="clearError('correspondence_address')"></textarea><div class="error-message" id="error_correspondence_address"></div></div>
+          <div class="col-lg-12 mb-3"><label class="form-label">Permanent Address <span class="text-danger">*</span></label><textarea class="form-control" id="permanent_address" name="permanent_address" rows="2" placeholder="If same as correspondence, type same" oninput="clearError('permanent_address')"></textarea><div class="error-message" id="error_permanent_address"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Your Email Address <span class="text-danger">*</span></label><input type="email" class="form-control" id="email" name="email" placeholder="student@example.com" oninput="validateEmail()"><div class="error-message" id="error_email"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Parent's Email Address <span class="text-danger">*</span></label><input type="email" class="form-control" id="parent_email" name="parent_email" placeholder="parent@example.com" oninput="clearError('parent_email')"><div class="error-message" id="error_parent_email"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">Date of Birth <span class="text-danger">*</span></label><input type="date" class="form-control" id="date_of_birth" name="date_of_birth" oninput="clearError('date_of_birth')"><div class="error-message" id="error_date_of_birth"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">Gender <span class="text-danger">*</span></label><select class="form-select" id="gender" name="gender" onchange="clearError('gender')"><option value="">Choose option...</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select><div class="error-message" id="error_gender"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">Nationality</label><input type="text" class="form-control" id="nationality" name="nationality" value="Indian" oninput="clearError('nationality')"><div class="error-message" id="error_nationality"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">CATEGORY <span class="text-danger">*</span></label><select class="form-select" id="category" name="category" onchange="clearError('category')"><option value="">Choose option...</option><option value="GEN">GEN</option><option value="SC">SC</option><option value="ST">ST</option><option value="PH">PH</option><option value="OBC">OBC</option><option value="OEC">OEC</option><option value="Other">Other</option></select><div class="error-message" id="error_category"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">Religion <span class="text-danger">*</span></label><input type="text" class="form-control" id="religion" name="religion" placeholder="Your Religion" oninput="clearError('religion')"><div class="error-message" id="error_religion"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">Caste <span class="text-danger">*</span></label><input type="text" class="form-control" id="caste" name="caste" placeholder="Your Caste" oninput="clearError('caste')"><div class="error-message" id="error_caste"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Contact Number <span class="text-danger">*</span></label><input type="tel" class="form-control" id="contact_number" name="contact_number" placeholder="10-digit mobile number" oninput="validateContact()"><div class="error-message" id="error_contact_number"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Quota <span class="text-danger">*</span></label><select class="form-select" id="quota" name="quota" onchange="clearError('quota')"><option value="">Choose option...</option><option value="Merit">Merit</option><option value="Management">Management</option></select><div class="error-message" id="error_quota"></div></div>
+          <div class="col-lg-6 mb-3"><label class="form-label">Student Photo (PP Size, Max 1MB) <span class="text-danger">*</span></label><input type="file" class="form-control" id="student_photo" name="student_photo" accept="image/*" onchange="previewSingleFile(event, 'studentPhotoPreview'); validateFile('student_photo', 'error_student_photo')"><small>Passport size photo. Max 1MB.</small><div id="studentPhotoPreview" class="preview-container"></div><div class="error-message" id="error_student_photo"></div></div>
         </div>
-      </div>
-    </main>
 
-    <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
-    <div
-      id="toast"
-      style="
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        min-width: 200px;
-        padding: 10px;
-        border-radius: 5px;
-        display: none;
-        z-index: 1000;
-      "
-    ></div>
-    <script>
-      function compressAndPreviewFile(event, previewId) {
-        const file = event.target.files[0];
-        const previewContainer = document.getElementById(previewId);
+        <!-- IDENTIFICATION -->
+        <div class="row mt-2"><div class="col-12"><span class="section-title"><i class="fas fa-id-card me-1"></i>IDENTIFICATION</span></div>
+        <div class="col-lg-6 mb-3"><label class="form-label">Signature <span class="text-danger">*</span></label><input type="file" class="form-control" id="signature" name="signature" accept="image/*" onchange="previewSingleFile(event, 'signaturePreview'); validateFile('signature', 'error_signature')"><small>Max 1MB.</small><div id="signaturePreview" class="preview-container"></div><div class="error-message" id="error_signature"></div></div></div>
+
+        <!-- PROGRAM DETAILS -->
+        <div class="row mt-2"><div class="col-12"><span class="section-title"><i class="fas fa-graduation-cap me-1"></i>PROGRAM DETAILS</span></div>
+        <div class="col-lg-6 mb-3"><label class="form-label">Program Type <span class="text-danger">*</span></label><select class="form-select" id="programTypeSelect" name="program_type" onchange="toggleDPharmSection(); clearError('programTypeSelect')"><option value="">Choose option...</option><option value="BPharm">BPharm</option><option value="DPharm">DPharm</option><option value="BPharm-Lateral">BPharm-Lateral</option></select><div class="error-message" id="error_programTypeSelect"></div></div></div>
+
+        <!-- ACADEMIC DETAILS -->
+        <div class="row mt-2"><div class="col-12"><span class="section-title"><i class="fas fa-book-open me-1"></i>ACADEMIC DETAILS</span></div>
+
+       <!-- DPHARM SECTION -->
+<div id="dpharmSection" style="display: none;"><div class="col-12"><span class="sub-section-title">DPHARM DETAILS</span></div>
+<div class="row"><div class="col-md-6 mb-3"><label class="form-label">Register Number</label><input type="text" class="form-control" id="dpharm_reg_no" name="dpharm_reg_no" placeholder="Register Number" oninput="clearError('dpharm_reg_no')"><div class="error-message" id="error_dpharm_reg_no"></div></div>
+<div class="col-md-6 mb-3"><label class="form-label">Year and Month of Passing</label><input type="text" class="form-control" id="dpharm_pass_year" name="dpharm_pass_year" placeholder="YYYY-MM" oninput="clearError('dpharm_pass_year')"><div class="error-message" id="error_dpharm_pass_year"></div></div>
+<div class="col-md-6 mb-3"><label class="form-label">Total Mark (Out of 1100)</label><input type="number" step="any" class="form-control" id="dpharm_total_mark" name="dpharm_total_mark" placeholder="Enter total mark obtained" oninput="calculateDPharmPercentage(); validateDPharmTotal()"><div class="error-message" id="error_dpharm_total_mark"></div></div>
+<div class="col-md-6 mb-3"><label class="form-label">Percentage (%)</label><input type="number" step="any" class="form-control" id="dpharm_percentage" name="dpharm_percentage" placeholder="Auto-calculated" readonly><div class="error-message" id="error_dpharm_percentage"></div></div>
+<div class="col-md-12 mb-3"><label class="form-label">DPharm Certificate (Max 1MB)</label><input type="file" class="form-control" id="dpharm_certificate" name="dpharm_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'dpharmCertPreview'); validateLateralFile()"><small>Upload certificate. Max 1MB.</small><div id="dpharmCertPreview" class="preview-container"></div><div class="error-message" id="error_dpharm_certificate"></div></div>
+<div class="col-md-6 mb-3"><label class="form-label">KSPC No.</label><input type="text" class="form-control" id="kspc_no" name="kspc_no" placeholder="KSPC Registration Number" oninput="clearError('kspc_no')"><div class="error-message" id="error_kspc_no"></div></div></div></div>
+
+        <!-- HIGHER SECONDARY -->
+        <div class="col-12"><span class="sub-section-title">HIGHER SECONDARY</span></div>
+        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Register Number</label><input type="text" class="form-control" id="hs_reg_no" name="hs_reg_no" placeholder="Register Number" oninput="clearError('hs_reg_no')"><div class="error-message" id="error_hs_reg_no"></div></div>
+        <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="text" class="form-control" id="hs_pass_year" name="hs_pass_year" placeholder="YYYY-MM" oninput="clearError('hs_pass_year')"><div class="error-message" id="error_hs_pass_year"></div></div></div>
+
+        <div class="row mb-2"><div class="col-12"><h6 style="color:#125875; font-weight:500; margin-bottom:5px; border-left:2px solid #0f7b8c; padding-left:8px; font-size:0.75rem;">MARKS SECTION (Each subject out of 200)</h6></div></div>
+
+        <div class="row mb-3"><div class="col-md-3"><label class="form-label">Physics</label><input type="number" class="form-control" id="physics_mark" name="physics_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('physics_mark', 'error_physics_mark', 200)"><div class="error-message" id="error_physics_mark"></div></div>
+        <div class="col-md-3"><label class="form-label">Chemistry</label><input type="number" class="form-control" id="chemistry_mark" name="chemistry_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('chemistry_mark', 'error_chemistry_mark', 200)"><div class="error-message" id="error_chemistry_mark"></div></div>
+        <div class="col-md-3"><label class="form-label">Biology</label><input type="number" class="form-control" id="biology_mark" name="biology_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('biology_mark', 'error_biology_mark', 200)"><div class="error-message" id="error_biology_mark"></div></div>
+        <div class="col-md-3"><label class="form-label">Mathematics</label><input type="number" class="form-control" id="maths_mark" name="maths_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('maths_mark', 'error_maths_mark', 200)"><div class="error-message" id="error_maths_mark"></div></div></div>
+
+        <div class="row mb-3"><div class="col-md-4"><label class="form-label">Total Mark (Out of 1200)</label><input type="number" class="form-control" id="hs_total_mark" name="hs_total_mark" placeholder="Enter total mark obtained" oninput="calculateOverallPercentageFromTotal(); validateTotalMark()"><div class="error-message" id="error_hs_total_mark"></div></div>
+        <div class="col-md-4"><label class="form-label">Overall Percentage (%)</label><input type="number" step="any" class="form-control" id="hs_percentage" name="hs_percentage" placeholder="Auto-calculated" readonly ondblclick="makeOverallPercentageEditable()"><div class="error-message" id="error_hs_percentage"></div></div>
+        <div class="col-md-4"><label class="form-label">PCB/PCM (Higher Value)</label><input type="number" step="any" class="form-control" id="pcb_pcm_higher" name="pcb_pcm_higher" placeholder="Auto-calculated" readonly><div class="error-message" id="error_pcb_pcm_higher"></div></div></div>
+
+        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Higher Secondary Certificate (Max 1MB)</label><input type="file" class="form-control" id="hs_certificate" name="hs_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'hsCertPreview'); validateFile('hs_certificate', 'error_hs_certificate')"><div id="hsCertPreview" class="preview-container"></div><div class="error-message" id="error_hs_certificate"></div></div></div>
+
+        <!-- HIGH SCHOOL -->
+        <div class="col-12"><span class="sub-section-title">HIGH SCHOOL (10th)</span></div>
+        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Register Number</label><input type="text" class="form-control" id="school_reg_no" name="school_reg_no" placeholder="Register Number" oninput="clearError('school_reg_no')"><div class="error-message" id="error_school_reg_no"></div></div>
+        <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="text" class="form-control" id="school_pass_year" name="school_pass_year" placeholder="YYYY-MM" oninput="clearError('school_pass_year')"><div class="error-message" id="error_school_pass_year"></div></div></div>
+        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Total Percentage</label><input type="number" step="any" class="form-control" id="school_percentage" name="school_percentage" placeholder="Percentage" oninput="validateSchoolPercentage()"><div class="error-message" id="error_school_percentage"></div></div>
+        <div class="col-md-6"><label class="form-label">Certificate (Max 1MB)</label><input type="file" class="form-control" id="school_certificate" name="school_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'schoolCertPreview'); validateFile('school_certificate', 'error_school_certificate')"><div id="schoolCertPreview" class="preview-container"></div><div class="error-message" id="error_school_certificate"></div></div></div>
+
+        <!-- DECLARATION -->
+        <div class="row mt-3"><div class="col-12"><span class="section-title"><i class="fas fa-file-signature me-1"></i>DECLARATION</span></div>
+        <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="declarationCheck" onchange="clearError('declarationCheck')"><label class="form-check-label" for="declarationCheck">I hereby declare that the information provided in this application is true to the best of my knowledge.</label><div class="error-message" id="error_declarationCheck"></div></div></div></div>
+
+        <div class="d-flex justify-content-end mt-4"><button type="button" class="theme-btn" id="previewBtn"><i class="fas fa-eye me-1"></i> Preview & Review Application</button></div>
+      </form>
+      <div class="footer-note"><i class="fas fa-lock me-1"></i> All fields marked * are mandatory. Upload documents in prescribed size.</div>
+    </div>
+  </div>
+
+  <!-- Review Modal -->
+  <div class="modal fade review-modal" id="reviewModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"><i class="fas fa-clipboard-list me-2"></i>Review Your Application</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="reviewModalBody"></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button><button type="button" class="theme-btn" id="finalSubmitBtn"><i class="fas fa-check-circle me-1"></i> Finalize Submit</button></div></div></div></div>
+
+  <div id="liveToast" class="toast-notify"><i class="fas fa-circle-check me-2"></i><span id="toastMsg"></span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // File preview function
+    function previewSingleFile(event, previewId) {
+      const file = event.target.files[0];
+      const container = document.getElementById(previewId);
+      if (!container) return;
+      container.innerHTML = "";
+      if (file && file.type.startsWith("image/")) {
         const reader = new FileReader();
-        reader.onload = function (e) {
+        reader.onload = function(e) {
           const img = document.createElement("img");
           img.src = e.target.result;
-          img.style.maxWidth = "100px";
-          img.style.height = "100px";
-          img.style.marginRight = "10px";
-          img.style.objectFit = "cover";
-          previewContainer.appendChild(img);
-
-          const removeButton = document.createElement("button");
-          removeButton.innerText = "Remove";
-          removeButton.onclick = function () {
-            previewContainer.innerHTML = "";
-            event.target.value = "";
-            event.target.required = true;
-          };
-          previewContainer.appendChild(removeButton);
+          const removeBtn = document.createElement("button");
+          removeBtn.innerText = "Remove";
+          removeBtn.onclick = () => { container.innerHTML = ""; event.target.value = ""; };
+          container.appendChild(img);
+          container.appendChild(removeBtn);
         };
         reader.readAsDataURL(file);
       }
+    }
 
-      function compressAndPreviewFiles(event, previewId) {
-        const files = event.target.files;
-        const previewContainer = document.getElementById(previewId);
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            img.style.maxWidth = "100px";
-            img.style.height = "100px";
-            img.style.marginRight = "10px";
-            img.style.objectFit = "cover";
-            previewContainer.appendChild(img);
+    function getVal(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+    function showToast(msg, isSuccess) {
+      const toast = document.getElementById('liveToast');
+      const msgSpan = document.getElementById('toastMsg');
+      msgSpan.innerText = msg;
+      toast.style.backgroundColor = isSuccess ? '#125875' : '#c0392b';
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    }
 
-            const removeButton = document.createElement("button");
-            removeButton.innerText = "Remove";
-            removeButton.onclick = function () {
-              previewContainer.removeChild(img);
-              previewContainer.removeChild(removeButton);
-              if (previewContainer.children.length === 0) {
-                event.target.value = "";
-                event.target.required = true;
-              }
-            };
-            previewContainer.appendChild(removeButton);
-          };
-          reader.readAsDataURL(file);
-        }
-      }
+    // Validation functions
+    function setError(fieldId, message) {
+      const errorDiv = document.getElementById(`error_${fieldId}`);
+      const inputField = document.getElementById(fieldId);
+      if (errorDiv) { errorDiv.innerHTML = message; errorDiv.style.color = '#dc3545'; }
+      if (inputField && message) { inputField.classList.add('is-invalid'); inputField.classList.remove('is-valid'); }
+      else if (inputField && !message) { inputField.classList.remove('is-invalid'); inputField.classList.add('is-valid'); }
+    }
 
-      // ################## 3 ##################
-      // Lateral Entry checkbox functionality
-      document
-        .getElementById("lateral_entry")
-        .addEventListener("change", function () {
-          const lateralEntryFields =
-            document.getElementById("lateralEntryFields");
-          const lateralInputs = lateralEntryFields.querySelectorAll("input");
+    function clearError(fieldId) { setError(fieldId, ''); }
 
-          if (this.checked) {
-            lateralEntryFields.classList.add("active");
-            // Make fields required when checked
-            lateralInputs.forEach((input) => {
-              input.required = true;
-            });
-          } else {
-            lateralEntryFields.classList.remove("active");
-            // Remove required attribute when unchecked
-            lateralInputs.forEach((input) => {
-              input.required = false;
-              // Clear values except for file inputs
-              if (input.type !== "file") {
-                input.value = "";
-              }
-            });
-            // Clear file preview
-            const previewContainer = document.getElementById(
-              "lateralInstituteCertificatePreview",
-            );
-            previewContainer.innerHTML = "";
-          }
+    // Scroll to first error function
+    function scrollToFirstError() {
+      // Find the first element with 'is-invalid' class
+      const firstInvalidElement = document.querySelector('.is-invalid');
+      const firstErrorMessage = document.querySelector('.error-message');
+      
+      if (firstInvalidElement) {
+        // Scroll to the invalid element
+        firstInvalidElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
         });
-
-      // Also add to the resetFormState function
-      function resetFormState() {
-        const submitButton = document.getElementById("submitButton");
-        submitButton.disabled = false;
-        submitButton.innerHTML =
-          'Submit Application<i class="fas fa-arrow-right-long"></i>';
-
-        const inputs = document.querySelectorAll(
-          "#applicationForm input, #applicationForm select, #applicationForm textarea",
-        );
-        inputs.forEach((input) => (input.disabled = false));
-
-        // Re-enable lateral entry toggle
-        const lateralCheckbox = document.getElementById("lateral_entry");
-        if (lateralCheckbox) {
-          lateralCheckbox.disabled = false;
-        }
-      }
-      // ################## 3 ##################
-
-      document
-        .getElementById("applicationForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          const form = event.target;
-
-          const formData = new FormData(form);
-          const submitSpinner = document.getElementById("submitSpinner");
-          const submitButton = document.getElementById("submitButton");
-          submitSpinner.style.display = "block"; // Show loading spinner
-          submitButton.disabled = true; // Disable submit button
-          submitButton.innerHTML = "Submitting..."; // Change button text
-
-          // Disable all input fields
-          const inputs = form.querySelectorAll("input, select, textarea");
-          inputs.forEach((input) => (input.disabled = true));
-
-          // Remove fields with URLs from formData
-          const urlFields = [
-            "student_photo",
-            "signature",
-            "high_school_certificate",
-            "higher_secondary_certificate",
-          ];
-          urlFields.forEach((field) => {
-            const input = document.querySelector(`input[name="${field}"]`);
-            if (
-              input &&
-              input.value.startsWith(
-                "https://connectv2s3.s3.ap-south-1.amazonaws.com/",
-              )
-            ) {
-              formData.delete(field);
-            }
-          });
-
-          // Ensure only non-empty file inputs are included in formData
-          // const fileFields = [
-          //   "student_photo",
-          //   "signature",
-          //   "high_school_certificate",
-          //   "higher_secondary_certificate",
-          // ];
-          // ################## 4 ##################
-          const fileFields = [
-            "student_photo",
-            "signature",
-            "high_school_certificate",
-            "higher_secondary_certificate",
-            "lateral_institute_certificate",
-          ];
-          // ################## 4 ##################
-
-          fileFields.forEach((field) => {
-            const input = document.querySelector(`input[name="${field}"]`);
-            if (input && input.files.length === 0) {
-              formData.delete(field);
-            }
-          });
-
-          // Add email and registration number to formData
-          formData.append(
-            "email",
-            document.querySelector('input[name="email"]').value,
-          );
-          formData.append(
-            "reg_no",
-            document.querySelector('input[name="reg_no"]').value,
-          );
-
-          // application form submit api
-          fetch("https://conext.in/admissions/api/update_student_data/", {
-            method: "PUT",
-            body: formData,
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.status) {
-                showToast(
-                  data?.message ||
-                    "Your application was submitted successfully.",
-                  "success",
-                );
-                submitSpinner.style.display = "none"; // Hide loading spinner
-                setTimeout(() => {
-                  window.location.href = "/";
-                  window.history.pushState(null, null, window.location.href);
-                  window.addEventListener("popstate", function (event) {
-                    window.location.href = "/";
-                  });
-                }, 2000);
-              } else {
-                showToast(
-                  "There was an error submitting your application. Please try again.",
-                  "error",
-                );
-                resetFormState();
-              }
-            })
-            .catch((error) => {
-              submitSpinner.style.display = "none"; // Hide loading spinner
-              console.error("Error:", error);
-              showToast(
-                (error.response &&
-                  error.response.data &&
-                  (error.response.data.error || error.response.data.message)) ||
-                  error.message ||
-                  "There was an error submitting your application. Please try again.",
-                "error",
-              );
-              resetFormState();
-            });
-        });
-
-      function resetFormState() {
-        const submitButton = document.getElementById("submitButton");
-        submitButton.disabled = false; // Enable submit button
-        submitButton.innerHTML =
-          'Submit Application<i class="fas fa-arrow-right-long"></i>'; // Reset button text
-
-        // Enable all input fields
-        const inputs = document.querySelectorAll(
-          "#applicationForm input, #applicationForm select, #applicationForm textarea",
-        );
-        inputs.forEach((input) => (input.disabled = false));
-      }
-
-      function showToast(message, type) {
-        const toast = document.getElementById("toast");
-        toast.innerText = message;
-        toast.style.display = "block";
-        toast.style.backgroundColor =
-          type === "success" ? "#4CAF50" : "#f44336";
-        toast.style.color = "#fff";
-        setTimeout(() => {
-          toast.style.display = "none";
-        }, 3000);
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const data = JSON.parse(decodeURIComponent(urlParams.get("data")));
-
-        if (data) {
-          const formData = data.data;
-          document.querySelector('input[name="reg_no"]').value =
-            formData.reg_number || data.reg_number || "";
-          document.querySelector('input[name="reg_no"]').disabled = true; // Disable the registration number field
-          document.querySelector('input[name="first_name"]').value =
-            formData.first_name || "";
-          document.querySelector('input[name="last_name"]').value =
-            formData.last_name || "";
-          document.querySelector('input[name="fathers_name"]').value =
-            formData.fathers_name || "";
-          document.querySelector('input[name="mothers_name"]').value =
-            formData.mothers_name || "";
-          document.querySelector('input[name="date_of_birth"]').value =
-            formData.date_of_birth || "";
-          document.querySelector('select[name="gender"]').value =
-            formData.gender || "";
-          document.querySelector('input[name="religion"]').value =
-            formData.religion || "";
-          document.querySelector('input[name="caste"]').value =
-            formData.caste || "";
-          document.querySelector('select[name="quota"]').value =
-            formData.quota || "";
-          document.querySelector('input[name="contact_number"]').value =
-            formData.contact_number || "";
-          document.querySelector('input[name="email"]').value =
-            formData.email || data.email_address || "";
-          document.querySelector('input[name="email"]').disabled = true; // Disable the email field
-          document.querySelector('textarea[name="present_address"]').value =
-            formData.present_address || "";
-          // document.querySelector('input[name="aadhar_number"]').value = formData.aadhar_number || '';
-          document.querySelector('select[name="program_type"]').value =
-            formData.program_type || "";
-          document.querySelector('input[name="high_school_name"]').value =
-            formData.high_school_name || "";
-          document.querySelector(
-            'input[name="high_school_year_of_passing"]',
-          ).value = formData.high_school_year_of_passing || "";
-          document.querySelector('input[name="high_school_percentage"]').value =
-            formData.high_school_percentage || "";
-          document.querySelector(
-            'input[name="higher_secondary_school_name"]',
-          ).value = formData.higher_secondary_school_name || "";
-          document.querySelector(
-            'input[name="higher_secondary_year_of_passing"]',
-          ).value = formData.higher_secondary_year_of_passing || "";
-          document.querySelector(
-            'input[name="higher_secondary_percentage"]',
-          ).value = formData.higher_secondary_percentage || "";
-          document.querySelector('input[name="physics_percentage"]').value =
-            formData.physics_percentage || "";
-          document.querySelector('input[name="chemistry_percentage"]').value =
-            formData.chemistry_percentage || "";
-          document.querySelector('input[name="biology_percentage"]').value =
-            formData.biology_percentage || "";
-
-          // ################## 5 ##################
-          // Remove lateral entry certificate if it's a URL
-          const lateralEntryCertInput = document.querySelector(
-            'input[name="lateral_institute_certificate"]',
-          );
-          if (
-            lateralEntryCertInput &&
-            lateralEntryCertInput.value.startsWith(
-              "https://connectv2s3.s3.ap-south-1.amazonaws.com/",
-            )
-          ) {
-            formData.delete("lateral_institute_certificate");
-          }
-
-          // Include lateral entry checkbox value
-          const lateralEntryCheckbox = document.querySelector(
-            'input[name="lateral_entry"]',
-          );
-          if (lateralEntryCheckbox) {
-            formData.append(
-              "lateral_entry",
-              lateralEntryCheckbox.checked ? "1" : "0",
-            );
-          }
-          // ################## 5 ##################
-          // ################## 6 ##################
-          // Add inside the DOMContentLoaded function where other fields are populated:
-          if (formData.lateral_entry === "1" || formData.lateral_entry === 1) {
-            document.getElementById("lateral_entry").checked = true;
-            document
-              .getElementById("lateralEntryFields")
-              .classList.add("active");
-            document.querySelector(
-              'input[name="lateral_institute_name"]',
-            ).value = formData.lateral_institute_name || "";
-            document.querySelector(
-              'input[name="lateral_institute_year_of_passing"]',
-            ).value = formData.lateral_institute_year_of_passing || "";
-            document.querySelector(
-              'input[name="lateral_institute_percentage"]',
-            ).value = formData.lateral_institute_percentage || "";
-
-            // Preview lateral institute certificate if exists
-            if (formData.lateral_institute_certificate) {
-              const previewContainer = document.getElementById(
-                "lateralInstituteCertificatePreview",
-              );
-              const img = document.createElement("img");
-              img.src = formData.lateral_institute_certificate;
-              img.style.maxWidth = "100px";
-              img.style.height = "100px";
-              img.style.marginRight = "10px";
-              img.style.objectFit = "cover";
-              previewContainer.appendChild(img);
-
-              const removeButton = document.createElement("button");
-              removeButton.innerText = "Remove";
-              removeButton.onclick = function () {
-                previewContainer.innerHTML = "";
-                document.querySelector(
-                  'input[name="lateral_institute_certificate"]',
-                ).required = false;
-              };
-              previewContainer.appendChild(removeButton);
-
-              document.querySelector(
-                'input[name="lateral_institute_certificate"]',
-              ).required = false;
-            }
-          }
-          // ################## 6 ##################
-
-          // Preview images
-          const imageFields = [
-            { field: "student_photo", previewId: "studentPhotoPreview" },
-            { field: "signature", previewId: "signaturePreview" },
-            {
-              field: "high_school_certificate",
-              previewId: "highSchoolCertificatePreview",
-            },
-            {
-              field: "higher_secondary_certificate",
-              previewId: "higherSecondaryCertificatePreview",
-            },
-          ];
-
-          imageFields.forEach(({ field, previewId }) => {
-            if (formData[field]) {
-              const previewContainer = document.getElementById(previewId);
-              const img = document.createElement("img");
-              img.src = formData[field];
-              img.style.maxWidth = "100px";
-              img.style.height = "100px";
-              img.style.marginRight = "10px";
-              img.style.objectFit = "cover";
-              previewContainer.appendChild(img);
-
-              const removeButton = document.createElement("button");
-              removeButton.innerText = "Remove";
-              removeButton.onclick = function () {
-                previewContainer.innerHTML = "";
-                document.querySelector(`input[name="${field}"]`).required =
-                  true;
-              };
-              previewContainer.appendChild(removeButton);
-
-              document.querySelector(`input[name="${field}"]`).required = false;
-            }
+        // Highlight the field by focusing on it
+        firstInvalidElement.focus();
+      } else if (firstErrorMessage && firstErrorMessage.innerHTML !== '') {
+        // If no invalid element but there's an error message (like for checkboxes or file inputs)
+        const parentElement = firstErrorMessage.closest('.mb-3, .col-12, .form-check, .col-lg-6');
+        if (parentElement) {
+          parentElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
           });
         }
-      });
-    </script>
-    <script
-      data-cfasync="false"
-      src="https://live.themewild.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <script src="assets/js/modernizr.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/jquery.appear.min.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/counter-up.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+      }
+    }
 
-  <!-- Mirrored from live.themewild.com/edubo/alumni.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2024 05:27:21 GMT -->
+    function validateEmail() {
+      const email = getVal('email');
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) setError('email', 'Please enter a valid email address');
+      else if (!email) setError('email', 'Email is required');
+      else setError('email', '');
+    }
+
+    function validateContact() {
+      const contact = getVal('contact_number');
+      if (contact && !/^\d{10}$/.test(contact)) setError('contact_number', 'Contact number must be exactly 10 digits');
+      else if (!contact) setError('contact_number', 'Contact number is required');
+      else setError('contact_number', '');
+    }
+
+    function validateSubjectMark(fieldId, errorId, maxVal) {
+      const val = getVal(fieldId);
+      if (!val) {
+        setError(fieldId, `${fieldId.replace(/_/g, ' ').toUpperCase()} is required`);
+        return false;
+      }
+      const numVal = parseFloat(val);
+      if (isNaN(numVal)) {
+        setError(fieldId, `${fieldId.replace(/_/g, ' ')} must be a valid number`);
+        return false;
+      }
+      if (numVal > maxVal) {
+        setError(fieldId, `${fieldId.replace(/_/g, ' ')} cannot exceed ${maxVal}`);
+        return false;
+      }
+      if (numVal < 0) {
+        setError(fieldId, `${fieldId.replace(/_/g, ' ')} cannot be negative`);
+        return false;
+      }
+      setError(fieldId, '');
+      return true;
+    }
+
+    function validateTotalMark() {
+      const total = getVal('hs_total_mark');
+      if (!total) {
+        setError('hs_total_mark', 'Higher Secondary Total Mark is required');
+        return false;
+      }
+      const numTotal = parseFloat(total);
+      if (isNaN(numTotal)) {
+        setError('hs_total_mark', 'Total mark must be a valid number');
+        return false;
+      }
+      if (numTotal > 1200) {
+        setError('hs_total_mark', 'Total mark cannot exceed 1200');
+        return false;
+      }
+      if (numTotal < 0) {
+        setError('hs_total_mark', 'Total mark cannot be negative');
+        return false;
+      }
+      setError('hs_total_mark', '');
+      return true;
+    }
+
+    function validateHSPercentage() {
+      const percentage = getVal('hs_percentage');
+      if (!percentage) {
+        setError('hs_percentage', 'Higher Secondary Percentage is required');
+        return false;
+      }
+      const numPercentage = parseFloat(percentage);
+      if (isNaN(numPercentage)) {
+        setError('hs_percentage', 'Percentage must be a valid number');
+        return false;
+      }
+      if (numPercentage > 100) {
+        setError('hs_percentage', 'Percentage cannot exceed 100%');
+        return false;
+      }
+      if (numPercentage < 0) {
+        setError('hs_percentage', 'Percentage cannot be negative');
+        return false;
+      }
+      setError('hs_percentage', '');
+      return true;
+    }
+
+    function validatePCBPCMHigher() {
+      const pcbPcmHigher = getVal('pcb_pcm_higher');
+      if (!pcbPcmHigher) {
+        setError('pcb_pcm_higher', 'PCB/PCM Higher percentage is required');
+        return false;
+      }
+      setError('pcb_pcm_higher', '');
+      return true;
+    }
+
+    function validateSchoolPercentage() {
+      const perc = getVal('school_percentage');
+      if (!perc) {
+        setError('school_percentage', 'School percentage is required');
+        return false;
+      }
+      const numPerc = parseFloat(perc);
+      if (isNaN(numPerc)) {
+        setError('school_percentage', 'Percentage must be a valid number');
+        return false;
+      }
+      if (numPerc > 100) {
+        setError('school_percentage', 'Percentage cannot exceed 100%');
+        return false;
+      }
+      if (numPerc < 0) {
+        setError('school_percentage', 'Percentage cannot be negative');
+        return false;
+      }
+      setError('school_percentage', '');
+      return true;
+    }
+
+    function validateDPharmTotal() {
+      const total = getVal('dpharm_total_mark');
+      if (!total && programTypeSelect.value === 'BPharm-Lateral') {
+        setError('dpharm_total_mark', 'DPharm Total Mark is required');
+        return false;
+      }
+      if (total) {
+        const numTotal = parseFloat(total);
+        if (numTotal > 1100) {
+          setError('dpharm_total_mark', 'Total mark cannot exceed 1100');
+          return false;
+        }
+        if (numTotal < 0) {
+          setError('dpharm_total_mark', 'Total mark cannot be negative');
+          return false;
+        }
+      }
+      setError('dpharm_total_mark', '');
+      return true;
+    }
+
+    function validateFile(fieldId, errorId) {
+      const file = document.getElementById(fieldId).files[0];
+      if (!file) setError(fieldId, 'File is required');
+      else if (file.size > 1024 * 1024) setError(fieldId, 'File size must be less than 1MB');
+      else setError(fieldId, '');
+    }
+
+    function validateLateralFile() {
+      if (programTypeSelect.value === 'BPharm-Lateral') {
+        validateFile('dpharm_certificate', 'dpharm_certificate');
+      }
+    }
+
+    function checkRequiredFields() {
+      const required = ['full_name', 'fathers_name', 'father_occupation', 'mothers_name', 'mother_occupation', 'correspondence_address', 'permanent_address', 'email', 'parent_email', 'date_of_birth', 'gender', 'category', 'religion', 'caste', 'contact_number', 'quota', 'programTypeSelect', 'hs_reg_no', 'hs_pass_year', 'school_reg_no', 'school_pass_year'];
+      let hasError = false;
+      for (let field of required) {
+        if (!getVal(field)) { 
+          setError(field, `${field.replace(/_/g, ' ').toUpperCase()} is required`); 
+          hasError = true; 
+        } else { 
+          clearError(field); 
+        }
+      }
+      
+      validateEmail();
+      validateContact();
+      
+      // Validate subject marks with required check
+      if (!validateSubjectMark('physics_mark', 'error_physics_mark', 200)) hasError = true;
+      if (!validateSubjectMark('chemistry_mark', 'error_chemistry_mark', 200)) hasError = true;
+      if (!validateSubjectMark('biology_mark', 'error_biology_mark', 200)) hasError = true;
+      if (!validateSubjectMark('maths_mark', 'error_maths_mark', 200)) hasError = true;
+      
+      // Validate total mark and percentages
+      if (!validateTotalMark()) hasError = true;
+      if (!validateSchoolPercentage()) hasError = true;
+      if (!validateHSPercentage()) hasError = true;
+      if (!validatePCBPCMHigher()) hasError = true;
+      
+      // File validations
+      if (!document.getElementById('student_photo').files.length) { 
+        setError('student_photo', 'Student photo is required'); 
+        hasError = true; 
+      }
+      if (!document.getElementById('signature').files.length) { 
+        setError('signature', 'Signature is required'); 
+        hasError = true; 
+      }
+      if (!document.getElementById('hs_certificate').files.length) { 
+        setError('hs_certificate', 'Higher Secondary certificate is required'); 
+        hasError = true; 
+      }
+      if (!document.getElementById('school_certificate').files.length) { 
+        setError('school_certificate', 'High School certificate is required'); 
+        hasError = true; 
+      }
+      
+      if (programTypeSelect.value === 'BPharm-Lateral') {
+        if (!getVal('dpharm_reg_no')) { 
+          setError('dpharm_reg_no', 'DPharm Register Number is required'); 
+          hasError = true; 
+        }
+        if (!getVal('dpharm_pass_year')) { 
+          setError('dpharm_pass_year', 'DPharm Year of Passing is required'); 
+          hasError = true; 
+        }
+        if (!validateDPharmTotal()) hasError = true;
+        if (!document.getElementById('dpharm_certificate').files.length) { 
+          setError('dpharm_certificate', 'DPharm certificate is required'); 
+          hasError = true; 
+        }
+      }
+      
+      if (!document.getElementById('declarationCheck').checked) { 
+        setError('declarationCheck', 'You must accept the declaration'); 
+        hasError = true; 
+      } else { 
+        clearError('declarationCheck'); 
+      }
+      
+      return !hasError;
+    }
+
+    // DPharm functions
+    let isManualPercentageEdit = false;
+    function calculateDPharmPercentage() {
+      const totalMark = document.getElementById('dpharm_total_mark');
+      const percentage = document.getElementById('dpharm_percentage');
+      if (totalMark && percentage && !isManualPercentageEdit) {
+        const mark = parseFloat(totalMark.value);
+        if (!isNaN(mark) && mark >= 0 && mark <= 1100) percentage.value = ((mark / 1100) * 100).toFixed(2);
+        else percentage.value = '';
+      }
+    }
+
+    let isOverallPercentageManualEdit = false;
+    let isPCBPCMManualEdit = false;
+
+    function calculateOverallPercentageFromTotal() {
+      const totalMark = document.getElementById('hs_total_mark');
+      const percentage = document.getElementById('hs_percentage');
+      if (totalMark && percentage && !isOverallPercentageManualEdit) {
+        const mark = parseFloat(totalMark.value);
+        if (!isNaN(mark) && mark >= 0 && mark <= 1200) percentage.value = ((mark / 1200) * 100).toFixed(2);
+        else percentage.value = '';
+      }
+    }
+
+    function makeOverallPercentageEditable() {
+      isOverallPercentageManualEdit = true;
+      const p = document.getElementById('hs_percentage');
+      if (p) { p.readOnly = false; p.style.backgroundColor = '#ffffff'; p.style.border = '1px solid #0f7b8c'; p.focus(); }
+    }
+
+    function handleOverallPercentageInput() {
+      const p = document.getElementById('hs_percentage');
+      if (p && isOverallPercentageManualEdit) {
+        let v = parseFloat(p.value);
+        if (!isNaN(v)) { if (v > 100) { p.value = '100'; } else if (v < 0) { p.value = '0'; } else { p.value = v.toFixed(2); } }
+        p.readOnly = true; p.style.backgroundColor = '#e9ecef'; p.style.border = '1px solid #cfdee9';
+        isOverallPercentageManualEdit = false;
+      }
+    }
+
+    function calculatePCBPCMHigher() {
+      if (isPCBPCMManualEdit) return;
+      const phy = parseFloat(document.getElementById('physics_mark')?.value) || 0;
+      const chem = parseFloat(document.getElementById('chemistry_mark')?.value) || 0;
+      const bio = parseFloat(document.getElementById('biology_mark')?.value) || 0;
+      const maths = parseFloat(document.getElementById('maths_mark')?.value) || 0;
+      const pcb = ((phy + bio + chem) / 600) * 100;
+      const pcm = ((phy + maths + chem) / 600) * 100;
+      const higher = Math.max(pcb, pcm);
+      const el = document.getElementById('pcb_pcm_higher');
+      if (el) el.value = higher.toFixed(2);
+    }
+
+    function calculateHigherSecondary() { calculatePCBPCMHigher(); }
+
+    const programTypeSelect = document.getElementById('programTypeSelect');
+    const dpharmSection = document.getElementById('dpharmSection');
+    function toggleDPharmSection() {
+      if (programTypeSelect.value === 'BPharm-Lateral') dpharmSection.style.display = 'block';
+      else dpharmSection.style.display = 'none';
+    }
+    if (programTypeSelect) programTypeSelect.addEventListener('change', toggleDPharmSection);
+
+    // Event listeners
+    const physicsMark = document.getElementById('physics_mark');
+    const chemistryMark = document.getElementById('chemistry_mark');
+    const biologyMark = document.getElementById('biology_mark');
+    const mathsMark = document.getElementById('maths_mark');
+    const totalMark = document.getElementById('hs_total_mark');
+    const percentageField = document.getElementById('hs_percentage');
+    if (physicsMark) physicsMark.addEventListener('input', calculateHigherSecondary);
+    if (chemistryMark) chemistryMark.addEventListener('input', calculateHigherSecondary);
+    if (biologyMark) biologyMark.addEventListener('input', calculateHigherSecondary);
+    if (mathsMark) mathsMark.addEventListener('input', calculateHigherSecondary);
+    if (totalMark) totalMark.addEventListener('input', calculateOverallPercentageFromTotal);
+    if (percentageField) { percentageField.addEventListener('blur', handleOverallPercentageInput); percentageField.addEventListener('dblclick', makeOverallPercentageEditable); }
+
+    // Generate Review HTML
+    function generateReviewHTML() {
+      const files = {
+        student_photo: document.getElementById('student_photo')?.files[0]?.name || 'Not uploaded',
+        signature: document.getElementById('signature')?.files[0]?.name || 'Not uploaded',
+        hs_certificate: document.getElementById('hs_certificate')?.files[0]?.name || 'Not uploaded',
+        school_certificate: document.getElementById('school_certificate')?.files[0]?.name || 'Not uploaded',
+        dpharm_certificate: document.getElementById('dpharm_certificate')?.files[0]?.name || 'Not uploaded'
+      };
+      const isLateral = programTypeSelect?.value === 'BPharm-Lateral';
+      
+      return `
+        <div class="review-section"><h6><i class="fas fa-user me-2"></i>Personal Details</h6>
+          <div class="review-item"><span class="review-label">Full Name:</span><span class="review-value">${getVal('full_name') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Father's Name:</span><span class="review-value">${getVal('fathers_name') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Father's Occupation:</span><span class="review-value">${getVal('father_occupation') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Mother's Name:</span><span class="review-value">${getVal('mothers_name') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Mother's Occupation:</span><span class="review-value">${getVal('mother_occupation') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Correspondence Address:</span><span class="review-value">${getVal('correspondence_address') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Permanent Address:</span><span class="review-value">${getVal('permanent_address') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Email:</span><span class="review-value">${getVal('email') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Parent's Email:</span><span class="review-value">${getVal('parent_email') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Date of Birth:</span><span class="review-value">${getVal('date_of_birth') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Gender:</span><span class="review-value">${getVal('gender') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Nationality:</span><span class="review-value">${getVal('nationality') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Category:</span><span class="review-value">${getVal('category') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Religion:</span><span class="review-value">${getVal('religion') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Caste:</span><span class="review-value">${getVal('caste') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Contact Number:</span><span class="review-value">${getVal('contact_number') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Quota:</span><span class="review-value">${getVal('quota') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Student Photo:</span><span class="review-value">${files.student_photo}</span></div></div>
+        
+        <div class="review-section"><h6><i class="fas fa-id-card me-2"></i>Identification</h6>
+          <div class="review-item"><span class="review-label">Signature:</span><span class="review-value">${files.signature}</span></div></div>
+        
+        <div class="review-section"><h6><i class="fas fa-graduation-cap me-2"></i>Program Details</h6>
+          <div class="review-item"><span class="review-label">Program Type:</span><span class="review-value">${getVal('programTypeSelect') || '-'}</span></div></div>
+        
+        ${isLateral ? `<div class="review-section"><h6><i class="fas fa-capsules me-2"></i>DPharm Details</h6>
+  <div class="review-item"><span class="review-label">Register Number:</span><span class="review-value">${getVal('dpharm_reg_no') || '-'}</span></div>
+  <div class="review-item"><span class="review-label">Year of Passing:</span><span class="review-value">${getVal('dpharm_pass_year') || '-'}</span></div>
+  <div class="review-item"><span class="review-label">Total Mark (Out of 1100):</span><span class="review-value">${getVal('dpharm_total_mark') || '-'}</span></div>
+  <div class="review-item"><span class="review-label">Percentage:</span><span class="review-value">${getVal('dpharm_percentage') || '-'}</span></div>
+  <div class="review-item"><span class="review-label">Certificate:</span><span class="review-value">${files.dpharm_certificate}</span></div>
+  <div class="review-item"><span class="review-label">KSPC No.:</span><span class="review-value">${getVal('kspc_no') || '-'}</span></div></div>` : ''}
+        
+        <div class="review-section"><h6><i class="fas fa-chalkboard-user me-2"></i>Higher Secondary</h6>
+          <div class="review-item"><span class="review-label">Register Number:</span><span class="review-value">${getVal('hs_reg_no') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Year of Passing:</span><span class="review-value">${getVal('hs_pass_year') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Physics:</span><span class="review-value">${getVal('physics_mark') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Chemistry:</span><span class="review-value">${getVal('chemistry_mark') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Biology:</span><span class="review-value">${getVal('biology_mark') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Mathematics:</span><span class="review-value">${getVal('maths_mark') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Total Mark (Out of 1200):</span><span class="review-value">${getVal('hs_total_mark') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Overall Percentage:</span><span class="review-value">${getVal('hs_percentage') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">PCB/PCM:</span><span class="review-value">${getVal('pcb_pcm_higher') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Certificate:</span><span class="review-value">${files.hs_certificate}</span></div></div>
+        
+        <div class="review-section"><h6><i class="fas fa-school me-2"></i>High School (10th)</h6>
+          <div class="review-item"><span class="review-label">Register Number:</span><span class="review-value">${getVal('school_reg_no') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Year of Passing:</span><span class="review-value">${getVal('school_pass_year') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Total Percentage:</span><span class="review-value">${getVal('school_percentage') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Certificate:</span><span class="review-value">${files.school_certificate}</span></div></div>
+        
+        <div class="review-section"><h6><i class="fas fa-check-circle me-2"></i>Declaration</h6>
+          <div class="review-item"><span class="review-label">Declaration:</span><span class="review-value">${document.getElementById('declarationCheck').checked ? '✓ Accepted' : '✗ Not Accepted'}</span></div></div>
+      `;
+    }
+
+    // Preview Button
+    const previewBtn = document.getElementById('previewBtn');
+    const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+    
+    previewBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (checkRequiredFields()) {
+        document.getElementById('reviewModalBody').innerHTML = generateReviewHTML();
+        reviewModal.show();
+      } else {
+        // Scroll to the first error field
+        scrollToFirstError();
+      }
+    });
+    
+    // Final Submit Button
+    const finalSubmitBtn = document.getElementById('finalSubmitBtn');
+    finalSubmitBtn.addEventListener('click', function() {
+      if (checkRequiredFields()) {
+        showToast('✅ Application submitted successfully! Thank you.', true);
+        reviewModal.hide();
+        const allInputs = document.querySelectorAll('#applicationForm input, #applicationForm select, #applicationForm textarea, #applicationForm button');
+        allInputs.forEach(inp => inp.disabled = true);
+        previewBtn.disabled = true;
+      } else {
+        reviewModal.hide();
+        // Scroll to the first error field
+        scrollToFirstError();
+      }
+    });
+
+    // Initial calculations
+    document.addEventListener('DOMContentLoaded', function() {
+      calculateHigherSecondary();
+      calculateOverallPercentageFromTotal();
+      if (programTypeSelect && programTypeSelect.value === 'BPharm-Lateral') toggleDPharmSection();
+    });
+</script>
+</body>
 </html>
-  
