@@ -61,7 +61,13 @@
     .review-item { display: flex; margin-bottom: 4px; font-size: 12px; }
     .review-label { width: 35%; font-weight: 600; color: #4a627a; }
     .review-value { width: 65%; color: #1e2a3e; }
-    .toast-notify { position: fixed; bottom: 20px; right: 20px; background: #1e2a3e; color: white; padding: 8px 15px; border-radius: 35px; z-index: 1100; display: none; font-size: 12px; }
+    .toast-notify { position: fixed; bottom: 20px; right: 20px; background: #1e2a3e; color: white; padding: 8px 15px; border-radius: 35px; z-index: 1100; display: none; font-size: 12px; max-width: min(440px, calc(100vw - 30px)); }
+    .applicant-session-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; padding:10px 14px; border:1px solid #d8e7ed; border-radius:12px; background:#f3f9fb; font-size:12px; color:#315568; }
+    .applicant-session-bar strong { color:#125875; }
+    .applicant-session-bar button { border:0; background:transparent; color:#b42318; font-weight:700; cursor:pointer; }
+    .submission-success { margin:16px 0; padding:16px; border-radius:14px; border:1px solid #a7d7bd; background:#edf9f2; color:#14532d; }
+    .submission-success h5 { margin:0 0 5px; font-weight:800; }
+    .theme-btn:disabled { opacity:.65; cursor:not-allowed; transform:none; }
     .site-breadcrumb .breadcrumb-menu li::before {
     content: ">>" !important;
     font-family: inherit !important;
@@ -122,7 +128,9 @@
       top: 4px !important;
       right: 0 !important;
     }
-    @media (max-width: 768px) {
+  }
+
+  @media (max-width: 768px) {
       .form-wrapper { padding: 0.8rem 1rem; margin: 12px; }
       .review-item { flex-direction: column; }
       .review-label, .review-value { width: 100%; }
@@ -272,6 +280,10 @@
         <div class="container">
           <div class="application-form">
             <div id="applicationFormContainer">
+              <div class="applicant-session-bar" id="applicantSessionBar">
+                <span><i class="fas fa-user-circle me-1"></i> Signed in as <strong id="signedInApplicant">Applicant</strong></span>
+                <button type="button" id="logoutApplicant"><i class="fas fa-sign-out-alt me-1"></i>Sign out</button>
+              </div>
               <div style="text-align: center; margin-bottom: 20px">
                 <h4 style="font-weight: bold; color: #125875; font-size: 24px">
                   Malabar College of Pharmacy
@@ -298,14 +310,14 @@
           <div class="col-lg-12 mb-3"><label class="form-label">Permanent Address <span class="text-danger">*</span></label><textarea class="form-control" id="permanent_address" name="permanent_address" rows="2" placeholder="If same as correspondence, type same" oninput="clearError('permanent_address')"></textarea><div class="error-message" id="error_permanent_address"></div></div>
           <div class="col-md-6 mb-3"><label class="form-label">Your Email Address <span class="text-danger">*</span></label><input type="email" class="form-control" id="email" name="email" placeholder="student@example.com" oninput="validateEmail()"><div class="error-message" id="error_email"></div></div>
           <div class="col-md-6 mb-3"><label class="form-label">Parent's Email Address <span class="text-danger">*</span></label><input type="email" class="form-control" id="parent_email" name="parent_email" placeholder="parent@example.com" oninput="clearError('parent_email')"><div class="error-message" id="error_parent_email"></div></div>
-          <div class="col-md-4 mb-3"><label class="form-label">Date of Birth <span class="text-danger">*</span></label><input type="date" class="form-control" id="date_of_birth" name="date_of_birth" oninput="clearError('date_of_birth')"><div class="error-message" id="error_date_of_birth"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">Date of Birth <span class="text-danger">*</span></label><input type="date" class="form-control" id="date_of_birth" max="2099-12-31" name="date_of_birth" oninput="clearError('date_of_birth')"><div class="error-message" id="error_date_of_birth"></div></div>
           <div class="col-md-4 mb-3"><label class="form-label">Gender <span class="text-danger">*</span></label><select class="form-select" id="gender" name="gender" onchange="clearError('gender')"><option value="">Choose option...</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select><div class="error-message" id="error_gender"></div></div>
           <div class="col-md-4 mb-3"><label class="form-label">Nationality</label><input type="text" class="form-control" id="nationality" name="nationality" value="Indian" oninput="clearError('nationality')"><div class="error-message" id="error_nationality"></div></div>
-          <div class="col-md-4 mb-3"><label class="form-label">CATEGORY <span class="text-danger">*</span></label><select class="form-select" id="category" name="category" onchange="clearError('category')"><option value="">Choose option...</option><option value="GEN">GEN</option><option value="SC">SC</option><option value="ST">ST</option><option value="PH">PH</option><option value="OBC">OBC</option><option value="OEC">OEC</option><option value="Other">Other</option></select><div class="error-message" id="error_category"></div></div>
+          <div class="col-md-4 mb-3"><label class="form-label">CATEGORY <span class="text-danger">*</span></label><select class="form-select" id="category" name="category" onchange="clearError('category')"><option value="">Choose option...</option><option value="General">General</option><option value="OBC">OBC</option><option value="OEC">OEC</option><option value="SC">SC</option><option value="ST">ST</option><option value="Other">Other</option></select><div class="error-message" id="error_category"></div></div>
           <div class="col-md-4 mb-3"><label class="form-label">Religion <span class="text-danger">*</span></label><input type="text" class="form-control" id="religion" name="religion" placeholder="Your Religion" oninput="clearError('religion')"><div class="error-message" id="error_religion"></div></div>
           <div class="col-md-4 mb-3"><label class="form-label">Caste <span class="text-danger">*</span></label><input type="text" class="form-control" id="caste" name="caste" placeholder="Your Caste" oninput="clearError('caste')"><div class="error-message" id="error_caste"></div></div>
           <div class="col-md-6 mb-3"><label class="form-label">Contact Number <span class="text-danger">*</span></label><input type="tel" class="form-control" id="contact_number" name="contact_number" placeholder="10-digit mobile number" oninput="validateContact()"><div class="error-message" id="error_contact_number"></div></div>
-          <div class="col-md-6 mb-3"><label class="form-label">Quota <span class="text-danger">*</span></label><select class="form-select" id="quota" name="quota" onchange="clearError('quota')"><option value="">Choose option...</option><option value="Merit">Merit</option><option value="Management">Management</option></select><div class="error-message" id="error_quota"></div></div>
+          <div class="col-md-6 mb-3"><label class="form-label">Quota <span class="text-danger">*</span></label><select class="form-select" id="quota" name="quota" onchange="clearError('quota')"><option value="">Choose option...</option><option value="Merit">Merit</option><option value="Management">Management</option><option value="NRI">NRI</option><option value="Other">Other</option></select><div class="error-message" id="error_quota"></div></div>
           <div class="col-lg-6 mb-3"><label class="form-label">Student Photo (PP Size, Max 1MB) <span class="text-danger">*</span></label><input type="file" class="form-control" id="student_photo" name="student_photo" accept="image/*" onchange="previewSingleFile(event, 'studentPhotoPreview'); validateFile('student_photo', 'error_student_photo')"><small>Passport size photo. Max 1MB.</small><div id="studentPhotoPreview" class="preview-container"></div><div class="error-message" id="error_student_photo"></div></div>
         </div>
 
@@ -315,7 +327,7 @@
 
         <!-- PROGRAM DETAILS -->
         <div class="row mt-2"><div class="col-12"><span class="section-title"><i class="fas fa-graduation-cap me-1"></i>PROGRAM DETAILS</span></div>
-        <div class="col-lg-6 mb-3"><label class="form-label">Program Type <span class="text-danger">*</span></label><select class="form-select" id="programTypeSelect" name="program_type" onchange="toggleDPharmSection(); clearError('programTypeSelect')"><option value="">Choose option...</option><option value="BPharm">BPharm</option><option value="DPharm">DPharm</option><option value="BPharm-Lateral">BPharm-Lateral</option></select><div class="error-message" id="error_programTypeSelect"></div></div></div>
+        <div class="col-lg-6 mb-3"><label class="form-label">Program Type <span class="text-danger">*</span></label><select class="form-select" id="programTypeSelect" name="program_type" onchange="toggleDPharmSection(); clearError('programTypeSelect')"><option value="">Choose option...</option><option value="BPharm">BPharm</option><option value="BPharm-Lateral">BPharm-Lateral</option><option value="DPharm">DPharm</option><option value="PharmD">PharmD</option></select><div class="error-message" id="error_programTypeSelect"></div></div></div>
 
         <!-- ACADEMIC DETAILS -->
         <div class="row mt-2"><div class="col-12"><span class="section-title"><i class="fas fa-book-open me-1"></i>ACADEMIC DETAILS</span></div>
@@ -323,7 +335,7 @@
        <!-- DPHARM SECTION -->
 <div id="dpharmSection" style="display: none;"><div class="col-12"><span class="sub-section-title">DPHARM DETAILS</span></div>
 <div class="row"><div class="col-md-6 mb-3"><label class="form-label">Register Number</label><input type="text" class="form-control" id="dpharm_reg_no" name="dpharm_reg_no" placeholder="Register Number" oninput="clearError('dpharm_reg_no')"><div class="error-message" id="error_dpharm_reg_no"></div></div>
-<div class="col-md-6 mb-3"><label class="form-label">Year and Month of Passing</label><input type="text" class="form-control" id="dpharm_pass_year" name="dpharm_pass_year" placeholder="YYYY-MM" oninput="clearError('dpharm_pass_year')"><div class="error-message" id="error_dpharm_pass_year"></div></div>
+<div class="col-md-6 mb-3"><label class="form-label">Year and Month of Passing</label><input type="month" class="form-control" id="dpharm_pass_year" name="dpharm_pass_year" placeholder="YYYY-MM" oninput="clearError('dpharm_pass_year')"><div class="error-message" id="error_dpharm_pass_year"></div></div>
 <div class="col-md-6 mb-3"><label class="form-label">Total Mark (Out of 1100)</label><input type="number" step="any" class="form-control" id="dpharm_total_mark" name="dpharm_total_mark" placeholder="Enter total mark obtained" oninput="calculateDPharmPercentage(); validateDPharmTotal()"><div class="error-message" id="error_dpharm_total_mark"></div></div>
 <div class="col-md-6 mb-3"><label class="form-label">Percentage (%)</label><input type="number" step="any" class="form-control" id="dpharm_percentage" name="dpharm_percentage" placeholder="Auto-calculated" readonly><div class="error-message" id="error_dpharm_percentage"></div></div>
 <div class="col-md-12 mb-3"><label class="form-label">DPharm Certificate (Max 1MB)</label><input type="file" class="form-control" id="dpharm_certificate" name="dpharm_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'dpharmCertPreview'); validateLateralFile()"><small>Upload certificate. Max 1MB.</small><div id="dpharmCertPreview" class="preview-container"></div><div class="error-message" id="error_dpharm_certificate"></div></div>
@@ -332,7 +344,7 @@
         <!-- HIGHER SECONDARY -->
         <div class="col-12"><span class="sub-section-title">HIGHER SECONDARY</span></div>
         <div class="row mb-3"><div class="col-md-6"><label class="form-label">Register Number</label><input type="text" class="form-control" id="hs_reg_no" name="hs_reg_no" placeholder="Register Number" oninput="clearError('hs_reg_no')"><div class="error-message" id="error_hs_reg_no"></div></div>
-        <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="text" class="form-control" id="hs_pass_year" name="hs_pass_year" placeholder="YYYY-MM" oninput="clearError('hs_pass_year')"><div class="error-message" id="error_hs_pass_year"></div></div></div>
+        <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="month" class="form-control" id="hs_pass_year" name="hs_pass_year" placeholder="YYYY-MM" oninput="clearError('hs_pass_year')"><div class="error-message" id="error_hs_pass_year"></div></div></div>
 
         <div class="row mb-2"><div class="col-12"><h6 style="color:#125875; font-weight:500; margin-bottom:5px; border-left:2px solid #0f7b8c; padding-left:8px; font-size:0.75rem;">MARKS SECTION (Each subject out of 200)</h6></div></div>
 
@@ -350,7 +362,7 @@
         <!-- HIGH SCHOOL -->
         <div class="col-12"><span class="sub-section-title">HIGH SCHOOL (10th)</span></div>
         <div class="row mb-3"><div class="col-md-6"><label class="form-label">Register Number</label><input type="text" class="form-control" id="school_reg_no" name="school_reg_no" placeholder="Register Number" oninput="clearError('school_reg_no')"><div class="error-message" id="error_school_reg_no"></div></div>
-        <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="text" class="form-control" id="school_pass_year" name="school_pass_year" placeholder="YYYY-MM" oninput="clearError('school_pass_year')"><div class="error-message" id="error_school_pass_year"></div></div></div>
+        <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="month" class="form-control" id="school_pass_year" name="school_pass_year" placeholder="YYYY-MM" oninput="clearError('school_pass_year')"><div class="error-message" id="error_school_pass_year"></div></div></div>
         <div class="row mb-3"><div class="col-md-6"><label class="form-label">Total Percentage</label><input type="number" step="any" class="form-control" id="school_percentage" name="school_percentage" placeholder="Percentage" oninput="validateSchoolPercentage()"><div class="error-message" id="error_school_percentage"></div></div>
         <div class="col-md-6"><label class="form-label">Certificate (Max 1MB)</label><input type="file" class="form-control" id="school_certificate" name="school_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'schoolCertPreview'); validateFile('school_certificate', 'error_school_certificate')"><div id="schoolCertPreview" class="preview-container"></div><div class="error-message" id="error_school_certificate"></div></div></div>
 
@@ -370,6 +382,7 @@
   <div id="liveToast" class="toast-notify"><i class="fas fa-circle-check me-2"></i><span id="toastMsg"></span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/mcp-auth.js"></script>
 <script>
     // File preview function
     function previewSingleFile(event, previewId) {
@@ -441,16 +454,18 @@
 
     function validateEmail() {
       const email = getVal('email');
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) setError('email', 'Please enter a valid email address');
-      else if (!email) setError('email', 'Email is required');
-      else setError('email', '');
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('email', 'Please enter a valid email address'); return false; }
+      if (!email) { setError('email', 'Email is required'); return false; }
+      setError('email', '');
+      return true;
     }
 
     function validateContact() {
       const contact = getVal('contact_number');
-      if (contact && !/^\d{10}$/.test(contact)) setError('contact_number', 'Contact number must be exactly 10 digits');
-      else if (!contact) setError('contact_number', 'Contact number is required');
-      else setError('contact_number', '');
+      if (contact && !/^\d{10}$/.test(contact)) { setError('contact_number', 'Contact number must be exactly 10 digits'); return false; }
+      if (!contact) { setError('contact_number', 'Contact number is required'); return false; }
+      setError('contact_number', '');
+      return true;
     }
 
     function validateSubjectMark(fieldId, errorId, maxVal) {
@@ -577,16 +592,28 @@
     }
 
     function validateFile(fieldId, errorId) {
-      const file = document.getElementById(fieldId).files[0];
-      if (!file) setError(fieldId, 'File is required');
-      else if (file.size > 1024 * 1024) setError(fieldId, 'File size must be less than 1MB');
-      else setError(fieldId, '');
+      const input = document.getElementById(fieldId);
+      const file = input && input.files ? input.files[0] : null;
+      if (!file) { setError(fieldId, 'File is required'); return false; }
+      if (file.size > 1024 * 1024) { setError(fieldId, 'File size must be less than or equal to 1MB'); return false; }
+      setError(fieldId, '');
+      return true;
     }
 
     function validateLateralFile() {
       if (programTypeSelect.value === 'BPharm-Lateral') {
-        validateFile('dpharm_certificate', 'dpharm_certificate');
+        return validateFile('dpharm_certificate', 'dpharm_certificate');
       }
+      clearError('dpharm_certificate');
+      return true;
+    }
+
+    function validateParentEmail() {
+      const email = getVal('parent_email');
+      if (!email) { setError('parent_email', 'Parent email is required'); return false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('parent_email', 'Please enter a valid parent email address'); return false; }
+      setError('parent_email', '');
+      return true;
     }
 
     function checkRequiredFields() {
@@ -601,8 +628,9 @@
         }
       }
       
-      validateEmail();
-      validateContact();
+      if (!validateEmail()) hasError = true;
+      if (!validateParentEmail()) hasError = true;
+      if (!validateContact()) hasError = true;
       
       // Validate subject marks with required check
       if (!validateSubjectMark('physics_mark', 'error_physics_mark', 200)) hasError = true;
@@ -617,22 +645,10 @@
       if (!validatePCBPCMHigher()) hasError = true;
       
       // File validations
-      if (!document.getElementById('student_photo').files.length) { 
-        setError('student_photo', 'Student photo is required'); 
-        hasError = true; 
-      }
-      if (!document.getElementById('signature').files.length) { 
-        setError('signature', 'Signature is required'); 
-        hasError = true; 
-      }
-      if (!document.getElementById('hs_certificate').files.length) { 
-        setError('hs_certificate', 'Higher Secondary certificate is required'); 
-        hasError = true; 
-      }
-      if (!document.getElementById('school_certificate').files.length) { 
-        setError('school_certificate', 'High School certificate is required'); 
-        hasError = true; 
-      }
+      if (!validateFile('student_photo', 'error_student_photo')) hasError = true;
+      if (!validateFile('signature', 'error_signature')) hasError = true;
+      if (!validateFile('hs_certificate', 'error_hs_certificate')) hasError = true;
+      if (!validateFile('school_certificate', 'error_school_certificate')) hasError = true;
       
       if (programTypeSelect.value === 'BPharm-Lateral') {
         if (!getVal('dpharm_reg_no')) { 
@@ -644,10 +660,13 @@
           hasError = true; 
         }
         if (!validateDPharmTotal()) hasError = true;
-        if (!document.getElementById('dpharm_certificate').files.length) { 
-          setError('dpharm_certificate', 'DPharm certificate is required'); 
-          hasError = true; 
+        if (!getVal('kspc_no')) {
+          setError('kspc_no', 'KSPC registration number is required');
+          hasError = true;
+        } else {
+          clearError('kspc_no');
         }
+        if (!validateLateralFile()) hasError = true;
       }
       
       if (!document.getElementById('declarationCheck').checked) { 
@@ -807,6 +826,131 @@
       `;
     }
 
+
+    const API_FIELD_TO_FORM_ID = {
+      full_name: 'full_name', father_name: 'fathers_name', father_occupation: 'father_occupation',
+      mother_name: 'mothers_name', mother_occupation: 'mother_occupation', correspondence_address: 'correspondence_address',
+      permanent_address: 'permanent_address', student_email: 'email', parent_email: 'parent_email', date_of_birth: 'date_of_birth',
+      gender: 'gender', nationality: 'nationality', category: 'category', religion: 'religion', caste: 'caste',
+      contact_number: 'contact_number', quota: 'quota', program_type: 'programTypeSelect',
+      dpharm_register_number: 'dpharm_reg_no', dpharm_year_month_of_passing: 'dpharm_pass_year',
+      dpharm_total_mark: 'dpharm_total_mark', dpharm_percentage: 'dpharm_percentage',
+      kspc_registration_number: 'kspc_no', hs_register_number: 'hs_reg_no', hs_year_month_of_passing: 'hs_pass_year',
+      hs_physics_mark: 'physics_mark', hs_chemistry_mark: 'chemistry_mark', hs_biology_mark: 'biology_mark',
+      hs_mathematics_mark: 'maths_mark', hs_total_mark: 'hs_total_mark', hs_overall_percentage: 'hs_percentage',
+      hs_pcb_pcm_higher_value: 'pcb_pcm_higher', high_school_register_number: 'school_reg_no',
+      high_school_year_month_of_passing: 'school_pass_year', high_school_total_percentage: 'school_percentage',
+      student_photo: 'student_photo', signature: 'signature', hs_certificate: 'hs_certificate',
+      high_school_certificate: 'school_certificate', dpharm_certificate: 'dpharm_certificate',
+      declaration_accepted: 'declarationCheck'
+    };
+
+    function appendText(formData, apiField, formId) {
+      const value = getVal(formId).trim();
+      if (value !== '') formData.append(apiField, value);
+    }
+
+    function appendFile(formData, apiField, formId) {
+      const input = document.getElementById(formId);
+      if (input && input.files && input.files[0]) formData.append(apiField, input.files[0]);
+    }
+
+    function buildApplicationFormData() {
+      const formData = new FormData();
+      const textFields = [
+        ['full_name', 'full_name'], ['father_name', 'fathers_name'], ['father_occupation', 'father_occupation'],
+        ['mother_name', 'mothers_name'], ['mother_occupation', 'mother_occupation'],
+        ['correspondence_address', 'correspondence_address'], ['permanent_address', 'permanent_address'],
+        ['student_email', 'email'], ['parent_email', 'parent_email'], ['date_of_birth', 'date_of_birth'],
+        ['gender', 'gender'], ['nationality', 'nationality'], ['category', 'category'], ['religion', 'religion'],
+        ['caste', 'caste'], ['contact_number', 'contact_number'], ['quota', 'quota'], ['program_type', 'programTypeSelect'],
+        ['hs_register_number', 'hs_reg_no'], ['hs_year_month_of_passing', 'hs_pass_year'],
+        ['hs_physics_mark', 'physics_mark'], ['hs_chemistry_mark', 'chemistry_mark'], ['hs_biology_mark', 'biology_mark'],
+        ['hs_mathematics_mark', 'maths_mark'], ['hs_total_mark', 'hs_total_mark'],
+        ['hs_overall_percentage', 'hs_percentage'], ['hs_pcb_pcm_higher_value', 'pcb_pcm_higher'],
+        ['high_school_register_number', 'school_reg_no'], ['high_school_year_month_of_passing', 'school_pass_year'],
+        ['high_school_total_percentage', 'school_percentage']
+      ];
+      textFields.forEach(([apiField, formId]) => appendText(formData, apiField, formId));
+
+      if (getVal('programTypeSelect') === 'BPharm-Lateral') {
+        [
+          ['dpharm_register_number', 'dpharm_reg_no'], ['dpharm_year_month_of_passing', 'dpharm_pass_year'],
+          ['dpharm_total_mark', 'dpharm_total_mark'], ['dpharm_percentage', 'dpharm_percentage'],
+          ['kspc_registration_number', 'kspc_no']
+        ].forEach(([apiField, formId]) => appendText(formData, apiField, formId));
+        appendFile(formData, 'dpharm_certificate', 'dpharm_certificate');
+      }
+
+      appendFile(formData, 'student_photo', 'student_photo');
+      appendFile(formData, 'signature', 'signature');
+      appendFile(formData, 'hs_certificate', 'hs_certificate');
+      appendFile(formData, 'high_school_certificate', 'school_certificate');
+      formData.append('declaration_accepted', document.getElementById('declarationCheck').checked ? 'true' : 'false');
+      return formData;
+    }
+
+    function getBackendFieldMessages(payload) {
+      if (!payload || typeof payload !== 'object') return {};
+      if (payload.errors && typeof payload.errors === 'object') return payload.errors;
+      if (payload.data && payload.data.errors && typeof payload.data.errors === 'object') return payload.data.errors;
+      return payload;
+    }
+
+    function applyBackendErrors(payload) {
+      const errors = getBackendFieldMessages(payload);
+      let applied = false;
+      Object.entries(errors).forEach(([apiField, messages]) => {
+        const formId = API_FIELD_TO_FORM_ID[apiField];
+        if (!formId) return;
+        const message = Array.isArray(messages) ? messages.join(' ') : (typeof messages === 'string' ? messages : 'Invalid value.');
+        setError(formId, message);
+        applied = true;
+      });
+      if (applied) scrollToFirstError();
+      return applied;
+    }
+
+    function setSubmitting(isSubmitting) {
+      finalSubmitBtn.disabled = isSubmitting;
+      previewBtn.disabled = isSubmitting;
+      finalSubmitBtn.innerHTML = isSubmitting
+        ? '<i class="fas fa-spinner fa-spin me-1"></i> Submitting...'
+        : '<i class="fas fa-check-circle me-1"></i> Confirm & Submit';
+    }
+
+    function markApplicationSubmitted(responseData) {
+      const applicationNumber = responseData?.application_number || responseData?.application_no || responseData?.data?.application_number || responseData?.data?.application_no || responseData?.id || responseData?.data?.id || '';
+      const successBox = document.createElement('div');
+      successBox.className = 'submission-success';
+      successBox.innerHTML = `<h5><i class="fas fa-circle-check me-2"></i>Application submitted successfully</h5><p class="mb-0">Your application has been received.${applicationNumber ? ` Reference: <strong>${String(applicationNumber).replace(/[<>&"']/g, '')}</strong>` : ''}</p>`;
+      document.getElementById('applicationForm').before(successBox);
+      document.querySelectorAll('#applicationForm input, #applicationForm select, #applicationForm textarea, #applicationForm button').forEach((input) => { input.disabled = true; });
+      previewBtn.innerHTML = '<i class="fas fa-check-circle me-1"></i> Submitted';
+    }
+
+    function initialiseApplicantSession() {
+      const session = MCPAuth.requireAuth('apply.html');
+      if (!session) return false;
+      const display = session.fullName || session.email || 'Applicant';
+      document.getElementById('signedInApplicant').textContent = display;
+
+      const fullNameInput = document.getElementById('full_name');
+      const emailInput = document.getElementById('email');
+      const contactInput = document.getElementById('contact_number');
+      if (!fullNameInput.value && session.fullName) fullNameInput.value = session.fullName;
+      if (session.email) {
+        emailInput.value = session.email;
+        emailInput.readOnly = true;
+        emailInput.title = 'The application email must match the signed-in account.';
+      }
+      if (!contactInput.value && session.phoneNumber) {
+        const digits = String(session.phoneNumber).replace(/\D/g, '');
+        contactInput.value = digits.length > 10 ? digits.slice(-10) : digits;
+      }
+      return true;
+    }
+
     // Preview Button
     const previewBtn = document.getElementById('previewBtn');
     const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
@@ -824,25 +968,49 @@
     
     // Final Submit Button
     const finalSubmitBtn = document.getElementById('finalSubmitBtn');
-    finalSubmitBtn.addEventListener('click', function() {
-      if (checkRequiredFields()) {
-        showToast('✅ Application submitted successfully! Thank you.', true);
+    finalSubmitBtn.innerHTML = '<i class="fas fa-check-circle me-1"></i> Confirm & Submit';
+    finalSubmitBtn.addEventListener('click', async function() {
+      if (!checkRequiredFields()) {
         reviewModal.hide();
-        const allInputs = document.querySelectorAll('#applicationForm input, #applicationForm select, #applicationForm textarea, #applicationForm button');
-        allInputs.forEach(inp => inp.disabled = true);
-        previewBtn.disabled = true;
-      } else {
-        reviewModal.hide();
-        // Scroll to the first error field
         scrollToFirstError();
+        return;
+      }
+
+      setSubmitting(true);
+      try {
+        const responseData = await MCPAuth.apiFetch('/application/submit/', {
+          method: 'POST',
+          body: buildApplicationFormData()
+        });
+        reviewModal.hide();
+        showToast(responseData.message || 'Application submitted successfully.', true);
+        markApplicationSubmitted(responseData);
+      } catch (error) {
+        reviewModal.hide();
+        if (error.status === 401 || error.status === 403) {
+          showToast('Your session has expired. Please sign in again.', false);
+          window.setTimeout(() => window.location.replace(MCPAuth.buildSignInUrl('apply.html')), 1000);
+          return;
+        }
+        if (!applyBackendErrors(error.data)) {
+          showToast(error.message || 'Unable to submit the application. Please review the form and try again.', false);
+        }
+        setSubmitting(false);
       }
     });
 
-    // Initial calculations
+    // Initial page setup
     document.addEventListener('DOMContentLoaded', function() {
+      if (!initialiseApplicantSession()) return;
+      const dateInput = document.getElementById('date_of_birth');
+      if (dateInput) dateInput.max = new Date().toISOString().split('T')[0];
       calculateHigherSecondary();
       calculateOverallPercentageFromTotal();
       if (programTypeSelect && programTypeSelect.value === 'BPharm-Lateral') toggleDPharmSection();
+      document.getElementById('logoutApplicant').addEventListener('click', function() {
+        MCPAuth.clearSession();
+        window.location.replace('signin.html?next=apply.html');
+      });
     });
 </script>
 </body>
