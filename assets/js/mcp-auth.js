@@ -238,7 +238,6 @@
     const normalizedPath = path.startsWith("/") ? path : `/${path}`;
     const headers = getAuthHeaders(options.headers || {});
     const response = await fetch(`${CONFIG.API_BASE_URL}${normalizedPath}`, {
-      credentials: "include",
       ...options,
       headers,
     });
