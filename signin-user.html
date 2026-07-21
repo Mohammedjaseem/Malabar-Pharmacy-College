@@ -62,8 +62,8 @@
               <div class="header-top-right">
                 <div class="header-top-social">
                   <span>Follow Us: </span>
-                  <a href="http://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i></a>
-                  <a href="http://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i></a>
+                  <a href="https://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i></a>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@
                             <p>Sign in to continue your online application</p>
                         </div>
 
-                        <form id="loginForm">
+                        <form id="loginForm" novalidate>
                             <div class="form-group">
                                 <label>Email Address</label>
                                 <input type="email" class="form-control" placeholder="Your Email" required id="email">
@@ -164,10 +164,10 @@
                                     <i class="fas fa-eye" id="togglePasswordIcon"></i>
                                 </span>
                             </div>
-                            <div class="d-flex justify-content-between mb-4">
+                            <!-- <div class="d-flex justify-content-between mb-4">
                               <span></span>
                               <a href="forgot-password.html" class="forgot-pass">Forgot Password?</a>
-                            </div>
+                            </div> -->
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="theme-btn" id="signInButton"><i class="far fa-sign-in"></i> Sign In</button>
                                 <div id="loginSpinner" style="display: none; margin-left: 10px;">
@@ -206,7 +206,7 @@
 
                         
                         <div class="login-footer" style="margin-top: 22px; text-align: center;">
-                            <p>New applicant? <a href="signup.html">Create an account</a></p>
+                            <p>New applicant? <a href="signup-user.html">Create an account</a></p>
                         </div>
                     </div>
                 </div>
@@ -303,9 +303,7 @@
                       ></a>
                     </li>
                     <li>
-                      <a
-                        href="http://www.instagram.com/malabar_college_of_pharmacy"
-                        ><i class="fab fa-instagram"></i
+                      <a href="https://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i
                       ></a>
                     </li>
                   </ul>
@@ -318,94 +316,161 @@
   
       <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
 
-      <div id="toast" style="position: fixed; top: 20px; right: 20px; min-width: 200px; padding: 10px; border-radius: 5px; display: none; z-index: 1000;"></div>
-      <script src="assets/js/mcp-auth.js"></script>
+      
+      <div
+        id="toast"
+        class="mcp-toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="mcp-toast-icon">
+          <i class="fas fa-triangle-exclamation"></i>
+        </div>
+        <div class="mcp-toast-content">
+          <strong id="toastTitle">Technical error</strong>
+          <span id="toastMessage">
+            A technical error occurred. Please try again later.
+          </span>
+        </div>
+        <button type="button" id="toastClose" aria-label="Close notification">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <style>
+        .mcp-toast {
+          position: fixed;
+          top: 24px;
+          right: 24px;
+          width: min(430px, calc(100vw - 32px));
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          padding: 15px 16px;
+          border: 1px solid #f1aeb5;
+          border-left: 5px solid #dc3545;
+          border-radius: 10px;
+          background: #fff;
+          color: #842029;
+          box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-12px);
+          transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+          z-index: 99999;
+        }
+
+        .mcp-toast.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .mcp-toast-icon {
+          flex: 0 0 auto;
+          padding-top: 1px;
+          color: #dc3545;
+          font-size: 20px;
+        }
+
+        .mcp-toast-content {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          gap: 3px;
+          line-height: 1.4;
+        }
+
+        .mcp-toast-content strong {
+          font-size: 15px;
+        }
+
+        .mcp-toast-content span {
+          font-size: 13px;
+          color: #58151c;
+        }
+
+        .mcp-toast button {
+          flex: 0 0 auto;
+          border: 0;
+          background: transparent;
+          color: #842029;
+          cursor: pointer;
+          padding: 0;
+          font-size: 15px;
+        }
+
+        @media (max-width: 576px) {
+          .mcp-toast {
+            top: 14px;
+            right: 16px;
+            left: 16px;
+            width: auto;
+          }
+        }
+      </style>
+
+
       <script>
         (function () {
           "use strict";
 
           const form = document.getElementById("loginForm");
-          const emailField = document.getElementById("email");
           const passwordField = document.getElementById("password");
-          const submitButton = document.getElementById("signInButton");
-          const spinner = document.getElementById("loginSpinner");
-          const nextUrl = MCPAuth.getSafeNextUrl();
+          const passwordToggle = document.getElementById("togglePassword");
+          const toast = document.getElementById("toast");
+          const toastClose = document.getElementById("toastClose");
+          let toastTimer;
 
-          if (MCPAuth.isAuthenticated()) {
-            window.location.replace(nextUrl);
-            return;
-          }
-
-          const signUpLink = document.querySelector('.login-footer a[href="signup.html"]');
-          if (signUpLink) {
-            signUpLink.href = `signup.html?next=${encodeURIComponent(nextUrl)}`;
-          }
-          const forgotPasswordLink = document.querySelector('a[href="forgot-password.html"]');
-          if (forgotPasswordLink) {
-            forgotPasswordLink.href = `forgot-password.html?next=${encodeURIComponent(nextUrl)}`;
-          }
-
-          form.addEventListener("submit", async function (event) {
+          form.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const email = emailField.value.trim().toLowerCase();
-            const password = passwordField.value;
-
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-              showToast("Enter a valid email address.", "error");
-              emailField.focus();
-              return;
-            }
-
-            if (!password) {
-              showToast("Enter your password.", "error");
-              passwordField.focus();
-              return;
-            }
-
-            setLoading(true);
-            try {
-              const data = await MCPAuth.postJson("/login/", { email, password });
-              MCPAuth.saveSession(data, email);
-              showToast(data.message || "Sign in successful. Redirecting...", "success");
-              window.setTimeout(() => window.location.replace(nextUrl), 700);
-            } catch (error) {
-              showToast(error.message || "Unable to sign in. Check your email and password.", "error");
-              setLoading(false);
-            }
+            // Dummy page: do not call an API or submit sign-in data.
+            showTechnicalError();
           });
 
-          document.getElementById("togglePassword").addEventListener("click", function () {
-            const showPassword = passwordField.type === "password";
-            passwordField.type = showPassword ? "text" : "password";
-            this.querySelector("i").classList.toggle("fa-eye", !showPassword);
-            this.querySelector("i").classList.toggle("fa-eye-slash", showPassword);
-          });
-
-          function setLoading(isLoading) {
-            spinner.style.display = isLoading ? "block" : "none";
-            emailField.disabled = isLoading;
-            passwordField.disabled = isLoading;
-            submitButton.disabled = isLoading;
-            submitButton.innerHTML = isLoading
-              ? '<i class="fas fa-spinner fa-spin"></i> Signing In...'
-              : '<i class="far fa-sign-in"></i> Sign In';
+          if (passwordToggle) {
+            passwordToggle.addEventListener("click", togglePassword);
+            passwordToggle.addEventListener("keydown", function (event) {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                togglePassword();
+              }
+            });
           }
 
-          function showToast(message, type) {
-            const toast = document.getElementById("toast");
-            toast.innerText = message;
-            toast.style.display = "block";
-            toast.style.backgroundColor = type === "success" ? "#198754" : "#dc3545";
-            toast.style.color = "#fff";
-            window.clearTimeout(showToast.timer);
-            showToast.timer = window.setTimeout(() => {
-              toast.style.display = "none";
-            }, 4000);
+          toastClose.addEventListener("click", hideToast);
+
+          function togglePassword() {
+            const showPassword = passwordField.type === "password";
+            passwordField.type = showPassword ? "text" : "password";
+
+            const icon = document.getElementById("togglePasswordIcon");
+            if (icon) {
+              icon.classList.toggle("fa-eye", !showPassword);
+              icon.classList.toggle("fa-eye-slash", showPassword);
+            }
+          }
+
+          function showTechnicalError() {
+            document.getElementById("toastTitle").textContent = "Technical error";
+            document.getElementById("toastMessage").textContent =
+              "A technical error occurred. Please try again later.";
+
+            toast.classList.add("show");
+
+            window.clearTimeout(toastTimer);
+            toastTimer = window.setTimeout(hideToast, 5000);
+          }
+
+          function hideToast() {
+            toast.classList.remove("show");
           }
         })();
       </script>
-      <script src="https://live.themewild.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+<script src="https://live.themewild.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
       <script src="assets/js/jquery-3.7.1.min.js"></script>
       <script src="assets/js/modernizr.min.js"></script>
       <script src="assets/js/bootstrap.bundle.min.js"></script>
