@@ -318,7 +318,7 @@
           <div class="col-md-4 mb-3"><label class="form-label">Caste <span class="text-danger">*</span></label><input type="text" class="form-control" id="caste" name="caste" placeholder="Your Caste" oninput="clearError('caste')"><div class="error-message" id="error_caste"></div></div>
           <div class="col-md-6 mb-3"><label class="form-label">Contact Number <span class="text-danger">*</span></label><input type="tel" class="form-control" id="contact_number" name="contact_number" placeholder="10-digit mobile number" oninput="validateContact()"><div class="error-message" id="error_contact_number"></div></div>
           <div class="col-md-6 mb-3"><label class="form-label">Quota <span class="text-danger">*</span></label><select class="form-select" id="quota" name="quota" onchange="clearError('quota')"><option value="">Choose option...</option><option value="Merit">Merit</option><option value="Management">Management</option><option value="NRI">NRI</option><option value="Other">Other</option></select><div class="error-message" id="error_quota"></div></div>
-          <div class="col-lg-6 mb-3"><label class="form-label">Student Photo (PP Size, Max 1MB) <span class="text-danger">*</span></label><input type="file" class="form-control" id="student_photo" name="student_photo" accept="image/*" onchange="previewSingleFile(event, 'studentPhotoPreview'); validateFile('student_photo', 'error_student_photo')"><small>Passport size photo. Max 1MB.</small><div id="studentPhotoPreview" class="preview-container"></div><div class="error-message" id="error_student_photo"></div></div>
+          <div class="col-lg-6 mb-3"><label class="form-label">Student Photo (PP Size, Max 10MB) <span class="text-danger">*</span></label><input type="file" class="form-control" id="student_photo" name="student_photo" accept="image/*" onchange="previewSingleFile(event, 'studentPhotoPreview'); validateFile('student_photo', 'error_student_photo')"><small>Passport size photo. Max 10MB.</small><div id="studentPhotoPreview" class="preview-container"></div><div class="error-message" id="error_student_photo"></div></div>
         </div>
 
         <!-- IDENTIFICATION -->
@@ -595,7 +595,7 @@
       const input = document.getElementById(fieldId);
       const file = input && input.files ? input.files[0] : null;
       if (!file) { setError(fieldId, 'File is required'); return false; }
-      if (file.size > 1024 * 1024) { setError(fieldId, 'File size must be less than or equal to 1MB'); return false; }
+      if (file.size > 10 * 1024 * 1024) { setError(fieldId, 'File size must be less than or equal to 10MB'); return false; }
       setError(fieldId, '');
       return true;
     }
