@@ -318,12 +318,12 @@
           <div class="col-md-4 mb-3"><label class="form-label">Caste <span class="text-danger">*</span></label><input type="text" class="form-control" id="caste" name="caste" placeholder="Your Caste" oninput="clearError('caste')"><div class="error-message" id="error_caste"></div></div>
           <div class="col-md-6 mb-3"><label class="form-label">Contact Number <span class="text-danger">*</span></label><input type="tel" class="form-control" id="contact_number" name="contact_number" placeholder="10-digit mobile number" oninput="validateContact()"><div class="error-message" id="error_contact_number"></div></div>
           <div class="col-md-6 mb-3"><label class="form-label">Quota <span class="text-danger">*</span></label><select class="form-select" id="quota" name="quota" onchange="clearError('quota')"><option value="">Choose option...</option><option value="Merit">Merit</option><option value="Management">Management</option><option value="NRI">NRI</option><option value="Other">Other</option></select><div class="error-message" id="error_quota"></div></div>
-          <div class="col-lg-6 mb-3"><label class="form-label">Student Photo (PP Size, Max 1MB) <span class="text-danger">*</span></label><input type="file" class="form-control" id="student_photo" name="student_photo" accept="image/*" onchange="previewSingleFile(event, 'studentPhotoPreview'); validateFile('student_photo', 'error_student_photo')"><small>Passport size photo. Max 1MB.</small><div id="studentPhotoPreview" class="preview-container"></div><div class="error-message" id="error_student_photo"></div></div>
+          <div class="col-lg-6 mb-3"><label class="form-label">Student Photo (PP Size, Max 10MB) <span class="text-danger">*</span></label><input type="file" class="form-control" id="student_photo" name="student_photo" accept="image/*" onchange="previewSingleFile(event, 'studentPhotoPreview'); validateFile('student_photo', 'error_student_photo')"><small>Passport size photo. Max 10MB.</small><div id="studentPhotoPreview" class="preview-container"></div><div class="error-message" id="error_student_photo"></div></div>
         </div>
 
         <!-- IDENTIFICATION -->
         <div class="row mt-2"><div class="col-12"><span class="section-title"><i class="fas fa-id-card me-1"></i>IDENTIFICATION</span></div>
-        <div class="col-lg-6 mb-3"><label class="form-label">Signature <span class="text-danger">*</span></label><input type="file" class="form-control" id="signature" name="signature" accept="image/*" onchange="previewSingleFile(event, 'signaturePreview'); validateFile('signature', 'error_signature')"><small>Max 1MB.</small><div id="signaturePreview" class="preview-container"></div><div class="error-message" id="error_signature"></div></div></div>
+        <div class="col-lg-6 mb-3"><label class="form-label">Signature <span class="text-danger">*</span></label><input type="file" class="form-control" id="signature" name="signature" accept="image/*" onchange="previewSingleFile(event, 'signaturePreview'); validateFile('signature', 'error_signature')"><small>Max 10MB.</small><div id="signaturePreview" class="preview-container"></div><div class="error-message" id="error_signature"></div></div></div>
 
         <!-- PROGRAM DETAILS -->
         <div class="row mt-2"><div class="col-12"><span class="section-title"><i class="fas fa-graduation-cap me-1"></i>PROGRAM DETAILS</span></div>
@@ -338,7 +338,7 @@
 <div class="col-md-6 mb-3"><label class="form-label">Year and Month of Passing</label><input type="month" class="form-control" id="dpharm_pass_year" name="dpharm_pass_year" placeholder="YYYY-MM" oninput="clearError('dpharm_pass_year')"><div class="error-message" id="error_dpharm_pass_year"></div></div>
 <div class="col-md-6 mb-3"><label class="form-label">Total Mark (Out of 1100)</label><input type="number" step="any" class="form-control" id="dpharm_total_mark" name="dpharm_total_mark" placeholder="Enter total mark obtained" oninput="calculateDPharmPercentage(); validateDPharmTotal()"><div class="error-message" id="error_dpharm_total_mark"></div></div>
 <div class="col-md-6 mb-3"><label class="form-label">Percentage (%)</label><input type="number" step="any" class="form-control" id="dpharm_percentage" name="dpharm_percentage" placeholder="Auto-calculated" readonly><div class="error-message" id="error_dpharm_percentage"></div></div>
-<div class="col-md-12 mb-3"><label class="form-label">DPharm Certificate (Max 1MB)</label><input type="file" class="form-control" id="dpharm_certificate" name="dpharm_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'dpharmCertPreview'); validateLateralFile()"><small>Upload certificate. Max 1MB.</small><div id="dpharmCertPreview" class="preview-container"></div><div class="error-message" id="error_dpharm_certificate"></div></div>
+<div class="col-md-12 mb-3"><label class="form-label">DPharm Certificate (Max 10MB)</label><input type="file" class="form-control" id="dpharm_certificate" name="dpharm_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'dpharmCertPreview'); validateLateralFile()"><small>Upload certificate. Max 10MB.</small><div id="dpharmCertPreview" class="preview-container"></div><div class="error-message" id="error_dpharm_certificate"></div></div>
 <div class="col-md-6 mb-3"><label class="form-label">KSPC No.</label><input type="text" class="form-control" id="kspc_no" name="kspc_no" placeholder="KSPC Registration Number" oninput="clearError('kspc_no')"><div class="error-message" id="error_kspc_no"></div></div></div></div>
 
         <!-- HIGHER SECONDARY -->
@@ -357,14 +357,14 @@
         <div class="col-md-4"><label class="form-label">Overall Percentage (%)</label><input type="number" step="any" class="form-control" id="hs_percentage" name="hs_percentage" placeholder="Auto-calculated" readonly ondblclick="makeOverallPercentageEditable()"><div class="error-message" id="error_hs_percentage"></div></div>
         <div class="col-md-4"><label class="form-label">PCB/PCM (Higher Value)</label><input type="number" step="any" class="form-control" id="pcb_pcm_higher" name="pcb_pcm_higher" placeholder="Auto-calculated" readonly><div class="error-message" id="error_pcb_pcm_higher"></div></div></div>
 
-        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Higher Secondary Certificate (Max 1MB)</label><input type="file" class="form-control" id="hs_certificate" name="hs_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'hsCertPreview'); validateFile('hs_certificate', 'error_hs_certificate')"><div id="hsCertPreview" class="preview-container"></div><div class="error-message" id="error_hs_certificate"></div></div></div>
+        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Higher Secondary Certificate (Max 10MB)</label><input type="file" class="form-control" id="hs_certificate" name="hs_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'hsCertPreview'); validateFile('hs_certificate', 'error_hs_certificate')"><div id="hsCertPreview" class="preview-container"></div><div class="error-message" id="error_hs_certificate"></div></div></div>
 
         <!-- HIGH SCHOOL -->
         <div class="col-12"><span class="sub-section-title">HIGH SCHOOL (10th)</span></div>
         <div class="row mb-3"><div class="col-md-6"><label class="form-label">Register Number</label><input type="text" class="form-control" id="school_reg_no" name="school_reg_no" placeholder="Register Number" oninput="clearError('school_reg_no')"><div class="error-message" id="error_school_reg_no"></div></div>
         <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="month" class="form-control" id="school_pass_year" name="school_pass_year" placeholder="YYYY-MM" oninput="clearError('school_pass_year')"><div class="error-message" id="error_school_pass_year"></div></div></div>
         <div class="row mb-3"><div class="col-md-6"><label class="form-label">Total Percentage</label><input type="number" step="any" class="form-control" id="school_percentage" name="school_percentage" placeholder="Percentage" oninput="validateSchoolPercentage()"><div class="error-message" id="error_school_percentage"></div></div>
-        <div class="col-md-6"><label class="form-label">Certificate (Max 1MB)</label><input type="file" class="form-control" id="school_certificate" name="school_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'schoolCertPreview'); validateFile('school_certificate', 'error_school_certificate')"><div id="schoolCertPreview" class="preview-container"></div><div class="error-message" id="error_school_certificate"></div></div></div>
+        <div class="col-md-6"><label class="form-label">Certificate (Max 10MB)</label><input type="file" class="form-control" id="school_certificate" name="school_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'schoolCertPreview'); validateFile('school_certificate', 'error_school_certificate')"><div id="schoolCertPreview" class="preview-container"></div><div class="error-message" id="error_school_certificate"></div></div></div>
 
         <!-- DECLARATION -->
         <div class="row mt-3"><div class="col-12"><span class="section-title"><i class="fas fa-file-signature me-1"></i>DECLARATION</span></div>
@@ -595,7 +595,7 @@
       const input = document.getElementById(fieldId);
       const file = input && input.files ? input.files[0] : null;
       if (!file) { setError(fieldId, 'File is required'); return false; }
-      if (file.size > 1024 * 1024) { setError(fieldId, 'File size must be less than or equal to 1MB'); return false; }
+      if (file.size > 10 * 1024 * 1024) { setError(fieldId, 'File size must be less than or equal to 10MB'); return false; }
       setError(fieldId, '');
       return true;
     }
