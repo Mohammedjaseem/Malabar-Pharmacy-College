@@ -350,8 +350,7 @@
         <div class="row mb-3">
           <div class="col-md-6">
             <label class="form-label">Board of Examination <span class="text-danger">*</span></label>
-            <!-- UI-only selector: intentionally omitted from buildApplicationFormData() so the API payload remains unchanged. -->
-            <select class="form-select" id="hs_board" onchange="toggleHigherSecondarySection(); clearError('hs_board')">
+            <select class="form-select" id="hs_board" name="hs_board_of_examination" onchange="toggleHigherSecondarySection(); clearError('hs_board')">
               <option value="">Choose board...</option>
               <option value="STATE">State Syllabus</option>
               <option value="CBSE">CBSE</option>
@@ -998,6 +997,7 @@
       permanent_address: 'permanent_address', student_email: 'email', parent_email: 'parent_email', date_of_birth: 'date_of_birth',
       gender: 'gender', nationality: 'nationality', category: 'category', religion: 'religion', caste: 'caste',
       contact_number: 'contact_number', quota: 'quota', program_type: 'programTypeSelect',
+      hs_board_of_examination: 'hs_board',
       dpharm_register_number: 'dpharm_reg_no', dpharm_year_month_of_passing: 'dpharm_pass_year',
       dpharm_total_mark: 'dpharm_total_mark', dpharm_percentage: 'dpharm_percentage',
       kspc_registration_number: 'kspc_no', hs_register_number: 'hs_reg_no', hs_year_month_of_passing: 'hs_pass_year',
@@ -1029,6 +1029,7 @@
         ['student_email', 'email'], ['parent_email', 'parent_email'], ['date_of_birth', 'date_of_birth'],
         ['gender', 'gender'], ['nationality', 'nationality'], ['category', 'category'], ['religion', 'religion'],
         ['caste', 'caste'], ['contact_number', 'contact_number'], ['quota', 'quota'], ['program_type', 'programTypeSelect'],
+        ['hs_board_of_examination', 'hs_board'],
         ['hs_register_number', 'hs_reg_no'], ['hs_year_month_of_passing', 'hs_pass_year'],
         ['hs_physics_mark', 'physics_mark'], ['hs_chemistry_mark', 'chemistry_mark'], ['hs_biology_mark', 'biology_mark'],
         ['hs_mathematics_mark', 'maths_mark'], ['hs_total_mark', 'hs_total_mark'],
