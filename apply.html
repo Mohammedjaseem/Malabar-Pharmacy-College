@@ -68,6 +68,11 @@
     .submission-success { margin:16px 0; padding:16px; border-radius:14px; border:1px solid #a7d7bd; background:#edf9f2; color:#14532d; }
     .submission-success h5 { margin:0 0 5px; font-weight:800; }
     .theme-btn:disabled { opacity:.65; cursor:not-allowed; transform:none; }
+    .hs-board-note { margin-top: 4px; font-size: 10px; color: #5f7f9e; }
+    .calculated-field-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .calculated-field-edit { border: 0; background: transparent; color: #0f7b8c; padding: 0; font-size: 10px; font-weight: 700; text-transform: none; cursor: pointer; }
+    .calculated-field-edit:hover { color: #0a5966; text-decoration: underline; }
+    .calculated-field-edit:focus-visible { outline: 2px solid rgba(15,123,140,0.3); outline-offset: 2px; border-radius: 3px; }
     .site-breadcrumb .breadcrumb-menu li::before {
     content: ">>" !important;
     font-family: inherit !important;
@@ -172,11 +177,9 @@
             <div class="header-top-right">
               <div class="header-top-social">
                 <span>Follow Us: </span>
-                <a href="http://www.facebook.com/MalabarCollegeofPharmacy"
-                  ><i class="fab fa-facebook-f"></i
+                <a href="https://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i
                 ></a>
-                <a href="http://www.instagram.com/malabar_college_of_pharmacy"
-                  ><i class="fab fa-instagram"></i
+                <a href="https://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i
                 ></a>
               </div>
             </div>
@@ -343,21 +346,52 @@
 
         <!-- HIGHER SECONDARY -->
         <div class="col-12"><span class="sub-section-title">HIGHER SECONDARY</span></div>
-        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Register Number</label><input type="text" class="form-control" id="hs_reg_no" name="hs_reg_no" placeholder="Register Number" oninput="clearError('hs_reg_no')"><div class="error-message" id="error_hs_reg_no"></div></div>
-        <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="month" class="form-control" id="hs_pass_year" name="hs_pass_year" placeholder="YYYY-MM" oninput="clearError('hs_pass_year')"><div class="error-message" id="error_hs_pass_year"></div></div></div>
 
-        <div class="row mb-2"><div class="col-12"><h6 style="color:#125875; font-weight:500; margin-bottom:5px; border-left:2px solid #0f7b8c; padding-left:8px; font-size:0.75rem;">MARKS SECTION (Each subject out of 200)</h6></div></div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Board of Examination <span class="text-danger">*</span></label>
+            <!-- UI-only selector: intentionally omitted from buildApplicationFormData() so the API payload remains unchanged. -->
+            <select class="form-select" id="hs_board" onchange="toggleHigherSecondarySection(); clearError('hs_board')">
+              <option value="">Choose board...</option>
+              <option value="STATE">State Syllabus</option>
+              <option value="CBSE">CBSE</option>
+            </select>
+            <div class="hs-board-note">Select the board to display the Higher Secondary fields.</div>
+            <div class="error-message" id="error_hs_board"></div>
+          </div>
+        </div>
 
-        <div class="row mb-3"><div class="col-md-3"><label class="form-label">Physics</label><input type="number" class="form-control" id="physics_mark" name="physics_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('physics_mark', 'error_physics_mark', 200)"><div class="error-message" id="error_physics_mark"></div></div>
-        <div class="col-md-3"><label class="form-label">Chemistry</label><input type="number" class="form-control" id="chemistry_mark" name="chemistry_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('chemistry_mark', 'error_chemistry_mark', 200)"><div class="error-message" id="error_chemistry_mark"></div></div>
-        <div class="col-md-3"><label class="form-label">Biology</label><input type="number" class="form-control" id="biology_mark" name="biology_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('biology_mark', 'error_biology_mark', 200)"><div class="error-message" id="error_biology_mark"></div></div>
-        <div class="col-md-3"><label class="form-label">Mathematics</label><input type="number" class="form-control" id="maths_mark" name="maths_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('maths_mark', 'error_maths_mark', 200)"><div class="error-message" id="error_maths_mark"></div></div></div>
+        <div id="higherSecondaryFields" style="display: none;">
+          <div class="row mb-3">
+            <div class="col-md-6"><label class="form-label">Register Number</label><input type="text" class="form-control" id="hs_reg_no" name="hs_reg_no" placeholder="Register Number" oninput="clearError('hs_reg_no')"><div class="error-message" id="error_hs_reg_no"></div></div>
+            <div class="col-md-6"><label class="form-label">Year and Month of Passing</label><input type="month" class="form-control" id="hs_pass_year" name="hs_pass_year" placeholder="YYYY-MM" oninput="clearError('hs_pass_year')"><div class="error-message" id="error_hs_pass_year"></div></div>
+          </div>
 
-        <div class="row mb-3"><div class="col-md-4"><label class="form-label">Total Mark (Out of 1200)</label><input type="number" class="form-control" id="hs_total_mark" name="hs_total_mark" placeholder="Enter total mark obtained" oninput="calculateOverallPercentageFromTotal(); validateTotalMark()"><div class="error-message" id="error_hs_total_mark"></div></div>
-        <div class="col-md-4"><label class="form-label">Overall Percentage (%)</label><input type="number" step="any" class="form-control" id="hs_percentage" name="hs_percentage" placeholder="Auto-calculated" readonly ondblclick="makeOverallPercentageEditable()"><div class="error-message" id="error_hs_percentage"></div></div>
-        <div class="col-md-4"><label class="form-label">PCB/PCM (Higher Value)</label><input type="number" step="any" class="form-control" id="pcb_pcm_higher" name="pcb_pcm_higher" placeholder="Auto-calculated" readonly><div class="error-message" id="error_pcb_pcm_higher"></div></div></div>
+          <div class="row mb-2"><div class="col-12"><h6 id="hs_marks_section_label" style="color:#125875; font-weight:500; margin-bottom:5px; border-left:2px solid #0f7b8c; padding-left:8px; font-size:0.75rem;">MARKS SECTION</h6></div></div>
 
-        <div class="row mb-3"><div class="col-md-6"><label class="form-label">Higher Secondary Certificate (Max 10MB)</label><input type="file" class="form-control" id="hs_certificate" name="hs_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'hsCertPreview'); validateFile('hs_certificate', 'error_hs_certificate')"><div id="hsCertPreview" class="preview-container"></div><div class="error-message" id="error_hs_certificate"></div></div></div>
+          <div class="row mb-3">
+            <div class="col-md-3"><label class="form-label">Physics</label><input type="number" min="0" class="form-control" id="physics_mark" name="physics_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('physics_mark', 'error_physics_mark')"><div class="error-message" id="error_physics_mark"></div></div>
+            <div class="col-md-3"><label class="form-label">Chemistry</label><input type="number" min="0" class="form-control" id="chemistry_mark" name="chemistry_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('chemistry_mark', 'error_chemistry_mark')"><div class="error-message" id="error_chemistry_mark"></div></div>
+            <div class="col-md-3"><label class="form-label">Biology</label><input type="number" min="0" class="form-control" id="biology_mark" name="biology_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('biology_mark', 'error_biology_mark')"><div class="error-message" id="error_biology_mark"></div></div>
+            <div class="col-md-3"><label class="form-label">Mathematics</label><input type="number" min="0" class="form-control" id="maths_mark" name="maths_mark" placeholder="Enter marks" oninput="calculateHigherSecondary(); validateSubjectMark('maths_mark', 'error_maths_mark')"><div class="error-message" id="error_maths_mark"></div></div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-4"><label class="form-label" id="hs_total_mark_label">Total Mark</label><input type="number" min="0" class="form-control" id="hs_total_mark" name="hs_total_mark" placeholder="Enter total mark obtained" oninput="calculateOverallPercentageFromTotal(); validateTotalMark()"><div class="error-message" id="error_hs_total_mark"></div></div>
+            <div class="col-md-4">
+              <label class="form-label calculated-field-label"><span>Overall Percentage (%)</span><button type="button" class="calculated-field-edit" onclick="makeOverallPercentageEditable()"><i class="fas fa-pen me-1"></i>Edit</button></label>
+              <input type="number" min="0" max="100" step="any" class="form-control" id="hs_percentage" name="hs_percentage" placeholder="Auto-calculated" readonly ondblclick="makeOverallPercentageEditable()">
+              <div class="error-message" id="error_hs_percentage"></div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label calculated-field-label"><span>PCB/PCM (Higher Value)</span><button type="button" class="calculated-field-edit" onclick="makePCBPCMEditable()"><i class="fas fa-pen me-1"></i>Edit</button></label>
+              <input type="number" min="0" max="100" step="any" class="form-control" id="pcb_pcm_higher" name="pcb_pcm_higher" placeholder="Auto-calculated" readonly ondblclick="makePCBPCMEditable()">
+              <div class="error-message" id="error_pcb_pcm_higher"></div>
+            </div>
+          </div>
+
+          <div class="row mb-3"><div class="col-md-6"><label class="form-label">Higher Secondary Certificate (Max 10MB)</label><input type="file" class="form-control" id="hs_certificate" name="hs_certificate" accept="image/*,.pdf" onchange="previewSingleFile(event, 'hsCertPreview'); validateFile('hs_certificate', 'error_hs_certificate')"><div id="hsCertPreview" class="preview-container"></div><div class="error-message" id="error_hs_certificate"></div></div></div>
+        </div>
 
         <!-- HIGH SCHOOL -->
         <div class="col-12"><span class="sub-section-title">HIGH SCHOOL (10th)</span></div>
@@ -470,6 +504,8 @@
 
     function validateSubjectMark(fieldId, errorId, maxVal) {
       const val = getVal(fieldId);
+      const rules = getHigherSecondaryRules();
+      const allowedMaximum = Number.isFinite(maxVal) ? maxVal : rules.subjectMax;
       if (!val) {
         setError(fieldId, `${fieldId.replace(/_/g, ' ').toUpperCase()} is required`);
         return false;
@@ -479,8 +515,8 @@
         setError(fieldId, `${fieldId.replace(/_/g, ' ')} must be a valid number`);
         return false;
       }
-      if (numVal > maxVal) {
-        setError(fieldId, `${fieldId.replace(/_/g, ' ')} cannot exceed ${maxVal}`);
+      if (numVal > allowedMaximum) {
+        setError(fieldId, `${fieldId.replace(/_/g, ' ')} cannot exceed ${allowedMaximum}`);
         return false;
       }
       if (numVal < 0) {
@@ -493,6 +529,7 @@
 
     function validateTotalMark() {
       const total = getVal('hs_total_mark');
+      const { totalMax } = getHigherSecondaryRules();
       if (!total) {
         setError('hs_total_mark', 'Higher Secondary Total Mark is required');
         return false;
@@ -502,8 +539,8 @@
         setError('hs_total_mark', 'Total mark must be a valid number');
         return false;
       }
-      if (numTotal > 1200) {
-        setError('hs_total_mark', 'Total mark cannot exceed 1200');
+      if (numTotal > totalMax) {
+        setError('hs_total_mark', `Total mark cannot exceed ${totalMax}`);
         return false;
       }
       if (numTotal < 0) {
@@ -541,6 +578,19 @@
       const pcbPcmHigher = getVal('pcb_pcm_higher');
       if (!pcbPcmHigher) {
         setError('pcb_pcm_higher', 'PCB/PCM Higher percentage is required');
+        return false;
+      }
+      const numericValue = parseFloat(pcbPcmHigher);
+      if (isNaN(numericValue)) {
+        setError('pcb_pcm_higher', 'PCB/PCM Higher percentage must be a valid number');
+        return false;
+      }
+      if (numericValue > 100) {
+        setError('pcb_pcm_higher', 'PCB/PCM Higher percentage cannot exceed 100%');
+        return false;
+      }
+      if (numericValue < 0) {
+        setError('pcb_pcm_higher', 'PCB/PCM Higher percentage cannot be negative');
         return false;
       }
       setError('pcb_pcm_higher', '');
@@ -617,37 +667,49 @@
     }
 
     function checkRequiredFields() {
-      const required = ['full_name', 'fathers_name', 'father_occupation', 'mothers_name', 'mother_occupation', 'correspondence_address', 'permanent_address', 'email', 'parent_email', 'date_of_birth', 'gender', 'category', 'religion', 'caste', 'contact_number', 'quota', 'programTypeSelect', 'hs_reg_no', 'hs_pass_year', 'school_reg_no', 'school_pass_year'];
+      const required = ['full_name', 'fathers_name', 'father_occupation', 'mothers_name', 'mother_occupation', 'correspondence_address', 'permanent_address', 'email', 'parent_email', 'date_of_birth', 'gender', 'category', 'religion', 'caste', 'contact_number', 'quota', 'programTypeSelect', 'hs_board', 'school_reg_no', 'school_pass_year'];
       let hasError = false;
       for (let field of required) {
-        if (!getVal(field)) { 
-          setError(field, `${field.replace(/_/g, ' ').toUpperCase()} is required`); 
-          hasError = true; 
-        } else { 
-          clearError(field); 
+        if (!getVal(field)) {
+          const fieldLabel = field === 'hs_board' ? 'BOARD OF EXAMINATION' : field.replace(/_/g, ' ').toUpperCase();
+          setError(field, `${fieldLabel} is required`);
+          hasError = true;
+        } else {
+          clearError(field);
         }
       }
       
       if (!validateEmail()) hasError = true;
       if (!validateParentEmail()) hasError = true;
       if (!validateContact()) hasError = true;
+
+      const selectedBoard = getVal('hs_board');
+      if (selectedBoard) {
+        for (const field of ['hs_reg_no', 'hs_pass_year']) {
+          if (!getVal(field)) {
+            setError(field, `${field.replace(/_/g, ' ').toUpperCase()} is required`);
+            hasError = true;
+          } else {
+            clearError(field);
+          }
+        }
+
+        // Board-aware validation: State = 200 per subject/1200 total; CBSE = 100 per subject/500 total.
+        if (!validateSubjectMark('physics_mark', 'error_physics_mark')) hasError = true;
+        if (!validateSubjectMark('chemistry_mark', 'error_chemistry_mark')) hasError = true;
+        if (!validateSubjectMark('biology_mark', 'error_biology_mark')) hasError = true;
+        if (!validateSubjectMark('maths_mark', 'error_maths_mark')) hasError = true;
+        if (!validateTotalMark()) hasError = true;
+        if (!validateHSPercentage()) hasError = true;
+        if (!validatePCBPCMHigher()) hasError = true;
+        if (!validateFile('hs_certificate', 'error_hs_certificate')) hasError = true;
+      }
       
-      // Validate subject marks with required check
-      if (!validateSubjectMark('physics_mark', 'error_physics_mark', 200)) hasError = true;
-      if (!validateSubjectMark('chemistry_mark', 'error_chemistry_mark', 200)) hasError = true;
-      if (!validateSubjectMark('biology_mark', 'error_biology_mark', 200)) hasError = true;
-      if (!validateSubjectMark('maths_mark', 'error_maths_mark', 200)) hasError = true;
-      
-      // Validate total mark and percentages
-      if (!validateTotalMark()) hasError = true;
       if (!validateSchoolPercentage()) hasError = true;
-      if (!validateHSPercentage()) hasError = true;
-      if (!validatePCBPCMHigher()) hasError = true;
       
       // File validations
       if (!validateFile('student_photo', 'error_student_photo')) hasError = true;
       if (!validateFile('signature', 'error_signature')) hasError = true;
-      if (!validateFile('hs_certificate', 'error_hs_certificate')) hasError = true;
       if (!validateFile('school_certificate', 'error_school_certificate')) hasError = true;
       
       if (programTypeSelect.value === 'BPharm-Lateral') {
@@ -694,43 +756,142 @@
     let isOverallPercentageManualEdit = false;
     let isPCBPCMManualEdit = false;
 
+    function getHigherSecondaryRules() {
+      const board = getVal('hs_board');
+      if (board === 'CBSE') {
+        return { board, boardLabel: 'CBSE', subjectMax: 100, totalMax: 500, pcbPcmMaximum: 300 };
+      }
+      return { board, boardLabel: 'State Syllabus', subjectMax: 200, totalMax: 1200, pcbPcmMaximum: 600 };
+    }
+
+    function updateHigherSecondaryFieldRules() {
+      const { subjectMax, totalMax } = getHigherSecondaryRules();
+      const marksLabel = document.getElementById('hs_marks_section_label');
+      const totalLabel = document.getElementById('hs_total_mark_label');
+      if (marksLabel) marksLabel.textContent = `MARKS SECTION (Each subject out of ${subjectMax})`;
+      if (totalLabel) totalLabel.textContent = `Total Mark (Out of ${totalMax})`;
+
+      ['physics_mark', 'chemistry_mark', 'biology_mark', 'maths_mark'].forEach((fieldId) => {
+        const input = document.getElementById(fieldId);
+        if (input) input.max = String(subjectMax);
+      });
+      const totalInput = document.getElementById('hs_total_mark');
+      if (totalInput) totalInput.max = String(totalMax);
+    }
+
+    function toggleHigherSecondarySection() {
+      const board = getVal('hs_board');
+      const section = document.getElementById('higherSecondaryFields');
+      if (section) section.style.display = board ? 'block' : 'none';
+      if (!board) return;
+
+      isOverallPercentageManualEdit = false;
+      isPCBPCMManualEdit = false;
+      setCalculatedFieldReadOnly('hs_percentage');
+      setCalculatedFieldReadOnly('pcb_pcm_higher');
+      updateHigherSecondaryFieldRules();
+      calculateHigherSecondary();
+      calculateOverallPercentageFromTotal();
+
+      // Keep entered values while switching boards, but immediately show any new limit violations.
+      ['physics_mark', 'chemistry_mark', 'biology_mark', 'maths_mark'].forEach((fieldId) => {
+        if (getVal(fieldId)) validateSubjectMark(fieldId, `error_${fieldId}`);
+      });
+      if (getVal('hs_total_mark')) validateTotalMark();
+    }
+
     function calculateOverallPercentageFromTotal() {
       const totalMark = document.getElementById('hs_total_mark');
       const percentage = document.getElementById('hs_percentage');
+      const { totalMax } = getHigherSecondaryRules();
       if (totalMark && percentage && !isOverallPercentageManualEdit) {
         const mark = parseFloat(totalMark.value);
-        if (!isNaN(mark) && mark >= 0 && mark <= 1200) percentage.value = ((mark / 1200) * 100).toFixed(2);
+        if (!isNaN(mark) && mark >= 0 && mark <= totalMax) percentage.value = ((mark / totalMax) * 100).toFixed(2);
         else percentage.value = '';
+      }
+    }
+
+    function setCalculatedFieldEditable(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      field.readOnly = false;
+      field.style.backgroundColor = '#ffffff';
+      field.style.border = '1px solid #0f7b8c';
+      field.focus();
+      field.select();
+    }
+
+    function setCalculatedFieldReadOnly(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      field.readOnly = true;
+      field.style.backgroundColor = '#e9ecef';
+      field.style.border = '1px solid #cfdee9';
+    }
+
+    function normalisePercentageField(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      const value = parseFloat(field.value);
+      if (!isNaN(value)) {
+        field.value = Math.min(100, Math.max(0, value)).toFixed(2);
       }
     }
 
     function makeOverallPercentageEditable() {
       isOverallPercentageManualEdit = true;
-      const p = document.getElementById('hs_percentage');
-      if (p) { p.readOnly = false; p.style.backgroundColor = '#ffffff'; p.style.border = '1px solid #0f7b8c'; p.focus(); }
+      setCalculatedFieldEditable('hs_percentage');
     }
 
     function handleOverallPercentageInput() {
-      const p = document.getElementById('hs_percentage');
-      if (p && isOverallPercentageManualEdit) {
-        let v = parseFloat(p.value);
-        if (!isNaN(v)) { if (v > 100) { p.value = '100'; } else if (v < 0) { p.value = '0'; } else { p.value = v.toFixed(2); } }
-        p.readOnly = true; p.style.backgroundColor = '#e9ecef'; p.style.border = '1px solid #cfdee9';
-        isOverallPercentageManualEdit = false;
-      }
+      if (!isOverallPercentageManualEdit) return;
+      normalisePercentageField('hs_percentage');
+      setCalculatedFieldReadOnly('hs_percentage');
+      isOverallPercentageManualEdit = false;
+      validateHSPercentage();
+    }
+
+    function makePCBPCMEditable() {
+      isPCBPCMManualEdit = true;
+      setCalculatedFieldEditable('pcb_pcm_higher');
+    }
+
+    function handlePCBPCMInput() {
+      if (!isPCBPCMManualEdit) return;
+      normalisePercentageField('pcb_pcm_higher');
+      setCalculatedFieldReadOnly('pcb_pcm_higher');
+      isPCBPCMManualEdit = false;
+      validatePCBPCMHigher();
     }
 
     function calculatePCBPCMHigher() {
       if (isPCBPCMManualEdit) return;
-      const phy = parseFloat(document.getElementById('physics_mark')?.value) || 0;
-      const chem = parseFloat(document.getElementById('chemistry_mark')?.value) || 0;
-      const bio = parseFloat(document.getElementById('biology_mark')?.value) || 0;
-      const maths = parseFloat(document.getElementById('maths_mark')?.value) || 0;
-      const pcb = ((phy + bio + chem) / 600) * 100;
-      const pcm = ((phy + maths + chem) / 600) * 100;
-      const higher = Math.max(pcb, pcm);
+      const phyValue = getVal('physics_mark');
+      const chemValue = getVal('chemistry_mark');
+      const bioValue = getVal('biology_mark');
+      const mathsValue = getVal('maths_mark');
       const el = document.getElementById('pcb_pcm_higher');
-      if (el) el.value = higher.toFixed(2);
+      if (!el) return;
+
+      // Wait until the four visible subject fields have values instead of showing a misleading partial percentage.
+      if ([phyValue, chemValue, bioValue, mathsValue].some((value) => value === '')) {
+        el.value = '';
+        return;
+      }
+
+      const phy = parseFloat(phyValue);
+      const chem = parseFloat(chemValue);
+      const bio = parseFloat(bioValue);
+      const maths = parseFloat(mathsValue);
+      const { pcbPcmMaximum, subjectMax } = getHigherSecondaryRules();
+      if ([phy, chem, bio, maths].some((value) => isNaN(value) || value < 0 || value > subjectMax)) {
+        el.value = '';
+        return;
+      }
+
+      const pcb = ((phy + bio + chem) / pcbPcmMaximum) * 100;
+      const pcm = ((phy + maths + chem) / pcbPcmMaximum) * 100;
+      el.value = Math.max(pcb, pcm).toFixed(2);
     }
 
     function calculateHigherSecondary() { calculatePCBPCMHigher(); }
@@ -750,12 +911,14 @@
     const mathsMark = document.getElementById('maths_mark');
     const totalMark = document.getElementById('hs_total_mark');
     const percentageField = document.getElementById('hs_percentage');
+    const pcbPcmField = document.getElementById('pcb_pcm_higher');
     if (physicsMark) physicsMark.addEventListener('input', calculateHigherSecondary);
     if (chemistryMark) chemistryMark.addEventListener('input', calculateHigherSecondary);
     if (biologyMark) biologyMark.addEventListener('input', calculateHigherSecondary);
     if (mathsMark) mathsMark.addEventListener('input', calculateHigherSecondary);
     if (totalMark) totalMark.addEventListener('input', calculateOverallPercentageFromTotal);
     if (percentageField) { percentageField.addEventListener('blur', handleOverallPercentageInput); percentageField.addEventListener('dblclick', makeOverallPercentageEditable); }
+    if (pcbPcmField) { pcbPcmField.addEventListener('blur', handlePCBPCMInput); pcbPcmField.addEventListener('dblclick', makePCBPCMEditable); }
 
     // Generate Review HTML
     function generateReviewHTML() {
@@ -767,6 +930,7 @@
         dpharm_certificate: document.getElementById('dpharm_certificate')?.files[0]?.name || 'Not uploaded'
       };
       const isLateral = programTypeSelect?.value === 'BPharm-Lateral';
+      const higherSecondaryRules = getHigherSecondaryRules();
       
       return `
         <div class="review-section"><h6><i class="fas fa-user me-2"></i>Personal Details</h6>
@@ -804,13 +968,14 @@
   <div class="review-item"><span class="review-label">KSPC No.:</span><span class="review-value">${getVal('kspc_no') || '-'}</span></div></div>` : ''}
         
         <div class="review-section"><h6><i class="fas fa-chalkboard-user me-2"></i>Higher Secondary</h6>
+          <div class="review-item"><span class="review-label">Board of Examination:</span><span class="review-value">${higherSecondaryRules.boardLabel}</span></div>
           <div class="review-item"><span class="review-label">Register Number:</span><span class="review-value">${getVal('hs_reg_no') || '-'}</span></div>
           <div class="review-item"><span class="review-label">Year of Passing:</span><span class="review-value">${getVal('hs_pass_year') || '-'}</span></div>
           <div class="review-item"><span class="review-label">Physics:</span><span class="review-value">${getVal('physics_mark') || '-'}</span></div>
           <div class="review-item"><span class="review-label">Chemistry:</span><span class="review-value">${getVal('chemistry_mark') || '-'}</span></div>
           <div class="review-item"><span class="review-label">Biology:</span><span class="review-value">${getVal('biology_mark') || '-'}</span></div>
           <div class="review-item"><span class="review-label">Mathematics:</span><span class="review-value">${getVal('maths_mark') || '-'}</span></div>
-          <div class="review-item"><span class="review-label">Total Mark (Out of 1200):</span><span class="review-value">${getVal('hs_total_mark') || '-'}</span></div>
+          <div class="review-item"><span class="review-label">Total Mark (Out of ${higherSecondaryRules.totalMax}):</span><span class="review-value">${getVal('hs_total_mark') || '-'}</span></div>
           <div class="review-item"><span class="review-label">Overall Percentage:</span><span class="review-value">${getVal('hs_percentage') || '-'}</span></div>
           <div class="review-item"><span class="review-label">PCB/PCM:</span><span class="review-value">${getVal('pcb_pcm_higher') || '-'}</span></div>
           <div class="review-item"><span class="review-label">Certificate:</span><span class="review-value">${files.hs_certificate}</span></div></div>
@@ -1004,8 +1169,7 @@
       if (!initialiseApplicantSession()) return;
       const dateInput = document.getElementById('date_of_birth');
       if (dateInput) dateInput.max = new Date().toISOString().split('T')[0];
-      calculateHigherSecondary();
-      calculateOverallPercentageFromTotal();
+      toggleHigherSecondarySection();
       if (programTypeSelect && programTypeSelect.value === 'BPharm-Lateral') toggleDPharmSection();
       document.getElementById('logoutApplicant').addEventListener('click', function() {
         MCPAuth.clearSession();
