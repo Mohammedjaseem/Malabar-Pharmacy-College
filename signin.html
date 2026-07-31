@@ -62,8 +62,8 @@
               <div class="header-top-right">
                 <div class="header-top-social">
                   <span>Follow Us: </span>
-                  <a href="http://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i></a>
-                  <a href="http://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i></a>
+                  <a href="https://www.facebook.com/MalabarCollegeofPharmacy"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i></a>
                 </div>
               </div>
             </div>
@@ -146,9 +146,8 @@
             <div class="container">
                 <div class="col-md-5 mx-auto">
                     <div class="login-form">
-
                         <div class="login-header">
-                            <img src="assets/img/logo/logo.png" alt>
+                            <img src="assets/img/logo/logo.png" alt="logo" style="width: 200px; height: 150px; object-fit: cover;">
                             <p>Sign in to continue your online application</p>
                         </div>
 
@@ -289,7 +288,7 @@
             <div class="copyright-wrapper">
               <div class="row">
                 <div class="col-md-6 align-self-center">
-                  <span>Last updated on 29-07-2026</span>                  <p copyright-text">
+                  <span>Last updated on 16-07-2026</span>                  <p copyright-text">
                     &copy; Copyright <span id="date"></span>
                     <a href="https://bizforz.com/" target="_blank">Bizforz Solutions Pvt Ltd</a> All
                     Rights Reserved.
@@ -303,9 +302,7 @@
                       ></a>
                     </li>
                     <li>
-                      <a
-                        href="http://www.instagram.com/malabar_college_of_pharmacy"
-                        ><i class="fab fa-instagram"></i
+                      <a href="https://www.instagram.com/malabar_college_of_pharmacy"><i class="fab fa-instagram"></i
                       ></a>
                     </li>
                   </ul>
@@ -319,7 +316,7 @@
       <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
 
       <div id="toast" style="position: fixed; top: 20px; right: 20px; min-width: 200px; padding: 10px; border-radius: 5px; display: none; z-index: 1000;"></div>
-      <script src="assets/js/mcp-auth.js"></script>
+      <script src="assets/js/mcp-auth.js?v=20260731-5"></script>
       <script>
         (function () {
           "use strict";
@@ -331,18 +328,33 @@
           const spinner = document.getElementById("loginSpinner");
           const nextUrl = MCPAuth.getSafeNextUrl();
 
+          function getDestination(session) {
+            if (MCPAuth.shouldOpenStatusPage(session)) {
+              return MCPAuth.buildStatusUrl(
+                MCPAuth.getApplicationNumber(session),
+              );
+            }
+            return nextUrl || "apply.html";
+          }
+
           if (MCPAuth.isAuthenticated()) {
-            window.location.replace(nextUrl);
+            window.location.replace(getDestination(MCPAuth.getSession()));
             return;
           }
 
-          const signUpLink = document.querySelector('.login-footer a[href="signup.html"]');
+          const signUpLink = document.querySelector(
+            '.login-footer a[href="signup.html"]',
+          );
           if (signUpLink) {
             signUpLink.href = `signup.html?next=${encodeURIComponent(nextUrl)}`;
           }
-          const forgotPasswordLink = document.querySelector('a[href="forgot-password.html"]');
+
+          const forgotPasswordLink = document.querySelector(
+            'a[href="forgot-password.html"]',
+          );
           if (forgotPasswordLink) {
-            forgotPasswordLink.href = `forgot-password.html?next=${encodeURIComponent(nextUrl)}`;
+            forgotPasswordLink.href =
+              `forgot-password.html?next=${encodeURIComponent(nextUrl)}`;
           }
 
           form.addEventListener("submit", async function (event) {
@@ -364,23 +376,51 @@
             }
 
             setLoading(true);
+
             try {
-              const data = await MCPAuth.postJson("/login/", { email, password });
-              MCPAuth.saveSession(data, email);
-              showToast(data.message || "Sign in successful. Redirecting...", "success");
-              window.setTimeout(() => window.location.replace(nextUrl), 700);
+              const data = await MCPAuth.postJson("/login/", {
+                email,
+                password,
+              });
+
+              const session = MCPAuth.saveSession(data, email);
+              const destination = getDestination(session);
+              const applicationStatus = MCPAuth.getApplicationStatus(session);
+
+              showToast(
+                applicationStatus && applicationStatus !== "DRAFT"
+                  ? "Sign in successful. Opening your application status..."
+                  : data.message || "Sign in successful. Redirecting...",
+                "success",
+              );
+
+              window.setTimeout(function () {
+                window.location.replace(destination);
+              }, 650);
             } catch (error) {
-              showToast(error.message || "Unable to sign in. Check your email and password.", "error");
+              showToast(
+                error.message ||
+                  "Unable to sign in. Check your email and password.",
+                "error",
+              );
               setLoading(false);
             }
           });
 
-          document.getElementById("togglePassword").addEventListener("click", function () {
-            const showPassword = passwordField.type === "password";
-            passwordField.type = showPassword ? "text" : "password";
-            this.querySelector("i").classList.toggle("fa-eye", !showPassword);
-            this.querySelector("i").classList.toggle("fa-eye-slash", showPassword);
-          });
+          document
+            .getElementById("togglePassword")
+            .addEventListener("click", function () {
+              const showPassword = passwordField.type === "password";
+              passwordField.type = showPassword ? "text" : "password";
+              this.querySelector("i").classList.toggle(
+                "fa-eye",
+                !showPassword,
+              );
+              this.querySelector("i").classList.toggle(
+                "fa-eye-slash",
+                showPassword,
+              );
+            });
 
           function setLoading(isLoading) {
             spinner.style.display = isLoading ? "block" : "none";
@@ -396,10 +436,11 @@
             const toast = document.getElementById("toast");
             toast.innerText = message;
             toast.style.display = "block";
-            toast.style.backgroundColor = type === "success" ? "#198754" : "#dc3545";
+            toast.style.backgroundColor =
+              type === "success" ? "#198754" : "#dc3545";
             toast.style.color = "#fff";
             window.clearTimeout(showToast.timer);
-            showToast.timer = window.setTimeout(() => {
+            showToast.timer = window.setTimeout(function () {
               toast.style.display = "none";
             }, 4000);
           }

@@ -1394,25 +1394,40 @@
       aria-live="polite"
     ></div>
 
-    <script src="assets/js/mcp-auth.js"></script>
+    <script src="assets/js/mcp-auth.js?v=20260731-6"></script>
+
     <script>
       (function () {
         "use strict";
 
         const session = MCPAuth.requireAuth("application-status.html");
+
         if (!session) return;
 
         const loadingState = document.getElementById("loadingState");
+
         const errorState = document.getElementById("errorState");
+
         const applicationContent =
           document.getElementById("applicationContent");
+
         const errorMessage = document.getElementById("errorMessage");
+
         const retryButton = document.getElementById("retryButton");
+
         const refreshTopButton = document.getElementById("refreshTopButton");
+
         const logoutTopButton = document.getElementById("logoutTopButton");
+
         const logoutSideButton = document.getElementById("logoutSideButton");
+
         const printButton = document.getElementById("printButton");
+
         const toastMessage = document.getElementById("toastMessage");
+
+        const continueApplicationButton = document.getElementById(
+          "continueApplicationButton",
+        );
 
         const STATUS_META = {
           DRAFT: {
@@ -1422,6 +1437,7 @@
             message:
               "Complete the remaining details and submit the application for review.",
           },
+
           SUBMITTED: {
             label: "Submitted",
             icon: "fa-paper-plane",
@@ -1429,6 +1445,7 @@
             message:
               "Your application has been received. The admissions team will review it shortly.",
           },
+
           UNDER_REVIEW: {
             label: "Under Review",
             icon: "fa-magnifying-glass",
@@ -1436,6 +1453,7 @@
             message:
               "The admissions team is currently checking your application and supporting documents.",
           },
+
           APPROVED: {
             label: "Approved",
             icon: "fa-circle-check",
@@ -1443,6 +1461,7 @@
             message:
               "Your application has been approved. Please follow further instructions from the college.",
           },
+
           REJECTED: {
             label: "Rejected",
             icon: "fa-circle-xmark",
@@ -1524,9 +1543,13 @@
         ]);
 
         retryButton.addEventListener("click", loadApplication);
+
         refreshTopButton.addEventListener("click", loadApplication);
+
         logoutTopButton.addEventListener("click", logout);
+
         logoutSideButton.addEventListener("click", logout);
+
         printButton.addEventListener("click", function () {
           window.print();
         });
@@ -1537,141 +1560,240 @@
           showLoading();
 
           const params = new URLSearchParams(window.location.search);
+
           const applicationNumber =
-            params.get("application_no") ||
-            MCPAuth.getApplicationNumber(session);
+            params.get("application_no") || getSessionApplicationNumber();
 
           if (!applicationNumber) {
             showError(
-              "The application number is missing from your login session. Please sign out and sign in again.",
+              "The application number is missing. Please sign out and sign in again.",
             );
+
             return;
           }
 
           try {
             const response = await MCPAuth.apiFetch(
-              `/application-by-number/${encodeURIComponent(applicationNumber)}/`,
-              { method: "GET" },
+              `/application-by-number/${encodeURIComponent(
+                applicationNumber,
+              )}/`,
+              {
+                method: "GET",
+              },
             );
 
             const applicant =
-              response?.data?.applicant ||
-              response?.applicant ||
-              response?.data ||
-              null;
+              response?.data?.applicant || response?.applicant || null;
 
             if (!applicant || typeof applicant !== "object") {
               throw new Error(
-                "The application response did not contain applicant details.",
+                "The API response did not contain applicant details.",
               );
             }
 
             const applicationForm = applicant.application_form || {};
-            const applicationStatus = MCPAuth.normalizeStatus(
+
+            const applicationStatus = normalizeStatus(
               applicationForm.application_status ||
                 applicant.application_status ||
                 "DRAFT",
             );
 
-            MCPAuth.updateSession({
-              applicationNo:
-                applicant.application_no || applicationForm.application_no,
-              applicationStatus,
-              isFormSubmitted: applicationStatus !== "DRAFT",
-              applicationSubmitted: applicationStatus !== "DRAFT",
-              user: applicant,
-            });
+            updateStoredSession(applicant, applicationForm, applicationStatus);
 
             renderApplication(applicant, applicationForm, applicationStatus);
+
             showContent();
           } catch (error) {
+            console.error("Application details error:", error);
+
             if (error.status === 401 || error.status === 403) {
+              MCPAuth.clearSession();
+
               window.location.replace(
                 MCPAuth.buildSignInUrl("application-status.html"),
               );
+
               return;
             }
+
             showError(
               error.message || "Unable to retrieve the application details.",
             );
           }
         }
 
+        function getSessionApplicationNumber() {
+          return (
+            session.applicationNo ||
+            session.user?.application_no ||
+            session.raw?.applicant?.application_no ||
+            session.raw?.data?.applicant?.application_no ||
+            ""
+          );
+        }
+
+        function updateStoredSession(applicant, form, status) {
+          const changes = {
+            applicationNo:
+              form.application_no || applicant.application_no || "",
+
+            applicationStatus: status,
+
+            isFormSubmitted: status !== "DRAFT",
+
+            applicationSubmitted: status !== "DRAFT",
+
+            user: applicant,
+          };
+
+          if (typeof MCPAuth.updateSession === "function") {
+            MCPAuth.updateSession(changes);
+            return;
+          }
+
+          const existing = MCPAuth.getSession() || {};
+
+          sessionStorage.setItem(
+            MCPAuth.CONFIG.SESSION_KEY,
+            JSON.stringify({
+              ...existing,
+              ...changes,
+              updatedAt: new Date().toISOString(),
+            }),
+          );
+        }
+
         function renderApplication(applicant, form, status) {
           const fullName = form.full_name || applicant.full_name || "Applicant";
+
           const applicationNumber =
             form.application_no || applicant.application_no || "—";
+
           const registeredEmail =
             form.registered_email ||
             applicant.email ||
             form.student_email ||
             "—";
-          const contactNumber =
-            form.contact_number || applicant.phone_number || "—";
+
+          const registeredPhone =
+            applicant.phone_number || form.contact_number || "—";
+
           const meta = STATUS_META[status] || {
-            label: titleCase(status || "Status unavailable"),
+            label: titleCase(status) || "Status Unavailable",
+
             icon: "fa-circle-info",
+
             title: "Application status updated",
+
             message: "Please review the latest application information below.",
           };
 
           setText("summaryName", fullName);
+
           setText("summaryApplicationNumber", applicationNumber);
+
           setText("profileName", fullName);
+
           setText("profileEmail", registeredEmail);
 
           setAvatar("summaryAvatar", form.student_photo, fullName);
+
           setAvatar("profilePhoto", form.student_photo, fullName);
+
           renderStatusBadge(status, meta);
-          renderSummary(form, applicant, registeredEmail, contactNumber);
+
+          renderSummary(form, registeredEmail, registeredPhone);
+
           renderProgress(status);
+
           renderStatusMessage(form, status, meta);
 
           renderFields("personalDetails", form, [
             ["full_name", "Full Name"],
+
             ["father_name", "Father's Name"],
+
             ["father_occupation", "Father's Occupation"],
+
             ["mother_name", "Mother's Name"],
+
             ["mother_occupation", "Mother's Occupation"],
+
             ["date_of_birth", "Date of Birth", "date"],
+
             ["gender", "Gender"],
+
             ["nationality", "Nationality"],
+
             ["category", "Category"],
+
             ["religion", "Religion"],
+
             ["caste", "Caste"],
+
             ["student_email", "Student Email"],
+
             ["parent_email", "Parent Email"],
+
             ["contact_number", "Contact Number"],
+
             ["correspondence_address", "Correspondence Address"],
+
             ["permanent_address", "Permanent Address"],
           ]);
 
           renderFields("programDetails", form, [
             ["program_type", "Program Type"],
+
             ["quota", "Admission Quota"],
+
             ["dpharm_register_number", "DPharm Register Number"],
-            ["dpharm_year_month_of_passing", "DPharm Passing Month"],
+
+            [
+              "dpharm_year_month_of_passing",
+              "DPharm Year and Month of Passing",
+              "month",
+            ],
+
             ["dpharm_total_mark", "DPharm Total Mark"],
+
             ["dpharm_percentage", "DPharm Percentage", "percentage"],
+
             ["kspc_registration_number", "KSPC Registration Number"],
           ]);
 
           renderFields("higherSecondaryDetails", form, [
             ["hs_board_of_examination", "Board of Examination"],
+
             ["hs_register_number", "Register Number"],
-            ["hs_year_month_of_passing", "Year and Month of Passing"],
+
+            ["hs_year_month_of_passing", "Year and Month of Passing", "month"],
+
             ["hs_physics_mark", "Physics Mark"],
+
             ["hs_chemistry_mark", "Chemistry Mark"],
+
             ["hs_biology_mark", "Biology Mark"],
+
             ["hs_mathematics_mark", "Mathematics Mark"],
+
             ["hs_total_mark", "Total Mark"],
+
             ["hs_overall_percentage", "Overall Percentage", "percentage"],
+
             ["hs_pcb_pcm_higher_value", "PCB/PCM Higher Value", "percentage"],
           ]);
 
           renderFields("highSchoolDetails", form, [
             ["high_school_register_number", "Register Number"],
-            ["high_school_year_month_of_passing", "Year and Month of Passing"],
+
+            [
+              "high_school_year_month_of_passing",
+              "Year and Month of Passing",
+              "month",
+            ],
+
             ["high_school_total_percentage", "Total Percentage", "percentage"],
           ]);
 
@@ -1679,50 +1801,84 @@
             "systemDetails",
             {
               applicant_id: applicant.id,
+
               organization: applicant.org_name || applicant.org,
+
               registered_email: form.registered_email || applicant.email,
+
               registered_phone: applicant.phone_number || form.contact_number,
+
               account_verified: applicant.is_verified,
+
               account_active: applicant.is_active,
+
               declaration_accepted: form.declaration_accepted,
+
               rank: form.rank,
+
               submitted_at: form.submitted_at,
+
               reviewed_at: form.reviewed_at,
+
               last_login_at: applicant.last_login_at,
-              applicant_created_at: applicant.created_at,
-              applicant_updated_at: applicant.updated_at,
-              form_id: form.id,
+
+              account_created_at: applicant.created_at,
+
+              account_updated_at: applicant.updated_at,
+
+              application_form_id: form.id,
+
               form_created_at: form.created_at,
+
               form_updated_at: form.updated_at,
             },
             [
               ["applicant_id", "Applicant ID"],
+
               ["organization", "Organization"],
+
               ["registered_email", "Registered Email"],
+
               ["registered_phone", "Registered Phone"],
+
               ["account_verified", "Account Verified", "boolean"],
+
               ["account_active", "Account Active", "boolean"],
+
               ["declaration_accepted", "Declaration Accepted", "boolean"],
+
               ["rank", "Rank"],
+
               ["submitted_at", "Submitted At", "datetime"],
+
               ["reviewed_at", "Reviewed At", "datetime"],
+
               ["last_login_at", "Last Login", "datetime"],
-              ["applicant_created_at", "Account Created", "datetime"],
-              ["applicant_updated_at", "Account Updated", "datetime"],
-              ["form_id", "Application Form ID"],
+
+              ["account_created_at", "Account Created", "datetime"],
+
+              ["account_updated_at", "Account Updated", "datetime"],
+
+              ["application_form_id", "Application Form ID"],
+
               ["form_created_at", "Form Created", "datetime"],
+
               ["form_updated_at", "Form Updated", "datetime"],
             ],
           );
 
           renderDocuments(form);
+
           renderAdditionalInformation(applicant, form);
 
-          document.getElementById("continueApplicationButton").hidden =
-            status !== "DRAFT";
+          continueApplicationButton.hidden = status !== "DRAFT";
 
           const latestDate =
-            form.reviewed_at || form.updated_at || form.submitted_at;
+            form.reviewed_at ||
+            form.updated_at ||
+            form.submitted_at ||
+            applicant.updated_at;
+
           setText(
             "statusUpdatedText",
             latestDate
@@ -1733,135 +1889,212 @@
           document.title = `${applicationNumber} | MCP Application Status`;
         }
 
-        function renderSummary(form, applicant, email, phone) {
-          const summaryItems = [
+        function renderSummary(form, email, phone) {
+          const items = [
             ["Program", form.program_type],
+
+            ["Admission Quota", form.quota],
+
             ["Registered Email", email],
+
             ["Contact Number", phone],
+
             ["Rank", form.rank],
           ];
 
           const grid = document.getElementById("summaryGrid");
+
           grid.innerHTML = "";
 
-          summaryItems
+          items
             .filter(function ([, value]) {
               return hasValue(value) && value !== "—";
             })
             .forEach(function ([label, value]) {
               const item = document.createElement("div");
+
               item.className = "summary-item";
+
               item.innerHTML = `
-                <span class="summary-item-label">${escapeHtml(label)}</span>
-                <span class="summary-item-value">${escapeHtml(String(value))}</span>
-              `;
+            <span class="summary-item-label">
+              ${escapeHtml(label)}
+            </span>
+
+            <span class="summary-item-value">
+              ${escapeHtml(String(value))}
+            </span>
+          `;
+
               grid.appendChild(item);
             });
         }
 
         function renderStatusBadge(status, meta) {
           const badge = document.getElementById("summaryStatus");
+
           badge.dataset.status = status || "DRAFT";
+
           badge.innerHTML = `
-            <i class="far ${escapeHtml(meta.icon)}"></i>
-            <span>${escapeHtml(meta.label)}</span>
-          `;
+        <i class="far ${escapeHtml(meta.icon)}"></i>
+
+        <span>
+          ${escapeHtml(meta.label)}
+        </span>
+      `;
         }
 
         function renderProgress(status) {
           const container = document.getElementById("applicationProgress");
+
           const steps =
             status === "REJECTED"
               ? [
                   ["DRAFT", "Application Created", "fa-pen-to-square"],
+
                   ["SUBMITTED", "Submitted", "fa-paper-plane"],
+
                   ["UNDER_REVIEW", "Under Review", "fa-magnifying-glass"],
+
                   ["REJECTED", "Rejected", "fa-circle-xmark"],
                 ]
               : [
                   ["DRAFT", "Application Created", "fa-pen-to-square"],
+
                   ["SUBMITTED", "Submitted", "fa-paper-plane"],
+
                   ["UNDER_REVIEW", "Under Review", "fa-magnifying-glass"],
+
                   ["APPROVED", "Approved", "fa-circle-check"],
                 ];
 
           const statusOrder = steps.map(function (step) {
             return step[0];
           });
+
           let currentIndex = statusOrder.indexOf(status);
-          if (currentIndex < 0) currentIndex = 0;
+
+          if (currentIndex < 0) {
+            currentIndex = 0;
+          }
 
           container.innerHTML = "";
+
           steps.forEach(function ([stepStatus, label, icon], index) {
             const element = document.createElement("div");
+
             const isCurrent = index === currentIndex;
+
             const isCompleted = index < currentIndex;
+
             element.className = "progress-step";
-            if (isCompleted) element.classList.add("completed");
-            if (isCurrent) element.classList.add("current");
+
+            if (isCompleted) {
+              element.classList.add("completed");
+            }
+
+            if (isCurrent) {
+              element.classList.add("current");
+            }
+
             if (stepStatus === "REJECTED" && isCurrent) {
               element.classList.add("rejected");
             }
+
             element.innerHTML = `
-              <span class="progress-dot"><i class="far ${escapeHtml(icon)}"></i></span>
-              <span class="progress-step-label">${escapeHtml(label)}</span>
-            `;
+          <span class="progress-dot">
+            <i class="far ${escapeHtml(icon)}"></i>
+          </span>
+
+          <span class="progress-step-label">
+            ${escapeHtml(label)}
+          </span>
+        `;
+
             container.appendChild(element);
           });
         }
 
         function renderStatusMessage(form, status, meta) {
           const container = document.getElementById("statusMessageContainer");
+
           const messageClass =
             status === "REJECTED"
               ? "rejected"
               : status === "APPROVED"
                 ? "approved"
                 : "";
+
           const remarks = hasValue(form.review_remarks)
             ? String(form.review_remarks)
             : meta.message;
 
           container.innerHTML = `
-            <div class="status-message-box ${messageClass}">
-              <h4>${escapeHtml(meta.title)}</h4>
-              <p>${escapeHtml(remarks)}</p>
-            </div>
-          `;
+        <div class="status-message-box ${messageClass}">
+          <h4>
+            ${escapeHtml(meta.title)}
+          </h4>
+
+          <p>
+            ${escapeHtml(remarks)}
+          </p>
+        </div>
+      `;
         }
 
         function renderFields(containerId, source, fieldDefinitions) {
           const container = document.getElementById(containerId);
+
           container.innerHTML = "";
-          let rendered = 0;
+
+          let renderedCount = 0;
 
           fieldDefinitions.forEach(function ([key, label, type]) {
-            const value = source ? source[key] : null;
-            if (!hasValue(value)) return;
+            const value = source?.[key];
+
+            if (!hasValue(value)) {
+              return;
+            }
 
             const row = document.createElement("div");
+
             row.className = "detail-row";
+
             row.innerHTML = `
-              <span class="detail-label">${escapeHtml(label)}</span>
-              <span class="detail-value">${formatValue(value, type, key)}</span>
-            `;
+            <span class="detail-label">
+              ${escapeHtml(label)}
+            </span>
+
+            <span class="detail-value">
+              ${formatValue(value, type, key)}
+            </span>
+          `;
+
             container.appendChild(row);
-            rendered += 1;
+
+            renderedCount += 1;
           });
 
-          if (!rendered) {
-            container.innerHTML =
-              '<div class="empty-section">No information available in this section.</div>';
+          if (!renderedCount) {
+            container.innerHTML = `
+          <div class="empty-section">
+            No information available in this section.
+          </div>
+        `;
           }
         }
 
         function renderDocuments(form) {
           const container = document.getElementById("documentsGrid");
+
           const documents = [
             ["student_photo", "Student Photo", "fa-image"],
+
             ["signature", "Signature", "fa-signature"],
+
             ["dpharm_certificate", "DPharm Certificate", "fa-file-certificate"],
+
             ["hs_certificate", "Higher Secondary Certificate", "fa-file-pdf"],
+
             [
               "high_school_certificate",
               "High School Certificate",
@@ -1870,39 +2103,78 @@
           ];
 
           container.innerHTML = "";
-          let rendered = 0;
+
+          let renderedCount = 0;
 
           documents.forEach(function ([key, label, icon]) {
             const url = form[key];
-            if (!isSafeUrl(url)) return;
+
+            /*
+             * Only real absolute HTTP/HTTPS URLs
+             * are accepted as document links.
+             */
+            if (!isAbsoluteHttpUrl(url)) {
+              return;
+            }
 
             const isImage = /\.(jpe?g|png|webp|gif)(?:\?.*)?$/i.test(url);
+
             const fileName = getFileName(url);
+
             const card = document.createElement("div");
+
             card.className = "document-card";
+
             card.innerHTML = `
-              <div class="document-preview">
-                ${
-                  isImage
-                    ? `<img src="${escapeAttribute(url)}" alt="${escapeAttribute(label)}" />`
-                    : `<i class="far ${escapeHtml(icon)}"></i>`
-                }
-              </div>
-              <div class="document-info">
-                <strong>${escapeHtml(label)}</strong>
-                <span title="${escapeAttribute(fileName)}">${escapeHtml(fileName)}</span>
-              </div>
-              <a class="document-link" href="${escapeAttribute(url)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(label)}">
-                <i class="far fa-arrow-up-right-from-square"></i>
-              </a>
-            `;
+          <div class="document-preview">
+            ${
+              isImage
+                ? `
+                  <img
+                    src="${escapeAttribute(url)}"
+                    alt="${escapeAttribute(label)}"
+                  />
+                `
+                : `
+                  <i class="far ${escapeHtml(icon)}"></i>
+                `
+            }
+          </div>
+
+          <div class="document-info">
+            <strong>
+              ${escapeHtml(label)}
+            </strong>
+
+            <span
+              title="${escapeAttribute(fileName)}"
+            >
+              ${escapeHtml(fileName)}
+            </span>
+          </div>
+
+          <a
+            class="document-link"
+            href="${escapeAttribute(url)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open ${escapeAttribute(label)}"
+          >
+            <i class="far fa-arrow-up-right-from-square"></i>
+          </a>
+        `;
+
             container.appendChild(card);
-            rendered += 1;
+
+            renderedCount += 1;
           });
 
-          if (!rendered) {
-            container.innerHTML =
-              '<div class="empty-section">No uploaded documents are available.</div>';
+          if (!renderedCount) {
+            container.innerHTML = `
+          <div class="empty-section">
+            No uploaded documents are available.
+          </div>
+        `;
           }
         }
 
@@ -1922,19 +2194,30 @@
           });
 
           const section = document.getElementById("additionalSection");
+
           const container = document.getElementById("additionalDetails");
+
           container.innerHTML = "";
 
           const entries = Object.entries(additional);
+
           section.hidden = entries.length === 0;
 
           entries.forEach(function ([label, value]) {
             const row = document.createElement("div");
+
             row.className = "detail-row";
+
             row.innerHTML = `
-              <span class="detail-label">${escapeHtml(label)}</span>
-              <span class="detail-value">${formatValue(value)}</span>
-            `;
+          <span class="detail-label">
+            ${escapeHtml(label)}
+          </span>
+
+          <span class="detail-value">
+            ${formatValue(value)}
+          </span>
+        `;
+
             container.appendChild(row);
           });
         }
@@ -1943,80 +2226,178 @@
           if (type === "boolean" || typeof value === "boolean") {
             return escapeHtml(value ? "Yes" : "No");
           }
-          if (type === "date") return escapeHtml(formatDate(value));
-          if (type === "datetime") return escapeHtml(formatDateTime(value));
-          if (type === "percentage") return escapeHtml(`${value}%`);
-          if (isSafeUrl(value)) {
-            return `<a href="${escapeAttribute(value)}" target="_blank" rel="noopener noreferrer">Open file</a>`;
+
+          if (type === "date") {
+            return escapeHtml(formatDate(value));
           }
-          if (typeof value === "object") {
+
+          if (type === "month") {
+            return escapeHtml(formatYearMonth(value));
+          }
+
+          if (type === "datetime") {
+            return escapeHtml(formatDateTime(value));
+          }
+
+          if (type === "percentage") {
+            return escapeHtml(`${removeUnnecessaryZeros(value)}%`);
+          }
+
+          /*
+           * A normal string is never treated as a file.
+           * Only an actual absolute HTTP/HTTPS URL is linked.
+           */
+          if (isAbsoluteHttpUrl(value)) {
+            return `
+          <a
+            href="${escapeAttribute(value)}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open link
+          </a>
+        `;
+          }
+
+          if (Array.isArray(value)) {
+            return escapeHtml(
+              value
+                .map(function (item) {
+                  return String(item);
+                })
+                .join(", "),
+            );
+          }
+
+          if (typeof value === "object" && value !== null) {
             return escapeHtml(JSON.stringify(value, null, 2));
           }
-          if (key && /_at$/.test(key)) return escapeHtml(formatDateTime(value));
+
+          if (key && /_at$/i.test(key)) {
+            return escapeHtml(formatDateTime(value));
+          }
+
           return escapeHtml(String(value));
         }
 
         function setAvatar(elementId, imageUrl, fullName) {
           const element = document.getElementById(elementId);
-          if (isSafeUrl(imageUrl)) {
-            element.innerHTML = `<img src="${escapeAttribute(imageUrl)}" alt="${escapeAttribute(fullName)}" />`;
-          } else {
-            element.textContent = getInitials(fullName);
+
+          if (isAbsoluteHttpUrl(imageUrl)) {
+            element.innerHTML = `
+          <img
+            src="${escapeAttribute(imageUrl)}"
+            alt="${escapeAttribute(fullName)}"
+          />
+        `;
+
+            return;
           }
+
+          element.textContent = getInitials(fullName);
         }
 
         function showLoading() {
           loadingState.classList.add("active");
+
           errorState.classList.remove("active");
+
           applicationContent.hidden = true;
+
           refreshTopButton.disabled = true;
-          refreshTopButton.innerHTML =
-            '<i class="fas fa-spinner fa-spin"></i> Loading';
+
+          refreshTopButton.innerHTML = `
+        <i class="fas fa-spinner fa-spin"></i>
+        Loading
+      `;
         }
 
         function showContent() {
           loadingState.classList.remove("active");
+
           errorState.classList.remove("active");
+
           applicationContent.hidden = false;
+
           refreshTopButton.disabled = false;
-          refreshTopButton.innerHTML = '<i class="far fa-rotate"></i> Refresh';
+
+          refreshTopButton.innerHTML = `
+        <i class="far fa-rotate"></i>
+        Refresh
+      `;
         }
 
         function showError(message) {
           loadingState.classList.remove("active");
+
           errorState.classList.add("active");
+
           applicationContent.hidden = true;
+
           errorMessage.textContent = message;
+
           refreshTopButton.disabled = false;
-          refreshTopButton.innerHTML = '<i class="far fa-rotate"></i> Refresh';
+
+          refreshTopButton.innerHTML = `
+        <i class="far fa-rotate"></i>
+        Refresh
+      `;
         }
 
         function logout() {
           MCPAuth.clearSession();
+
           window.location.replace("signin.html?next=apply.html");
         }
 
         function showToast(message, type) {
-          toastMessage.innerHTML = `<i class="far ${type === "error" ? "fa-circle-xmark" : "fa-circle-check"}"></i><span>${escapeHtml(message)}</span>`;
+          toastMessage.innerHTML = `
+        <i class="far ${
+          type === "error" ? "fa-circle-xmark" : "fa-circle-check"
+        }"></i>
+
+        <span>
+          ${escapeHtml(message)}
+        </span>
+      `;
+
           toastMessage.style.background =
             type === "error" ? "#c93645" : "#173042";
+
           toastMessage.style.display = "flex";
+
           window.clearTimeout(showToast.timer);
+
           showToast.timer = window.setTimeout(function () {
             toastMessage.style.display = "none";
           }, 3500);
         }
 
+        function normalizeStatus(value) {
+          return String(value || "")
+            .trim()
+            .replace(/[\s-]+/g, "_")
+            .toUpperCase();
+        }
+
         function hasValue(value) {
-          if (value === null || value === undefined || value === "")
+          if (value === null || value === undefined || value === "") {
             return false;
-          if (Array.isArray(value)) return value.length > 0;
+          }
+
+          if (Array.isArray(value)) {
+            return value.length > 0;
+          }
+
           return true;
         }
 
         function setText(id, value) {
           const element = document.getElementById(id);
-          if (element) element.textContent = hasValue(value) ? value : "—";
+
+          if (!element) return;
+
+          element.textContent = hasValue(value) ? String(value) : "—";
         }
 
         function getInitials(name) {
@@ -2025,6 +2406,7 @@
             .split(/\s+/)
             .filter(Boolean)
             .slice(0, 2);
+
           return (
             parts
               .map(function (part) {
@@ -2049,46 +2431,142 @@
 
         function formatDate(value) {
           if (!value) return "—";
-          const date = new Date(value);
-          if (Number.isNaN(date.getTime())) return String(value);
+
+          const text = String(value).trim();
+
+          const plainDateMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
+
+          if (plainDateMatch) {
+            const year = Number(plainDateMatch[1]);
+
+            const month = Number(plainDateMatch[2]);
+
+            const day = Number(plainDateMatch[3]);
+
+            const date = new Date(year, month - 1, day);
+
+            return new Intl.DateTimeFormat("en-IN", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            }).format(date);
+          }
+
+          const date = new Date(text);
+
+          if (Number.isNaN(date.getTime())) {
+            return text;
+          }
+
           return new Intl.DateTimeFormat("en-IN", {
             day: "2-digit",
             month: "short",
+            year: "numeric",
+          }).format(date);
+        }
+
+        function formatYearMonth(value) {
+          if (!value) return "—";
+
+          const text = String(value).trim();
+
+          const match = /^(\d{4})-(\d{2})$/.exec(text);
+
+          if (!match) {
+            return text;
+          }
+
+          const year = Number(match[1]);
+
+          const month = Number(match[2]);
+
+          if (month < 1 || month > 12) {
+            return text;
+          }
+
+          const date = new Date(year, month - 1, 1);
+
+          return new Intl.DateTimeFormat("en-IN", {
+            month: "long",
             year: "numeric",
           }).format(date);
         }
 
         function formatDateTime(value) {
           if (!value) return "—";
+
           const date = new Date(value);
-          if (Number.isNaN(date.getTime())) return String(value);
+
+          if (Number.isNaN(date.getTime())) {
+            return String(value);
+          }
+
           return new Intl.DateTimeFormat("en-IN", {
             day: "2-digit",
             month: "short",
             year: "numeric",
             hour: "2-digit",
             minute: "2-digit",
+            hour12: true,
           }).format(date);
         }
 
-        function isSafeUrl(value) {
-          if (typeof value !== "string" || !value) return false;
+        function removeUnnecessaryZeros(value) {
+          const number = Number(value);
+
+          if (Number.isNaN(number)) {
+            return String(value);
+          }
+
+          return String(number);
+        }
+
+        /*
+         * Important fix:
+         * Do not pass window.location.href as a base.
+         * Relative strings must not become valid URLs.
+         */
+        function isAbsoluteHttpUrl(value) {
+          if (typeof value !== "string") {
+            return false;
+          }
+
+          const trimmed = value.trim();
+
+          if (!/^https?:\/\//i.test(trimmed)) {
+            return false;
+          }
+
           try {
-            const parsed = new URL(value, window.location.href);
-            return parsed.protocol === "http:" || parsed.protocol === "https:";
+            const parsed = new URL(trimmed);
+
+            return (
+              (parsed.protocol === "http:" || parsed.protocol === "https:") &&
+              Boolean(parsed.hostname)
+            );
           } catch (_error) {
             return false;
           }
         }
 
         function getFileName(url) {
+          if (!isAbsoluteHttpUrl(url)) {
+            return "Document";
+          }
+
           try {
-            const parsed = new URL(url, window.location.href);
-            return decodeURIComponent(
-              parsed.pathname.split("/").pop() || "Open document",
-            );
+            const parsed = new URL(url);
+
+            const encodedFileName = parsed.pathname
+              .split("/")
+              .filter(Boolean)
+              .pop();
+
+            return encodedFileName
+              ? decodeURIComponent(encodedFileName)
+              : "Document";
           } catch (_error) {
-            return "Open document";
+            return "Document";
           }
         }
 
@@ -2106,7 +2584,6 @@
         }
       })();
     </script>
-
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/modernizr.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
