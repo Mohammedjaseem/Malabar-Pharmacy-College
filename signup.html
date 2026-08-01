@@ -185,7 +185,7 @@
                             </div>
                         </form>
                         <div class="login-footer">
-                            <p>Already registered? <a href="signin.html">Sign in</a></p>
+                            <p>Already registered? <a href="signin-user.html">Sign in</a></p>
                         </div>
                     </div>
                 </div>
@@ -247,8 +247,8 @@
             return;
           }
 
-          const signInLink = document.querySelector('.login-footer a[href="signin.html"]');
-          if (signInLink) signInLink.href = `signin.html?next=${encodeURIComponent(nextUrl)}`;
+          const signInLink = document.querySelector('.login-footer a[href="signin-user.html"]');
+          if (signInLink) signInLink.href = `signin-user.html?next=${encodeURIComponent(nextUrl)}`;
 
           if (userEmail) showOtpSection(userEmail);
 
@@ -298,7 +298,7 @@
               MCPAuth.clearPendingVerificationEmail();
               showToast(data.message || "Email verified successfully. Please sign in.", "success");
               window.setTimeout(() => {
-                window.location.replace(`signin.html?next=${encodeURIComponent(nextUrl)}&verified=1`);
+                window.location.replace(`signin-user.html?next=${encodeURIComponent(nextUrl)}&verified=1`);
               }, 900);
             } catch (error) {
               showToast(error.message || "OTP verification failed.", "error");

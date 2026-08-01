@@ -450,7 +450,7 @@
   }
 
   function buildSignInUrl(next = CONFIG.DEFAULT_AFTER_LOGIN) {
-    return "signin.html?next=" + encodeURIComponent(next);
+    return "signin-user.html?next=" + encodeURIComponent(next);
   }
 
   function requireAuth(next = CONFIG.DEFAULT_AFTER_LOGIN) {
