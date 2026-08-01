@@ -102,6 +102,35 @@
         font-weight: 600;
       }
 
+      .rank-list-date-cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rank-list-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 7px 16px;
+        color: #ffffff !important;
+        background: #125875;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: 0.25s ease;
+      }
+
+      .rank-list-button:hover {
+        color: #ffffff !important;
+        background: #0c3f55;
+        transform: translateY(-1px);
+      }
+
       @media (max-width: 767px) {
         .notification-heading .site-title {
           font-size: 23px;
@@ -212,14 +241,13 @@
 
               <div class="nav-right-btn mt-2">
                 <a
-                  href="signin.html?next=apply.html"
+                  href="signin-user.html?next=apply.html"
                   class="theme-btn"
                   style="padding: 8px 10px"
                 >
                   Apply Now
                 </a>
               </div>
-
               <button
                 class="navbar-toggler"
                 type="button"
@@ -584,7 +612,21 @@
                       <tr>
                         <td>4</td>
                         <td>Publication of Rank List</td>
-                        <td>01.08.2026</td>
+                        <td>
+                          <div class="rank-list-date-cell">
+                            <span>01.08.2026</span>
+
+                            <a
+                              href="assets/pdf/BPHARM_ADMISSION_2026_27_RANK_LIST.pdf"
+                              class="rank-list-button"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <i class="far fa-file-pdf"></i>
+                              List
+                            </a>
+                          </div>
+                        </td>
                       </tr>
 
                       <tr>
@@ -672,7 +714,7 @@
                 -->
 
                 <!-- <div class="apply-now-btn mt-4 text-end">
-                  <a href="signin.html?next=apply.html" class="theme-btn">
+                  <a href="signin-user.html?next=apply.html" class="theme-btn">
                     <span class="fal fa-pencil"></span>Apply Now
                   </a>
                 </div> -->
@@ -781,7 +823,7 @@
           <div class="copyright-wrapper">
             <div class="row">
               <div class="col-md-6 align-self-center">
-                <span>Last updated on 29-07-2026</span>
+                <span>Last updated on 01-08-2026</span>
                 <p class="copyright-text">
                   &copy; Copyright <span id="date"></span>
                   <a

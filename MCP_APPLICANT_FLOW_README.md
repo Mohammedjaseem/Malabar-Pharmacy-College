@@ -2,7 +2,7 @@
 
 ## Implemented flow
 
-1. Every **Apply Now** link opens `signin.html?next=apply.html`.
+1. Every **Apply Now** link opens `signin-user.html?next=apply.html`.
 2. Existing applicants sign in through the MCP login API.
 3. New applicants open `signup.html`, register, verify the email OTP, and return to sign in.
 4. Successful sign-in data is stored in `sessionStorage` under `mcpApplicantSession`.
@@ -112,12 +112,12 @@ http://localhost:8000/index.html
 
 ## Main files
 
-- `signin.html` — applicant sign-in
+- `signin-user.html` — applicant sign-in
 - `signup.html` — registration and OTP verification
 - `forgot-password.html` — password reset OTP flow
 - `apply.html` — protected application form, review modal, API submission
 - `assets/js/mcp-auth.js` — API configuration, session storage, token and request helpers
-- `login.html` — compatibility redirect to `signin.html`
+- `login.html` — compatibility redirect to `signin-user.html`
 - `register.html` — compatibility redirect to `signup.html`
 - `otp-verification.html` — compatibility redirect to `signup.html`
 - `reset-password.html` — compatibility redirect to `forgot-password.html`
@@ -125,7 +125,7 @@ http://localhost:8000/index.html
 ## Manual acceptance test
 
 1. Open the home page and click each visible Apply Now button.
-2. Confirm it reaches `signin.html`.
+2. Confirm it reaches `signin-user.html`.
 3. Open Sign Up and submit a new full name, email, phone number, and password.
 4. Confirm OTP verification and resend OTP work.
 5. Sign in with the verified account.

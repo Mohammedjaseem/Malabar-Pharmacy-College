@@ -756,10 +756,32 @@
         gap: 8px;
         padding: 0 40px;
       }
-      .marquee-track span i {
-        font-size: 0.7rem;
-      }
-      @keyframes marquee {
+.marquee-track span i {
+  font-size: 0.7rem;
+}
+
+.marquee-track .rank-list-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  padding: 4px 12px;
+  color: #ffffff;
+  background: #125875;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.marquee-track .rank-list-link:hover {
+  color: #ffffff;
+  background: #0c3f55;
+  transform: translateY(-1px);
+}
+
+@keyframes marquee {
         0% {
           transform: translateX(0);
         }
@@ -3165,7 +3187,7 @@ body.pdf-modal-open { overflow: hidden; }
             </li>
           </ul>
           <div class="nav-cta">
-            <a href="signin.html?next=apply.html" class="btn-apply">
+            <a href="signin-user.html?next=apply.html" class="btn-apply">
               <i class="fas fa-pencil"></i> Apply Now
             </a>
           </div>
@@ -3226,7 +3248,7 @@ body.pdf-modal-open { overflow: hidden; }
         </button>
       </div>
       <div class="mobile-nav-body">
-        <a href="signin.html" class="mobile-nav-apply">
+        <a href="signin-user.html" class="mobile-nav-apply">
           <i class="fas fa-pencil"></i> Apply Now
         </a>
         <div class="mobile-nav-list">
@@ -3352,7 +3374,7 @@ body.pdf-modal-open { overflow: hidden; }
               healthcare with us.
             </p>
             <div class="hero-btns">
-              <a href="signin.html?next=apply.html" class="btn btn-accent">
+              <a href="signin-user.html?next=apply.html" class="btn btn-accent">
                 <i class="fas fa-arrow-right"></i> Apply Now
               </a>
               <a href="prospectus2026.html" class="btn btn-outline">
@@ -3431,22 +3453,40 @@ body.pdf-modal-open { overflow: hidden; }
     </section>
 
     <!-- ===== MARQUEE ===== -->
-    <div class="marquee-bar">
-      <div class="marquee-track">
-<span>
-  <i class="fas fa-bullhorn"></i>
-  Admissions Open 2026-27 — Online Applications invited from Eligible
-  candidates for BPharm Course through our website from 17.07.2026 onwards.
-  Last date of submission of Application: 30.07.2026.
-</span>
-<span>
-  <i class="fas fa-bullhorn"></i>
-  Admissions Open 2026-27 — Online Applications invited from Eligible
-  candidates for BPharm Course through our website from 17.07.2026 onwards.
-  Last date of submission of Application: 30.07.2026.
-</span>
-      </div>
-    </div>
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>
+      <i class="fas fa-bullhorn"></i>
+      B.Pharm Management Admission 2026–27 Rank List Published.
+
+      <a
+        href="assets/pdf/BPHARM_ADMISSION_2026_27_RANK_LIST.pdf"
+        class="rank-list-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Click Here
+        <i class="fas fa-file-pdf"></i>
+      </a>
+    </span>
+
+    <!-- Repeated for continuous marquee animation -->
+    <span>
+      <i class="fas fa-bullhorn"></i>
+      B.Pharm Management Admission 2026–27 Rank List Published.
+
+      <a
+        href="assets/pdf/BPHARM_ADMISSION_2026_27_RANK_LIST.pdf"
+        class="rank-list-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Click Here
+        <i class="fas fa-file-pdf"></i>
+      </a>
+    </span>
+  </div>
+</div>
 
     <!-- ===== AFFILIATION STRIP ===== -->
     <div class="affiliation-strip">
@@ -4246,7 +4286,7 @@ body.pdf-modal-open { overflow: hidden; }
         </div>
         <div class="footer-bottom">
           <p>
-            Last updated on 29-07-2026 &nbsp;|&nbsp; &copy;
+            Last updated on 01-08-2026 &nbsp;|&nbsp; &copy;
             <span id="year"></span> Malabar College of Pharmacy. Developed by
             <a href="https://bizforz.com/" target="_blank">Bizforz Solutions</a>
           </p>
