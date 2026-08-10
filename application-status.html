@@ -1231,10 +1231,13 @@
                       <button
                         type="button"
                         class="portal-button portal-button-primary"
-                        id="printButton"
+                        id="downloadMemoButton"
+                        hidden
                       >
-                        <i class="far fa-print"></i> Print Application Details
+                        <i class="far fa-file-pdf"></i>
+                        Download Allotment Memo
                       </button>
+
                       <a
                         class="portal-button portal-button-primary"
                         href="apply.html"
@@ -1244,6 +1247,7 @@
                         <i class="far fa-pen-to-square"></i> Continue
                         Application
                       </a>
+
                       <button
                         type="button"
                         class="portal-button portal-button-danger"
@@ -1394,6 +1398,7 @@
       aria-live="polite"
     ></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="assets/js/mcp-auth.js?v=20260731-6"></script>
 
     <script>
@@ -1421,13 +1426,34 @@
 
         const logoutSideButton = document.getElementById("logoutSideButton");
 
-        const printButton = document.getElementById("printButton");
+        const downloadMemoButton =
+          document.getElementById("downloadMemoButton");
 
         const toastMessage = document.getElementById("toastMessage");
 
         const continueApplicationButton = document.getElementById(
           "continueApplicationButton",
         );
+
+        let currentApplicant = null;
+        let currentApplicationForm = null;
+        let currentApplicationStatus = "";
+
+        const MEMO_CONFIG = Object.freeze({
+          collegeName: "Malabar College of Pharmacy",
+          collegeAddress:
+            "Manoor - Chekanoor Road, Mudur (PO), Edappal, Malappuram- 679578, Kerala State, India",
+          collegeAllotmentName:
+            "Malabar College of Pharmacy,Kuttippuram,Malappuram (MAB)",
+          academicYear: "2026-27",
+          courseFee: "Rs.135605/-",
+          tuitionFee: "Rs.98000/-",
+          specialFee: "Rs.37605/-",
+          joiningFrom: "05.08.2026",
+          joiningTo: "10.08.2026",
+          place: "Manur",
+          logoUrl: "assets/img/logo/logo.png",
+        });
 
         const STATUS_META = {
           DRAFT: {
@@ -1550,8 +1576,8 @@
 
         logoutSideButton.addEventListener("click", logout);
 
-        printButton.addEventListener("click", function () {
-          window.print();
+        downloadMemoButton.addEventListener("click", async function () {
+          await generateAllotmentMemoPdf();
         });
 
         loadApplication();
@@ -1600,6 +1626,10 @@
             );
 
             updateStoredSession(applicant, applicationForm, applicationStatus);
+
+            currentApplicant = applicant;
+            currentApplicationForm = applicationForm;
+            currentApplicationStatus = applicationStatus;
 
             renderApplication(applicant, applicationForm, applicationStatus);
 
@@ -1872,6 +1902,13 @@
           renderAdditionalInformation(applicant, form);
 
           continueApplicationButton.hidden = status !== "DRAFT";
+
+          downloadMemoButton.hidden = status === "DRAFT";
+          downloadMemoButton.disabled = false;
+          downloadMemoButton.innerHTML = `
+            <i class="far fa-file-pdf"></i>
+            Download Allotment Memo
+          `;
 
           const latestDate =
             form.reviewed_at ||
@@ -2297,7 +2334,598 @@
           element.textContent = getInitials(fullName);
         }
 
+        async function generateAllotmentMemoPdf() {
+          if (!currentApplicant || !currentApplicationForm) {
+            showToast(
+              "Application details are still loading. Please try again.",
+              "error",
+            );
+            return;
+          }
+
+          if (!window.jspdf || typeof window.jspdf.jsPDF !== "function") {
+            showToast(
+              "PDF library is not available. Please refresh the page and try again.",
+              "error",
+            );
+            return;
+          }
+
+          const applicant = currentApplicant;
+          const form = currentApplicationForm;
+
+          const applicationNumber =
+            form.application_no || applicant.application_no || "";
+
+          if (!applicationNumber) {
+            showToast(
+              "Application number is missing. Unable to create the memo.",
+              "error",
+            );
+            return;
+          }
+
+          downloadMemoButton.disabled = true;
+          downloadMemoButton.innerHTML = `
+            <i class="fas fa-spinner fa-spin"></i>
+            Preparing Memo...
+          `;
+
+          try {
+            const { jsPDF } = window.jspdf;
+
+            const pdf = new jsPDF({
+              orientation: "portrait",
+              unit: "mm",
+              format: "a4",
+              compress: true,
+            });
+
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+
+            const fullName =
+              form.full_name || applicant.full_name || "Applicant";
+
+            const rank = hasValue(form.rank) ? String(form.rank) : "-";
+
+            const course = getMemoCourseName(form.program_type);
+
+            const seatType = form.quota || "Merit/Management";
+
+            const generatedDate = formatMemoDate(new Date());
+
+            pdf.setProperties({
+              title: `${applicationNumber} - Allotment Memo`,
+              subject: "Allotment Memo",
+              author: MEMO_CONFIG.collegeName,
+              creator: MEMO_CONFIG.collegeName,
+            });
+
+            pdf.setTextColor(0, 0, 0);
+
+            /*
+             * Header logo.
+             * The local college logo is loaded from the same website.
+             */
+            const logo = await loadImageData(MEMO_CONFIG.logoUrl);
+
+            if (logo) {
+              addImageContained(pdf, logo, 50, 10, 110, 20);
+            } else {
+              pdf.setFont("times", "bold");
+
+              pdf.setFontSize(18);
+
+              pdf.setTextColor(0, 116, 145);
+
+              pdf.text(MEMO_CONFIG.collegeName, pageWidth / 2, 22, {
+                align: "center",
+              });
+
+              pdf.setTextColor(0, 0, 0);
+            }
+
+            pdf.setFont("times", "bold");
+
+            pdf.setFontSize(9.6);
+
+            pdf.text(MEMO_CONFIG.collegeAddress, pageWidth / 2, 34, {
+              align: "center",
+              maxWidth: 180,
+            });
+
+            pdf.setDrawColor(80, 80, 80);
+
+            pdf.setLineWidth(0.25);
+
+            pdf.line(12, 39, pageWidth - 12, 39);
+
+            /*
+             * Main memo heading.
+             */
+            pdf.setFont("times", "bold");
+
+            pdf.setFontSize(13);
+
+            pdf.text(
+              `ADMISSION TO PROFESSIONAL DEGREE COURSES: ${MEMO_CONFIG.academicYear}`,
+              pageWidth / 2,
+              53,
+              {
+                align: "center",
+              },
+            );
+
+            pdf.setFontSize(16);
+
+            pdf.text("Allotment Memo", pageWidth / 2, 64, {
+              align: "center",
+            });
+
+            /*
+             * Applicant details.
+             */
+            const labelX = 25;
+            const colonX = 75;
+            const valueX = 81;
+
+            pdf.setFontSize(12);
+
+            drawMemoField(
+              pdf,
+              "Application Number",
+              applicationNumber,
+              labelX,
+              colonX,
+              valueX,
+              86,
+            );
+
+            drawMemoField(pdf, "Name", fullName, labelX, colonX, valueX, 96);
+
+            drawMemoField(
+              pdf,
+              "B.Pharm Rank",
+              rank,
+              labelX,
+              colonX,
+              valueX,
+              106,
+            );
+
+            /*
+             * Applicant photo.
+             */
+            const photoX = 164;
+            const photoY = 78;
+            const photoW = 26;
+            const photoH = 30;
+
+            pdf.setDrawColor(70, 70, 70);
+
+            pdf.setLineWidth(0.25);
+
+            pdf.rect(photoX, photoY, photoW, photoH);
+
+            const photo = await loadImageData(form.student_photo);
+
+            if (photo) {
+              addImageContained(
+                pdf,
+                photo,
+                photoX + 0.8,
+                photoY + 0.8,
+                photoW - 1.6,
+                photoH - 1.6,
+              );
+            }
+
+            /*
+             * Allotment details.
+             */
+            drawUnderlinedHeading(pdf, "Allotment Details", 25, 119);
+
+            drawTwoColumnMemoField(pdf, "Course", course, 25, 50, 130, 150);
+
+            drawTwoColumnMemoField(
+              pdf,
+              "College",
+              MEMO_CONFIG.collegeAllotmentName,
+              25,
+              50,
+              140,
+              150,
+            );
+
+            drawTwoColumnMemoField(
+              pdf,
+              "Seat Type",
+              seatType,
+              25,
+              50,
+              150,
+              150,
+            );
+
+            /*
+             * Fee details.
+             */
+            drawUnderlinedHeading(pdf, "Fee Details", 25, 163);
+
+            drawTwoColumnMemoField(
+              pdf,
+              "Course Fee",
+              MEMO_CONFIG.courseFee,
+              25,
+              75,
+              174,
+              120,
+            );
+
+            drawTwoColumnMemoField(
+              pdf,
+              "Tution Fee",
+              MEMO_CONFIG.tuitionFee,
+              25,
+              75,
+              184,
+              120,
+            );
+
+            drawTwoColumnMemoField(
+              pdf,
+              "Special Fee",
+              MEMO_CONFIG.specialFee,
+              25,
+              75,
+              194,
+              120,
+            );
+
+            pdf.setFont("times", "normal");
+
+            pdf.setFontSize(11.5);
+
+            pdf.text(
+              `Date of Joining: from ${MEMO_CONFIG.joiningFrom} TO ${MEMO_CONFIG.joiningTo}`,
+              25,
+              205,
+            );
+
+            /*
+             * Place, date and principal.
+             */
+            pdf.setFont("times", "bold");
+
+            pdf.setFontSize(11.5);
+
+            pdf.text(`Place:${MEMO_CONFIG.place}`, 25, 218);
+
+            pdf.text(`Date:${generatedDate}`, 25, 224);
+
+            pdf.text("Principal", 160, 218);
+
+            pdf.setDrawColor(80, 80, 80);
+
+            pdf.line(12, 231, pageWidth - 12, 231);
+
+            /*
+             * Joining documents.
+             */
+            pdf.setFont("times", "bold");
+
+            pdf.setFontSize(10.7);
+
+            const documentsHeading =
+              "Documents to be produced at the time of Joining at the College";
+
+            pdf.text(documentsHeading, pageWidth / 2, 240, {
+              align: "center",
+            });
+
+            const headingWidth = pdf.getTextWidth(documentsHeading);
+
+            pdf.line(
+              pageWidth / 2 - headingWidth / 2,
+              241,
+              pageWidth / 2 + headingWidth / 2,
+              241,
+            );
+
+            const requiredDocuments = [
+              "Allotment Memo",
+              "Transfer certificate from the institution last attended and Conduct Certificate",
+              "Original mark list of Higher Secondary or equivalent",
+              "Migration Certificate, if applicable",
+              "Physical Fitness Certificate in the relevant format given in Annexure XVII (b) of the Prospectus",
+              "Originals of all the documents/certificates uploaded during the online application.",
+              "Two sets copies of SSLC, Plus Two, TC, Migration, Passport size photo (4 nos), stamp size photo (2 nos)",
+              "Any other documents required by the Head of Institution.",
+            ];
+
+            pdf.setFont("times", "bold");
+
+            pdf.setFontSize(9.1);
+
+            let documentY = 248;
+            const documentLineHeight = 4.25;
+            const numberX = 31;
+            const documentTextX = 39;
+            const documentTextWidth = 158;
+
+            requiredDocuments.forEach(function (item, index) {
+              const wrapped = pdf.splitTextToSize(item, documentTextWidth);
+
+              pdf.text(`${index + 1}.`, numberX, documentY);
+
+              pdf.text(wrapped, documentTextX, documentY);
+
+              documentY += wrapped.length * documentLineHeight + 0.6;
+            });
+
+            /*
+             * Keep the document to one A4 page.
+             */
+            if (documentY < pageHeight - 6) {
+              pdf.setDrawColor(100, 100, 100);
+
+              pdf.setLineWidth(0.2);
+
+              pdf.line(
+                12,
+                Math.min(documentY + 1, pageHeight - 7),
+                pageWidth - 12,
+                Math.min(documentY + 1, pageHeight - 7),
+              );
+            }
+
+            const fileName = sanitizeFileName(
+              `${applicationNumber}-Allotment-Memo.pdf`,
+            );
+
+            pdf.save(fileName);
+
+            showToast("Allotment memo downloaded successfully.", "success");
+          } catch (error) {
+            console.error("Allotment memo PDF error:", error);
+
+            showToast(
+              error.message || "Unable to generate the allotment memo.",
+              "error",
+            );
+          } finally {
+            downloadMemoButton.disabled = false;
+
+            downloadMemoButton.innerHTML = `
+              <i class="far fa-file-pdf"></i>
+              Download Allotment Memo
+            `;
+          }
+        }
+
+        function drawMemoField(pdf, label, value, labelX, colonX, valueX, y) {
+          pdf.setFont("times", "normal");
+
+          pdf.setFontSize(11.5);
+
+          pdf.text(label, labelX, y);
+
+          pdf.text(":", colonX, y);
+
+          const wrapped = pdf.splitTextToSize(String(value || "-"), 75);
+
+          pdf.text(wrapped, valueX, y);
+        }
+
+        function drawTwoColumnMemoField(
+          pdf,
+          label,
+          value,
+          labelX,
+          valueX,
+          y,
+          maxValueWidth,
+        ) {
+          pdf.setFont("times", "normal");
+
+          pdf.setFontSize(11.5);
+
+          pdf.text(label, labelX, y);
+
+          const wrapped = pdf.splitTextToSize(
+            String(value || "-"),
+            maxValueWidth,
+          );
+
+          pdf.text(wrapped, valueX, y);
+        }
+
+        function drawUnderlinedHeading(pdf, text, x, y) {
+          pdf.setFont("times", "bold");
+
+          pdf.setFontSize(11.7);
+
+          pdf.text(text, x, y);
+
+          const width = pdf.getTextWidth(text);
+
+          pdf.setLineWidth(0.25);
+
+          pdf.line(x, y + 0.8, x + width, y + 0.8);
+        }
+
+        function getMemoCourseName(programType) {
+          const normalized = String(programType || "")
+            .trim()
+            .toLowerCase();
+
+          if (normalized === "bpharm" || normalized === "b.pharm") {
+            return "B.Pharm(BP)";
+          }
+
+          if (normalized === "dpharm" || normalized === "d.pharm") {
+            return "D.Pharm(DP)";
+          }
+
+          return programType || "B.Pharm(BP)";
+        }
+
+        function formatMemoDate(value) {
+          const date = value instanceof Date ? value : new Date(value);
+
+          if (Number.isNaN(date.getTime())) {
+            return "";
+          }
+
+          return [
+            String(date.getDate()).padStart(2, "0"),
+            String(date.getMonth() + 1).padStart(2, "0"),
+            date.getFullYear(),
+          ].join(".");
+        }
+
+        function sanitizeFileName(value) {
+          return String(value || "Allotment-Memo.pdf")
+            .replace(/[<>:"\/\\|?*\u0000-\u001F]/g, "-")
+            .replace(/\s+/g, "-");
+        }
+
+        async function loadImageData(url) {
+          if (!url || typeof url !== "string") {
+            return null;
+          }
+
+          try {
+            const response = await fetch(url, {
+              method: "GET",
+              mode: "cors",
+              credentials: "omit",
+              cache: "no-store",
+            });
+
+            if (!response.ok) {
+              throw new Error(`Unable to load image: ${response.status}`);
+            }
+
+            const blob = await response.blob();
+
+            if (!blob.type.startsWith("image/")) {
+              return null;
+            }
+
+            const dataUrl = await blobToDataUrl(blob);
+
+            const dimensions = await getDataUrlDimensions(dataUrl);
+
+            return {
+              dataUrl,
+              width: dimensions.width,
+              height: dimensions.height,
+              format: getImageFormatFromDataUrl(dataUrl),
+            };
+          } catch (error) {
+            console.warn("Could not load PDF image:", url, error);
+
+            return null;
+          }
+        }
+
+        function blobToDataUrl(blob) {
+          return new Promise(function (resolve, reject) {
+            const reader = new FileReader();
+
+            reader.onload = function () {
+              resolve(reader.result);
+            };
+
+            reader.onerror = function () {
+              reject(new Error("Unable to read image data."));
+            };
+
+            reader.readAsDataURL(blob);
+          });
+        }
+
+        function getDataUrlDimensions(dataUrl) {
+          return new Promise(function (resolve, reject) {
+            const image = new Image();
+
+            image.onload = function () {
+              resolve({
+                width: image.naturalWidth || image.width,
+                height: image.naturalHeight || image.height,
+              });
+            };
+
+            image.onerror = function () {
+              reject(new Error("Unable to decode image."));
+            };
+
+            image.src = dataUrl;
+          });
+        }
+
+        function getImageFormatFromDataUrl(dataUrl) {
+          const match = /^data:image\/([^;,]+)/i.exec(dataUrl || "");
+
+          if (!match) {
+            return "PNG";
+          }
+
+          const mimeType = match[1].toLowerCase();
+
+          if (mimeType === "jpeg" || mimeType === "jpg") {
+            return "JPEG";
+          }
+
+          if (mimeType === "webp") {
+            return "WEBP";
+          }
+
+          return "PNG";
+        }
+
+        function addImageContained(pdf, image, x, y, boxWidth, boxHeight) {
+          if (!image || !image.dataUrl || !image.width || !image.height) {
+            return;
+          }
+
+          const imageRatio = image.width / image.height;
+
+          const boxRatio = boxWidth / boxHeight;
+
+          let width = boxWidth;
+
+          let height = boxHeight;
+
+          if (imageRatio > boxRatio) {
+            height = width / imageRatio;
+          } else {
+            width = height * imageRatio;
+          }
+
+          const imageX = x + (boxWidth - width) / 2;
+
+          const imageY = y + (boxHeight - height) / 2;
+
+          pdf.addImage(
+            image.dataUrl,
+            image.format,
+            imageX,
+            imageY,
+            width,
+            height,
+            undefined,
+            "FAST",
+          );
+        }
+
         function showLoading() {
+          if (downloadMemoButton) {
+            downloadMemoButton.disabled = true;
+          }
+
           loadingState.classList.add("active");
 
           errorState.classList.remove("active");
@@ -2313,6 +2941,10 @@
         }
 
         function showContent() {
+          if (downloadMemoButton && !downloadMemoButton.hidden) {
+            downloadMemoButton.disabled = false;
+          }
+
           loadingState.classList.remove("active");
 
           errorState.classList.remove("active");
@@ -2328,6 +2960,10 @@
         }
 
         function showError(message) {
+          if (downloadMemoButton) {
+            downloadMemoButton.disabled = false;
+          }
+
           loadingState.classList.remove("active");
 
           errorState.classList.add("active");
