@@ -1,0 +1,134 @@
+{
+  "status": "complete",
+  "passed": 28,
+  "total": 29,
+  "results": [
+    {
+      "name": "Unauthenticated application redirects to real sign-in",
+      "pass": true
+    },
+    {
+      "name": "Compatibility sign-in and sign-up redirects retain next",
+      "pass": true
+    },
+    {
+      "name": "Mock login sends one request and opens the real form",
+      "pass": true
+    },
+    {
+      "name": "Register and verify OTP use existing APIs and return to sign-in (mock)",
+      "pass": true
+    },
+    {
+      "name": "New applicant shows NOT STARTED and account prefill",
+      "pass": true
+    },
+    {
+      "name": "All saved fields, dates, zero values, unknown choices and documents prefill",
+      "pass": true
+    },
+    {
+      "name": "Validation, lateral requirements and file selection stay local",
+      "pass": true
+    },
+    {
+      "name": "Partial draft PATCH saves once, clears values and reloads after logout/login",
+      "pass": true
+    },
+    {
+      "name": "Uploads save, existing files survive omitted inputs, submission redirects and locks",
+      "pass": false,
+      "error": "Timed out: submitted form"
+    },
+    {
+      "name": "Submission requires complete fields and honors cancelled confirmation",
+      "pass": true
+    },
+    {
+      "name": "Server field errors show inline and correction can be saved without losing files",
+      "pass": true
+    },
+    {
+      "name": "Write expiration clears session; forbidden and ambiguous failures lock until reload",
+      "pass": true
+    },
+    {
+      "name": "Remote status change rejects stale writes and reloads as read-only",
+      "pass": true
+    },
+    {
+      "name": "Every non-DRAFT state blocks editing and writes",
+      "pass": true
+    },
+    {
+      "name": "Submitted application is read-only",
+      "pass": true
+    },
+    {
+      "name": "Draft status Continue Application navigates to editable form",
+      "pass": true
+    },
+    {
+      "name": "NOT_STARTED status does not mark draft created and offers Start",
+      "pass": true
+    },
+    {
+      "name": "Submitted status hides Continue and refreshed status follows backend fixture",
+      "pass": true
+    },
+    {
+      "name": "Logout clears session; login reloads saved draft from mocked backend",
+      "pass": true
+    },
+    {
+      "name": "Expired JWT and server 401 redirect; 403 retains session and locks form",
+      "pass": true
+    },
+    {
+      "name": "Correct reset-OTP route, reset fields and sign-in redirect (mock)",
+      "pass": true
+    },
+    {
+      "name": "apply.html layout at 1280px",
+      "pass": true
+    },
+    {
+      "name": "application-status.html layout at 1280px",
+      "pass": true
+    },
+    {
+      "name": "apply.html layout at 768px",
+      "pass": true
+    },
+    {
+      "name": "application-status.html layout at 768px",
+      "pass": true
+    },
+    {
+      "name": "apply.html layout at 390px",
+      "pass": true
+    },
+    {
+      "name": "application-status.html layout at 390px",
+      "pass": true
+    },
+    {
+      "name": "apply.html layout at 320px",
+      "pass": true
+    },
+    {
+      "name": "application-status.html layout at 320px",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Blocked attempt to show a 'beforeunload' confirmation panel for a frame that never had a user gesture since its load. https://www.chromestatus.com/feature/5082396709879808"
+  ],
+  "blocked": [],
+  "missing": [
+    "/apply.html"
+  ],
+  "environment": "Fresh headless Chromium; every request fulfilled from local files or blocked; synthetic fixtures; no network"
+}

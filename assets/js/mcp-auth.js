@@ -142,9 +142,9 @@
     try {
       return JSON.parse(text);
     } catch (_error) {
-      return {
-        message: text,
-      };
+      const error = new Error("The admissions service returned an unexpected response. Please try again later.");
+      error.status = response.status;
+      throw error;
     }
   }
 
@@ -246,7 +246,7 @@
         "data.applicant.application_status",
         "application_status",
         "data.application_status",
-      ]) || "DRAFT",
+      ]) || "",
     );
 
     const isFormCreated = normalizeBoolean(
@@ -298,9 +298,7 @@
       isFormCreated,
       isFormSubmitted,
 
-      applicationSubmitted:
-        isFormSubmitted ||
-        Boolean(applicationStatus && applicationStatus !== "DRAFT"),
+      applicationSubmitted: isFormSubmitted || isFinalStatus(applicationStatus),
 
       isVerified: normalizeBoolean(applicant.is_verified),
 
@@ -309,6 +307,10 @@
       savedAt: new Date().toISOString(),
     };
 
+    if (!session.authenticated) {
+      clearSession();
+      throw new Error("Sign in did not return an access token. Please contact admissions.");
+    }
     sessionStorage.setItem(CONFIG.SESSION_KEY, JSON.stringify(session));
 
     return session;
@@ -352,8 +354,23 @@
 
   function isAuthenticated() {
     const session = getSession();
+    if (!session || !session.authenticated || !session.accessToken) return false;
+    // Decoding exp is only a UX check. The backend must verify the JWT signature.
+    try {
+      const part = session.accessToken.split(".")[1];
+      const claims = JSON.parse(window.atob(part.replace(/-/g, "+").replace(/_/g, "/")));
+      if (typeof claims.exp === "number" && claims.exp * 1000 <= Date.now()) {
+        clearSession();
+        return false;
+      }
+    } catch (_error) {
+      // Token validity remains the server's responsibility.
+    }
+    return true;
+  }
 
-    return Boolean(session && session.authenticated && session.accessToken);
+  function isFinalStatus(status) {
+    return ["SUBMITTED", "UNDER_REVIEW", "APPROVED", "REJECTED"].includes(normalizeStatus(status));
   }
 
   function getApplicationNumber(session = getSession()) {
@@ -389,6 +406,9 @@
       return false;
     }
 
+    if (typeof session.isFormSubmitted === "boolean") {
+      return session.isFormSubmitted || isFinalStatus(session.applicationStatus);
+    }
     return normalizeBoolean(
       session.isFormSubmitted ||
         session.applicationSubmitted ||
@@ -409,17 +429,12 @@
 
     const status = getApplicationStatus(session);
 
-    return Boolean(status && status !== "DRAFT");
+    return isFinalStatus(status);
   }
 
   function buildStatusUrl(applicationNumber) {
-    const number = applicationNumber || getApplicationNumber();
-
-    if (!number) {
-      return CONFIG.STATUS_PAGE;
-    }
-
-    return `${CONFIG.STATUS_PAGE}?application_no=` + encodeURIComponent(number);
+    // Application identity comes from the authenticated session, never a URL.
+    return CONFIG.STATUS_PAGE;
   }
 
   function getSafeNextUrl(
@@ -441,16 +456,19 @@
         return fallback;
       }
 
-      const relative = `${resolved.pathname}${resolved.search}${resolved.hash}`;
-
-      return relative.replace(/^\//, "") || fallback;
+      const directory = new URL(".", window.location.href).pathname;
+      const page = resolved.pathname.slice(directory.length);
+      if (!resolved.pathname.startsWith(directory) ||
+          !["apply.html", "application-status.html"].includes(page)) return fallback;
+      return page;
     } catch (_error) {
       return fallback;
     }
   }
 
   function buildSignInUrl(next = CONFIG.DEFAULT_AFTER_LOGIN) {
-    return "signin-user.html?next=" + encodeURIComponent(next);
+    const safeNext = getSafeNextUrl("?next=" + encodeURIComponent(next));
+    return "signin.html?next=" + encodeURIComponent(safeNext);
   }
 
   function requireAuth(next = CONFIG.DEFAULT_AFTER_LOGIN) {
@@ -480,23 +498,35 @@
   }
 
   async function apiFetch(path, options = {}) {
+    const { authenticated = true, ...requestOptions } = options;
     const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-
-    const headers = getAuthHeaders(options.headers || {});
+    if (normalizedPath.startsWith("//") || normalizedPath.includes("..")) {
+      throw new Error("Invalid admissions API path.");
+    }
+    if (authenticated && !isAuthenticated()) {
+      const error = new Error("Your session has expired. Please sign in again.");
+      error.status = 401;
+      window.location.replace(buildSignInUrl(window.location.pathname.split("/").pop()));
+      throw error;
+    }
+    const headers = authenticated ? getAuthHeaders(requestOptions.headers || {}) : (requestOptions.headers || {});
 
     const response = await fetch(`${CONFIG.API_BASE_URL}${normalizedPath}`, {
-      ...options,
+      ...requestOptions,
       credentials: "omit",
       headers,
     });
 
+    if (authenticated && response.status === 401) {
+      clearSession();
+      window.location.replace(buildSignInUrl(window.location.pathname.split("/").pop()));
+      const error = new Error("Your session has expired. Please sign in again.");
+      error.status = 401;
+      throw error;
+    }
     const payload = await parseResponse(response);
 
     if (!isSuccessfulPayload(response, payload)) {
-      if (response.status === 401 || response.status === 403) {
-        clearSession();
-      }
-
       throw createApiError(response, payload);
     }
 
@@ -505,6 +535,7 @@
 
   async function postJson(path, body, options = {}) {
     return apiFetch(path, {
+      authenticated: !["/login/", "/register/", "/verify-otp/", "/resend-otp/", "/request-password-reset/", "/reset-password/"].includes(path),
       ...options,
 
       method: "POST",
@@ -550,6 +581,7 @@
     requireAuth,
 
     normalizeStatus,
+    isFinalStatus,
 
     getApplicationNumber,
     getApplicationStatus,
