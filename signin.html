@@ -316,7 +316,7 @@
       <a href="#" id="scroll-top"><i class="far fa-arrow-up-from-arc"></i></a>
 
       <div id="toast" style="position: fixed; top: 20px; right: 20px; min-width: 200px; padding: 10px; border-radius: 5px; display: none; z-index: 1000;"></div>
-      <script src="assets/js/mcp-auth.js?v=20260731-5"></script>
+      <script src="assets/js/mcp-auth.js?v=20261029"></script>
       <script>
         (function () {
           "use strict";
@@ -388,7 +388,7 @@
               const applicationStatus = MCPAuth.getApplicationStatus(session);
 
               showToast(
-                applicationStatus && applicationStatus !== "DRAFT"
+                MCPAuth.shouldOpenStatusPage(session)
                   ? "Sign in successful. Opening your application status..."
                   : data.message || "Sign in successful. Redirecting...",
                 "success",

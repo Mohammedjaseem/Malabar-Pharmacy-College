@@ -745,6 +745,7 @@
 
       @media (max-width: 991px) {
         .status-hero {
+          margin-top: 70px;
           padding: 40px 0 80px;
         }
 
@@ -1399,8 +1400,10 @@
     ></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="assets/js/mcp-auth.js?v=20260731-6"></script>
+    <script src="assets/js/mcp-auth.js?v=20261029"></script>
 
+    <script src="assets/js/mcp-admission-contract.js?v=20261029-2"></script>
+<script src="assets/js/mcp-application.js?v=20261029-2"></script>
     <script>
       (function () {
         "use strict";
@@ -1408,6 +1411,9 @@
         const session = MCPAuth.requireAuth("application-status.html");
 
         if (!session) return;
+        window.addEventListener("pageshow", function (event) {
+          if (event.persisted) window.location.reload();
+        });
 
         const loadingState = document.getElementById("loadingState");
 
@@ -1456,6 +1462,11 @@
         });
 
         const STATUS_META = {
+          NOT_STARTED: {
+            label: "Not started", icon: "fa-pen-to-square",
+            title: "Start your admission application",
+            message: "Your account is registered. No application form has been saved yet.",
+          },
           DRAFT: {
             label: "Draft",
             icon: "fa-pen-to-square",
@@ -1585,47 +1596,10 @@
         async function loadApplication() {
           showLoading();
 
-          const params = new URLSearchParams(window.location.search);
-
-          const applicationNumber =
-            params.get("application_no") || getSessionApplicationNumber();
-
-          if (!applicationNumber) {
-            showError(
-              "The application number is missing. Please sign out and sign in again.",
-            );
-
-            return;
-          }
-
           try {
-            const response = await MCPAuth.apiFetch(
-              `/application-by-number/${encodeURIComponent(
-                applicationNumber,
-              )}/`,
-              {
-                method: "GET",
-              },
-            );
-
-            const applicant =
-              response?.data?.applicant || response?.applicant || null;
-
-            if (!applicant || typeof applicant !== "object") {
-              throw new Error(
-                "The API response did not contain applicant details.",
-              );
-            }
-
-            const applicationForm = applicant.application_form || {};
-
-            const applicationStatus = normalizeStatus(
-              applicationForm.application_status ||
-                applicant.application_status ||
-                "DRAFT",
-            );
-
-            updateStoredSession(applicant, applicationForm, applicationStatus);
+            const result = await MCPApplication.load();
+            if (!result) return;
+            const { applicant, form: applicationForm, status: applicationStatus } = result;
 
             currentApplicant = applicant;
             currentApplicationForm = applicationForm;
@@ -1637,7 +1611,7 @@
           } catch (error) {
             console.error("Application details error:", error);
 
-            if (error.status === 401 || error.status === 403) {
+            if (error.status === 401) {
               MCPAuth.clearSession();
 
               window.location.replace(
@@ -1651,47 +1625,6 @@
               error.message || "Unable to retrieve the application details.",
             );
           }
-        }
-
-        function getSessionApplicationNumber() {
-          return (
-            session.applicationNo ||
-            session.user?.application_no ||
-            session.raw?.applicant?.application_no ||
-            session.raw?.data?.applicant?.application_no ||
-            ""
-          );
-        }
-
-        function updateStoredSession(applicant, form, status) {
-          const changes = {
-            applicationNo:
-              form.application_no || applicant.application_no || "",
-
-            applicationStatus: status,
-
-            isFormSubmitted: status !== "DRAFT",
-
-            applicationSubmitted: status !== "DRAFT",
-
-            user: applicant,
-          };
-
-          if (typeof MCPAuth.updateSession === "function") {
-            MCPAuth.updateSession(changes);
-            return;
-          }
-
-          const existing = MCPAuth.getSession() || {};
-
-          sessionStorage.setItem(
-            MCPAuth.CONFIG.SESSION_KEY,
-            JSON.stringify({
-              ...existing,
-              ...changes,
-              updatedAt: new Date().toISOString(),
-            }),
-          );
         }
 
         function renderApplication(applicant, form, status) {
@@ -1901,9 +1834,10 @@
 
           renderAdditionalInformation(applicant, form);
 
-          continueApplicationButton.hidden = status !== "DRAFT";
+          continueApplicationButton.hidden = !MCPApplication.snapshot(applicant).editable;
+          continueApplicationButton.textContent = status === "NOT_STARTED" ? "Start Application" : "Continue Application";
 
-          downloadMemoButton.hidden = status === "DRAFT";
+          downloadMemoButton.hidden = status !== "APPROVED";
           downloadMemoButton.disabled = false;
           downloadMemoButton.innerHTML = `
             <i class="far fa-file-pdf"></i>
@@ -1969,7 +1903,7 @@
         function renderStatusBadge(status, meta) {
           const badge = document.getElementById("summaryStatus");
 
-          badge.dataset.status = status || "DRAFT";
+          badge.dataset.status = status || "UNKNOWN";
 
           badge.innerHTML = `
         <i class="far ${escapeHtml(meta.icon)}"></i>
@@ -2008,12 +1942,7 @@
             return step[0];
           });
 
-          let currentIndex = statusOrder.indexOf(status);
-
-          if (currentIndex < 0) {
-            currentIndex = 0;
-          }
-
+          const currentIndex = statusOrder.indexOf(status);
           container.innerHTML = "";
 
           steps.forEach(function ([stepStatus, label, icon], index) {
@@ -2983,7 +2912,7 @@
         function logout() {
           MCPAuth.clearSession();
 
-          window.location.replace("signin-user.html?next=apply.html");
+          window.location.replace("signin.html?next=apply.html");
         }
 
         function showToast(message, type) {
